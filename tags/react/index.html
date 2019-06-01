@@ -22,7 +22,7 @@
     <meta name="description" content>
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>组件生命周期与组件传值 · 令夕</title>
+    <title>令夕</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -203,23 +203,12 @@
 </head>
 
     
-        <body class="post-body">
-    
     
 <header class="header">
 
     <div class="read-progress"></div>
     <div class="header-sidebar-menu">&#xe775;</div>
     <!-- post页的toggle banner  -->
-    
-    <div class="banner">
-            <div class="blog-title">
-                <a href="/">令夕</a>
-            </div>
-            <div class="post-title">
-                <a href="#" class="post-name">组件生命周期与组件传值</a>
-            </div>
-    </div>
     
     <a class="home-link" href="/">令夕</a>
 </header>
@@ -231,74 +220,24 @@
 
 
 
-
-height:50vh;
 ">
     
     <!-- 主页  -->
-    
-    
-    <!-- 404页  -->
             
     <div class="site-intro-placeholder"></div>
-    <div class="site-intro-img" style="background-image: url(https://source.unsplash.com/random)"></div>
+    <div class="site-intro-img" style="background-image: url(/)"></div>
     <div class="site-intro-meta">
         <!-- 标题  -->
         <h1 class="intro-title">
             <!-- 主页  -->
-            
-            组件生命周期与组件传值
-            <!-- 404 -->
             
         </h1>
         <!-- 副标题 -->
         <p class="intro-subtitle">
             <!-- 主页副标题  -->
             
-            
-            <!-- 404 -->
-            
         </p>
         <!-- 文章页meta -->
-        
-            <div class="post-intros">
-                <!-- 文章页标签  -->
-                
-                    <div class="post-intro-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="vue">vue</a>
-    
-</div>
-                
-                
-                    <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">887</span>阅读时长: <span class="post-count reading-time">4 min</span></span>
-                    </div>
-                
-                <div class="post-intro-meta">
-                    <span class="post-intro-calander iconfont-archer">&#xe676;</span>
-                    <span class="post-intro-time">2018/05/30</span>
-                    
-                    <span id="busuanzi_container_page_pv" class="busuanzi-pv">
-                        <span class="iconfont-archer">&#xe602;</span>
-                        <span id="busuanzi_value_page_pv"></span>
-                    </span>
-                    
-                    <span class="shareWrapper">
-                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
-                        <span class="shareText">Share</span>
-                        <ul class="shareList">
-                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
-                                <div class="share-qrcode"></div>
-                            </li>
-                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
-                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
-                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
-                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
-                        </ul>
-                    </span>
-                </div>
-            </div>
         
     </div>
 </div>
@@ -399,101 +338,143 @@ height:50vh;
 </script>        
         <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
         <div class="container container-unloaded">
-            <main class="main post-page">
-    <article class="article-entry">
-        <p><a name="oMXK4"></a></p>
-<h1 id="组件生命周期与组件传值"><a href="#组件生命周期与组件传值" class="headerlink" title="组件生命周期与组件传值"></a>组件生命周期与组件传值</h1><p><a name="dmy7pu"></a></p>
-<h3 id="1-组件生命周期"><a href="#1-组件生命周期" class="headerlink" title="1.组件生命周期"></a><a href="#dmy7pu"></a>1.组件生命周期</h3><ol>
-<li><p><a href="https://segmentfault.com/a/1190000008010666" target="_blank" rel="noopener">https://segmentfault.com/a/1190000008010666</a></p>
-</li>
-<li><p>beforeCreate:组件实例刚刚被创建，组件属性刚刚创建，计算属性之前。</p>
-</li>
-<li><p>Created：组件实例创建完成，属性已经绑定，但是 dom 还未生成，$el 属性还不存在。</p>
-</li>
-<li><p>beforeMounted:编译挂载之前，完成了 data 和 el 初始化。</p>
-</li>
-<li><p>Mounted:编译挂载之后。</p>
-</li>
-<li><p>beforeUpdate:组件更新之前。</p>
-</li>
-<li><p>Updated:组件更新之后。</p>
-</li>
-<li><p>actived：keep-alive，组件被激活时调用</p>
-</li>
-<li><p>deactived：keep-alive 组件被溢出时调用</p>
-</li>
-<li><p>beforeDestory:组件销毁之前。</p>
-</li>
-<li><p>Destroyed:组件销毁之后。</p>
-</li>
-<li><p>activated（）：keep-alive 组件激活时，该钩子在服务器端渲染期间不被调用</p>
-</li>
-<li><p>deactivated（）：keep-alive 组件停用时调用。该钩子在服务端渲染期间不被调用。</p>
-</li>
-</ol>
-<p><a name="nqq4un"></a></p>
-<h3 id="keep-alive"><a href="#keep-alive" class="headerlink" title="keep-alive:"></a><a href="#nqq4un"></a>keep-alive:</h3><p><a href="https://www.cnblogs.com/sysuhanyf/p/7454530.html" target="_blank" rel="noopener">https://www.cnblogs.com/sysuhanyf/p/7454530.html</a><br>概念：是 vue 的内置组价，能在组件切换过程中将状态保存在内存中，防止重复渲染 Dom<br><a name="gsmgqn"></a></p>
-<p>###</p>
-<p><a name="gsmgqn"></a></p>
-<h3 id="2-父子组件之间传值"><a href="#2-父子组件之间传值" class="headerlink" title="2.父子组件之间传值"></a><a href="#gsmgqn"></a>2.父子组件之间传值</h3><ol>
-<li><p>父组件给子组件传值:props</p>
-</li>
-<li><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//1.在父组件的子组件中定义singerDatas变量名，吧singer赋值给singerDatas</span></span><br><span class="line">&lt;div class="singer"&gt;</span><br><span class="line">    &lt;v-singerlist :singerDatas=<span class="string">"singers"</span>&gt;&lt;/v-singerlist&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">    data () &#123;</span><br><span class="line">        <span class="keyword">return</span> &#123;</span><br><span class="line">        singers: []</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line"><span class="comment">//2.在singerList子组件的props中接受父组件传的值,singerDatas。必须是singerDatas</span></span><br><span class="line">props: &#123;</span><br><span class="line">    singerDatas: &#123;</span><br><span class="line">      type: <span class="keyword">Array</span>,</span><br><span class="line">      <span class="keyword">default</span>: () =&gt; []</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line"><span class="comment">//3.在子组件的组件中定义变量名接受传递的数据，使用。</span></span><br><span class="line">&lt;scroll</span><br><span class="line">  :singerInfos=<span class="string">"singerDatas"</span></span><br><span class="line">      &lt;ul&gt;</span><br><span class="line">          &lt;li</span><br><span class="line">                v-<span class="keyword">for</span>=<span class="string">"group in singerDatas"</span></span><br><span class="line">                :key=<span class="string">"group.id"</span></span><br><span class="line">                ref=<span class="string">"listGroup"</span></span><br><span class="line">                class="list_group"&gt;</span><br><span class="line">            &lt;/li&gt;</span><br><span class="line">        &lt;/ul&gt;</span><br><span class="line">&lt;/scroll&gt;</span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">2. 子组件给父组件传值：$emit</span><br><span class="line"></span><br><span class="line">  1. ```php</span><br><span class="line">//vm.$emit(event,arg);是指子组件可以通过是￥emit触发父组件的自定义事件</span><br><span class="line">//子组件</span><br><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div class=&quot;train-city&quot;&gt;</span><br><span class="line">    &lt;h3&gt;父组件传给子组件的toCity:&#123;&#123;sendData&#125;&#125;&lt;/h3&gt;</span><br><span class="line">    &lt;br/&gt;&lt;button @click=&apos;select(`大连`)&apos;&gt;点击此处将‘大连’发射给父组件&lt;/button&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">  export default &#123;</span><br><span class="line">    name:&apos;trainCity&apos;,</span><br><span class="line">    props:[&apos;sendData&apos;], // 用来接收父组件传给子组件的数据</span><br><span class="line">    methods:&#123;</span><br><span class="line">      select(val) &#123;</span><br><span class="line">        let data = &#123;</span><br><span class="line">          cityname: val</span><br><span class="line">        &#125;;</span><br><span class="line">        this.$emit(&apos;showCityName&apos;,data);//select事件触发后，自动触发showCityName事件</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">//父组件</span><br><span class="line">&lt;template&gt;</span><br><span class="line">    &lt;div&gt;父组件的toCity&#123;&#123;toCity&#125;&#125;&lt;/div&gt;</span><br><span class="line">    &lt;train-city @showCityName=&quot;updateCity&quot; :sendData=&quot;toCity&quot;&gt;&lt;/train-city&gt;</span><br><span class="line">&lt;template&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">  import TrainCity from &quot;./train-city&quot;;</span><br><span class="line">  export default &#123;</span><br><span class="line">    name:&apos;index&apos;,</span><br><span class="line">    components: &#123;TrainCity&#125;,</span><br><span class="line">    data () &#123;</span><br><span class="line">      return &#123;</span><br><span class="line">        toCity:&quot;北京&quot;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    methods:&#123;</span><br><span class="line">      updateCity(data)&#123;//触发子组件城市选择-选择城市的事件</span><br><span class="line">        this.toCity = data.cityname;//改变了父组件的值</span><br><span class="line">        console.log(&apos;toCity:&apos;+this.toCity)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
-
-<ol start="3">
-<li><p>vuex 的传值方法</p>
-</li>
-<li><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//1.src下新建一个store文件夹</span></span><br><span class="line"><span class="comment">//2.store文件夹下新建：state.js,mutations.js,mutation-type.js,getter.js,action.js,index.js</span></span><br><span class="line"><span class="comment">//3.index.js</span></span><br><span class="line"><span class="keyword">import</span> Vue <span class="keyword">from</span> <span class="string">'vue'</span></span><br><span class="line"><span class="keyword">import</span> Vuex <span class="keyword">from</span> <span class="string">'vuex'</span></span><br><span class="line"><span class="keyword">import</span> state <span class="keyword">from</span> <span class="string">'./state'</span></span><br><span class="line"><span class="keyword">import</span> mutations <span class="keyword">from</span> <span class="string">'./mutations'</span></span><br><span class="line"><span class="keyword">import</span> getters <span class="keyword">from</span> <span class="string">'./getters'</span></span><br><span class="line"><span class="keyword">import</span> actions <span class="keyword">from</span> <span class="string">'./actions'</span><span class="comment">// 此处的变量名命名必须小写，不能大写 大写的渲染不了</span></span><br><span class="line">Vue.use(Vuex)</span><br><span class="line"><span class="keyword">const</span> store = <span class="keyword">new</span> Vuex.Store(&#123;</span><br><span class="line">  state,</span><br><span class="line">  mutations,</span><br><span class="line">  getters,</span><br><span class="line">  actions</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> store</span><br><span class="line"><span class="comment">//state.js下</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  count: <span class="number">0</span>,</span><br><span class="line">  price: <span class="number">100</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
-<p>export default state<br>//mutation-types.js 下<br>//mutation-type.js 这个文件的目的是声明整个项目用于修改 state 方法有哪些<br>export const COUNT = ‘COUNT’<br>//mutations.js 下<br>import _ as types from ‘./mutation-types’<br>export default{<br>[types.COUNT] (state, count) {<br>state.count = count<br>}
-}<br>export default mutations<br>//getters.js<br>export default{<br>total: state =&gt; {<br>return state.count _ state.price<br>}
-}<br>//actions.js<br>import * as types from ‘./mutation-types’<br>export default{<br>actionCount ({commit}, count) {<br>commit(types.COUNT, count)<br>}
-}</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+            <main class="main index-page">
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/2019/05/22/react/（四）拆分组件与组件之前的传值/">
+            
+                <span>（三）react的jsx语法理解</span>
+        </a>
+        <div class="abstract-content">
+            
+1.react组件拆分的重要性模块化，组件化，提高性能，方便维护。
+2.父组件给子组件传递数据1234567// 通过属性的方式进行传递//1.父组件定义属性&lt;div&gt;	 &lt;TodoItem info=&#123;item&#125;/&gt;  &lt;/div&gt;//2.子组件通过this.props.属性  的方式接受属性  &lt;div onClick=&#123;this.handClick&#125;&gt;&#123;this.props.info&#125;&lt;/div&gt;
 
 
+3.子组件调用父组件的方法传递数据1234567891011...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/05/22</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="react">react</a>
+    
+</div>
+            
+        </div>
     </article>
-    <!-- license  -->
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/2019/05/20/react/（三）react的jsx语法理解/">
+            
+                <span>（三）react的jsx语法理解</span>
+        </a>
+        <div class="abstract-content">
+            
+1.jsx语法怎么添加注释1234567// render函数里面的代码就是jsx语法// 大写字母开头的标签就是组件，其他的标签都是元素&lt;Fragment&gt;&lt;/Fragment&gt; // 单行注释的写法&#123;//注释内容&#125;// 多行注释的写法&#123;/*注释内容*/&#125;
+
+
+2.react的class命名注意点
+在react中class是类的概念所以在react中class的写法要改成className。3.dangerouslySetInnerHTML理解dangerouslySetInnerHTMl 是React标签的一个属性，类...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/05/20</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="react">react</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/2019/05/18/react/（二）react的响应设计思想与事件绑定/">
+            
+                <span>（二）react的响应设计思想与事件绑定</span>
+        </a>
+        <div class="abstract-content">
+            
+1.react的新建组件12345678important React from 'react'class App extends React.Components&#123; //新建一个react组件    render()&#123;        return(        &lt;div&gt;hello&lt;/div&gt;        )    &#125;&#125;
+
+
+2.react的jsx语法
+3.Fragment：在react的最外层包一个div隐藏掉的方法。1234567891011121314151617181920import React,&#123...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/05/18</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="react">react</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/2019/05/17/react/（一）react开发环境与项目目录介绍/">
+            
+                <span>（一）react开发环境与项目目录介绍</span>
+        </a>
+        <div class="abstract-content">
+            
+demo 源码地址
+react 简介React 起源于 Facebook 的内部项目，因为该公司对市场上所有 JavaScript MVC 框架，都不满意，就决定自己写一套，用来架设 Instagram 的网站。做出来以后，发现这套东西很好用，就在 2013 年 5 月开源了。由于 React 的设计思想极其独特，属于革命性创新，性能出众，代码逻辑却非常简单。所以，越来越多的人开始关注和使用，认为它可能是将来 Web 开发的主流工具。ReactJS 官网地址：http://facebook.github.io/react/Github 地址：https://github.com/fac...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/05/17</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="react">react</a>
+    
+</div>
+            
+        </div>
+    </article>
     
     <!-- paginator  -->
-    <ul class="post-paginator">
-        <li class="next">
-            
-                <div class="nextSlogan">Next Post</div>
-                <a href="/2018/05/30/vue/router-link与redirect用法/" title="router-link与redirect用法">
-                    <div class="nextTitle">router-link与redirect用法</div>
-                </a>
-            
-        </li>
-        <li class="previous">
-            
-                <div class="prevSlogan">Previous Post</div>
-                <a href="/2018/05/24/vue/vuex与父子组件通讯/" title="vuex与父子组件通讯">
-                    <div class="prevTitle">vuex与父子组件通讯</div>
-                </a>
-            
-        </li>
-    </ul>
-    <!-- 评论插件 -->
-    <!-- 来必力City版安装代码 -->
-
-<!-- City版安装代码已完成 -->
     
-    
-    <!-- partial('_partial/comment/changyan') -->
-    <!--PC版-->
-
-
-    
-    
-
-    <!-- 评论 -->
 </main>
             <!-- profile -->
             
@@ -571,24 +552,6 @@ height:50vh;
 </footer>
     </div>
     <!-- toc -->
-    
-    <div class="toc-wrapper" style=
-    
-
-
-
-
-
-
-
-top:50vh;
-
-    >
-        <div class="toc-catalog">
-            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
-        </div>
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#组件生命周期与组件传值"><span class="toc-number">1.</span> <span class="toc-text">组件生命周期与组件传值</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-组件生命周期"><span class="toc-number">1.0.1.</span> <span class="toc-text">1.组件生命周期</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#keep-alive"><span class="toc-number">1.0.2.</span> <span class="toc-text">keep-alive:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-父子组件之间传值"><span class="toc-number">1.0.3.</span> <span class="toc-text">2.父子组件之间传值</span></a></li></ol></li></ol></li></ol>
-    </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
     <div class="sidebar sidebar-hide">
@@ -1061,8 +1024,6 @@ jsonContent:
     
     </div>
     <!-- async load share.js -->
-    
-        <script src="/scripts/share.js" async></script>    
      
     </body>
 </html>

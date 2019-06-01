@@ -517,6 +517,40 @@ Webpack不知道如何进行转换但是有loading(加载器)：将他们视为�
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/2019/05/22/react/（四）拆分组件与组件之前的传值/">
+            
+                <span>（三）react的jsx语法理解</span>
+        </a>
+        <div class="abstract-content">
+            
+1.react组件拆分的重要性模块化，组件化，提高性能，方便维护。
+2.父组件给子组件传递数据1234567// 通过属性的方式进行传递//1.父组件定义属性&lt;div&gt;	 &lt;TodoItem info=&#123;item&#125;/&gt;  &lt;/div&gt;//2.子组件通过this.props.属性  的方式接受属性  &lt;div onClick=&#123;this.handClick&#125;&gt;&#123;this.props.info&#125;&lt;/div&gt;
+
+
+3.子组件调用父组件的方法传递数据1234567891011...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/05/22</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="react">react</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/2019/05/21/webpack4/（一）搭建项目并打包JS文件/">
             
                 <span>（一）搭建项目并打包JS文件</span>
@@ -548,24 +582,28 @@ Webpack不知道如何进行转换但是有loading(加载器)：将他们视为�
     
     
     <article class="index-post">
-        <a class="abstract-title" href="/2018/07/15/vue/JYSHT-跳转同一页面判断/">
+        <a class="abstract-title" href="/2019/05/20/react/（三）react的jsx语法理解/">
             
-                <span>JYSHT-跳转同一页面判断</span>
+                <span>（三）react的jsx语法理解</span>
         </a>
         <div class="abstract-content">
-            JYSHT-跳转同一页面判断例如：交易所后端的法币增值税，跳转到新增和修改页面。但是新增和修改同为一个页面的情况
-123456789101112131415161718192021222324252627282930313233343536373839404142434445461.可以通过路由的一个type来判断&#123;  path: '/exchange/new',  component: ExchangeNew,  name:'ExchangeNew_f',  props: &#123;    type: 'new'//type判断是新增还是修改  &#125;,  hidde...
+            
+1.jsx语法怎么添加注释1234567// render函数里面的代码就是jsx语法// 大写字母开头的标签就是组件，其他的标签都是元素&lt;Fragment&gt;&lt;/Fragment&gt; // 单行注释的写法&#123;//注释内容&#125;// 多行注释的写法&#123;/*注释内容*/&#125;
+
+
+2.react的class命名注意点
+在react中class是类的概念所以在react中class的写法要改成className。3.dangerouslySetInnerHTML理解dangerouslySetInnerHTMl 是React标签的一个属性，类...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
             <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/07/15</span>
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/05/20</span>
             </div>
             <!-- tags  -->
             
             <div class="abstract-tags">
     
-        <a class="post-tag" href="javascript:void(0);" data-tags="vue">vue</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags="react">react</a>
     
 </div>
             
@@ -578,27 +616,28 @@ Webpack不知道如何进行转换但是有loading(加载器)：将他们视为�
     
     
     <article class="index-post">
-        <a class="abstract-title" href="/2018/05/30/vue/router-link与redirect用法/">
+        <a class="abstract-title" href="/2019/05/18/react/（二）react的响应设计思想与事件绑定/">
             
-                <span>router-link与redirect用法</span>
+                <span>（二）react的响应设计思想与事件绑定</span>
         </a>
         <div class="abstract-content">
-            router-link 与 redirect 用法https://www.cnblogs.com/SamWeb/p/6610733.html
-1.router-link :
-简单的定死路由跳转：:路由跳转，将组件映射到路由。
+            
+1.react的新建组件12345678important React from 'react'class App extends React.Components&#123; //新建一个react组件    render()&#123;        return(        &lt;div&gt;hello&lt;/div&gt;        )    &#125;&#125;
 
-123456789101112131415161718192021&lt;!--route:是指一条路由（Home按钮  =&gt; home内容） --&gt;&lt;!--routes:是指一组路由：把每一条路由组合起来组合成一个数组[&#123;home 按钮 =&gt;home内容 &#125;， &#123; about按钮 =&gt; about 内容...
+
+2.react的jsx语法
+3.Fragment：在react的最外层包一个div隐藏掉的方法。1234567891011121314151617181920import React,&#123...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
             <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/05/30</span>
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/05/18</span>
             </div>
             <!-- tags  -->
             
             <div class="abstract-tags">
     
-        <a class="post-tag" href="javascript:void(0);" data-tags="vue">vue</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags="react">react</a>
     
 </div>
             
@@ -611,93 +650,25 @@ Webpack不知道如何进行转换但是有loading(加载器)：将他们视为�
     
     
     <article class="index-post">
-        <a class="abstract-title" href="/2018/05/30/vue/组件生命周期与组件传值/">
+        <a class="abstract-title" href="/2019/05/17/react/（一）react开发环境与项目目录介绍/">
             
-                <span>组件生命周期与组件传值</span>
+                <span>（一）react开发环境与项目目录介绍</span>
         </a>
         <div class="abstract-content">
             
-组件生命周期与组件传值
-1.组件生命周期
-https://segmentfault.com/a/1190000008010666
-
-beforeCreate:组件实例刚刚被创建，组件属性刚刚创建，计算属性之前。
-
-Created：组件实例创建完成，属性已经绑定，但是 dom 还未生成，$el 属性还不存在。
-
-beforeMounted:编译挂载之前，完成了 data 和 el 初始化。
-
-Mounted:编译挂载之后。
-
-beforeUpdate:组件更新之前。
-
-Updated:组件更新之后。
-
-actived：keep-alive，组件被激活时调用
-
-deactived：keep...
+demo 源码地址
+react 简介React 起源于 Facebook 的内部项目，因为该公司对市场上所有 JavaScript MVC 框架，都不满意，就决定自己写一套，用来架设 Instagram 的网站。做出来以后，发现这套东西很好用，就在 2013 年 5 月开源了。由于 React 的设计思想极其独特，属于革命性创新，性能出众，代码逻辑却非常简单。所以，越来越多的人开始关注和使用，认为它可能是将来 Web 开发的主流工具。ReactJS 官网地址：http://facebook.github.io/react/Github 地址：https://github.com/fac...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
             <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/05/30</span>
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/05/17</span>
             </div>
             <!-- tags  -->
             
             <div class="abstract-tags">
     
-        <a class="post-tag" href="javascript:void(0);" data-tags="vue">vue</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2018/05/24/vue/vuex与父子组件通讯/">
-            
-                <span>vuex与父子组件通讯</span>
-        </a>
-        <div class="abstract-content">
-            vuex 与父子组件通讯
-1.vuex 理解
-概念：是一个公共的状态库，可以在所有组价库里面去使用，修改。
-
-目录：
-
-index.js
-
-state.js
-
-mutations.js
-
-getters.js
-
-actions.js
-
-
-
-2.store 的状态理解
-state：最基本定义的状态：
-
-1.
-123456789101112export default &#123;  count: 0,  price: 100&#125;在组件中运用:Import &#123;mapState&#125; from ‘vuex’Computed:&#123;     …mapState(&#...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/05/24</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="vue">vue</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags="react">react</a>
     
 </div>
             
@@ -984,9 +955,73 @@ state：最基本定义的状态：
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 16
+        Total : 20
         </div>
         <!-- search  -->
         
@@ -1027,7 +1062,27 @@ state：最基本定义的状态：
     
     
         <li class="archive-post-item">
+            <span class="archive-post-date">05/22</span><a class="archive-post-title" href="/2019/05/22/react/（四）拆分组件与组件之前的传值/">（三）react的jsx语法理解</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
             <span class="archive-post-date">05/21</span><a class="archive-post-title" href="/2019/05/21/webpack4/（一）搭建项目并打包JS文件/">（一）搭建项目并打包JS文件</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/20</span><a class="archive-post-title" href="/2019/05/20/react/（三）react的jsx语法理解/">（三）react的jsx语法理解</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/18</span><a class="archive-post-title" href="/2019/05/18/react/（二）react的响应设计思想与事件绑定/">（二）react的响应设计思想与事件绑定</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/17</span><a class="archive-post-title" href="/2019/05/17/react/（一）react开发环境与项目目录介绍/">（一）react开发环境与项目目录介绍</a>
         </li>
     
     
@@ -1071,7 +1126,7 @@ state：最基本定义的状态：
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/17</span><a class="archive-post-title" href="/2018/05/17/vue/banner横向轮播图-组件封装思路/">banner横向轮播图-组件封装思路</a>
+            <span class="archive-post-date">05/17</span><a class="archive-post-title" href="/2018/05/17/vue/axios-获取接口，mock模拟数据配置/">axios-获取接口，mock模拟数据配置</a>
         </li>
     
     
@@ -1081,18 +1136,20 @@ state：最基本定义的状态：
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/17</span><a class="archive-post-title" href="/2018/05/17/vue/axios-获取接口，mock模拟数据配置/">axios-获取接口，mock模拟数据配置</a>
+            <span class="archive-post-date">05/17</span><a class="archive-post-title" href="/2018/05/17/vue/vueMusic歌手-左右链动/">vueMusic歌手-左右链动</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/17</span><a class="archive-post-title" href="/2018/05/17/vue/vueMusic歌手-左右链动/">vueMusic歌手-左右链动</a>
+            <span class="archive-post-date">05/17</span><a class="archive-post-title" href="/2018/05/17/vue/banner横向轮播图-组件封装思路/">banner横向轮播图-组件封装思路</a>
         </li>
     
     </ul></div>
   </div>
         <div class="sidebar-panel-tags">
     <div class="sidebar-tags-name">
+    
+        <span class="sidebar-tag-name" data-tags="react"><span class="iconfont-archer">&#xe606;</span>react</span>
     
         <span class="sidebar-tag-name" data-tags="vue"><span class="iconfont-archer">&#xe606;</span>vue</span>
     
@@ -1132,6 +1189,8 @@ jsonContent:
 </div>
         <div class="sidebar-panel-categories">
     <div class="sidebar-categories-name">
+    
+        <span class="sidebar-category-name" data-categories="react"><span class="iconfont-archer">&#xe60a;</span>react</span>
     
         <span class="sidebar-category-name" data-categories="vue"><span class="iconfont-archer">&#xe60a;</span>vue</span>
     

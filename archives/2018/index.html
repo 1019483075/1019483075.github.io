@@ -351,8 +351,8 @@
                 <span>JYSHT-跳转同一页面判断</span>
         </a>
         <div class="abstract-content">
-            JYSHT-跳转同一页面判断例如：交易所后端的法币增值税，跳转到新增和修改页面。但是新增和修改同为一个页面的情况
-123456789101112131415161718192021222324252627282930313233343536373839404142434445461.可以通过路由的一个type来判断&#123;  path: '/exchange/new',  component: ExchangeNew,  name:'ExchangeNew_f',  props: &#123;    type: 'new'//type判断是新增还是修改  &#125;,  hidde...
+            例如：交易所后端的法币增值税，跳转到新增和修改页面。但是新增和修改同为一个页面的情况
+123456789101112131415161718192021222324252627282930313233343536373839404142434445461.可以通过路由的一个type来判断&#123;  path: '/exchange/new',  component: ExchangeNew,  name:'ExchangeNew_f',  props: &#123;    type: 'new'//type判断是新增还是修改  &#125;,  hidden: true,&#125;...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -381,11 +381,11 @@
                 <span>router-link与redirect用法</span>
         </a>
         <div class="abstract-content">
-            router-link 与 redirect 用法https://www.cnblogs.com/SamWeb/p/6610733.html
+            https://www.cnblogs.com/SamWeb/p/6610733.html
 1.router-link :
 简单的定死路由跳转：:路由跳转，将组件映射到路由。
 
-123456789101112131415161718192021&lt;!--route:是指一条路由（Home按钮  =&gt; home内容） --&gt;&lt;!--routes:是指一组路由：把每一条路由组合起来组合成一个数组[&#123;home 按钮 =&gt;home内容 &#125;， &#123; about按钮 =&gt; about 内容...
+123456789101112131415161718192021&lt;!--route:是指一条路由（Home按钮  =&gt; home内容） --&gt;&lt;!--routes:是指一组路由：把每一条路由组合起来组合成一个数组[&#123;home 按钮 =&gt;home内容 &#125;， &#123; about按钮 =&gt; about 内容&#125;]--&gt;&lt;!--route...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -462,7 +462,7 @@ deactived：keep...
                 <span>vuex与父子组件通讯</span>
         </a>
         <div class="abstract-content">
-            vuex 与父子组件通讯
+            
 1.vuex 理解
 概念：是一个公共的状态库，可以在所有组价库里面去使用，修改。
 
@@ -484,7 +484,7 @@ actions.js
 state：最基本定义的状态：
 
 1.
-123456789101112export default &#123;  count: 0,  price: 100&#125;在组件中运用:Import &#123;mapState&#125; from ‘vuex’Computed:&#123;     …mapState(&#...
+123456789101112export default &#123;  count: 0,  price: 100&#125;在组件中运用:Import &#123;mapState&#125; from ‘vuex’Computed:&#123;     …mapState(&#123;	count:’...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -513,8 +513,8 @@ state：最基本定义的状态：
                 <span>vue-music歌手详情页</span>
         </a>
         <div class="abstract-content">
-            vue-music 歌手详情页
-1.singer 页面引入 singer-detail 二级路由12345678910111213141516171819202122232425262728//1.在singerlist中触发事件  @click="selectItem(items)"//2.在methods中： selectItem (items) &#123;   this.$emit('select', items)//将事件传递给父组件，将items给父组件&#125;,//3.在singer组件中 &lt;div class="singer"&gt;     &lt;v-sin...
+            
+1.singer 页面引入 singer-detail 二级路由12345678910111213141516171819202122232425262728//1.在singerlist中触发事件  @click="selectItem(items)"//2.在methods中： selectItem (items) &#123;   this.$emit('select', items)//将事件传递给父组件，将items给父组件&#125;,//3.在singer组件中 &lt;div class="singer"&gt;     &lt;v-singerlist @select...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -543,7 +543,7 @@ state：最基本定义的状态：
                 <span>loading-图片懒加载</span>
         </a>
         <div class="abstract-content">
-            loading-图片懒加载
+            
 https://www.cnblogs.com/xyyt/p/7650539.html
 
 安装插件 npm install vue-lazyload –save-dev
@@ -554,7 +554,7 @@ main.js 中插入
 
 
 
-123454. vue文件中将需要懒加载的图...
+123454. vue文件中将需要懒加载的图片绑定 v-bind:sr...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -578,20 +578,23 @@ main.js 中插入
     
     
     <article class="index-post">
-        <a class="abstract-title" href="/2018/05/17/vue/vueMusic歌手-左右链动/">
+        <a class="abstract-title" href="/2018/05/17/vue/banner横向轮播图-组件封装思路/">
             
-                <span>vueMusic歌手-左右链动</span>
+                <span>banner横向轮播图-组件封装思路</span>
         </a>
         <div class="abstract-content">
-            vueMusic 歌手-左右链动https://blog.csdn.net/tyrionj/article/details/79145667
-1.singer.vue 数据重构与排序
-歌手页面的结构是  热门、 A-Z  的顺序排列，但抓取的接口数据只是 100 条常见的歌手，并且是乱序的，但我们可以利用接口的 Findex 进行数据的重构
+            
+https://segmentfault.com/a/1190000013294187
 
-1234567const HOT_NAME = "热门";let map = &#123;  hot: &#123;    title: HOT_NAME,    item: []  &#125;&#125;;
+https://github.com/ustbhuangyi/better-scroll/blob/master/example/components/slide/slide.vue
+
+v-for 一定要加 key 否则会报错
+
+1&lt;li v-for=&quot;item in discList&quot; class=&quot;list_item&quot; :key=&quot;item.id&quot;&gt;&lt;/li&gt;
 
 
 
-123456789101112...
+1234567891011121314151...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -615,25 +618,20 @@ main.js 中插入
     
     
     <article class="index-post">
-        <a class="abstract-title" href="/2018/05/17/vue/axios-获取接口，mock模拟数据配置/">
+        <a class="abstract-title" href="/2018/05/17/vue/vueMusic歌手-左右链动/">
             
-                <span>axios-获取接口，mock模拟数据配置</span>
+                <span>vueMusic歌手-左右链动</span>
         </a>
         <div class="abstract-content">
-            axios-获取接口，mock 模拟数据配置https://blog.csdn.net/binginsist/article/details/65630547
-1.axios
-安装 axios  :
+            https://blog.csdn.net/tyrionj/article/details/79145667
+1.singer.vue 数据重构与排序
+歌手页面的结构是  热门、 A-Z  的顺序排列，但抓取的接口数据只是 100 条常见的歌手，并且是乱序的，但我们可以利用接口的 Findex 进行数据的重构
 
-1npm install --save axios vue-axios
-
-
-在 main.js 中引入
-
-123import axios from "axios";Vue.use(axios);Vue.prototype.$http = axios;
+1234567const HOT_NAME = "热门";let map = &#123;  hot: &#123;    title: HOT_NAME,    item: []  &#125;&#125;;
 
 
 
-1234567893. 使用方法  1. ```javascriptthis.$http.get(URL).then(response...
+1234567891011121314151617181920...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -662,8 +660,8 @@ main.js 中插入
                 <span>better-scroll-配置纵向滚动</span>
         </a>
         <div class="abstract-content">
-            better-scroll-配置纵向滚动概念：是一个移动端滚动解决方案。不仅可以做滚动还可以做轮播图1.安装：npm install–save better-scroll2.在文件中引入 better-scroll。import BScroll from ‘better-scroll’;3.new BScroll(Dom 对象,{//opsitons}); 在 Vue 中要获得 Dom 对象，需设置标签属性‘v-el’。
-123456789101112131415161718192021222324252627例如：&lt;div v-el:betterscroll&gt;&lt;/di...
+            概念：是一个移动端滚动解决方案。不仅可以做滚动还可以做轮播图1.安装：npm install–save better-scroll2.在文件中引入 better-scroll。import BScroll from ‘better-scroll’;3.new BScroll(Dom 对象,{//opsitons}); 在 Vue 中要获得 Dom 对象，需设置标签属性‘v-el’。
+123456789101112131415161718192021222324252627例如：&lt;div v-el:betterscroll&gt;&lt;/div&gt;获取dom对象，this.$e...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -687,23 +685,25 @@ main.js 中插入
     
     
     <article class="index-post">
-        <a class="abstract-title" href="/2018/05/17/vue/banner横向轮播图-组件封装思路/">
+        <a class="abstract-title" href="/2018/05/17/vue/axios-获取接口，mock模拟数据配置/">
             
-                <span>banner横向轮播图-组件封装思路</span>
+                <span>axios-获取接口，mock模拟数据配置</span>
         </a>
         <div class="abstract-content">
-            banner 横向轮播图-组件封装思路
-https://segmentfault.com/a/1190000013294187
+            https://blog.csdn.net/binginsist/article/details/65630547
+1.axios
+安装 axios  :
 
-https://github.com/ustbhuangyi/better-scroll/blob/master/example/components/slide/slide.vue
-
-v-for 一定要加 key 否则会报错
-
-1&lt;li v-for=&quot;item in discList&quot; class=&quot;list_item&quot; :key=&quot;item.id&quot;&gt;&lt;/li&gt;
+1npm install --save axios vue-axios
 
 
+在 main.js 中引入
 
-123...
+123import axios from "axios";Vue.use(axios);Vue.prototype.$http = axios;
+
+
+
+1234567893. 使用方法  1. ```javascriptthis.$http.get(URL).then(response =&gt; &#123;    // su...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -997,9 +997,73 @@ v-for 一定要加 key 否则会报错
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 16
+        Total : 20
         </div>
         <!-- search  -->
         
@@ -1040,7 +1104,27 @@ v-for 一定要加 key 否则会报错
     
     
         <li class="archive-post-item">
+            <span class="archive-post-date">05/22</span><a class="archive-post-title" href="/2019/05/22/react/（四）拆分组件与组件之前的传值/">（三）react的jsx语法理解</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
             <span class="archive-post-date">05/21</span><a class="archive-post-title" href="/2019/05/21/webpack4/（一）搭建项目并打包JS文件/">（一）搭建项目并打包JS文件</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/20</span><a class="archive-post-title" href="/2019/05/20/react/（三）react的jsx语法理解/">（三）react的jsx语法理解</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/18</span><a class="archive-post-title" href="/2019/05/18/react/（二）react的响应设计思想与事件绑定/">（二）react的响应设计思想与事件绑定</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/17</span><a class="archive-post-title" href="/2019/05/17/react/（一）react开发环境与项目目录介绍/">（一）react开发环境与项目目录介绍</a>
         </li>
     
     
@@ -1084,7 +1168,7 @@ v-for 一定要加 key 否则会报错
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/17</span><a class="archive-post-title" href="/2018/05/17/vue/banner横向轮播图-组件封装思路/">banner横向轮播图-组件封装思路</a>
+            <span class="archive-post-date">05/17</span><a class="archive-post-title" href="/2018/05/17/vue/axios-获取接口，mock模拟数据配置/">axios-获取接口，mock模拟数据配置</a>
         </li>
     
     
@@ -1094,18 +1178,20 @@ v-for 一定要加 key 否则会报错
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/17</span><a class="archive-post-title" href="/2018/05/17/vue/axios-获取接口，mock模拟数据配置/">axios-获取接口，mock模拟数据配置</a>
+            <span class="archive-post-date">05/17</span><a class="archive-post-title" href="/2018/05/17/vue/vueMusic歌手-左右链动/">vueMusic歌手-左右链动</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/17</span><a class="archive-post-title" href="/2018/05/17/vue/vueMusic歌手-左右链动/">vueMusic歌手-左右链动</a>
+            <span class="archive-post-date">05/17</span><a class="archive-post-title" href="/2018/05/17/vue/banner横向轮播图-组件封装思路/">banner横向轮播图-组件封装思路</a>
         </li>
     
     </ul></div>
   </div>
         <div class="sidebar-panel-tags">
     <div class="sidebar-tags-name">
+    
+        <span class="sidebar-tag-name" data-tags="react"><span class="iconfont-archer">&#xe606;</span>react</span>
     
         <span class="sidebar-tag-name" data-tags="vue"><span class="iconfont-archer">&#xe606;</span>vue</span>
     
@@ -1145,6 +1231,8 @@ jsonContent:
 </div>
         <div class="sidebar-panel-categories">
     <div class="sidebar-categories-name">
+    
+        <span class="sidebar-category-name" data-categories="react"><span class="iconfont-archer">&#xe60a;</span>react</span>
     
         <span class="sidebar-category-name" data-categories="vue"><span class="iconfont-archer">&#xe60a;</span>vue</span>
     
