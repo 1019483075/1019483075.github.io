@@ -346,6 +346,39 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/2018/05/30/vue/router-link与redirect用法/">
+            
+                <span>router-link与redirect用法</span>
+        </a>
+        <div class="abstract-content">
+            https://www.cnblogs.com/SamWeb/p/6610733.html
+1.router-link :
+简单的定死路由跳转：:路由跳转，将组件映射到路由。
+
+123456789101112131415161718192021&lt;!--route:是指一条路由（Home按钮  =&gt; home内容） --&gt;&lt;!--routes:是指一组路由：把每一条路由组合起来组合成一个数组[&#123;home 按钮 =&gt;home内容 &#125;， &#123; about按钮 =&gt; about 内容&#125;]--&gt;&lt;!--route...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/05/30</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="vue">vue</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/2018/05/30/vue/组件生命周期与组件传值/">
             
                 <span>组件生命周期与组件传值</span>
@@ -371,39 +404,6 @@ Updated:组件更新之后。
 actived：keep-alive，组件被激活时调用
 
 deactived：keep...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/05/30</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="vue">vue</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2018/05/30/vue/router-link与redirect用法/">
-            
-                <span>router-link与redirect用法</span>
-        </a>
-        <div class="abstract-content">
-            https://www.cnblogs.com/SamWeb/p/6610733.html
-1.router-link :
-简单的定死路由跳转：:路由跳转，将组件映射到路由。
-
-123456789101112131415161718192021&lt;!--route:是指一条路由（Home按钮  =&gt; home内容） --&gt;&lt;!--routes:是指一组路由：把每一条路由组合起来组合成一个数组[&#123;home 按钮 =&gt;home内容 &#125;， &#123; about按钮 =&gt; about 内容&#125;]--&gt;&lt;!--route...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -615,25 +615,23 @@ main.js 中插入
     
     
     <article class="index-post">
-        <a class="abstract-title" href="/2018/05/17/vue/axios-获取接口，mock模拟数据配置/">
+        <a class="abstract-title" href="/2018/05/17/vue/banner横向轮播图-组件封装思路/">
             
-                <span>axios-获取接口，mock模拟数据配置</span>
+                <span>banner横向轮播图-组件封装思路</span>
         </a>
         <div class="abstract-content">
-            https://blog.csdn.net/binginsist/article/details/65630547
-1.axios
-安装 axios  :
+            
+https://segmentfault.com/a/1190000013294187
 
-1npm install --save axios vue-axios
+https://github.com/ustbhuangyi/better-scroll/blob/master/example/components/slide/slide.vue
 
+v-for 一定要加 key 否则会报错
 
-在 main.js 中引入
-
-123import axios from "axios";Vue.use(axios);Vue.prototype.$http = axios;
+1&lt;li v-for=&quot;item in discList&quot; class=&quot;list_item&quot; :key=&quot;item.id&quot;&gt;&lt;/li&gt;
 
 
 
-1234567893. 使用方法  1. ```javascriptthis.$http.get(URL).then(response =&gt; &#123;    // su...
+1234567891011121314151...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -657,23 +655,25 @@ main.js 中插入
     
     
     <article class="index-post">
-        <a class="abstract-title" href="/2018/05/17/vue/banner横向轮播图-组件封装思路/">
+        <a class="abstract-title" href="/2018/05/17/vue/axios-获取接口，mock模拟数据配置/">
             
-                <span>banner横向轮播图-组件封装思路</span>
+                <span>axios-获取接口，mock模拟数据配置</span>
         </a>
         <div class="abstract-content">
-            
-https://segmentfault.com/a/1190000013294187
+            https://blog.csdn.net/binginsist/article/details/65630547
+1.axios
+安装 axios  :
 
-https://github.com/ustbhuangyi/better-scroll/blob/master/example/components/slide/slide.vue
-
-v-for 一定要加 key 否则会报错
-
-1&lt;li v-for=&quot;item in discList&quot; class=&quot;list_item&quot; :key=&quot;item.id&quot;&gt;&lt;/li&gt;
+1npm install --save axios vue-axios
 
 
+在 main.js 中引入
 
-1234567891011121314151...
+123import axios from "axios";Vue.use(axios);Vue.prototype.$http = axios;
+
+
+
+1234567893. 使用方法  1. ```javascriptthis.$http.get(URL).then(response =&gt; &#123;    // su...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -1031,14 +1031,6 @@ v-for 一定要加 key 否则会报错
     
     
     
-    
-    
-    
-    
-    
-    
-    
-    
     <div class="total-and-search">
         <div class="total-archive">
         Total : 20
@@ -1082,7 +1074,7 @@ v-for 一定要加 key 否则会报错
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/22</span><a class="archive-post-title" href="/2019/05/22/react/（四）拆分组件与组件之前的传值/">（三）react的jsx语法理解</a>
+            <span class="archive-post-date">05/22</span><a class="archive-post-title" href="/2019/05/22/react/（四）拆分组件与组件之前的传值/">（四）拆分组件与组件之前的传值</a>
         </li>
     
     
@@ -1097,12 +1089,12 @@ v-for 一定要加 key 否则会报错
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/18</span><a class="archive-post-title" href="/2019/05/18/react/（二）响应设计思想与事件绑定/">（二）react的响应设计思想与事件绑定</a>
+            <span class="archive-post-date">05/18</span><a class="archive-post-title" href="/2019/05/18/react/（二）响应设计思想与事件绑定/">（二）响应设计思想与事件绑定</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/17</span><a class="archive-post-title" href="/2019/05/17/react/（一）react开发目录介绍/">（一）react开发环境与项目目录介绍</a>
+            <span class="archive-post-date">05/17</span><a class="archive-post-title" href="/2019/05/17/react/（一）react开发目录介绍/">（一）react开发目录介绍</a>
         </li>
     
     
@@ -1121,12 +1113,12 @@ v-for 一定要加 key 否则会报错
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/30</span><a class="archive-post-title" href="/2018/05/30/vue/router-link与redirect用法/">router-link与redirect用法</a>
+            <span class="archive-post-date">05/30</span><a class="archive-post-title" href="/2018/05/30/vue/组件生命周期与组件传值/">组件生命周期与组件传值</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/30</span><a class="archive-post-title" href="/2018/05/30/vue/组件生命周期与组件传值/">组件生命周期与组件传值</a>
+            <span class="archive-post-date">05/30</span><a class="archive-post-title" href="/2018/05/30/vue/router-link与redirect用法/">router-link与redirect用法</a>
         </li>
     
     
@@ -1146,12 +1138,12 @@ v-for 一定要加 key 否则会报错
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/17</span><a class="archive-post-title" href="/2018/05/17/vue/banner横向轮播图-组件封装思路/">banner横向轮播图-组件封装思路</a>
+            <span class="archive-post-date">05/17</span><a class="archive-post-title" href="/2018/05/17/vue/axios-获取接口，mock模拟数据配置/">axios-获取接口，mock模拟数据配置</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/17</span><a class="archive-post-title" href="/2018/05/17/vue/axios-获取接口，mock模拟数据配置/">axios-获取接口，mock模拟数据配置</a>
+            <span class="archive-post-date">05/17</span><a class="archive-post-title" href="/2018/05/17/vue/banner横向轮播图-组件封装思路/">banner横向轮播图-组件封装思路</a>
         </li>
     
     
@@ -1169,11 +1161,11 @@ v-for 一定要加 key 否则会报错
         <div class="sidebar-panel-tags">
     <div class="sidebar-tags-name">
     
+        <span class="sidebar-tag-name" data-tags="react"><span class="iconfont-archer">&#xe606;</span>react</span>
+    
         <span class="sidebar-tag-name" data-tags="vue"><span class="iconfont-archer">&#xe606;</span>vue</span>
     
         <span class="sidebar-tag-name" data-tags="webpack4"><span class="iconfont-archer">&#xe606;</span>webpack4</span>
-    
-        <span class="sidebar-tag-name" data-tags="react"><span class="iconfont-archer">&#xe606;</span>react</span>
     
         <span class="sidebar-tag-name" data-tags="墨菲定律"><span class="iconfont-archer">&#xe606;</span>墨菲定律</span>
     
@@ -1210,11 +1202,11 @@ jsonContent:
         <div class="sidebar-panel-categories">
     <div class="sidebar-categories-name">
     
+        <span class="sidebar-category-name" data-categories="react"><span class="iconfont-archer">&#xe60a;</span>react</span>
+    
         <span class="sidebar-category-name" data-categories="vue"><span class="iconfont-archer">&#xe60a;</span>vue</span>
     
         <span class="sidebar-category-name" data-categories="webpack4"><span class="iconfont-archer">&#xe60a;</span>webpack4</span>
-    
-        <span class="sidebar-category-name" data-categories="react"><span class="iconfont-archer">&#xe60a;</span>react</span>
     
         <span class="sidebar-category-name" data-categories="墨菲定律"><span class="iconfont-archer">&#xe60a;</span>墨菲定律</span>
     
