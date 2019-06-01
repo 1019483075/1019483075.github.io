@@ -22,7 +22,7 @@
     <meta name="description" content>
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>（二）react的响应设计思想与事件绑定 · 令夕</title>
+    <title>（一）react开发环境与项目目录介绍 · 令夕</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -217,7 +217,7 @@
                 <a href="/">令夕</a>
             </div>
             <div class="post-title">
-                <a href="#" class="post-name">（二）react的响应设计思想与事件绑定</a>
+                <a href="#" class="post-name">（一）react开发环境与项目目录介绍</a>
             </div>
     </div>
     
@@ -247,7 +247,7 @@ height:50vh;
         <h1 class="intro-title">
             <!-- 主页  -->
             
-            （二）react的响应设计思想与事件绑定
+            （一）react开发环境与项目目录介绍
             <!-- 404 -->
             
         </h1>
@@ -272,12 +272,12 @@ height:50vh;
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">369</span>阅读时长: <span class="post-count reading-time">2 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">750</span>阅读时长: <span class="post-count reading-time">3 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
                     <span class="post-intro-calander iconfont-archer">&#xe676;</span>
-                    <span class="post-intro-time">2019/05/18</span>
+                    <span class="post-intro-time">2019/05/17</span>
                     
                     <span id="busuanzi_container_page_pv" class="busuanzi-pv">
                         <span class="iconfont-archer">&#xe602;</span>
@@ -401,16 +401,26 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <p><a name="g22wyd"></a></p>
-<h4 id="1-react的新建组件"><a href="#1-react的新建组件" class="headerlink" title="1.react的新建组件"></a><a href="#g22wyd"></a>1.react的新建组件</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">important React <span class="keyword">from</span> <span class="string">'react'</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">App</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Components</span></span>&#123; <span class="comment">//新建一个react组件</span></span><br><span class="line">    render()&#123;</span><br><span class="line">        <span class="keyword">return</span>(</span><br><span class="line">        &lt;div&gt;hello&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">        )</span></span><br><span class="line"><span class="regexp">    &#125;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br></pre></td></tr></table></figure>
+        <p><a name="ymgI1"></a></p>
+<h4 id="demo-源码地址"><a href="#demo-源码地址" class="headerlink" title="demo 源码地址"></a><a href>demo 源码地址</a></h4><p><a name="kBHSv"></a></p>
+<h2 id="react-简介"><a href="#react-简介" class="headerlink" title="react 简介"></a>react 简介</h2><p>React 起源于 Facebook 的内部项目，因为该公司对市场上所有 JavaScript MVC 框架，都不满意，就决定自己写一套，用来架设 Instagram 的网站。做出来以后，发现这套东西很好用，就在 2013 年 5 月开源了。由于 React 的设计思想极其独特，属于革命性创新，性能出众，代码逻辑却非常简单。所以，越来越多的人开始关注和使用，认为它可能是将来 Web 开发的主流工具。<br>ReactJS 官网地址：<a href="http://facebook.github.io/react/" target="_blank" rel="noopener">http://facebook.github.io/react/</a><br>Github 地址：<a href="https://github.com/facebook/react" target="_blank" rel="noopener">https://github.com/facebook/react</a>。
+<a name="vlV7h"></a></p>
+<h2 id="React-特点"><a href="#React-特点" class="headerlink" title="React 特点"></a>React 特点</h2><ul>
+<li><strong>1.声明式设计</strong> −React 采用声明范式，可以轻松描述应用。<br></li>
+<li><strong>2.高效</strong> −React 通过对 DOM 的模拟，最大限度地减少与 DOM 的交互。<br></li>
+<li><strong>3.灵活</strong> −React 可以与已知的库或框架很好地配合。<br></li>
+<li><strong>4.JSX</strong> − JSX 是 JavaScript 语法的扩展。React 开发不一定使用 JSX ，但我们建议使用它。<br></li>
+<li><strong>5.组件</strong> − 通过 React 构建组件，使得代码更加容易得到复用，能够很好的应用在大项目的开发中。<br></li>
+<li><strong>6.单向响应的数据流</strong> − React 实现了单向响应的数据流，从而减少了重复代码，这也是它为什么比传统数据绑定更简单。<br><br><a name="9mq2en"></a></li>
+</ul>
+<h2 id="脚手架工具安装与运行"><a href="#脚手架工具安装与运行" class="headerlink" title="脚手架工具安装与运行"></a><a href="#9mq2en"></a>脚手架工具安装与运行</h2><p>下载 node 安装包<br>查看 npm 安装包<br>react 全局安装的脚手架工具：npm install -g create-react-app<br>初始化一个项目：create-react-app  projectName<br>成功后的提示<br><img src="https://cdn.nlark.com/yuque/0/2019/png/105657/1558060749217-14a65a5f-807a-4125-9a9f-067f03a6db45.png#align=left&display=inline&height=320&name=%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_15580607348763.png&originHeight=779&originWidth=1023&size=38472&status=done&width=420" alt="企业微信截图_15580607348763.png"><br>然后 cd 项目目录<br>yarn start 项目启动成功<br><a name="9hxpxd"></a></p>
+<h2 id="react-项目目录认识"><a href="#react-项目目录认识" class="headerlink" title="react 项目目录认识"></a><a href="#9hxpxd"></a>react 项目目录认识</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">#项目结构</span><br><span class="line">├── node_modules 包含了react下的组件</span><br><span class="line"> 项目启动页面，react比较适合单页开发，所以暂时只包含一个index.html，是react的入口页面</span><br><span class="line">│   ├────favicon.ico 图片</span><br><span class="line">│   ├────index.html 项目入口</span><br><span class="line">│   └────manifest.json <span class="number">5</span>+移动App的配置 app的快捷方式的图片和网址的定义</span><br><span class="line">├─- src 开发目录</span><br><span class="line">│   ├───—App.css   组件的css</span><br><span class="line">│   ├───—App.js   负责页面显示内容</span><br><span class="line">│   ├───—App.test.js  自动化的测试的文件</span><br><span class="line">│   ├───—index.js 整个程序的入口文件</span><br><span class="line">│   ├───—logo.svg 图片</span><br><span class="line">│   └────serviceWorker.js</span><br><span class="line">├── .gitignore  git那些文件不需要添加到版本管理</span><br><span class="line">├── package.json 项目所需要的各种模块，配置信息</span><br><span class="line">├── yarn.lock 项目依赖安装包的版本号</span><br><span class="line">md 项目的说明文件，使用markdown的语法。</span><br></pre></td></tr></table></figure>
 
-<p><a name="cgzuxq"></a></p>
-<h4 id="2-react的jsx语法"><a href="#2-react的jsx语法" class="headerlink" title="2.react的jsx语法"></a><a href="#cgzuxq"></a>2.react的jsx语法</h4><p><a name="htarfs"></a></p>
-<h4 id="3-Fragment：在react的最外层包一个div隐藏掉的方法。"><a href="#3-Fragment：在react的最外层包一个div隐藏掉的方法。" class="headerlink" title="3.Fragment：在react的最外层包一个div隐藏掉的方法。"></a><a href="#htarfs"></a>3.Fragment：在react的最外层包一个div隐藏掉的方法。</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React,&#123;Component,Fragment &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TodoList</span> <span class="keyword">extends</span> <span class="title">Component</span></span>&#123;</span><br><span class="line">    render() &#123;</span><br><span class="line">        <span class="keyword">return</span>(</span><br><span class="line">            &lt;Fragment className=<span class="string">"TodoList"</span>&gt;</span><br><span class="line">                &lt;div&gt;</span><br><span class="line">                    &lt;input/&gt;</span><br><span class="line">                    &lt;button&gt;按钮&lt;<span class="regexp">/button&gt;</span></span><br><span class="line"><span class="regexp">                &lt;/</span>div&gt;</span><br><span class="line">                &lt;ul&gt;</span><br><span class="line">                    &lt;li&gt;学英语&lt;<span class="regexp">/li&gt;</span></span><br><span class="line"><span class="regexp">                    &lt;li&gt;learn React&lt;/</span>li&gt;</span><br><span class="line">                &lt;<span class="regexp">/ul&gt;</span></span><br><span class="line"><span class="regexp">            &lt;/</span>Fragment&gt;</span><br><span class="line">        )</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> TodoList;</span><br></pre></td></tr></table></figure>
+<p><img src="https://cdn.nlark.com/yuque/0/2019/png/105657/1558073635305-02e4d9aa-b449-42eb-8992-bb9b7176003a.png#align=left&display=inline&height=538&name=%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_15580735797651.png&originHeight=538&originWidth=964&size=46667&status=done&width=964" alt="企业微信截图_15580735797651.png"><br><a name="iMcH3"></a></p>
+<h2 id="index-js-文件的基本理解"><a href="#index-js-文件的基本理解" class="headerlink" title="index.js 文件的基本理解"></a><a href="#x3cqfp"></a>index.js 文件的基本理解</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">"react"</span>;</span><br><span class="line"><span class="keyword">import</span> ReactDOM <span class="keyword">from</span> <span class="string">"react-dom"</span>;</span><br><span class="line"><span class="keyword">import</span> App <span class="keyword">from</span> <span class="string">"./App"</span>; <span class="comment">//APP来自APP.js文件</span></span><br><span class="line"><span class="comment">// registerServiceWorker  是指将网页打开运行一半时，将网页关闭。可以将网页保存在浏览器内。再次打开可以继续访问。</span></span><br><span class="line"><span class="keyword">import</span> * <span class="keyword">as</span> serviceWorker <span class="keyword">from</span> <span class="string">"./serviceWorker"</span>; <span class="comment">//借助网页写手机app的效果</span></span><br><span class="line"><span class="comment">// PWA  progressive web application</span></span><br><span class="line">ReactDOM.render(<span class="xml"><span class="tag">&lt;<span class="name">App</span> /&gt;</span>, document.getElementById("root"));</span></span><br><span class="line"><span class="xml"></span></span><br><span class="line"><span class="xml">serviceWorker.unregister();</span></span><br></pre></td></tr></table></figure>
 
-<p><a name="e5owim"></a></p>
-<h4 id="4-react的响应设计思想与事件绑定"><a href="#4-react的响应设计思想与事件绑定" class="headerlink" title="4.react的响应设计思想与事件绑定"></a><a href="#e5owim"></a>4.react的响应设计思想与事件绑定</h4><p>思路;操作的是数据层不是Dom操作。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React,&#123;Component,Fragment &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TodoList</span> <span class="keyword">extends</span> <span class="title">Component</span></span>&#123;</span><br><span class="line">    <span class="keyword">constructor</span>(props) &#123;</span><br><span class="line">        <span class="keyword">super</span>(props);</span><br><span class="line">        <span class="comment">//负责存储组件里面的数据</span></span><br><span class="line">        <span class="keyword">this</span>.state = &#123;</span><br><span class="line">            inputValue: <span class="string">''</span>,</span><br><span class="line">            list: [<span class="string">'学习英文'</span>, <span class="string">'学习中文'</span>]</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    render() &#123;</span><br><span class="line">        <span class="keyword">return</span>(</span><br><span class="line">            &lt;Fragment&gt;</span><br><span class="line">                &lt;div&gt;</span><br><span class="line">                    &lt;input </span><br><span class="line">                    value=&#123;<span class="keyword">this</span>.state.inputValue&#125;</span><br><span class="line">                    onChange=&#123;<span class="keyword">this</span>.handleInputChange.bind(<span class="keyword">this</span>)&#125;</span><br><span class="line">                    /&gt;</span><br><span class="line">                    &lt;button onClick=&#123;<span class="keyword">this</span>.handBtnClick.bind(<span class="keyword">this</span>)&#125;&gt;按钮&lt;<span class="regexp">/button&gt;</span></span><br><span class="line"><span class="regexp">                &lt;/</span>div&gt;</span><br><span class="line">                &lt;ul&gt;</span><br><span class="line">                  &#123;</span><br><span class="line">                    <span class="keyword">this</span>.state.list.map(<span class="function">(<span class="params">item,index</span>) =&gt;</span> &#123;</span><br><span class="line">                    <span class="keyword">return</span> (</span><br><span class="line">                        &lt;li </span><br><span class="line">                            key=&#123;index&#125; </span><br><span class="line">                            onClick=&#123;<span class="keyword">this</span>.handItemDelete.bind(<span class="keyword">this</span>,index)&#125;</span><br><span class="line">                        &gt;</span><br><span class="line">                        &#123;item&#125;</span><br><span class="line">                        &lt;<span class="regexp">/li&gt;</span></span><br><span class="line"><span class="regexp">                    )</span></span><br><span class="line"><span class="regexp">                    &#125;)</span></span><br><span class="line"><span class="regexp">                  &#125;</span></span><br><span class="line"><span class="regexp">                &lt;/u</span>l&gt;</span><br><span class="line">            &lt;<span class="regexp">/Fragment&gt;</span></span><br><span class="line"><span class="regexp">        )</span></span><br><span class="line"><span class="regexp">    &#125;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">    handleInputChange(event) &#123;</span></span><br><span class="line"><span class="regexp">        /</span><span class="regexp">/ event.persist();</span></span><br><span class="line"><span class="regexp">        /</span><span class="regexp">/ console.log(this);/</span><span class="regexp">/ 打印this指向</span></span><br><span class="line"><span class="regexp">        this.setState (&#123; /</span><span class="regexp">/ react中修改数据项的值要使用setState</span></span><br><span class="line"><span class="regexp">            inputValue: event.target.value</span></span><br><span class="line"><span class="regexp">        &#125;)</span></span><br><span class="line"><span class="regexp">    &#125;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">    handBtnClick() &#123;</span></span><br><span class="line"><span class="regexp">        this.setState (&#123;</span></span><br><span class="line"><span class="regexp">            list: [...this.state.list,this.state.inputValue],</span></span><br><span class="line"><span class="regexp">            inputValue: ''</span></span><br><span class="line"><span class="regexp">        &#125;)</span></span><br><span class="line"><span class="regexp">    &#125;</span></span><br><span class="line"><span class="regexp">    handItemDelete(index) &#123;</span></span><br><span class="line"><span class="regexp">        /</span><span class="regexp">/ immutable</span></span><br><span class="line"><span class="regexp">        /</span><span class="regexp">/ state不允许我们做任何的改变</span></span><br><span class="line"><span class="regexp">        const list = [...this.state.list];</span></span><br><span class="line"><span class="regexp">        list.splice(index, 1);</span></span><br><span class="line"><span class="regexp">        this.setState(&#123;</span></span><br><span class="line"><span class="regexp">            list: list</span></span><br><span class="line"><span class="regexp">        &#125;)</span></span><br><span class="line"><span class="regexp">    &#125;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">export default TodoList;</span></span><br></pre></td></tr></table></figure>
+<p><a name="dNu0G"></a></p>
+<h2 id="App-js-文件的基本理解"><a href="#App-js-文件的基本理解" class="headerlink" title="App.js 文件的基本理解"></a><a href="#o0krle"></a>App.js 文件的基本理解</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React, &#123; Component &#125; <span class="keyword">from</span> <span class="string">"react"</span>;</span><br><span class="line"><span class="comment">// import './App.css';</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">App</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;div className=<span class="string">"App"</span>&gt;</span><br><span class="line">        &lt;header className=<span class="string">"App-header"</span>&gt;hello person&lt;<span class="regexp">/header&gt;</span></span><br><span class="line"><span class="regexp">      &lt;/</span>div&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> App;</span><br></pre></td></tr></table></figure>
 
 
     </article>
@@ -421,16 +431,16 @@ height:50vh;
         <li class="next">
             
                 <div class="nextSlogan">Next Post</div>
-                <a href="/2019/05/20/react/（三）react的jsx语法理解/" title="（三）react的jsx语法理解">
-                    <div class="nextTitle">（三）react的jsx语法理解</div>
+                <a href="/2019/05/18/react/（二）响应设计思想与事件绑定/" title="（二）react的响应设计思想与事件绑定">
+                    <div class="nextTitle">（二）react的响应设计思想与事件绑定</div>
                 </a>
             
         </li>
         <li class="previous">
             
                 <div class="prevSlogan">Previous Post</div>
-                <a href="/2019/05/17/react/（一）react开发环境与项目目录介绍/" title="（一）react开发环境与项目目录介绍">
-                    <div class="prevTitle">（一）react开发环境与项目目录介绍</div>
+                <a href="/2018/07/15/vue/JYSHT-跳转同一页面判断/" title="JYSHT-跳转同一页面判断">
+                    <div class="prevTitle">JYSHT-跳转同一页面判断</div>
                 </a>
             
         </li>
@@ -542,7 +552,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-react的新建组件"><span class="toc-number">1.</span> <span class="toc-text">1.react的新建组件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-react的jsx语法"><span class="toc-number">2.</span> <span class="toc-text">2.react的jsx语法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-Fragment：在react的最外层包一个div隐藏掉的方法。"><span class="toc-number">3.</span> <span class="toc-text">3.Fragment：在react的最外层包一个div隐藏掉的方法。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-react的响应设计思想与事件绑定"><span class="toc-number">4.</span> <span class="toc-text">4.react的响应设计思想与事件绑定</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#demo-源码地址"><span class="toc-number">1.</span> <span class="toc-text">demo 源码地址</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#react-简介"><span class="toc-number"></span> <span class="toc-text">react 简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#React-特点"><span class="toc-number"></span> <span class="toc-text">React 特点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#脚手架工具安装与运行"><span class="toc-number"></span> <span class="toc-text">脚手架工具安装与运行</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#react-项目目录认识"><span class="toc-number"></span> <span class="toc-text">react 项目目录认识</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#index-js-文件的基本理解"><span class="toc-number"></span> <span class="toc-text">index.js 文件的基本理解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#App-js-文件的基本理解"><span class="toc-number"></span> <span class="toc-text">App.js 文件的基本理解</span></a>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
@@ -555,6 +565,14 @@ top:50vh;
     <div class="sidebar-content sidebar-content-show-archive">
           <div class="sidebar-panel-archives">
     <!-- 在ejs中将archive按照时间排序 -->
+    
+    
+    
+    
+    
+    
+    
+    
     
     
     
@@ -863,12 +881,12 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/18</span><a class="archive-post-title" href="/2019/05/18/react/（二）react的响应设计思想与事件绑定/">（二）react的响应设计思想与事件绑定</a>
+            <span class="archive-post-date">05/18</span><a class="archive-post-title" href="/2019/05/18/react/（二）响应设计思想与事件绑定/">（二）react的响应设计思想与事件绑定</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/17</span><a class="archive-post-title" href="/2019/05/17/react/（一）react开发环境与项目目录介绍/">（一）react开发环境与项目目录介绍</a>
+            <span class="archive-post-date">05/17</span><a class="archive-post-title" href="/2019/05/17/react/（一）react开发目录介绍/">（一）react开发环境与项目目录介绍</a>
         </li>
     
     
@@ -887,12 +905,12 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/30</span><a class="archive-post-title" href="/2018/05/30/vue/组件生命周期与组件传值/">组件生命周期与组件传值</a>
+            <span class="archive-post-date">05/30</span><a class="archive-post-title" href="/2018/05/30/vue/router-link与redirect用法/">router-link与redirect用法</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/30</span><a class="archive-post-title" href="/2018/05/30/vue/router-link与redirect用法/">router-link与redirect用法</a>
+            <span class="archive-post-date">05/30</span><a class="archive-post-title" href="/2018/05/30/vue/组件生命周期与组件传值/">组件生命周期与组件传值</a>
         </li>
     
     
@@ -912,6 +930,11 @@ top:50vh;
     
     
         <li class="archive-post-item">
+            <span class="archive-post-date">05/17</span><a class="archive-post-title" href="/2018/05/17/vue/banner横向轮播图-组件封装思路/">banner横向轮播图-组件封装思路</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
             <span class="archive-post-date">05/17</span><a class="archive-post-title" href="/2018/05/17/vue/axios-获取接口，mock模拟数据配置/">axios-获取接口，mock模拟数据配置</a>
         </li>
     
@@ -925,21 +948,16 @@ top:50vh;
             <span class="archive-post-date">05/17</span><a class="archive-post-title" href="/2018/05/17/vue/vueMusic歌手-左右链动/">vueMusic歌手-左右链动</a>
         </li>
     
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">05/17</span><a class="archive-post-title" href="/2018/05/17/vue/banner横向轮播图-组件封装思路/">banner横向轮播图-组件封装思路</a>
-        </li>
-    
     </ul></div>
   </div>
         <div class="sidebar-panel-tags">
     <div class="sidebar-tags-name">
     
-        <span class="sidebar-tag-name" data-tags="react"><span class="iconfont-archer">&#xe606;</span>react</span>
-    
         <span class="sidebar-tag-name" data-tags="vue"><span class="iconfont-archer">&#xe606;</span>vue</span>
     
         <span class="sidebar-tag-name" data-tags="webpack4"><span class="iconfont-archer">&#xe606;</span>webpack4</span>
+    
+        <span class="sidebar-tag-name" data-tags="react"><span class="iconfont-archer">&#xe606;</span>react</span>
     
         <span class="sidebar-tag-name" data-tags="墨菲定律"><span class="iconfont-archer">&#xe606;</span>墨菲定律</span>
     
@@ -976,11 +994,11 @@ jsonContent:
         <div class="sidebar-panel-categories">
     <div class="sidebar-categories-name">
     
-        <span class="sidebar-category-name" data-categories="react"><span class="iconfont-archer">&#xe60a;</span>react</span>
-    
         <span class="sidebar-category-name" data-categories="vue"><span class="iconfont-archer">&#xe60a;</span>vue</span>
     
         <span class="sidebar-category-name" data-categories="webpack4"><span class="iconfont-archer">&#xe60a;</span>webpack4</span>
+    
+        <span class="sidebar-category-name" data-categories="react"><span class="iconfont-archer">&#xe60a;</span>react</span>
     
         <span class="sidebar-category-name" data-categories="墨菲定律"><span class="iconfont-archer">&#xe60a;</span>墨菲定律</span>
     
