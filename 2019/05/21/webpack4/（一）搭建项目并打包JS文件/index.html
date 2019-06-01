@@ -272,7 +272,7 @@ height:50vh;
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">429</span>阅读时长: <span class="post-count reading-time">1 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">428</span>阅读时长: <span class="post-count reading-time">1 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -401,18 +401,18 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <h1 id="（一）搭建项目并打包JS文件"><a href="#（一）搭建项目并打包JS文件" class="headerlink" title="（一）搭建项目并打包JS文件"></a>（一）搭建项目并打包JS文件</h1><p><a name="oMXK4"></a></p>
-<h2 id="依赖环境："><a href="#依赖环境：" class="headerlink" title="依赖环境："></a>依赖环境：</h2><p>os:win10<br>node:10.5.0<br>npm:6.1.0<br>webpack:4.29.6<br>webpack-cli:3.2.4<br>每个知识点对应一个demo，clone源码后运行npm install  安装依赖<br><a name="zbSCp"></a></p>
-<h2 id="1-搭建项目并且打包js文件"><a href="#1-搭建项目并且打包js文件" class="headerlink" title="1.搭建项目并且打包js文件"></a>1.搭建项目并且打包js文件</h2><p><a href>demo1源码地址</a><br>创建空文件夹，通过运行一下命令进行初始化package.json:<br>npm init <br>npm int用来初始化生成一个新的package.json文件。他会向用户提一系列问题，如果不觉得不需要修改默认配       置，一路回车就可以了。如果使用了-y（代表yes），则跳过了提问阶段，直接生成一个新的package.json文         件。<br>引入webpack<br>npm i webpack –save-dev<br>还需要webpack-cli，作为一个单独的包引入，如果不装webpack-cli是无法在命令行里面使用webpack的<br>npm i webpack-cli –save-dev<br>该项目webpack的版本如下：</p>
+        <p><a name="oMXK4"></a></p>
+<h2 id="依赖环境："><a href="#依赖环境：" class="headerlink" title="依赖环境："></a>依赖环境：</h2><p>os:win10<br>node:10.5.0<br>npm:6.1.0<br>webpack:4.29.6<br>webpack-cli:3.2.4<br>每个知识点对应一个 demo，clone 源码后运行 npm install   安装依赖<br><a name="zbSCp"></a></p>
+<h2 id="1-搭建项目并且打包-js-文件"><a href="#1-搭建项目并且打包-js-文件" class="headerlink" title="1.搭建项目并且打包 js 文件"></a>1.搭建项目并且打包 js 文件</h2><p><a href>demo1 源码地址</a><br>创建空文件夹，通过运行一下命令进行初始化 package.json:<br>npm init <br>npm int 用来初始化生成一个新的 package.json 文件。他会向用户提一系列问题，如果不觉得不需要修改默认配       置，一路回车就可以了。如果使用了-y（代表 yes），则跳过了提问阶段，直接生成一个新的 package.json 文         件。<br>引入 webpack<br>npm i webpack –save-dev<br>还需要 webpack-cli，作为一个单独的包引入，如果不装 webpack-cli 是无法在命令行里面使用 webpack 的<br>npm i webpack-cli –save-dev<br>该项目 webpack 的版本如下：</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">"webpack": "^4.32.0",</span><br><span class="line">"webpack-cli": "^3.3.2"</span><br></pre></td></tr></table></figure>
 
-<p>现在打开package.json并且添加一个build（构建）脚本：<br><img src="https://cdn.nlark.com/yuque/0/2019/png/105657/1558356969600-a309723a-74e8-4725-8ca9-f2c97adce3b1.png#align=left&display=inline&height=318&name=image.png&originHeight=636&originWidth=1008&size=90976&status=done&width=504" alt="image.png"></p>
+<p>现在打开 package.json 并且添加一个 build（构建）脚本：<br><img src="https://cdn.nlark.com/yuque/0/2019/png/105657/1558356969600-a309723a-74e8-4725-8ca9-f2c97adce3b1.png#align=left&display=inline&height=318&name=image.png&originHeight=636&originWidth=1008&size=90976&status=done&width=504" alt="image.png"></p>
 <p>尝试运行看看会发生什么：<br>npm run build<br><img src="https://cdn.nlark.com/yuque/0/2019/png/105657/1558357108820-974bbcd4-916e-4234-b060-3181b175fba6.png#align=left&display=inline&height=279&name=image.png&originHeight=558&originWidth=1386&size=135988&status=done&width=693" alt="image.png"></p>
-<p>在webpack4.0版本中，必须在名为webpack.config.js的配置文件中，通过entry属性定义entry point（入口点），就行这样：<br><img src="https://cdn.nlark.com/yuque/0/2019/png/105657/1558357954709-80f05cf3-2cfc-481c-9862-3ac746ad8fbe.png#align=left&display=inline&height=335&name=image.png&originHeight=670&originWidth=1892&size=184421&status=done&width=946" alt="image.png"></p>
-<p>从webpack4.0开始，就不必在在定义entry  point（入口点）：它默认为./src/index.js<br>测试这个功能前，首先创建.src/index.js文件<br><img src="https://cdn.nlark.com/yuque/0/2019/png/105657/1558357486959-d62a8a38-0cd5-4a66-b590-bc35aeffb468.png#align=left&display=inline&height=364&name=image.png&originHeight=728&originWidth=1672&size=118100&status=done&width=836" alt="image.png"></p>
-<p>在次运行npm run build试试：<br><img src="https://cdn.nlark.com/yuque/0/2019/png/105657/1558358081500-205954e7-0458-4bab-b8ce-590bee38922a.png#align=left&display=inline&height=324&name=image.png&originHeight=648&originWidth=1398&size=127648&status=done&width=699" alt="image.png"></p>
-<p>打包成功，并且在当前的根目录中得到打包后的文件夹，也就是build文件夹：<br><img src="https://cdn.nlark.com/yuque/0/2019/png/105657/1558358169274-1f8367e0-872c-465d-af5f-f48473e8739b.png#align=left&display=inline&height=241&name=image.png&originHeight=482&originWidth=586&size=41656&status=done&width=293" alt="image.png"></p>
-<p>讲查找./src/index.js作为默认入口点。而且，他会在./build/bundle.js中输出模块包，目前代码量小，可以格式化看看效果：<br><img src="https://cdn.nlark.com/yuque/0/2019/png/105657/1558358296853-5714d3ad-620f-469f-902b-901991a74695.png#align=left&display=inline&height=259&name=image.png&originHeight=518&originWidth=1318&size=121986&status=done&width=659" alt="image.png"><br>至此，打包js结束<br><a href>参考：webpack官网入门</a></p>
+<p>在 webpack4.0 版本中，必须在名为 webpack.config.js 的配置文件中，通过 entry 属性定义 entry point（入口点），就行这样：<br><img src="https://cdn.nlark.com/yuque/0/2019/png/105657/1558357954709-80f05cf3-2cfc-481c-9862-3ac746ad8fbe.png#align=left&display=inline&height=335&name=image.png&originHeight=670&originWidth=1892&size=184421&status=done&width=946" alt="image.png"></p>
+<p>从 webpack4.0 开始，就不必在在定义 entry  point（入口点）：它默认为./src/index.js<br>测试这个功能前，首先创建.src/index.js 文件<br><img src="https://cdn.nlark.com/yuque/0/2019/png/105657/1558357486959-d62a8a38-0cd5-4a66-b590-bc35aeffb468.png#align=left&display=inline&height=364&name=image.png&originHeight=728&originWidth=1672&size=118100&status=done&width=836" alt="image.png"></p>
+<p>在次运行 npm run build 试试：<br><img src="https://cdn.nlark.com/yuque/0/2019/png/105657/1558358081500-205954e7-0458-4bab-b8ce-590bee38922a.png#align=left&display=inline&height=324&name=image.png&originHeight=648&originWidth=1398&size=127648&status=done&width=699" alt="image.png"></p>
+<p>打包成功，并且在当前的根目录中得到打包后的文件夹，也就是 build 文件夹：<br><img src="https://cdn.nlark.com/yuque/0/2019/png/105657/1558358169274-1f8367e0-872c-465d-af5f-f48473e8739b.png#align=left&display=inline&height=241&name=image.png&originHeight=482&originWidth=586&size=41656&status=done&width=293" alt="image.png"></p>
+<p>讲查找./src/index.js 作为默认入口点。而且，他会在./build/bundle.js 中输出模块包，目前代码量小，可以格式化看看效果：<br><img src="https://cdn.nlark.com/yuque/0/2019/png/105657/1558358296853-5714d3ad-620f-469f-902b-901991a74695.png#align=left&display=inline&height=259&name=image.png&originHeight=518&originWidth=1318&size=121986&status=done&width=659" alt="image.png"><br>至此，打包 js 结束<br><a href>参考：webpack 官网入门</a></p>
 
     </article>
     <!-- license  -->
@@ -422,8 +422,8 @@ height:50vh;
         <li class="next">
             
                 <div class="nextSlogan">Next Post</div>
-                <a href="/2019/06/01/hello-world/" title="Hello World">
-                    <div class="nextTitle">Hello World</div>
+                <a href="/2019/05/22/webpack4/（二）生产和开发模式/" title="（二）生产和开发模式">
+                    <div class="nextTitle">（二）生产和开发模式</div>
                 </a>
             
         </li>
@@ -534,7 +534,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#（一）搭建项目并打包JS文件"><span class="toc-number">1.</span> <span class="toc-text">（一）搭建项目并打包JS文件</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#依赖环境："><span class="toc-number">1.1.</span> <span class="toc-text">依赖环境：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-搭建项目并且打包js文件"><span class="toc-number">1.2.</span> <span class="toc-text">1.搭建项目并且打包js文件</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#依赖环境："><span class="toc-number">1.</span> <span class="toc-text">依赖环境：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-搭建项目并且打包-js-文件"><span class="toc-number">2.</span> <span class="toc-text">1.搭建项目并且打包 js 文件</span></a></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
@@ -574,9 +574,63 @@ top:50vh;
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 3
+        Total : 7
         </div>
         <!-- search  -->
         
@@ -598,6 +652,26 @@ top:50vh;
     
         <li class="archive-post-item">
             <span class="archive-post-date">06/01</span><a class="archive-post-title" href="/2019/06/01/hello-world/">Hello World</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/25</span><a class="archive-post-title" href="/2019/05/25/webpack4/（五）Code Splitting代码分割/">（五）Code  Splitting代码分割</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/24</span><a class="archive-post-title" href="/2019/05/24/webpack4/（四）用babel编译成 ES6/">（四）用babel编译成 ES6</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/23</span><a class="archive-post-title" href="/2019/05/23/webpack4/（三）覆盖默认entry和output/">（三）覆盖默认entry和output</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/22</span><a class="archive-post-title" href="/2019/05/22/webpack4/（二）生产和开发模式/">（二）生产和开发模式</a>
         </li>
     
     

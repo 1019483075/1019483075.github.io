@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="">
+    <!-- title -->
+
+
+
+
+<!-- keywords -->
+
+
+
+
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="author" content="令夕">
+    <meta name="renderer" content="webkit">
+    <meta name="copyright" content="令夕">
+    
+    <meta name="keywords" content="hexo,hexo-theme,hexo-blog">
+    
+    <meta name="description" content>
+    <meta http-equiv="Cache-control" content="no-cache">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>（五）Code  Splitting代码分割 · 令夕</title>
+    <style type="text/css">
+    @font-face {
+        font-family: 'Oswald-Regular';
+        src: url("/font/Oswald-Regular.ttf");
+    }
+
+    body {
+        margin: 0;
+    }
+
+    header,
+    footer,
+    .back-top,
+    .sidebar,
+    .container,
+    .site-intro-meta,
+    .toc-wrapper {
+        display: none;
+    }
+
+    .site-intro {
+        position: relative;
+        z-index: 3;
+        width: 100%;
+        /* height: 50vh; */
+        overflow: hidden;
+    }
+
+    .site-intro-placeholder {
+        position: absolute;
+        z-index: -2;
+        top: 0;
+        left: 0;
+        width: calc(100% + 300px);
+        height: 100%;
+        background: repeating-linear-gradient(-45deg, #444 0, #444 80px, #333 80px, #333 160px);
+        background-position: center center;
+        transform: translate3d(-226px, 0, 0);
+        animation: gradient-move 2.5s ease-out 0s infinite;
+    }
+
+    @keyframes gradient-move {
+        0% {
+            transform: translate3d(-226px, 0, 0);
+        }
+        100% {
+            transform: translate3d(0, 0, 0);
+        }
+    }
+
+</style>
+
+    <link rel="preload" href="/css/style.css?v=20180824" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="stylesheet" href="/css/mobile.css?v=20180824" media="(max-width: 980px)">
+    
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    
+    <!-- /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
+/* This file is meant as a standalone workflow for
+- testing support for link[rel=preload]
+- enabling async CSS loading in browsers that do not support rel=preload
+- applying rel preload css once loaded, whether supported or not.
+*/ -->
+<script>
+(function( w ){
+	"use strict";
+	// rel=preload support test
+	if( !w.loadCSS ){
+		w.loadCSS = function(){};
+	}
+	// define on the loadCSS obj
+	var rp = loadCSS.relpreload = {};
+	// rel=preload feature support test
+	// runs once and returns a function for compat purposes
+	rp.support = (function(){
+		var ret;
+		try {
+			ret = w.document.createElement( "link" ).relList.supports( "preload" );
+		} catch (e) {
+			ret = false;
+		}
+		return function(){
+			return ret;
+		};
+	})();
+
+	// if preload isn't supported, get an asynchronous load by using a non-matching media attribute
+	// then change that media back to its intended value on load
+	rp.bindMediaToggle = function( link ){
+		// remember existing media attr for ultimate state, or default to 'all'
+		var finalMedia = link.media || "all";
+
+		function enableStylesheet(){
+			link.media = finalMedia;
+		}
+
+		// bind load handlers to enable media
+		if( link.addEventListener ){
+			link.addEventListener( "load", enableStylesheet );
+		} else if( link.attachEvent ){
+			link.attachEvent( "onload", enableStylesheet );
+		}
+
+		// Set rel and non-applicable media type to start an async request
+		// note: timeout allows this to happen async to let rendering continue in IE
+		setTimeout(function(){
+			link.rel = "stylesheet";
+			link.media = "only x";
+		});
+		// also enable media after 3 seconds,
+		// which will catch very old browsers (android 2.x, old firefox) that don't support onload on link
+		setTimeout( enableStylesheet, 3000 );
+	};
+
+	// loop through link elements in DOM
+	rp.poly = function(){
+		// double check this to prevent external calls from running
+		if( rp.support() ){
+			return;
+		}
+		var links = w.document.getElementsByTagName( "link" );
+		for( var i = 0; i < links.length; i++ ){
+			var link = links[ i ];
+			// qualify links to those with rel=preload and as=style attrs
+			if( link.rel === "preload" && link.getAttribute( "as" ) === "style" && !link.getAttribute( "data-loadcss" ) ){
+				// prevent rerunning on link
+				link.setAttribute( "data-loadcss", true );
+				// bind listeners to toggle media back
+				rp.bindMediaToggle( link );
+			}
+		}
+	};
+
+	// if unsupported, run the polyfill
+	if( !rp.support() ){
+		// run once at least
+		rp.poly();
+
+		// rerun poly on an interval until onload
+		var run = w.setInterval( rp.poly, 500 );
+		if( w.addEventListener ){
+			w.addEventListener( "load", function(){
+				rp.poly();
+				w.clearInterval( run );
+			} );
+		} else if( w.attachEvent ){
+			w.attachEvent( "onload", function(){
+				rp.poly();
+				w.clearInterval( run );
+			} );
+		}
+	}
+
+
+	// commonjs
+	if( typeof exports !== "undefined" ){
+		exports.loadCSS = loadCSS;
+	}
+	else {
+		w.loadCSS = loadCSS;
+	}
+}( typeof global !== "undefined" ? global : this ) );
+</script>
+
+    <link rel="icon" href="/assets/favicon.ico">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js" as="script">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js" as="script">
+    <link rel="preload" href="/scripts/main.js" as="script">
+    <link rel="preload" as="font" href="/font/Oswald-Regular.ttf" crossorigin>
+    <link rel="preload" as="font" href="https://at.alicdn.com/t/font_327081_1dta1rlogw17zaor.woff" crossorigin>
+    
+    <!-- fancybox -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" defer></script>
+    <!-- 百度统计  -->
+    
+    <!-- 谷歌统计  -->
+    
+</head>
+
+    
+        <body class="post-body">
+    
+    
+<header class="header">
+
+    <div class="read-progress"></div>
+    <div class="header-sidebar-menu">&#xe775;</div>
+    <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/">令夕</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">（五）Code  Splitting代码分割</a>
+            </div>
+    </div>
+    
+    <a class="home-link" href="/">令夕</a>
+</header>
+    <div class="wrapper">
+        <div class="site-intro" style="
+
+
+
+
+
+
+
+height:50vh;
+">
+    
+    <!-- 主页  -->
+    
+    
+    <!-- 404页  -->
+            
+    <div class="site-intro-placeholder"></div>
+    <div class="site-intro-img" style="background-image: url(https://source.unsplash.com/random)"></div>
+    <div class="site-intro-meta">
+        <!-- 标题  -->
+        <h1 class="intro-title">
+            <!-- 主页  -->
+            
+            （五）Code  Splitting代码分割
+            <!-- 404 -->
+            
+        </h1>
+        <!-- 副标题 -->
+        <p class="intro-subtitle">
+            <!-- 主页副标题  -->
+            
+            
+            <!-- 404 -->
+            
+        </p>
+        <!-- 文章页meta -->
+        
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                
+                    <div class="post-intro-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="webpack4">webpack4</a>
+    
+</div>
+                
+                
+                    <div class="post-intro-read">
+                        <span>字数统计: <span class="post-count word-count">2.2k</span>阅读时长: <span class="post-count reading-time">9 min</span></span>
+                    </div>
+                
+                <div class="post-intro-meta">
+                    <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                    <span class="post-intro-time">2019/05/25</span>
+                    
+                    <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                        <span class="iconfont-archer">&#xe602;</span>
+                        <span id="busuanzi_value_page_pv"></span>
+                    </span>
+                    
+                    <span class="shareWrapper">
+                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
+                        <span class="shareText">Share</span>
+                        <ul class="shareList">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
+        
+    </div>
+</div>
+        <script>
+ 
+  // get user agent
+  var browser = {
+    versions: function () {
+      var u = window.navigator.userAgent;
+      return {
+        userAgent: u,
+        trident: u.indexOf('Trident') > -1, //IE内核
+        presto: u.indexOf('Presto') > -1, //opera内核
+        webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+        gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+        mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
+        ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+        android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
+        iPhone: u.indexOf('iPhone') > -1 || u.indexOf('Mac') > -1, //是否为iPhone或者安卓QQ浏览器
+        iPad: u.indexOf('iPad') > -1, //是否为iPad
+        webApp: u.indexOf('Safari') == -1, //是否为web应用程序，没有头部与底部
+        weixin: u.indexOf('MicroMessenger') == -1, //是否为微信浏览器
+        uc: u.indexOf('UCBrowser') > -1 //是否为android下的UC浏览器
+      };
+    }()
+  }
+  console.log("userAgent:" + browser.versions.userAgent);
+
+  // callback
+  function fontLoaded() {
+    console.log('font loaded');
+    if (document.getElementsByClassName('site-intro-meta')) {
+      document.getElementsByClassName('intro-title')[0].classList.add('intro-fade-in');
+      document.getElementsByClassName('intro-subtitle')[0].classList.add('intro-fade-in');
+      var postIntros = document.getElementsByClassName('post-intros')[0]
+      if (postIntros) {
+        postIntros.classList.add('post-fade-in');
+      }
+    }
+  }
+
+  // UC不支持跨域，所以直接显示
+  function asyncCb(){
+    if (browser.versions.uc) {
+      console.log("UCBrowser");
+      fontLoaded();
+    } else {
+      WebFont.load({
+        custom: {
+          families: ['Oswald-Regular']
+        },
+        loading: function () {  //所有字体开始加载
+          // console.log('loading');
+        },
+        active: function () {  //所有字体已渲染
+          fontLoaded();
+        },
+        inactive: function () { //字体预加载失败，无效字体或浏览器不支持加载
+          console.log('inactive: timeout');
+          fontLoaded();
+        },
+        timeout: 5000 // Set the timeout to two seconds
+      });
+    }
+  }
+
+  function asyncErr(){
+    console.warn('script load from CDN failed, will load local script')
+  }
+
+  // load webfont-loader async, and add callback function
+  function async(u, cb, err) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (cb) { o.addEventListener('load', function (e) { cb(null, e); }, false); }
+    if (err) { o.addEventListener('error', function (e) { err(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+
+  var asyncLoadWithFallBack = function(arr, success, reject) {
+      var currReject = function(){
+        reject()
+        arr.shift()
+        if(arr.length)
+          async(arr[0], success, currReject)
+        }
+
+      async(arr[0], success, currReject)
+  }
+
+  asyncLoadWithFallBack([
+    "https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js", 
+    "https://cdn.bootcss.com/webfont/1.6.28/webfontloader.js",
+    "/lib/webfontloader.min.js"
+  ], asyncCb, asyncErr)
+</script>        
+        <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
+        <div class="container container-unloaded">
+            <main class="main post-page">
+    <article class="article-entry">
+        <p><a href>demo5 源码地址</a><br>package.json 文件所用依赖，npm  install 安装：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"script"</span>: &#123;</span><br><span class="line">    <span class="attr">"dev"</span>: <span class="string">"webpack --mode development"</span>,</span><br><span class="line">    <span class="attr">"build"</span>: <span class="string">"webpack --mode production"</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">"devDependencies"</span>: &#123;</span><br><span class="line">    <span class="attr">"clean-webpack-plugin"</span>: <span class="string">"^2.0.0"</span>,</span><br><span class="line">    <span class="attr">"webpack"</span>: <span class="string">"^4.29.6"</span>,</span><br><span class="line">    <span class="attr">"webpack-cli"</span>: <span class="string">"^3.2.3"</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">"dependencies"</span>: &#123;</span><br><span class="line">    <span class="attr">"lodash"</span>: <span class="string">"^4.17.11"</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>我们在 src/文件夹下创建 index.js 文件</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">import _ from 'lodash'</span><br><span class="line">console.log(_.join(['a','b','c']))</span><br></pre></td></tr></table></figure>
+
+<p>目录结构为：<br><img src="https://cdn.nlark.com/yuque/0/2019/png/105657/1559055304051-1cbfa938-d1da-497f-b6eb-f726804d4a6f.png#align=left&display=inline&height=274&name=image.png&originHeight=548&originWidth=434&size=45183&status=done&width=217" alt="image.png"><br><strong>配置 webpack.config.js 文件</strong></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">let path = require('path');</span><br><span class="line"></span><br><span class="line">const CleanWebpackPlugin = require('clean-webpack-plugin');</span><br><span class="line"></span><br><span class="line">module.exports = &#123;</span><br><span class="line">  entry: &#123;</span><br><span class="line">    main:'./src/index.js',  // 入口文件</span><br><span class="line">  &#125;,</span><br><span class="line">  output: &#123;</span><br><span class="line">    publicPath: __dirname + '/dist/', // js 引用的路径或者 CDN 地址</span><br><span class="line">    path: path.resolve(__dirname, 'dist'), // 打包文件的输出目录</span><br><span class="line">    filename: '[name].bundle.js', // 代码打包后的文件名</span><br><span class="line">    chunkFilename: '[name].js' // 代码拆分后的文件名</span><br><span class="line">  &#125;,</span><br><span class="line">  plugins: [</span><br><span class="line">    new CleanWebpackPlugin() // 默认情况下，此插件将删除 webpack output.path中所有的文件，以及每次重建后所有未使用的webpack的产品。</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>运行 npm run build 打包<br><img src="https://cdn.nlark.com/yuque/0/2019/png/105657/1559055617969-8596eb1b-0512-4c56-a2cb-e4e900212ce9.png#align=left&display=inline&height=359&name=image.png&originHeight=718&originWidth=1354&size=120799&status=done&width=677" alt="image.png"><br>在 index.html 中使用打包后的文件</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=1.0"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"X-UA-Compatible"</span> <span class="attr">content</span>=<span class="string">"ie=edge"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Document<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"./dist/main.bundle.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>使用浏览器打开  <code>index.html</code>  文件，进入控制台，可以看到如下信息：<code>a,b,c</code></p>
+<p>如果我们再改动业务代码，将 index.js 中的代码改为</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> _ <span class="keyword">from</span> <span class="string">"lodash"</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(_.join([<span class="string">"a"</span>, <span class="string">"b"</span>, <span class="string">"c"</span>], <span class="string">"***"</span>));</span><br></pre></td></tr></table></figure>
+
+<p>再打包，刷新页面可以看到  <code>a***b*****c**</code><br><img src="https://cdn.nlark.com/yuque/0/2019/png/105657/1559055841870-ee0c2f12-f60c-48ca-b294-2882156f24d7.png#align=left&display=inline&height=37&name=image.png&originHeight=74&originWidth=626&size=5841&status=done&width=313" alt="image.png"></p>
+<p><strong>我们引用的第三方框架和我们的业务代码一起被打包，这样会存在着什么问题</strong><br>假设 lodash 为 11M，业务代码也为 11M，打包后就是 2M</p>
+<p>浏览器每次打开页面，都要先加载 2M 的文件，才能显示业务逻辑，这样会使得加载时间变长。</p>
+<p>业务代码更新会比较<strong>频繁</strong>，第三方代码基本不会改变，这样重新打包后，假设为 2M 用户重新打开网页后，又会加载 2M 的文件</p>
+<p>浏览器是有<strong>缓存</strong>的，如果文件没有变动的话，就不用去再发送 http 请求，直接从缓存中取，这样在刷新页面或者是第二次进入的时候可以加快网页加载的速度。</p>
+<p>怎么解决呢？可以利用 webpack 中代码分割</p>
+<p>在 webpack4.0 之前是使用<strong>commonsChunkPlugin</strong>来拆分公共代码，4.0 之后废弃，并用  <strong>splitChunksPlugins</strong><br><strong><br>在使用 splitChunksPlugins 之前，首先要知道 splitChunksPlugins 是 webpack 主模块中的一个细分模块，</strong>无需 npm 引入**</p>
+<p>现在我们来配置 webpack.config.js 文件</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> path = <span class="built_in">require</span>(<span class="string">"path"</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> CleanWebpackPlugin = <span class="built_in">require</span>(<span class="string">"clean-webpack-plugin"</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  entry: &#123;</span><br><span class="line">    main: <span class="string">"./src/index.js"</span> <span class="comment">// 入口文件</span></span><br><span class="line">  &#125;,</span><br><span class="line">  output: &#123;</span><br><span class="line">    publicPath: __dirname + <span class="string">"/dist/"</span>, <span class="comment">// js 引用的路径或者 CDN 地址</span></span><br><span class="line">    path: path.resolve(__dirname, <span class="string">"dist"</span>), <span class="comment">// 打包文件的输出目录</span></span><br><span class="line">    filename: <span class="string">"[name].bundle.js"</span>, <span class="comment">// 代码打包后的文件名</span></span><br><span class="line">    chunkFilename: <span class="string">"[name].js"</span> <span class="comment">// 代码拆分后的文件名</span></span><br><span class="line">  &#125;,</span><br><span class="line">  optimization: &#123;</span><br><span class="line">    splitChunks: &#123;</span><br><span class="line">      chunks: <span class="string">"all"</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  plugins: [</span><br><span class="line">    <span class="keyword">new</span> CleanWebpackPlugin() <span class="comment">// 默认情况下，此插件将删除 webpack output.path中所有的文件，以及每次重建后所有未使用的webpack的产品。</span></span><br><span class="line">  ]</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>上面高亮的代码段就是告诉 webpack，要做代码分割了，这里的 chunk:‘all’是分割所有的代码，包括同步代码和异步代码，webpack 默认是 chunks: ‘async’分割<strong>异步代码</strong>。</p>
+<p>我们使用 npm run dev 来打包开发环境下的代码，这样代码就<strong>不会压缩，</strong>方便我们来观察，可以看到代码被分割成两个文件了<br><img src="https://cdn.nlark.com/yuque/0/2019/png/105657/1559133849069-0c1dbe50-753e-41ea-bdef-0291f55a7ef6.png#align=left&display=inline&height=266&name=image.png&originHeight=532&originWidth=1360&size=144715&status=done&width=680" alt="image.png"><br>打开<strong>dist/main.bundle.js</strong>文件，在最底部可以看到 src/index.js，里面放的是业务逻辑代码，但是并没有 lodash 的代码<br><img src="https://cdn.nlark.com/yuque/0/2019/png/105657/1559134064952-289d04fe-3341-47f3-bdcd-425c38f2483b.png#align=left&display=inline&height=231&name=image.png&originHeight=462&originWidth=1316&size=137813&status=done&width=658" alt="image.png"></p>
+<p>打开<strong>dist/vendors~main.js</strong>文件，在最上面可以看到 lodash 模块<br><img src="https://cdn.nlark.com/yuque/0/2019/png/105657/1559134255501-81f7be88-9884-4b2c-a4b6-a63708961b9c.png#align=left&display=inline&height=241&name=image.png&originHeight=482&originWidth=1344&size=227909&status=done&width=672" alt="image.png"></p>
+<p>再次打开页面，控制台也输出了内容，这样就实现了<strong>Code Splitting</strong>(代码分割)</p>
+<p>其实没有 webpack 的时候，也是有代码分割的，不过是需要我们自己手动的分割，而现在使用了 webpack，通过这种配置项的方式，它会自动帮我们去做代码分割</p>
+<p>仔细看分割完的代码名称，<code>vendors~main.js</code>，我们对分割完的名称进行更改</p>
+<p>还是在 splitChunks 的配置项中，添加 cacheGroups 对象</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">optimization: &#123;</span><br><span class="line">    splitChunks: &#123;</span><br><span class="line">      chunks: <span class="string">'all'</span>,</span><br><span class="line">      cacheGroups: &#123;</span><br><span class="line">        vendors: &#123;</span><br><span class="line">          name: <span class="string">'vendors'</span></span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<p>再次打包就可以看到效果了，*<em>cacheGroups *</em>的默认配置会定义 venders 和 default<br><img src="https://cdn.nlark.com/yuque/0/2019/png/105657/1559135530352-e93d3cca-5da3-47ff-ae6e-ae43c981711e.png#align=left&display=inline&height=500&name=image.png&originHeight=1000&originWidth=1410&size=150791&status=done&width=705" alt="image.png"></p>
+<p>test: /[\/]node_modules[\/]/,使用正则过滤，只有 node_modules 引入第三方库才会被分割<br><img src="https://cdn.nlark.com/yuque/0/2019/png/105657/1559135739742-f2434dd2-d8e2-4c42-8426-522288033410.png#align=left&display=inline&height=241&name=image.png&originHeight=482&originWidth=1028&size=113257&status=done&width=514" alt="image.png"><br>为了验证默认配置，我们将 splitChunks 属性设置为空对象，再次打包<br><img src="https://cdn.nlark.com/yuque/0/2019/png/105657/1559135877371-678bae14-aa36-4650-b924-ee9bea25965a.png#align=left&display=inline&height=598&name=image.png&originHeight=1196&originWidth=1384&size=210424&status=done&width=692" alt="image.png"></p>
+<p>打包完发现只有一个文件，这是为什么？<br><img src="https://cdn.nlark.com/yuque/0/2019/png/105657/1559135967152-ea95e61f-afb3-4a93-87ca-22272e537e06.png#align=left&display=inline&height=594&name=image.png&originHeight=1188&originWidth=1604&size=200063&status=done&width=802" alt="image.png"><br>因为 chunks 默认为 async，只会分割<strong>异步</strong>的代码，而我们之前写的都是同步的代码，先 import lodash，再去写业务逻辑，现在使用异步的方式来做，将 index.js 中的代码改为如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getComponent</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 使用 异步的形式导入 lodash，default: _ 表示用 _ 代指 lodash</span></span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">import</span>(<span class="string">"lodash"</span>).then(<span class="function">(<span class="params">&#123; <span class="keyword">default</span>: _ &#125;</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">var</span> element = <span class="built_in">document</span>.createElement(<span class="string">"div"</span>);</span><br><span class="line">    element.innerHTML = _.join([<span class="string">"hello"</span>, <span class="string">"world"</span>], <span class="string">"-"</span>);</span><br><span class="line">    <span class="keyword">return</span> element;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">getComponent().then(<span class="function"><span class="params">element</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">document</span>.body.appendChild(element);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.nlark.com/yuque/0/2019/png/105657/1559138427296-6ea490aa-1b72-45f0-8301-85625450d04a.png#align=left&display=inline&height=624&name=image.png&originHeight=1248&originWidth=1412&size=271410&status=done&width=706" alt="image.png"></p>
+<p>这里分割出了 0.js 和 main.bundle.js,0 是以 id 为编号来命名</p>
+<p>所以一般我们设置 chunk 是为 all，异步，同步代码都在打包<br>现在我们将 webpack 官网上的默认配置拷贝到我们的 webpack.config.js 中来分析一下</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">optimization: &#123;</span><br><span class="line">    splitChunks: &#123;</span><br><span class="line">      chunks: <span class="string">'async'</span>,</span><br><span class="line">      minSize: <span class="number">30000</span>,</span><br><span class="line">      maxSize: <span class="number">0</span>,</span><br><span class="line">      minChunks: <span class="number">1</span>,</span><br><span class="line">      maxAsyncRequests: <span class="number">5</span>,</span><br><span class="line">      maxInitialRequests: <span class="number">3</span>,</span><br><span class="line">      automaticNameDelimiter: <span class="string">'~'</span>,</span><br><span class="line">      name: <span class="literal">true</span>,</span><br><span class="line">      cacheGroups: &#123;</span><br><span class="line">        vendors: &#123;</span><br><span class="line">          test: <span class="regexp">/[\\/]node_modules[\\/]/</span>,</span><br><span class="line">          priority: <span class="number">-10</span></span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="keyword">default</span>: &#123;</span><br><span class="line">          minChunks: <span class="number">2</span>,</span><br><span class="line">          priority: <span class="number">-20</span>,</span><br><span class="line">          reuseExistingChunk: <span class="literal">true</span></span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<p>webpack 代码分割的配置是这样的，比如我们要分割 jQuery 和 lodash 这样的第三方库，它会先经过 <code>chunks、minSize、maxSize、minChunks</code> 等等，满足条件后生成 jQuery 和 lodash 两个文件，然后放入 <strong>cacheGroup</strong> 中缓存着，再根据你在 <strong>cacheGroup</strong> 中配置的<strong>组</strong>来决定是将两个文件整合到一个文件打包，还是单独分开打包，比如上面代码中的 <strong>vendors</strong>，就是将 <code>node_modules</code> 中所有的第三方库都打包到 <strong>vendors.js</strong> 文件中，如果你还想继续分割可以这么做</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">cacheGroups: &#123;</span><br><span class="line">  lodash: &#123;</span><br><span class="line">    name: <span class="string">'lodash'</span>,</span><br><span class="line">    test: <span class="regexp">/[\\/]node_modules[\\/]lodash[\\/]/</span>,</span><br><span class="line">    priority: <span class="number">5</span>  <span class="comment">// 优先级要大于 vendors 不然会被打包进 vendors</span></span><br><span class="line">  &#125;,</span><br><span class="line">  vendors: &#123;</span><br><span class="line">    test: <span class="regexp">/[\\/]node_modules[\\/]/</span>,</span><br><span class="line">    priority: <span class="number">-10</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="keyword">default</span>: &#123;</span><br><span class="line">    minChunks: <span class="number">2</span>,</span><br><span class="line">    priority: <span class="number">-20</span>,</span><br><span class="line">    reuseExistingChunk: <span class="literal">true</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>再次打包，就可以看到 lodash 被分割出来了，以后使用第三方库都可以用这种配置来单独分割成一个 js 文件，比如  <strong>element-ui</strong>，<strong>注意</strong>设置  <strong>priority</strong>  的值很重要，优先级越高的会越先被打包<br><img src="https://cdn.nlark.com/yuque/0/2019/png/105657/1559139560635-ac822c2e-de55-4465-99c4-7067ee67058c.png#align=left&display=inline&height=638&name=image.png&originHeight=1276&originWidth=1378&size=299019&status=done&width=689" alt="image.png"><br>如果 index.js 引入了 A.js 和 B.js，同时 A、B 又引入了 common，common 被引入了两次，可以被称为公共模块<br>目录结构为：<br><img src="https://cdn.nlark.com/yuque/0/2019/png/105657/1559140566970-bc526640-ed74-4f4e-8ee3-37906cb49c42.png#align=left&display=inline&height=316&name=image.png&originHeight=632&originWidth=492&size=48983&status=done&width=246" alt="image.png"><br>代码如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// a,js</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">'./common'</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'A'</span>)</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="string">'A'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// b.js</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">'./common'</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'B'</span>)</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="string">'B'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// common.js</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'公共模块'</span>)</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="string">'common'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// index.js</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">'./a.js'</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">'./b.js'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 异步代码</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getComponent</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 使用异步的形式导入 lodash，default: _ 表示用 _ 代指 lodash</span></span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">import</span>(<span class="string">'lodash'</span>).then(<span class="function">(<span class="params">&#123; <span class="keyword">default</span>: _ &#125;</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">var</span> element = <span class="built_in">document</span>.createElement(<span class="string">'div'</span>)</span><br><span class="line">    element.innerHTML = _.join([<span class="string">'hello'</span>, <span class="string">'world'</span>], <span class="string">'-'</span>)</span><br><span class="line">    <span class="keyword">return</span> element</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">getComponent().then(<span class="function"><span class="params">element</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">document</span>.body.appendChild(element)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>上面那种<strong>异步</strong>的写法可能比较绕，现在精简一下，并且 webpack 对<strong>异步代码</strong>通过<strong>注释</strong>可以直接修改打包后的名称，以下代码全部以异步的形式引入</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 异步代码</span></span><br><span class="line"><span class="keyword">import</span>(<span class="comment">/* webpackChunkName: 'a'*/</span> <span class="string">"./a"</span>).then(<span class="function"><span class="keyword">function</span>(<span class="params">a</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(a);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span>(<span class="comment">/* webpackChunkName: 'b'*/</span> <span class="string">"./b"</span>).then(<span class="function"><span class="keyword">function</span>(<span class="params">b</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(b);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span>(<span class="comment">/* webpackChunkName: 'use-lodash'*/</span> <span class="string">"lodash"</span>).then(<span class="function"><span class="keyword">function</span>(<span class="params">_</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(_.join([<span class="string">"1"</span>, <span class="string">"2"</span>]));</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p><strong>将 minChunks 设置为 2，最小公用 2 次才分割</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">optimization: &#123;</span><br><span class="line">  splitChunks: &#123;</span><br><span class="line">    chunks: <span class="string">'all'</span>,</span><br><span class="line">    minSize: <span class="number">30000</span>,</span><br><span class="line">    maxSize: <span class="number">0</span>,</span><br><span class="line">    minChunks: <span class="number">1</span>,</span><br><span class="line">    maxAsyncRequests: <span class="number">5</span>,</span><br><span class="line">    maxInitialRequests: <span class="number">3</span>,</span><br><span class="line">    automaticNameDelimiter: <span class="string">'~'</span>,</span><br><span class="line">    name: <span class="literal">true</span>,</span><br><span class="line">    cacheGroups: &#123;</span><br><span class="line">      lodash: &#123;</span><br><span class="line">        name: <span class="string">'lodash'</span>,</span><br><span class="line">        test: <span class="regexp">/[\\/]node_modules[\\/]lodash[\\/]/</span>,</span><br><span class="line">        priority: <span class="number">10</span></span><br><span class="line">      &#125;,</span><br><span class="line">      commons: &#123;</span><br><span class="line">        name: <span class="string">'commons'</span>,</span><br><span class="line">        minSize: <span class="number">0</span>, <span class="comment">//表示在压缩前的最小模块大小,默认值是 30kb</span></span><br><span class="line">        minChunks: <span class="number">2</span>, <span class="comment">// 最小公用次数</span></span><br><span class="line">        priority: <span class="number">5</span>, <span class="comment">// 优先级</span></span><br><span class="line">        reuseExistingChunk: <span class="literal">true</span> <span class="comment">// 公共模块必开启</span></span><br><span class="line">      &#125;,</span><br><span class="line">      vendors: &#123;</span><br><span class="line">        test: <span class="regexp">/[\\/]node_modules[\\/]/</span>,</span><br><span class="line">        priority: <span class="number">-10</span></span><br><span class="line">      &#125;,</span><br><span class="line">      <span class="keyword">default</span>: &#123;</span><br><span class="line">        minChunks: <span class="number">2</span>,</span><br><span class="line">        priority: <span class="number">-20</span>,</span><br><span class="line">        reuseExistingChunk: <span class="literal">true</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.nlark.com/yuque/0/2019/png/105657/1559168593578-d625c9ff-8a5d-4345-848a-3fe550a8adb5.png#align=left&display=inline&height=337&name=image.png&originHeight=674&originWidth=1388&size=182604&status=done&width=694" alt="image.png"><br>这里分割出了 lodash 和我们在注释中定义的 use-lodash，前者是第三方库，后者是用第三库写的业务代码，也能被分割出来。<br><img src="https://cdn.nlark.com/yuque/0/2019/png/105657/1559168760725-d17c7d3d-3443-4886-9d06-978cfd55ee51.png#align=left&display=inline&height=218&name=image.png&originHeight=436&originWidth=1360&size=100705&status=done&width=680" alt="image.png"></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2019/png/105657/1559168848562-923f3456-8bf6-4e90-916d-a9d33a443f0b.png#align=left&display=inline&height=121&name=image.png&originHeight=242&originWidth=1664&size=65850&status=done&width=832" alt="image.png"><br>这里之所以会自动引入分割后的依赖，可以查看打包后的  <strong>main.bundle.js</strong>  文件<br><img src="https://cdn.nlark.com/yuque/0/2019/png/105657/1559168899271-0faec99f-35a9-41b7-b04f-c652d2a97163.png#align=left&display=inline&height=263&name=image.png&originHeight=525&originWidth=975&size=354626&status=done&width=487.5" alt="image.png"></p>
+<p>常用的配置项在下面的表格中，更多配置详情见<a href="https://link.juejin.im/?target=https%3A%2F%2Fwebpack.js.org%2Fplugins%2Fsplit-chunks-plugin%2F" target="_blank" rel="noopener">官网</a><br><img src="https://cdn.nlark.com/yuque/0/2019/png/105657/1559168958115-3730c8fb-47ba-40e9-aff3-73809aaa9edf.png#align=left&display=inline&height=439&name=image.png&originHeight=878&originWidth=1666&size=167390&status=done&width=833" alt="image.png"><br><a name="MzdtJ"></a></p>
+<h4 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h4><p><a href="https://link.juejin.im/?target=https%3A%2F%2Fgodbmw.com%2Fpassages%2F2018-08-06-webpack-mutiple-pages%2F" target="_blank" rel="noopener">webpack4 系列教程 (三): 多页面解决方案 – 提取公共代码</a><br><a href="https://link.juejin.im/?target=https%3A%2F%2Fwebpack.js.org%2Fplugins%2Fsplit-chunks-plugin%2F%23splitchunks-cachegroups-cachegroup-reuseexistingchunk" target="_blank" rel="noopener">webpack 官网</a></p>
+
+    </article>
+    <!-- license  -->
+    
+    <!-- paginator  -->
+    <ul class="post-paginator">
+        <li class="next">
+            
+                <div class="nextSlogan">Next Post</div>
+                <a href="/2019/06/01/hello-world/" title="Hello World">
+                    <div class="nextTitle">Hello World</div>
+                </a>
+            
+        </li>
+        <li class="previous">
+            
+                <div class="prevSlogan">Previous Post</div>
+                <a href="/2019/05/24/webpack4/（四）用babel编译成 ES6/" title="（四）用babel编译成 ES6">
+                    <div class="prevTitle">（四）用babel编译成 ES6</div>
+                </a>
+            
+        </li>
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+<!-- City版安装代码已完成 -->
+    
+    
+    <!-- partial('_partial/comment/changyan') -->
+    <!--PC版-->
+
+
+    
+    
+
+    <!-- 评论 -->
+</main>
+            <!-- profile -->
+            
+        </div>
+        <footer class="footer footer-unloaded">
+    <!-- social  -->
+    
+    <div class="social">
+        
+    
+        
+    
+        
+            
+                <a href="//github.com/fi3ework" class="iconfont-archer github" target="_blank" title="github"></a>
+            
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+    </div>
+    
+    <!-- powered by Hexo  -->
+    <div class="copyright">
+        <span id="hexo-power">Powered by <a href="https://hexo.io/" target="_blank">Hexo</a></span><span class="iconfont-archer power">&#xe635;</span><span id="theme-info">theme <a href="https://github.com/fi3ework/hexo-theme-archer" target="_blank">Archer</a></span>
+    </div>
+    <!-- 不蒜子  -->
+    
+    <div class="busuanzi-container">
+    
+     
+    <span id="busuanzi_container_site_pv">PV: <span id="busuanzi_value_site_pv"></span> :)</span>
+    
+    </div>
+    
+</footer>
+    </div>
+    <!-- toc -->
+    
+    <div class="toc-wrapper" style=
+    
+
+
+
+
+
+
+
+top:50vh;
+
+    >
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#参考文章"><span class="toc-number">1.</span> <span class="toc-text">参考文章</span></a></li></ol>
+    </div>
+    
+    <div class="back-top iconfont-archer">&#xe639;</div>
+    <div class="sidebar sidebar-hide">
+    <ul class="sidebar-tabs sidebar-tabs-active-0">
+        <li class="sidebar-tab-archives"><span class="iconfont-archer">&#xe67d;</span><span class="tab-name">Archive</span></li>
+        <li class="sidebar-tab-tags"><span class="iconfont-archer">&#xe61b;</span><span class="tab-name">Tag</span></li>
+        <li class="sidebar-tab-categories"><span class="iconfont-archer">&#xe666;</span><span class="tab-name">Cate</span></li>
+    </ul>
+    <div class="sidebar-content sidebar-content-show-archive">
+          <div class="sidebar-panel-archives">
+    <!-- 在ejs中将archive按照时间排序 -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <div class="total-and-search">
+        <div class="total-archive">
+        Total : 7
+        </div>
+        <!-- search  -->
+        
+    </div>
+    
+    <div class="post-archive">
+    
+    
+    
+    
+    <div class="archive-year"> 2019 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/01</span><a class="archive-post-title" href="/2019/06/01/墨菲定理/（一）成功学的秘密/">（一）成功学的秘密</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/01</span><a class="archive-post-title" href="/2019/06/01/hello-world/">Hello World</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/25</span><a class="archive-post-title" href="/2019/05/25/webpack4/（五）Code Splitting代码分割/">（五）Code  Splitting代码分割</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/24</span><a class="archive-post-title" href="/2019/05/24/webpack4/（四）用babel编译成 ES6/">（四）用babel编译成 ES6</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/23</span><a class="archive-post-title" href="/2019/05/23/webpack4/（三）覆盖默认entry和output/">（三）覆盖默认entry和output</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/22</span><a class="archive-post-title" href="/2019/05/22/webpack4/（二）生产和开发模式/">（二）生产和开发模式</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/21</span><a class="archive-post-title" href="/2019/05/21/webpack4/（一）搭建项目并打包JS文件/">（一）搭建项目并打包JS文件</a>
+        </li>
+    
+    </ul></div>
+  </div>
+        <div class="sidebar-panel-tags">
+    <div class="sidebar-tags-name">
+    
+        <span class="sidebar-tag-name" data-tags="webpack4"><span class="iconfont-archer">&#xe606;</span>webpack4</span>
+    
+        <span class="sidebar-tag-name" data-tags="墨菲定律"><span class="iconfont-archer">&#xe606;</span>墨菲定律</span>
+    
+    </div>
+    <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
+    <div class="tag-load-fail" style="display: none; color: #ccc; font-size: 0.6rem;">
+    缺失模块。<br>
+    1、请确保node版本大于6.2<br>
+    2、在博客根目录（注意不是archer根目录）执行以下命令：<br>
+    <span style="color: #f75357; font-size: 1rem; line-height: 2rem;">npm i hexo-generator-json-content --save</span><br>
+    3、在根目录_config.yml里添加配置：
+    <pre style="color: #787878; font-size: 0.6rem;">
+jsonContent:
+  meta: false
+  pages: false
+  posts:
+    title: true
+    date: true
+    path: true
+    text: false
+    raw: false
+    content: false
+    slug: false
+    updated: false
+    comments: false
+    link: false
+    permalink: false
+    excerpt: false
+    categories: true
+    tags: true</pre>
+    </div> 
+    <div class="sidebar-tags-list"></div>
+</div>
+        <div class="sidebar-panel-categories">
+    <div class="sidebar-categories-name">
+    
+        <span class="sidebar-category-name" data-categories="webpack4"><span class="iconfont-archer">&#xe60a;</span>webpack4</span>
+    
+        <span class="sidebar-category-name" data-categories="墨菲定律"><span class="iconfont-archer">&#xe60a;</span>墨菲定律</span>
+    
+    </div>
+    <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
+    <div class="sidebar-categories-list"></div>
+</div>
+    </div>
+</div> 
+    <script>
+    var siteMeta = {
+        root: "/",
+        author: "令夕"
+    }
+</script>
+    <!-- CDN failover -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+    <script type="text/javascript">
+        if (typeof window.$ === 'undefined')
+        {
+            console.warn('jquery load from jsdelivr failed, will load local script')
+            document.write('<script src="/lib/jquery.min.js">\x3C/script>')
+        }
+    </script>
+    <script src="/scripts/main.js"></script>
+    <!-- algolia -->
+    
+    <!-- busuanzi  -->
+    
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+    <!-- CNZZ  -->
+    
+    </div>
+    <!-- async load share.js -->
+    
+        <script src="/scripts/share.js" async></script>    
+     
+    </body>
+</html>
+
+

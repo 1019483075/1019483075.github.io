@@ -22,7 +22,7 @@
     <meta name="description" content>
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>令夕</title>
+    <title>（三）覆盖默认entry和output · 令夕</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -203,12 +203,23 @@
 </head>
 
     
+        <body class="post-body">
+    
     
 <header class="header">
 
     <div class="read-progress"></div>
     <div class="header-sidebar-menu">&#xe775;</div>
     <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/">令夕</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">（三）覆盖默认entry和output</a>
+            </div>
+    </div>
     
     <a class="home-link" href="/">令夕</a>
 </header>
@@ -220,24 +231,74 @@
 
 
 
+
+height:50vh;
 ">
     
     <!-- 主页  -->
+    
+    
+    <!-- 404页  -->
             
     <div class="site-intro-placeholder"></div>
-    <div class="site-intro-img" style="background-image: url(/)"></div>
+    <div class="site-intro-img" style="background-image: url(https://source.unsplash.com/random)"></div>
     <div class="site-intro-meta">
         <!-- 标题  -->
         <h1 class="intro-title">
             <!-- 主页  -->
+            
+            （三）覆盖默认entry和output
+            <!-- 404 -->
             
         </h1>
         <!-- 副标题 -->
         <p class="intro-subtitle">
             <!-- 主页副标题  -->
             
+            
+            <!-- 404 -->
+            
         </p>
         <!-- 文章页meta -->
+        
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                
+                    <div class="post-intro-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="webpack4">webpack4</a>
+    
+</div>
+                
+                
+                    <div class="post-intro-read">
+                        <span>字数统计: <span class="post-count word-count">627</span>阅读时长: <span class="post-count reading-time">2 min</span></span>
+                    </div>
+                
+                <div class="post-intro-meta">
+                    <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                    <span class="post-intro-time">2019/05/23</span>
+                    
+                    <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                        <span class="iconfont-archer">&#xe602;</span>
+                        <span id="busuanzi_value_page_pv"></span>
+                    </span>
+                    
+                    <span class="shareWrapper">
+                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
+                        <span class="shareText">Share</span>
+                        <ul class="shareList">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
         
     </div>
 </div>
@@ -338,241 +399,65 @@
 </script>        
         <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
         <div class="container container-unloaded">
-            <main class="main index-page">
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/06/01/墨菲定理/（一）成功学的秘密/">
-            
-                <span>（一）成功学的秘密</span>
-        </a>
-        <div class="abstract-content">
-            洛克定律：确定目标，专注行动
-有目标才会成功
+            <main class="main post-page">
+    <article class="article-entry">
+        <p><a href>demo3 源码地址</a><br><a name="DB93F"></a></p>
+<h4 id="1-检验-webpack-规范支持"><a href="#1-检验-webpack-规范支持" class="headerlink" title="1.检验 webpack 规范支持"></a>1.检验 webpack 规范支持</h4><p>webpack 支持 ES6，CommonJS，AMD 规范<br>创建 wendor 文件夹，其中 minus.js,multi.js 和 sum.js 分别用 CommonJS，AMD，ES6 规范编写</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// CommonJS minus.js</span></span><br><span class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span>(<span class="params">a, b</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> a - b;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// AMD multi.js</span></span><br><span class="line">define([<span class="string">"require"</span>, <span class="string">"dependency"</span>], <span class="function"><span class="keyword">function</span>(<span class="params">require, factory</span>) </span>&#123;</span><br><span class="line"><span class="meta">  "use strict"</span>;</span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">a, b</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a * b;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// ES6 sum.js</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="function"><span class="keyword">function</span>(<span class="params">a, b</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> a + b;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-除非你清楚自己要到哪里去，否则你永远也到不了自己想去的地方。
-古希腊彼得斯说：“须有人生的目标，否则精力全属浪费。”
-古罗马小塞涅卡说：“有些人活着没有任何目标，他们在世间行走，就像河中一颗小草，他们不是行走，而是随波逐流。”
-在这个世界上有这样一种现象，那就是“没有目标的人在为有目标的人达到目标”。
-博恩崔西说：“成功就是目标的达成，其他都是这句话的注解”。
+<p>在 index.js 中引入以上三个文件<br><a name="3sRf1"></a></p>
+<h4 id="2-编写配置文件覆盖-entry-output"><a href="#2-编写配置文件覆盖-entry-output" class="headerlink" title="2.编写配置文件覆盖 entry/output"></a>2.编写配置文件覆盖 entry/output</h4><p>webpack.config.js 是 webpack 默认配置的文件名，在根目录下创建：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> path = <span class="built_in">require</span>(<span class="string">"path"</span>);</span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  entry: <span class="string">"./src/index.js"</span>, <span class="comment">// 入口文件</span></span><br><span class="line">  output: &#123;</span><br><span class="line">    path: path.resolve(__dirname, <span class="string">"dist"</span>), <span class="comment">// __dirname 是指webpack.config.js的绝对路径  dist 是指出口的目录</span></span><br><span class="line">    filename: <span class="string">"bundle.js"</span>, <span class="comment">// 打包输出的文件夹的文件名</span></span><br><span class="line">    publicPath: __dirname + <span class="string">"/dist/"</span> <span class="comment">// 打包后的文件夹</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="built_in">module</span>: &#123;&#125;,</span><br><span class="line">  plugins: []</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
-目标要“跳一跳，够得着”
+<p>path.resolve() 方法会把一个路径或者是路径片段的序列解析为一个绝对路径<br>__dirname：当前模板的文件夹名称。</p>
+<p>可以使用 console.log 输出下就明白了<br><img src="https://cdn.nlark.com/yuque/0/2019/png/105657/1558624782501-b07ae1bb-36b0-4378-a9f2-95af352b15d4.png#align=left&display=inline&height=623&name=image.png&originHeight=1246&originWidth=1384&size=293759&status=done&width=692" alt="image.png"><br>执行 npm run build 打包 js 文件<br>会发现生成了 dist 文件，并且生成了两个打包后的文件<br><img src="https://cdn.nlark.com/yuque/0/2019/png/105657/1558624993160-89a83642-9ec7-419e-b4c2-45f0e1dabe72.png#align=left&display=inline&height=637&name=image.png&originHeight=1274&originWidth=1946&size=257667&status=done&width=973" alt="image.png"></p>
+<p>这跟 AMD 的引入方式有关，如果在 app.js 中注释掉 AMD 的写法，则只会打包出一个 bundle.js 文件</p>
+<p>在实际写代码的时候，最好使用 ES6 和 CommonJS 的规范来写</p>
+<p>当你注释 AMD 后，打包后的 dist 中有多个文件，这是因为打包的时候没有先删除掉 dist 文件，在打包，我们需要使用一个插件来帮助我们实现：github 链接：<a href="https://juejin.im/post/5cae0f616fb9a068a93f0613#heading-3" target="_blank" rel="noopener">clear-webpack-plugin</a><br>1.安装插件<br>npm install clean-webpack-plugin –save-dev<br>2.修改 webpack 配置文件</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> path = <span class="built_in">require</span>(<span class="string">"path"</span>);</span><br><span class="line"><span class="keyword">const</span> CleanWebpackPlugin = <span class="built_in">require</span>(<span class="string">"clean-webpack-plugin"</span>);</span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  entry: <span class="string">"./src/index.js"</span>, <span class="comment">// 入口文件</span></span><br><span class="line">  output: &#123;</span><br><span class="line">    path: path.resolve(__dirname, <span class="string">"dist"</span>), <span class="comment">// __dirname 是指webpack.config.js的绝对路径  bundle 是指出口的文件名</span></span><br><span class="line">    filename: <span class="string">"bundle.js"</span>, <span class="comment">// 打包输出的文件夹的文件名</span></span><br><span class="line">    publicPath: __dirname + <span class="string">"/dist/"</span> <span class="comment">// 打包后的文件夹</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="built_in">module</span>: &#123;&#125;,</span><br><span class="line">  plugins: [</span><br><span class="line">    <span class="keyword">new</span> CleanWebpackPlugin() <span class="comment">// 默认情况下，此插件将删除 webpack output.path中所有的文件，以及每次重建后所有未使用的webpack的产品。</span></span><br><span class="line">  ]</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
-目标不是越大也好，越高越棒，而是根据自己的实际情况，制定出切实可行的目标才有效。这个目标不能太容易就能达到，也不能高到永远也碰不着，“跳一跳，够得着”最...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/06/01</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="墨菲定律">墨菲定律</a>
-    
-</div>
-            
-        </div>
+<p>之后在执行 npm run build 就可以了</p>
+<p>打包后的 js 文件会按照我们的配置放在 dist 目录下，创建一个 html 文件，引用打包好的 js 文件，打卡 F12 就能看到效果了。</p>
+<p><a name="KY4nA"></a></p>
+<h1 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h1><hr>
+<p><a href="https://link.juejin.im/?target=https%3A%2F%2Fgodbmw.com%2Fpassages%2F2018-07-30-webpack-pack-js%2F" target="_blank" rel="noopener">webpack4 系列教程 (一): 打包 JS</a><br><a href="https://link.juejin.im/?target=https%3A%2F%2Fwww.valentinog.com%2Fblog%2Fwebpack-tutorial%2F" target="_blank" rel="noopener">Webpack4 教程：从零配置到生产模式</a></p>
+
     </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/06/01/hello-world/">
-            
-                <span>Hello World</span>
-        </a>
-        <div class="abstract-content">
-            Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick StartCreate a new post1$ hexo new "My New Post"
-
-More info: Writing
-Run server1$ hexo server
-
-Mo...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/06/01</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/05/25/webpack4/（五）Code Splitting代码分割/">
-            
-                <span>（五）Code  Splitting代码分割</span>
-        </a>
-        <div class="abstract-content">
-            demo5 源码地址package.json 文件所用依赖，npm  install 安装：
-1234567891011121314&#123;  "script": &#123;    "dev": "webpack --mode development",    "build": "webpack --mode production"  &#125;,  "devDependencies": &#123;    "clean-webpack-plugin": "^2.0.0",    "webpack": "^4.29.6",    "webpack-cli": "^3.2.3"  ...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/05/25</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="webpack4">webpack4</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/05/24/webpack4/（四）用babel编译成 ES6/">
-            
-                <span>（四）用babel编译成 ES6</span>
-        </a>
-        <div class="abstract-content">
-            demo4 源码地址
-（一）了解 Babel 及生态
-现代 javascript 主要是用 ES6 编写的。并非每个浏览器都知道怎么去处理 ES6。我们需要某种转换，这个转换步骤称为 transpiling(转译)。transpiling(转译)是指采用 ES6 的语法，转义为旧的浏览器可以理解的行为。
-Webpack不知道如何进行转换但是有loading(加载器)：将他们视为转换器。babel-loader 是一个 webpack 的 loader（加载器），用于将 ES6 及以上的版本编译为 ES5
-要开始使用loader，我们需要安装一堆依赖项，建议以 ES7 为主，升级建议
-
-@...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/05/24</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="webpack4">webpack4</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/05/23/webpack4/（三）覆盖默认entry和output/">
-            
-                <span>（三）覆盖默认entry和output</span>
-        </a>
-        <div class="abstract-content">
-            demo3 源码地址
-1.检验 webpack 规范支持webpack 支持 ES6，CommonJS，AMD 规范创建 wendor 文件夹，其中 minus.js,multi.js 和 sum.js 分别用 CommonJS，AMD，ES6 规范编写
-1234567891011121314151617// CommonJS minus.jsmodule.exports = function(a, b) &#123;  return a - b;&#125;;// AMD multi.jsdefine(["require", "dependency"], function(requir...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/05/23</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="webpack4">webpack4</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/05/22/webpack4/（二）生产和开发模式/">
-            
-                <span>（二）生产和开发模式</span>
-        </a>
-        <div class="abstract-content">
-            demo2 源码记录拥有 2 个配置文件在 webpack 中是常见的模式。一个典型的项目可能有：
-
-用于开发的配置文件，配置热更新，跨域配置，端口设置等。
-用于生产的配置文件，配置 js 压缩，代码拆分等。
-
-虽然在较大的项目可能任然需要 2 个配置文件，但是在 webpack4.0 中，你可以在没有一行配置的情况下完成。
-细心的朋友会发现在 npm  run build 打包后会有一段报警提示‘mode’选项尚未设置，webpack 将会退到‘production’。将‘mode’选项设置为‘development’或者‘production’以启用每个环境的默认值。你还可以将其设置...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/05/22</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="webpack4">webpack4</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/05/21/webpack4/（一）搭建项目并打包JS文件/">
-            
-                <span>（一）搭建项目并打包JS文件</span>
-        </a>
-        <div class="abstract-content">
-            
-依赖环境：os:win10node:10.5.0npm:6.1.0webpack:4.29.6webpack-cli:3.2.4每个知识点对应一个 demo，clone 源码后运行 npm install   安装依赖
-1.搭建项目并且打包 js 文件demo1 源码地址创建空文件夹，通过运行一下命令进行初始化 package.json:npm init npm int 用来初始化生成一个新的 package.json 文件。他会向用户提一系列问题，如果不觉得不需要修改默认配       置，一路回车就可以了。如果使用了-y（代表 yes），则跳过了提问阶段，直接生成一个新的 pack...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/05/21</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="webpack4">webpack4</a>
-    
-</div>
-            
-        </div>
-    </article>
+    <!-- license  -->
     
     <!-- paginator  -->
+    <ul class="post-paginator">
+        <li class="next">
+            
+                <div class="nextSlogan">Next Post</div>
+                <a href="/2019/05/24/webpack4/（四）用babel编译成 ES6/" title="（四）用babel编译成 ES6">
+                    <div class="nextTitle">（四）用babel编译成 ES6</div>
+                </a>
+            
+        </li>
+        <li class="previous">
+            
+                <div class="prevSlogan">Previous Post</div>
+                <a href="/2019/05/22/webpack4/（二）生产和开发模式/" title="（二）生产和开发模式">
+                    <div class="prevTitle">（二）生产和开发模式</div>
+                </a>
+            
+        </li>
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+<!-- City版安装代码已完成 -->
     
+    
+    <!-- partial('_partial/comment/changyan') -->
+    <!--PC版-->
+
+
+    
+    
+
+    <!-- 评论 -->
 </main>
             <!-- profile -->
             
@@ -646,6 +531,24 @@ Webpack不知道如何进行转换但是有loading(加载器)：将他们视为�
 </footer>
     </div>
     <!-- toc -->
+    
+    <div class="toc-wrapper" style=
+    
+
+
+
+
+
+
+
+top:50vh;
+
+    >
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-检验-webpack-规范支持"><span class="toc-number">1.</span> <span class="toc-text">1.检验 webpack 规范支持</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-编写配置文件覆盖-entry-output"><span class="toc-number">2.</span> <span class="toc-text">2.编写配置文件覆盖 entry/output</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#参考文献"><span class="toc-number"></span> <span class="toc-text">参考文献</span></a>
+    </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
     <div class="sidebar sidebar-hide">
@@ -867,6 +770,8 @@ jsonContent:
     
     </div>
     <!-- async load share.js -->
+    
+        <script src="/scripts/share.js" async></script>    
      
     </body>
 </html>

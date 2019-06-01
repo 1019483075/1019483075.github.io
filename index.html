@@ -428,14 +428,145 @@ Mo...
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/2019/05/25/webpack4/（五）Code Splitting代码分割/">
+            
+                <span>（五）Code  Splitting代码分割</span>
+        </a>
+        <div class="abstract-content">
+            demo5 源码地址package.json 文件所用依赖，npm  install 安装：
+1234567891011121314&#123;  "script": &#123;    "dev": "webpack --mode development",    "build": "webpack --mode production"  &#125;,  "devDependencies": &#123;    "clean-webpack-plugin": "^2.0.0",    "webpack": "^4.29.6",    "webpack-cli": "^3.2.3"  ...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/05/25</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="webpack4">webpack4</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/2019/05/24/webpack4/（四）用babel编译成 ES6/">
+            
+                <span>（四）用babel编译成 ES6</span>
+        </a>
+        <div class="abstract-content">
+            demo4 源码地址
+（一）了解 Babel 及生态
+现代 javascript 主要是用 ES6 编写的。并非每个浏览器都知道怎么去处理 ES6。我们需要某种转换，这个转换步骤称为 transpiling(转译)。transpiling(转译)是指采用 ES6 的语法，转义为旧的浏览器可以理解的行为。
+Webpack不知道如何进行转换但是有loading(加载器)：将他们视为转换器。babel-loader 是一个 webpack 的 loader（加载器），用于将 ES6 及以上的版本编译为 ES5
+要开始使用loader，我们需要安装一堆依赖项，建议以 ES7 为主，升级建议
+
+@...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/05/24</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="webpack4">webpack4</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/2019/05/23/webpack4/（三）覆盖默认entry和output/">
+            
+                <span>（三）覆盖默认entry和output</span>
+        </a>
+        <div class="abstract-content">
+            demo3 源码地址
+1.检验 webpack 规范支持webpack 支持 ES6，CommonJS，AMD 规范创建 wendor 文件夹，其中 minus.js,multi.js 和 sum.js 分别用 CommonJS，AMD，ES6 规范编写
+1234567891011121314151617// CommonJS minus.jsmodule.exports = function(a, b) &#123;  return a - b;&#125;;// AMD multi.jsdefine(["require", "dependency"], function(requir...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/05/23</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="webpack4">webpack4</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/2019/05/22/webpack4/（二）生产和开发模式/">
+            
+                <span>（二）生产和开发模式</span>
+        </a>
+        <div class="abstract-content">
+            demo2 源码记录拥有 2 个配置文件在 webpack 中是常见的模式。一个典型的项目可能有：
+
+用于开发的配置文件，配置热更新，跨域配置，端口设置等。
+用于生产的配置文件，配置 js 压缩，代码拆分等。
+
+虽然在较大的项目可能任然需要 2 个配置文件，但是在 webpack4.0 中，你可以在没有一行配置的情况下完成。
+细心的朋友会发现在 npm  run build 打包后会有一段报警提示‘mode’选项尚未设置，webpack 将会退到‘production’。将‘mode’选项设置为‘development’或者‘production’以启用每个环境的默认值。你还可以将其设置...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/05/22</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="webpack4">webpack4</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/2019/05/21/webpack4/（一）搭建项目并打包JS文件/">
             
                 <span>（一）搭建项目并打包JS文件</span>
         </a>
         <div class="abstract-content">
-            （一）搭建项目并打包JS文件
-依赖环境：os:win10node:10.5.0npm:6.1.0webpack:4.29.6webpack-cli:3.2.4每个知识点对应一个demo，clone源码后运行npm install  安装依赖
-1.搭建项目并且打包js文件demo1源码地址创建空文件夹，通过运行一下命令进行初始化package.json:npm init npm int用来初始化生成一个新的package.json文件。他会向用户提一系列问题，如果不觉得不需要修改默认配       置，一路回车就可以了。如果使用了-y（代表yes），则跳过了提问阶段，直接生成一个新的pac...
+            
+依赖环境：os:win10node:10.5.0npm:6.1.0webpack:4.29.6webpack-cli:3.2.4每个知识点对应一个 demo，clone 源码后运行 npm install   安装依赖
+1.搭建项目并且打包 js 文件demo1 源码地址创建空文件夹，通过运行一下命令进行初始化 package.json:npm init npm int 用来初始化生成一个新的 package.json 文件。他会向用户提一系列问题，如果不觉得不需要修改默认配       置，一路回车就可以了。如果使用了-y（代表 yes），则跳过了提问阶段，直接生成一个新的 pack...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -652,9 +783,63 @@ Mo...
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 3
+        Total : 7
         </div>
         <!-- search  -->
         
@@ -676,6 +861,26 @@ Mo...
     
         <li class="archive-post-item">
             <span class="archive-post-date">06/01</span><a class="archive-post-title" href="/2019/06/01/hello-world/">Hello World</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/25</span><a class="archive-post-title" href="/2019/05/25/webpack4/（五）Code Splitting代码分割/">（五）Code  Splitting代码分割</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/24</span><a class="archive-post-title" href="/2019/05/24/webpack4/（四）用babel编译成 ES6/">（四）用babel编译成 ES6</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/23</span><a class="archive-post-title" href="/2019/05/23/webpack4/（三）覆盖默认entry和output/">（三）覆盖默认entry和output</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/22</span><a class="archive-post-title" href="/2019/05/22/webpack4/（二）生产和开发模式/">（二）生产和开发模式</a>
         </li>
     
     
