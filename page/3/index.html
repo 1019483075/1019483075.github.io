@@ -78,8 +78,6 @@
     <link rel="preload" href="/css/style.css?v=20180824" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <link rel="stylesheet" href="/css/mobile.css?v=20180824" media="(max-width: 980px)">
     
-    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    
     <!-- /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
 /* This file is meant as a standalone workflow for
 - testing support for link[rel=preload]
@@ -203,8 +201,10 @@
 </head>
 
     
+        <body class="home-body">
     
-<header class="header">
+    
+<header class="header index-header">
 
     <div class="read-progress"></div>
     <div class="header-sidebar-menu">&#xe775;</div>
@@ -220,21 +220,34 @@
 
 
 
+
+height:50vh;
 ">
     
     <!-- 主页  -->
+    
+    
+    <!-- 文章页  -->
             
     <div class="site-intro-placeholder"></div>
-    <div class="site-intro-img" style="background-image: url(/)"></div>
+    <div class="site-intro-img" style="background-image: url(https://source.unsplash.com/random)"></div>
     <div class="site-intro-meta">
         <!-- 标题  -->
         <h1 class="intro-title">
             <!-- 主页  -->
             
+            令夕
+            <!-- 文章页  -->
+            
         </h1>
         <!-- 副标题 -->
         <p class="intro-subtitle">
             <!-- 主页副标题  -->
+            
+            
+                it's better to burn out than to fade away
+            
+            <!-- 文章页  -->
             
         </p>
         <!-- 文章页meta -->
@@ -346,34 +359,31 @@
     
     
     <article class="index-post">
-        <a class="abstract-title" href="/2019/06/01/墨菲定理/（一）成功学的秘密/">
+        <a class="abstract-title" href="/2018/05/17/vue/vueMusic歌手-左右链动/">
             
-                <span>（一）成功学的秘密</span>
+                <span>vueMusic歌手-左右链动</span>
         </a>
         <div class="abstract-content">
-            洛克定律：确定目标，专注行动
-有目标才会成功
+            https://blog.csdn.net/tyrionj/article/details/79145667
+1.singer.vue 数据重构与排序
+歌手页面的结构是  热门、 A-Z  的顺序排列，但抓取的接口数据只是 100 条常见的歌手，并且是乱序的，但我们可以利用接口的 Findex 进行数据的重构
 
-除非你清楚自己要到哪里去，否则你永远也到不了自己想去的地方。
-古希腊彼得斯说：“须有人生的目标，否则精力全属浪费。”
-古罗马小塞涅卡说：“有些人活着没有任何目标，他们在世间行走，就像河中一颗小草，他们不是行走，而是随波逐流。”
-在这个世界上有这样一种现象，那就是“没有目标的人在为有目标的人达到目标”。
-博恩崔西说：“成功就是目标的达成，其他都是这句话的注解”。
+1234567const HOT_NAME = "热门";let map = &#123;  hot: &#123;    title: HOT_NAME,    item: []  &#125;&#125;;
 
-目标要“跳一跳，够得着”
 
-目标不是越大也好，越高越棒，而是根据自己的实际情况，制定出切实可行的目标才有效。这个目标不能太容易就能达到，也不能高到永远也碰不着，“跳一跳，够得着”最...
+
+1234567891011121314151617181920...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
             <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/06/01</span>
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/05/17</span>
             </div>
             <!-- tags  -->
             
             <div class="abstract-tags">
     
-        <a class="post-tag" href="javascript:void(0);" data-tags="墨菲定律">墨菲定律</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags="vue">vue</a>
     
 </div>
             
@@ -382,8 +392,83 @@
     
     <!-- paginator  -->
     
+    <nav class="page-nav">
+        <a class="extend prev" rel="prev" href="/page/2/">&#60; PREV</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
+    </nav>
+    
 </main>
             <!-- profile -->
+            
+            <div class="profile">
+    <img class="profile-avatar" alt="avatar" src="/avatar/avatar.png">
+    <div class="profile-name">令夕</div>
+    
+    <div class="profile-signature">
+        不忘初心
+    </div>
+    
+    
+    <div class="profile-social">
+        
+    
+        
+    
+        
+            
+                <a href="//github.com/fi3ework" class="iconfont-archer github" target="_blank" title="github"></a>
+            
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+            
+                <a href="https://juejin.im/user/5ab6f52af265da23866fd966" class="iconfont-archer juejin" target="_blank" title="juejin"></a>
+            
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+    </div>
+    
+    
+    
+        <div class="about-me">
+            <a href="/about">ABOUT ME</a>
+        </div>
+    
+</div>
             
         </div>
         <footer class="footer footer-unloaded">
