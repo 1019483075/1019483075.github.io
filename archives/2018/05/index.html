@@ -346,39 +346,6 @@
     
     
     <article class="index-post">
-        <a class="abstract-title" href="/2018/05/30/vue/router-link与redirect用法/">
-            
-                <span>router-link与redirect用法</span>
-        </a>
-        <div class="abstract-content">
-            https://www.cnblogs.com/SamWeb/p/6610733.html
-1.router-link :
-简单的定死路由跳转：:路由跳转，将组件映射到路由。
-
-123456789101112131415161718192021&lt;!--route:是指一条路由（Home按钮  =&gt; home内容） --&gt;&lt;!--routes:是指一组路由：把每一条路由组合起来组合成一个数组[&#123;home 按钮 =&gt;home内容 &#125;， &#123; about按钮 =&gt; about 内容&#125;]--&gt;&lt;!--route...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/05/30</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="vue">vue</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
         <a class="abstract-title" href="/2018/05/30/vue/组件生命周期与组件传值/">
             
                 <span>组件生命周期与组件传值</span>
@@ -404,6 +371,39 @@ Updated:组件更新之后。
 actived：keep-alive，组件被激活时调用
 
 deactived：keep...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/05/30</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="vue">vue</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/2018/05/30/vue/router-link与redirect用法/">
+            
+                <span>router-link与redirect用法</span>
+        </a>
+        <div class="abstract-content">
+            https://www.cnblogs.com/SamWeb/p/6610733.html
+1.router-link :
+简单的定死路由跳转：:路由跳转，将组件映射到路由。
+
+123456789101112131415161718192021&lt;!--route:是指一条路由（Home按钮  =&gt; home内容） --&gt;&lt;!--routes:是指一组路由：把每一条路由组合起来组合成一个数组[&#123;home 按钮 =&gt;home内容 &#125;， &#123; about按钮 =&gt; about 内容&#125;]--&gt;&lt;!--route...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -548,13 +548,25 @@ main.js 中插入
     
     
     <article class="index-post">
-        <a class="abstract-title" href="/2018/05/17/vue/better-scroll-配置纵向滚动/">
+        <a class="abstract-title" href="/2018/05/17/vue/axios-获取接口，mock模拟数据配置/">
             
-                <span>better-scroll-配置纵向滚动</span>
+                <span>axios-获取接口，mock模拟数据配置</span>
         </a>
         <div class="abstract-content">
-            概念：是一个移动端滚动解决方案。不仅可以做滚动还可以做轮播图1.安装：npm install–save better-scroll2.在文件中引入 better-scroll。import BScroll from ‘better-scroll’;3.new BScroll(Dom 对象,{//opsitons}); 在 Vue 中要获得 Dom 对象，需设置标签属性‘v-el’。
-123456789101112131415161718192021222324252627例如：&lt;div v-el:betterscroll&gt;&lt;/div&gt;获取dom对象，this.$e...
+            https://blog.csdn.net/binginsist/article/details/65630547
+1.axios
+安装 axios  :
+
+1npm install --save axios vue-axios
+
+
+在 main.js 中引入
+
+123import axios from "axios";Vue.use(axios);Vue.prototype.$http = axios;
+
+
+
+1234567893. 使用方法  1. ```javascriptthis.$http.get(URL).then(response =&gt; &#123;    // su...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -578,25 +590,20 @@ main.js 中插入
     
     
     <article class="index-post">
-        <a class="abstract-title" href="/2018/05/17/vue/axios-获取接口，mock模拟数据配置/">
+        <a class="abstract-title" href="/2018/05/17/vue/vueMusic歌手-左右链动/">
             
-                <span>axios-获取接口，mock模拟数据配置</span>
+                <span>vueMusic歌手-左右链动</span>
         </a>
         <div class="abstract-content">
-            https://blog.csdn.net/binginsist/article/details/65630547
-1.axios
-安装 axios  :
+            https://blog.csdn.net/tyrionj/article/details/79145667
+1.singer.vue 数据重构与排序
+歌手页面的结构是  热门、 A-Z  的顺序排列，但抓取的接口数据只是 100 条常见的歌手，并且是乱序的，但我们可以利用接口的 Findex 进行数据的重构
 
-1npm install --save axios vue-axios
-
-
-在 main.js 中引入
-
-123import axios from "axios";Vue.use(axios);Vue.prototype.$http = axios;
+1234567const HOT_NAME = "热门";let map = &#123;  hot: &#123;    title: HOT_NAME,    item: []  &#125;&#125;;
 
 
 
-1234567893. 使用方法  1. ```javascriptthis.$http.get(URL).then(response =&gt; &#123;    // su...
+1234567891011121314151617181920...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -660,20 +667,13 @@ v-for 一定要加 key 否则会报错
     
     
     <article class="index-post">
-        <a class="abstract-title" href="/2018/05/17/vue/vueMusic歌手-左右链动/">
+        <a class="abstract-title" href="/2018/05/17/vue/better-scroll-配置纵向滚动/">
             
-                <span>vueMusic歌手-左右链动</span>
+                <span>better-scroll-配置纵向滚动</span>
         </a>
         <div class="abstract-content">
-            https://blog.csdn.net/tyrionj/article/details/79145667
-1.singer.vue 数据重构与排序
-歌手页面的结构是  热门、 A-Z  的顺序排列，但抓取的接口数据只是 100 条常见的歌手，并且是乱序的，但我们可以利用接口的 Findex 进行数据的重构
-
-1234567const HOT_NAME = "热门";let map = &#123;  hot: &#123;    title: HOT_NAME,    item: []  &#125;&#125;;
-
-
-
-1234567891011121314151617181920...
+            概念：是一个移动端滚动解决方案。不仅可以做滚动还可以做轮播图1.安装：npm install–save better-scroll2.在文件中引入 better-scroll。import BScroll from ‘better-scroll’;3.new BScroll(Dom 对象,{//opsitons}); 在 Vue 中要获得 Dom 对象，需设置标签属性‘v-el’。
+123456789101112131415161718192021222324252627例如：&lt;div v-el:betterscroll&gt;&lt;/div&gt;获取dom对象，this.$e...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -1068,6 +1068,10 @@ v-for 一定要加 key 否则会报错
     
     
     
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
         Total : 23
@@ -1165,12 +1169,12 @@ v-for 一定要加 key 否则会报错
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/30</span><a class="archive-post-title" href="/2018/05/30/vue/组件生命周期与组件传值/">组件生命周期与组件传值</a>
+            <span class="archive-post-date">05/30</span><a class="archive-post-title" href="/2018/05/30/vue/router-link与redirect用法/">router-link与redirect用法</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/30</span><a class="archive-post-title" href="/2018/05/30/vue/router-link与redirect用法/">router-link与redirect用法</a>
+            <span class="archive-post-date">05/30</span><a class="archive-post-title" href="/2018/05/30/vue/组件生命周期与组件传值/">组件生命周期与组件传值</a>
         </li>
     
     
@@ -1190,6 +1194,11 @@ v-for 一定要加 key 否则会报错
     
     
         <li class="archive-post-item">
+            <span class="archive-post-date">05/17</span><a class="archive-post-title" href="/2018/05/17/vue/better-scroll-配置纵向滚动/">better-scroll-配置纵向滚动</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
             <span class="archive-post-date">05/17</span><a class="archive-post-title" href="/2018/05/17/vue/vueMusic歌手-左右链动/">vueMusic歌手-左右链动</a>
         </li>
     
@@ -1201,11 +1210,6 @@ v-for 一定要加 key 否则会报错
     
         <li class="archive-post-item">
             <span class="archive-post-date">05/17</span><a class="archive-post-title" href="/2018/05/17/vue/axios-获取接口，mock模拟数据配置/">axios-获取接口，mock模拟数据配置</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">05/17</span><a class="archive-post-title" href="/2018/05/17/vue/better-scroll-配置纵向滚动/">better-scroll-配置纵向滚动</a>
         </li>
     
     </ul></div>

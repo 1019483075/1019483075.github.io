@@ -403,12 +403,12 @@ height:50vh;
     <article class="article-entry">
         <p><a href>demo8 源码地址</a><br><a name="odmii"></a></p>
 <h3 id="（一）准备工作"><a href="#（一）准备工作" class="headerlink" title="（一）准备工作"></a>（一）准备工作</h3><hr>
-<p>CSS 在 HTML 中常引入方法有<link>标签和<style>标签两种，所以就结合 webpack 特点实现以下功能：</p>
+<p>CSS 在 HTML 中常引入方法有<code>&lt;link&gt;</code>标签和<code>&lt;style&gt;</code>标签两种，所以就结合 webpack 特点实现以下功能：</p>
 <ul>
 <li>将 css 通过 link 标签引入</li>
 <li>将 css 放在 style 标签里</li>
 </ul>
-<p>下图展示了这次代码的目录结构：<br /><img src="https://cdn.nlark.com/yuque/0/2019/png/105657/1559567342417-259a7fb2-b1ef-470d-a0bd-b0a03ce64a9c.png#align=left&display=inline&height=342&name=image.png&originHeight=684&originWidth=668&size=54994&status=done&width=334" alt="image.png"><br />这次我们要用到 css-loader，style-loader 等 loader，跟 babel 一样，webpack 不知道将 CSS 提取到文件中。需要使用 loader 来加载对应的文件</p>
+<p>下图展示了这次代码的目录结构：<br><img src="https://cdn.nlark.com/yuque/0/2019/png/105657/1559567342417-259a7fb2-b1ef-470d-a0bd-b0a03ce64a9c.png#align=left&display=inline&height=342&name=image.png&originHeight=684&originWidth=668&size=54994&status=done&width=334" alt="image.png"><br>这次我们要用到 css-loader，style-loader 等 loader，跟 babel 一样，webpack 不知道将 CSS 提取到文件中。需要使用 loader 来加载对应的文件</p>
 <ul>
 <li>css-loader：负责解析 CSS 代码，主要是为了处理 CSS 中的依赖，例如@import 和 url()等引用外部文件的声明</li>
 <li>style-loader: 会将 css-loader 解析的结果转变为 JS 代码，运行时<strong>动态插入 style 标签</strong>来让 CSS 代码生效。<br><a name="ZwYFo"></a></li>
@@ -417,7 +417,7 @@ height:50vh;
 <blockquote>
 <p>npm i css-loader style-loader –save-dev</p>
 </blockquote>
-<p>package.json 如下:<br /><img src="https://cdn.nlark.com/yuque/0/2019/png/105657/1559567770830-305c3aa0-f9d4-4f15-9761-633fd8aa7c5f.png#align=left&display=inline&height=437&name=image.png&originHeight=874&originWidth=836&size=169983&status=done&width=418" alt="image.png"><br />更改配置文件</p>
+<p>package.json 如下:<br><img src="https://cdn.nlark.com/yuque/0/2019/png/105657/1559567770830-305c3aa0-f9d4-4f15-9761-633fd8aa7c5f.png#align=left&display=inline&height=437&name=image.png&originHeight=874&originWidth=836&size=169983&status=done&width=418" alt="image.png"><br>更改配置文件</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">(module.exports = &#123;</span><br><span class="line">  "module": &#123;</span><br><span class="line">    "rules": [</span><br><span class="line">      &#123;</span><br><span class="line">        "test": /\.css$/, // 针对 .css 后缀的文件设置 loader</span><br><span class="line">        "use": ["style-loader", "css-loader"]</span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 
 <p>配置 module 中 rules 属性，和配置 babel 一样，首先在 test 中使用正则来过滤  <code>.css</code>  文件，对  <code>.css</code>  文件使用 loader，<code>&#39;``style-loader``&#39;,``&#39;css-loader&#39;</code></p>
@@ -430,8 +430,8 @@ height:50vh;
 <p>配置文件完整代码：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">"path"</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> CleanWebpackPlugin = <span class="built_in">require</span>(<span class="string">"clean-webpack-plugin"</span>);</span><br><span class="line"><span class="keyword">const</span> HtmlWebpackPlugin = <span class="built_in">require</span>(<span class="string">"html-webpack-plugin"</span>); <span class="comment">// 引入插件</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  entry: &#123;</span><br><span class="line">    app: <span class="string">"./src/app.js"</span></span><br><span class="line">  &#125;,</span><br><span class="line">  output: &#123;</span><br><span class="line">    publicPath: <span class="string">"./"</span>, <span class="comment">// js 引用的路径或者 CDN 地址</span></span><br><span class="line">    path: path.resolve(__dirname, <span class="string">"dist"</span>), <span class="comment">// 打包文件的输出目录</span></span><br><span class="line">    filename: <span class="string">"[name].bundle.js"</span>, <span class="comment">// 代码打包后的文件名</span></span><br><span class="line">    chunkFilename: <span class="string">"[name].js"</span> <span class="comment">// 代码拆分后的文件名</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="built_in">module</span>: &#123;</span><br><span class="line">    rules: [</span><br><span class="line">      &#123;</span><br><span class="line">        test: <span class="regexp">/\.css$/</span>, <span class="comment">// 针对 .css 后缀的文件设置 loader</span></span><br><span class="line">        use: [<span class="string">"style-loader"</span>, <span class="string">"css-loader"</span>] <span class="comment">// 使用 loader</span></span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;,</span><br><span class="line">  plugins: [</span><br><span class="line">    <span class="keyword">new</span> CleanWebpackPlugin(),</span><br><span class="line">    <span class="keyword">new</span> HtmlWebpackPlugin(&#123;</span><br><span class="line">      <span class="comment">// 打包输出HTML</span></span><br><span class="line">      title: <span class="string">"自动生成 HTML"</span>,</span><br><span class="line">      minify: &#123;</span><br><span class="line">        <span class="comment">// 压缩 HTML 文件</span></span><br><span class="line">        removeComments: <span class="literal">true</span>, <span class="comment">// 移除 HTML 中的注释</span></span><br><span class="line">        collapseWhitespace: <span class="literal">true</span>, <span class="comment">// 删除空白符与换行符</span></span><br><span class="line">        minifyCSS: <span class="literal">true</span> <span class="comment">// 压缩内联 css</span></span><br><span class="line">      &#125;,</span><br><span class="line">      filename: <span class="string">"index.html"</span>, <span class="comment">// 生成后的文件名</span></span><br><span class="line">      template: <span class="string">"index.html"</span>, <span class="comment">// 根据此模版生成 HTML 文件</span></span><br><span class="line">      chunks: [<span class="string">"app"</span>] <span class="comment">// entry中的 app 入口才会被打包</span></span><br><span class="line">    &#125;)</span><br><span class="line">  ]</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
-<p>项目打包，查看 dist 文件夹<br /><img src="https://cdn.nlark.com/yuque/0/2019/png/105657/1559546194474-19ed2b12-acf3-423b-bfe1-13b3d4f2bd93.png#align=left&display=inline&height=120&name=image.png&originHeight=120&originWidth=344&size=5475&status=done&width=344" alt="image.png"><br />发现并没有生成 CSS 文件，但是打开 index.html 是有样式的</p>
-<p>原因是：style-loader，css-loader 两个 loader 处理后，CSS 代码会转变为 JS，会和 index.js 一起打包<br /><img src="https://cdn.nlark.com/yuque/0/2019/png/105657/1559570680219-3d47795e-e2a6-490c-ba53-3b10662bb0fd.png#align=left&display=inline&height=290&name=image.png&originHeight=580&originWidth=832&size=109666&status=done&width=416" alt="image.png"><br />可以发现 css 是通过<style>标签注入的  <br />如果需要单独吧 CSS 文件分离出来，我们需要使用<strong>mini-css-extract-plugin</strong>插件。<br />之前是使用<code>extract-text-webpack-plugin</code>  插件，此插件与 webpack4.0<br />不太匹配，现在使用 mini-css-extract-plugins</p>
+<p>项目打包，查看 dist 文件夹<br><img src="https://cdn.nlark.com/yuque/0/2019/png/105657/1559546194474-19ed2b12-acf3-423b-bfe1-13b3d4f2bd93.png#align=left&display=inline&height=120&name=image.png&originHeight=120&originWidth=344&size=5475&status=done&width=344" alt="image.png"><br>发现并没有生成 CSS 文件，但是打开 index.html 是有样式的</p>
+<p>原因是：style-loader，css-loader 两个 loader 处理后，CSS 代码会转变为 JS，会和 index.js 一起打包<br><img src="https://cdn.nlark.com/yuque/0/2019/png/105657/1559570680219-3d47795e-e2a6-490c-ba53-3b10662bb0fd.png#align=left&display=inline&height=290&name=image.png&originHeight=580&originWidth=832&size=109666&status=done&width=416" alt="image.png"><br>可以发现 css 是通过<style>标签注入的  <br />如果需要单独吧 CSS 文件分离出来，我们需要使用<strong>mini-css-extract-plugin</strong>插件。<br />之前是使用<code>extract-text-webpack-plugin</code>  插件，此插件与 webpack4.0<br />不太匹配，现在使用 mini-css-extract-plugins</p>
 <blockquote>
 <p>确保将 webpack 更新到 4.2.2 版及以上。否则 mini-css-extract-plugin 将无效！</p>
 </blockquote>
@@ -617,7 +617,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#（一）准备工作"><span class="toc-number">1.</span> <span class="toc-text">（一）准备工作</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#（一）准备工作"><span class="toc-number">1.</span> <span class="toc-text">（一）准备工作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#（二）安装依赖"><span class="toc-number">2.</span> <span class="toc-text">（二）安装依赖</span></a></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
@@ -630,6 +630,10 @@ top:50vh;
     <div class="sidebar-content sidebar-content-show-archive">
           <div class="sidebar-panel-archives">
     <!-- 在ejs中将archive按照时间排序 -->
+    
+    
+    
+    
     
     
     
@@ -1014,12 +1018,12 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/30</span><a class="archive-post-title" href="/2018/05/30/vue/组件生命周期与组件传值/">组件生命周期与组件传值</a>
+            <span class="archive-post-date">05/30</span><a class="archive-post-title" href="/2018/05/30/vue/router-link与redirect用法/">router-link与redirect用法</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/30</span><a class="archive-post-title" href="/2018/05/30/vue/router-link与redirect用法/">router-link与redirect用法</a>
+            <span class="archive-post-date">05/30</span><a class="archive-post-title" href="/2018/05/30/vue/组件生命周期与组件传值/">组件生命周期与组件传值</a>
         </li>
     
     
@@ -1039,6 +1043,11 @@ top:50vh;
     
     
         <li class="archive-post-item">
+            <span class="archive-post-date">05/17</span><a class="archive-post-title" href="/2018/05/17/vue/better-scroll-配置纵向滚动/">better-scroll-配置纵向滚动</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
             <span class="archive-post-date">05/17</span><a class="archive-post-title" href="/2018/05/17/vue/vueMusic歌手-左右链动/">vueMusic歌手-左右链动</a>
         </li>
     
@@ -1050,11 +1059,6 @@ top:50vh;
     
         <li class="archive-post-item">
             <span class="archive-post-date">05/17</span><a class="archive-post-title" href="/2018/05/17/vue/axios-获取接口，mock模拟数据配置/">axios-获取接口，mock模拟数据配置</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">05/17</span><a class="archive-post-title" href="/2018/05/17/vue/better-scroll-配置纵向滚动/">better-scroll-配置纵向滚动</a>
         </li>
     
     </ul></div>
