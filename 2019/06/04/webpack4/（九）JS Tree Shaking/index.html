@@ -22,7 +22,7 @@
     <meta name="description" content>
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>令夕</title>
+    <title>（九）JS Tree Shaking · 令夕</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -203,12 +203,23 @@
 </head>
 
     
+        <body class="post-body">
+    
     
 <header class="header">
 
     <div class="read-progress"></div>
     <div class="header-sidebar-menu">&#xe775;</div>
     <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/">令夕</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">（九）JS Tree Shaking</a>
+            </div>
+    </div>
     
     <a class="home-link" href="/">令夕</a>
 </header>
@@ -220,24 +231,74 @@
 
 
 
+
+height:50vh;
 ">
     
     <!-- 主页  -->
+    
+    
+    <!-- 404页  -->
             
     <div class="site-intro-placeholder"></div>
-    <div class="site-intro-img" style="background-image: url(/)"></div>
+    <div class="site-intro-img" style="background-image: url(https://source.unsplash.com/random)"></div>
     <div class="site-intro-meta">
         <!-- 标题  -->
         <h1 class="intro-title">
             <!-- 主页  -->
+            
+            （九）JS Tree Shaking
+            <!-- 404 -->
             
         </h1>
         <!-- 副标题 -->
         <p class="intro-subtitle">
             <!-- 主页副标题  -->
             
+            
+            <!-- 404 -->
+            
         </p>
         <!-- 文章页meta -->
+        
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                
+                    <div class="post-intro-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="webpack4">webpack4</a>
+    
+</div>
+                
+                
+                    <div class="post-intro-read">
+                        <span>字数统计: <span class="post-count word-count">487</span>阅读时长: <span class="post-count reading-time">2 min</span></span>
+                    </div>
+                
+                <div class="post-intro-meta">
+                    <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                    <span class="post-intro-time">2019/06/04</span>
+                    
+                    <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                        <span class="iconfont-archer">&#xe602;</span>
+                        <span id="busuanzi_value_page_pv"></span>
+                    </span>
+                    
+                    <span class="shareWrapper">
+                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
+                        <span class="shareText">Share</span>
+                        <ul class="shareList">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
         
     </div>
 </div>
@@ -338,354 +399,69 @@
 </script>        
         <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
         <div class="container container-unloaded">
-            <main class="main index-page">
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/06/04/webpack4/（十）CSS Tree Shaking/">
-            
-                <span>（十）CSS Tree Shaking</span>
-        </a>
-        <div class="abstract-content">
-            demo10 源码地址CSS Tree Shaking 并不像 Js Tree Shaking 那样方便理解，首先要模拟一个真实的项目环境，来体现 CSS 的 Tree Shaking 的配置和效果。
-此章节源码给予第八节处理 CSS 项目上做修改我们首先编写/src/css/base.css 样式文件，在文件中，我们编写了 3 个样式类。但在代码中，我们只会使用.box 和.box–big 这两个类。代码如下所示：
-12345678910111213141516171819202122232425/* base.css */html &#123;  background: red;&#...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/06/04</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="webpack4">webpack4</a>
-    
-</div>
-            
-        </div>
+            <main class="main post-page">
+    <article class="article-entry">
+        <p><a href>demo9 源码地址</a><br>什么是 Tree Shaking?<br>字面意思是摇树。项目中没有使用的代码会在打包的时候丢掉。<strong>JS 的 Tree Shaking 依赖的是 ES6 的模块系统（比如：import 和 export）</strong><br>项目目录如下：<br><img src="https://cdn.nlark.com/yuque/0/2019/png/105657/1559658721554-f0bc91d9-2753-4779-9082-d523add92939.png#align=left&display=inline&height=261&name=image.png&originHeight=522&originWidth=424&size=41476&status=done&width=212" alt="image.png"><br>在 util.js 文件中写入测试代码</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// util.js</span></span><br><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="string">"this is function a"</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">b</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="string">"this is a function b"</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">c</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="string">"this is a function c"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在 app.js 中引用 util.js 的 function a() 函数，<strong>按需引入</strong>：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// app.js</span></span><br><span class="line"><span class="keyword">import</span> &#123; a &#125; <span class="keyword">from</span> <span class="string">"./vendor/until"</span>;</span><br><span class="line"><span class="built_in">console</span>.log(a);</span><br></pre></td></tr></table></figure>
+
+<p>命令行运行 webpack 打包后，打开打包后生成的/dist/app.bundle.js 文件。查找我们 a()函数输出的字符串，如下图所示：<br><img src="https://cdn.nlark.com/yuque/0/2019/png/105657/1559659224296-0f32b6ae-9446-495e-9501-c55c70bae5c0.png#align=left&display=inline&height=331&name=image.png&originHeight=662&originWidth=1396&size=128878&status=done&width=698" alt="image.png"><br>如果将查找内容换成<code>this is function &quot;c&quot;</code>  或者  <code>this is function &quot;b&quot;</code>, 并没有相关查找结果。<br>说明 JS Tree Shaking 成功。<br><strong>1.如何处理第三方 JS 库？</strong><br>对于经常使用第三方库（例如 jQuery，lodash 等等），如何实现 Tree Shaking？<br>下面以 lodash.js 为例，进行介绍</p>
+<blockquote>
+<p>安装 lodash.js：npm  install lodash –save</p>
+</blockquote>
+<p>在 app.js 中引入 lodash.js 的一个函数：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// app.js</span></span><br><span class="line"><span class="keyword">import</span> &#123; chunk &#125; <span class="keyword">from</span> <span class="string">"lodash"</span>;</span><br><span class="line"><span class="built_in">console</span>.log(chunk([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>], <span class="number">2</span>));</span><br></pre></td></tr></table></figure>
+
+<p>命令行打包。如下图所示，打包后大小是 70kb。显然，只是引用了一个函数，不应该这么大。并没有进行 Tree Shaking。<br><img src="https://cdn.nlark.com/yuque/0/2019/png/105657/1559659486615-78d4278e-62d5-452f-937b-aa8986d68b83.png#align=left&display=inline&height=290&name=image.png&originHeight=580&originWidth=1448&size=155362&status=done&width=724" alt="image.png"><br>开头讲过，js tree shaking 利用的是 ES 的模块系统。而 lodash.js 使用的是<strong>CommonJS</strong>  而不是<strong>ES6</strong>的写法。所以，安装对应的模块系统即可。</p>
+<blockquote>
+<p>安装 lodash.js 的 ES 写法的版本：npm install lodash-es –save</p>
+</blockquote>
+<p>修改下 app.js:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// app.js</span></span><br><span class="line"><span class="keyword">import</span> &#123; chunk &#125; <span class="keyword">from</span> <span class="string">"lodash-es"</span>;</span><br><span class="line"><span class="built_in">console</span>.log(chunk([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>], <span class="number">2</span>));</span><br></pre></td></tr></table></figure>
+
+<p>在次打包，打包结果只有 3.5KB（如下图所示）。显然，tree shaking 成功。<br><img src="https://cdn.nlark.com/yuque/0/2019/png/105657/1559659639797-59ad46fa-4df0-4b68-9dce-d4f9ff96cc69.png#align=left&display=inline&height=311&name=image.png&originHeight=622&originWidth=1446&size=168428&status=done&width=723" alt="image.png"></p>
+<blockquote>
+<p>在一些对加载速度敏感的项目中使用第三方库，请注意库的写法是否符合 ES 模块系统规范，一方面 webpack 进行 tree shaking。</p>
+</blockquote>
+
     </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/06/04/webpack4/（九）JS Tree Shaking/">
-            
-                <span>（九）JS Tree Shaking</span>
-        </a>
-        <div class="abstract-content">
-            demo9 源码地址什么是 Tree Shaking?字面意思是摇树。项目中没有使用的代码会在打包的时候丢掉。JS 的 Tree Shaking 依赖的是 ES6 的模块系统（比如：import 和 export）项目目录如下：在 util.js 文件中写入测试代码
-123456789101112// util.jsexport function a() &#123;  return "this is function a";&#125;export function b() &#123;  return "this is a function b";&#125;export funct...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/06/04</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="webpack4">webpack4</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/06/03/webpack4/（八）处理css和scss/">
-            
-                <span>（八）处理CSS/SCSS文件</span>
-        </a>
-        <div class="abstract-content">
-            demo8 源码地址
-（一）准备工作
-CSS 在 HTML 中常引入方法有&lt;link&gt;标签和&lt;style&gt;标签两种，所以就结合 webpack 特点实现以下功能：
-
-将 css 通过 link 标签引入
-将 css 放在 style 标签里
-
-下图展示了这次代码的目录结构：这次我们要用到 css-loader，style-loader 等 loader，跟 babel 一样，webpack 不知道将 CSS 提取到文件中。需要使用 loader 来加载对应的文件
-
-css-loader：负责解析 CSS 代码，主要是为了处理 CSS 中的依赖，例如@import ...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/06/03</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="webpack4">webpack4</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/06/03/webpack4/（七）自动生成 HTML 文件/">
-            
-                <span>（七）自动生成 HTML 文件</span>
-        </a>
-        <div class="abstract-content">
-            demo7 源码经过上面几个小节的操作，有没有觉得每次进去更改 index.html 中引入 js 文件很麻烦，一旦打包的名字变更后，也要对应的去修改 index.html 引入的 js 名称，这个时候就要使用一个插件来帮助我们，打包完之后自动生成 HTML 文件，并自动引入打包后的 js 文件**
-（一）安装依赖
-
-npm i html-webpack-plugin html-loader –save-dev
-
-package.json 如下：
-（二）更改配置文件
-12345678910111213141516module.exports = &#123;  plugins: [   ...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/06/03</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="webpack4">webpack4</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/06/02/webpack4/（六）Lazy Loading、Prefetching/">
-            
-                <span>（六）Lazy Loading、Prefetching</span>
-        </a>
-        <div class="abstract-content">
-            demo6 源码地址
-在 demo5 的基础上修改 index.js 文件，并删除了多余的 js 文件
-12345document.addEventListener("click", function() &#123;  import(/* webpackChunkName: 'use-lodash'*/ "lodash").then(function(_) &#123;    console.log(_.join(["3", "4"]));  &#125;);&#125;);
-
-这段代码表示的是，当点击页面的时候，异步加载 lodash 并输出内容。
-第一次进入页面的时候，并没有加载 ...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/06/02</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="webpack4">webpack4</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/06/01/墨菲定理/（一）成功学的秘密/">
-            
-                <span>（一）成功学的秘密</span>
-        </a>
-        <div class="abstract-content">
-            洛克定律：确定目标，专注行动
-有目标才会成功
-
-除非你清楚自己要到哪里去，否则你永远也到不了自己想去的地方。
-古希腊彼得斯说：“须有人生的目标，否则精力全属浪费。”
-古罗马小塞涅卡说：“有些人活着没有任何目标，他们在世间行走，就像河中一颗小草，他们不是行走，而是随波逐流。”
-在这个世界上有这样一种现象，那就是“没有目标的人在为有目标的人达到目标”。
-博恩崔西说：“成功就是目标的达成，其他都是这句话的注解”。
-
-目标要“跳一跳，够得着”
-
-目标不是越大也好，越高越棒，而是根据自己的实际情况，制定出切实可行的目标才有效。这个目标不能太容易就能达到，也不能高到永远也碰不着，“跳一跳，够得着”最...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/06/01</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="墨菲定律">墨菲定律</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/05/25/webpack4/（五）Code Splitting代码分割/">
-            
-                <span>（五）Code  Splitting代码分割</span>
-        </a>
-        <div class="abstract-content">
-            demo5 源码地址package.json 文件所用依赖，npm  install 安装：
-1234567891011121314&#123;  "script": &#123;    "dev": "webpack --mode development",    "build": "webpack --mode production"  &#125;,  "devDependencies": &#123;    "clean-webpack-plugin": "^2.0.0",    "webpack": "^4.29.6",    "webpack-cli": "^3.2.3"  ...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/05/25</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="webpack4">webpack4</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/05/24/webpack4/（四）用babel编译成 ES6/">
-            
-                <span>（四）用babel编译成 ES6</span>
-        </a>
-        <div class="abstract-content">
-            demo4 源码地址
-（一）了解 Babel 及生态
-现代 javascript 主要是用 ES6 编写的。并非每个浏览器都知道怎么去处理 ES6。我们需要某种转换，这个转换步骤称为 transpiling(转译)。transpiling(转译)是指采用 ES6 的语法，转义为旧的浏览器可以理解的行为。
-Webpack不知道如何进行转换但是有loading(加载器)：将他们视为转换器。babel-loader 是一个 webpack 的 loader（加载器），用于将 ES6 及以上的版本编译为 ES5
-要开始使用loader，我们需要安装一堆依赖项，建议以 ES7 为主，升级建议
-
-@...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/05/24</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="webpack4">webpack4</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/05/23/webpack4/（三）覆盖默认entry和output/">
-            
-                <span>（三）覆盖默认entry和output</span>
-        </a>
-        <div class="abstract-content">
-            demo3 源码地址
-1.检验 webpack 规范支持webpack 支持 ES6，CommonJS，AMD 规范创建 wendor 文件夹，其中 minus.js,multi.js 和 sum.js 分别用 CommonJS，AMD，ES6 规范编写
-1234567891011121314151617// CommonJS minus.jsmodule.exports = function(a, b) &#123;  return a - b;&#125;;// AMD multi.jsdefine(["require", "dependency"], function(requir...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/05/23</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="webpack4">webpack4</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/05/22/webpack4/（二）生产和开发模式/">
-            
-                <span>（二）生产和开发模式</span>
-        </a>
-        <div class="abstract-content">
-            demo2 源码记录拥有 2 个配置文件在 webpack 中是常见的模式。一个典型的项目可能有：
-
-用于开发的配置文件，配置热更新，跨域配置，端口设置等。
-用于生产的配置文件，配置 js 压缩，代码拆分等。
-
-虽然在较大的项目可能任然需要 2 个配置文件，但是在 webpack4.0 中，你可以在没有一行配置的情况下完成。
-细心的朋友会发现在 npm  run build 打包后会有一段报警提示‘mode’选项尚未设置，webpack 将会退到‘production’。将‘mode’选项设置为‘development’或者‘production’以启用每个环境的默认值。你还可以将其设置...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/05/22</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="webpack4">webpack4</a>
-    
-</div>
-            
-        </div>
-    </article>
+    <!-- license  -->
     
     <!-- paginator  -->
+    <ul class="post-paginator">
+        <li class="next">
+            
+                <div class="nextSlogan">Next Post</div>
+                <a href="/2019/06/04/webpack4/（十）CSS Tree Shaking/" title="（十）CSS Tree Shaking">
+                    <div class="nextTitle">（十）CSS Tree Shaking</div>
+                </a>
+            
+        </li>
+        <li class="previous">
+            
+                <div class="prevSlogan">Previous Post</div>
+                <a href="/2019/06/03/webpack4/（八）处理css和scss/" title="（八）处理CSS/SCSS文件">
+                    <div class="prevTitle">（八）处理CSS/SCSS文件</div>
+                </a>
+            
+        </li>
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+<!-- City版安装代码已完成 -->
     
-    <nav class="page-nav">
-        <span class="page-number current">1</span><a class="page-number" href="/archives/2019/page/2/">2</a><a class="extend next" rel="next" href="/archives/2019/page/2/">NEXT &#62;</a>
-    </nav>
     
+    <!-- partial('_partial/comment/changyan') -->
+    <!--PC版-->
+
+
+    
+    
+
+    <!-- 评论 -->
 </main>
             <!-- profile -->
             
@@ -763,6 +539,24 @@ Webpack不知道如何进行转换但是有loading(加载器)：将他们视为�
 </footer>
     </div>
     <!-- toc -->
+    
+    <div class="toc-wrapper" style=
+    
+
+
+
+
+
+
+
+top:50vh;
+
+    >
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        
+    </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
     <div class="sidebar sidebar-hide">
@@ -1329,6 +1123,8 @@ jsonContent:
     
     </div>
     <!-- async load share.js -->
+    
+        <script src="/scripts/share.js" async></script>    
      
     </body>
 </html>

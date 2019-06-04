@@ -346,6 +346,67 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/2019/06/04/webpack4/（十）CSS Tree Shaking/">
+            
+                <span>（十）CSS Tree Shaking</span>
+        </a>
+        <div class="abstract-content">
+            demo10 源码地址CSS Tree Shaking 并不像 Js Tree Shaking 那样方便理解，首先要模拟一个真实的项目环境，来体现 CSS 的 Tree Shaking 的配置和效果。
+此章节源码给予第八节处理 CSS 项目上做修改我们首先编写/src/css/base.css 样式文件，在文件中，我们编写了 3 个样式类。但在代码中，我们只会使用.box 和.box–big 这两个类。代码如下所示：
+12345678910111213141516171819202122232425/* base.css */html &#123;  background: red;&#...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/06/04</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="webpack4">webpack4</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/2019/06/04/webpack4/（九）JS Tree Shaking/">
+            
+                <span>（九）JS Tree Shaking</span>
+        </a>
+        <div class="abstract-content">
+            demo9 源码地址什么是 Tree Shaking?字面意思是摇树。项目中没有使用的代码会在打包的时候丢掉。JS 的 Tree Shaking 依赖的是 ES6 的模块系统（比如：import 和 export）项目目录如下：在 util.js 文件中写入测试代码
+123456789101112// util.jsexport function a() &#123;  return "this is function a";&#125;export function b() &#123;  return "this is a function b";&#125;export funct...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/06/04</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="webpack4">webpack4</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/2019/06/03/webpack4/（八）处理css和scss/">
             
                 <span>（八）处理CSS/SCSS文件</span>
@@ -607,71 +668,6 @@ Webpack不知道如何进行转换但是有loading(加载器)：将他们视为�
             <!-- date  -->
             <div class="abstract-date">
                 <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/05/22</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="webpack4">webpack4</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/05/22/react/（四）拆分组件与组件之前的传值/">
-            
-                <span>（四）拆分组件与组件之前的传值</span>
-        </a>
-        <div class="abstract-content">
-            
-1.react组件拆分的重要性模块化，组件化，提高性能，方便维护。
-2.父组件给子组件传递数据1234567// 通过属性的方式进行传递//1.父组件定义属性&lt;div&gt;	 &lt;TodoItem info=&#123;item&#125;/&gt;  &lt;/div&gt;//2.子组件通过this.props.属性  的方式接受属性  &lt;div onClick=&#123;this.handClick&#125;&gt;&#123;this.props.info&#125;&lt;/div&gt;
-
-
-3.子组件调用父组件的方法传递数据1234567891011...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/05/22</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="react">react</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/05/21/webpack4/（一）搭建项目并打包JS文件/">
-            
-                <span>（一）搭建项目并打包JS文件</span>
-        </a>
-        <div class="abstract-content">
-            
-依赖环境：os:win10node:10.5.0npm:6.1.0webpack:4.29.6webpack-cli:3.2.4每个知识点对应一个 demo，clone 源码后运行 npm install   安装依赖
-1.搭建项目并且打包 js 文件demo1 源码地址创建空文件夹，通过运行一下命令进行初始化 package.json:npm init npm int 用来初始化生成一个新的 package.json 文件。他会向用户提一系列问题，如果不觉得不需要修改默认配       置，一路回车就可以了。如果使用了-y（代表 yes），则跳过了提问阶段，直接生成一个新的 pack...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/05/21</span>
             </div>
             <!-- tags  -->
             
@@ -1065,9 +1061,41 @@ Webpack不知道如何进行转换但是有loading(加载器)：将他们视为�
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 23
+        Total : 25
         </div>
         <!-- search  -->
         
@@ -1080,6 +1108,16 @@ Webpack不知道如何进行转换但是有loading(加载器)：将他们视为�
     
     <div class="archive-year"> 2019 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/04</span><a class="archive-post-title" href="/2019/06/04/webpack4/（十）CSS Tree Shaking/">（十）CSS Tree Shaking</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/04</span><a class="archive-post-title" href="/2019/06/04/webpack4/（九）JS Tree Shaking/">（九）JS Tree Shaking</a>
+        </li>
     
     
         <li class="archive-post-item">
