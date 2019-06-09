@@ -346,6 +346,44 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/2019/06/04/webpack4/（十一）图片处理汇总/">
+            
+                <span>（十一）图片处理汇总</span>
+        </a>
+        <div class="abstract-content">
+            demo11 源码地址目录结构：webpack4 中的图片常用的基础操作：
+
+图片处理和 Base64 编码
+图片压缩
+合成雪碧图
+
+（一）准备工作
+如项目代码目录展示的那样，除了常见的 app.js 作为入口文件，我们将用到 3 张图片放在/src/assets/imgs/目录下，并在样式 base.css 中引用这些图片。
+剩下的内容叫给 webpack 打包处理即可。样式文件和入口 app.js 文件的代码分别如下所示：
+1234567891011121314151617181920212223242526/* base.css */*,body &#123;  margin: 0...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/06/04</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="webpack4">webpack4</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/2019/06/04/webpack4/（十）CSS Tree Shaking/">
             
                 <span>（十）CSS Tree Shaking</span>
@@ -377,21 +415,13 @@
     
     
     <article class="index-post">
-        <a class="abstract-title" href="/2019/06/04/webpack4/（十一）图片处理汇总/">
+        <a class="abstract-title" href="/2019/06/04/webpack4/（十二）字体文件处理/">
             
-                <span>（十一）图片处理汇总</span>
+                <span>（十二）字体文件处理</span>
         </a>
         <div class="abstract-content">
-            demo11 源码地址目录结构：webpack4 中的图片常用的基础操作：
-
-图片处理和 Base64 编码
-图片压缩
-合成雪碧图
-
-（一）准备工作
-如项目代码目录展示的那样，除了常见的 app.js 作为入口文件，我们将用到 3 张图片放在/src/assets/imgs/目录下，并在样式 base.css 中引用这些图片。
-剩下的内容叫给 webpack 打包处理即可。样式文件和入口 app.js 文件的代码分别如下所示：
-1234567891011121314151617181920212223242526/* base.css */*,body &#123;  margin: 0...
+            demo12 源码地址项目目录为：package.json 中使用的依赖如下：
+1234567891011121314151617181920212223242526272829&#123;  "scripts": &#123;    "dev": "webpack --mode development",    "build": "webpack --mode production"  &#125;, "devDependencies": &#123;    "@babel/core": "^7.4.5",    "@babel/plugin-transform-runtime": "...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -631,41 +661,6 @@ Webpack不知道如何进行转换但是有loading(加载器)：将他们视为�
             <!-- date  -->
             <div class="abstract-date">
                 <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/05/23</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="webpack4">webpack4</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/05/22/webpack4/（二）生产和开发模式/">
-            
-                <span>（二）生产和开发模式</span>
-        </a>
-        <div class="abstract-content">
-            demo2 源码记录拥有 2 个配置文件在 webpack 中是常见的模式。一个典型的项目可能有：
-
-用于开发的配置文件，配置热更新，跨域配置，端口设置等。
-用于生产的配置文件，配置 js 压缩，代码拆分等。
-
-虽然在较大的项目可能任然需要 2 个配置文件，但是在 webpack4.0 中，你可以在没有一行配置的情况下完成。
-细心的朋友会发现在 npm  run build 打包后会有一段报警提示‘mode’选项尚未设置，webpack 将会退到‘production’。将‘mode’选项设置为‘development’或者‘production’以启用每个环境的默认值。你还可以将其设置...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/05/22</span>
             </div>
             <!-- tags  -->
             
@@ -1351,9 +1346,56 @@ Webpack不知道如何进行转换但是有loading(加载器)：将他们视为�
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 43
+        Total : 44
         </div>
         <!-- search  -->
         
@@ -1370,6 +1412,11 @@ Webpack不知道如何进行转换但是有loading(加载器)：将他们视为�
     
         <li class="archive-post-item">
             <span class="archive-post-date">06/04</span><a class="archive-post-title" href="/2019/06/04/webpack4/（十一）图片处理汇总/">（十一）图片处理汇总</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/04</span><a class="archive-post-title" href="/2019/06/04/webpack4/（十二）字体文件处理/">（十二）字体文件处理</a>
         </li>
     
     
@@ -1508,22 +1555,22 @@ Webpack不知道如何进行转换但是有loading(加载器)：将他们视为�
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/17</span><a class="archive-post-title" href="/2018/05/17/vue/axios-获取接口，mock模拟数据配置/">axios-获取接口，mock模拟数据配置</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
             <span class="archive-post-date">05/17</span><a class="archive-post-title" href="/2018/05/17/vue/banner横向轮播图-组件封装思路/">banner横向轮播图-组件封装思路</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/17</span><a class="archive-post-title" href="/2018/05/17/vue/better-scroll-配置纵向滚动/">better-scroll-配置纵向滚动</a>
+            <span class="archive-post-date">05/17</span><a class="archive-post-title" href="/2018/05/17/vue/vueMusic歌手-左右链动/">vueMusic歌手-左右链动</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/17</span><a class="archive-post-title" href="/2018/05/17/vue/vueMusic歌手-左右链动/">vueMusic歌手-左右链动</a>
+            <span class="archive-post-date">05/17</span><a class="archive-post-title" href="/2018/05/17/vue/axios-获取接口，mock模拟数据配置/">axios-获取接口，mock模拟数据配置</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/17</span><a class="archive-post-title" href="/2018/05/17/vue/better-scroll-配置纵向滚动/">better-scroll-配置纵向滚动</a>
         </li>
     
     
@@ -1613,9 +1660,9 @@ Webpack不知道如何进行转换但是有loading(加载器)：将他们视为�
     
         <span class="sidebar-tag-name" data-tags="vue"><span class="iconfont-archer">&#xe606;</span>vue</span>
     
-        <span class="sidebar-tag-name" data-tags="webpack4"><span class="iconfont-archer">&#xe606;</span>webpack4</span>
-    
         <span class="sidebar-tag-name" data-tags="css和js基础面试题"><span class="iconfont-archer">&#xe606;</span>css和js基础面试题</span>
+    
+        <span class="sidebar-tag-name" data-tags="webpack4"><span class="iconfont-archer">&#xe606;</span>webpack4</span>
     
         <span class="sidebar-tag-name" data-tags="墨菲定律"><span class="iconfont-archer">&#xe606;</span>墨菲定律</span>
     
@@ -1664,9 +1711,9 @@ jsonContent:
     
         <span class="sidebar-category-name" data-categories="vue"><span class="iconfont-archer">&#xe60a;</span>vue</span>
     
-        <span class="sidebar-category-name" data-categories="webpack4"><span class="iconfont-archer">&#xe60a;</span>webpack4</span>
-    
         <span class="sidebar-category-name" data-categories="css和js基础面试题"><span class="iconfont-archer">&#xe60a;</span>css和js基础面试题</span>
+    
+        <span class="sidebar-category-name" data-categories="webpack4"><span class="iconfont-archer">&#xe60a;</span>webpack4</span>
     
         <span class="sidebar-category-name" data-categories="墨菲定律"><span class="iconfont-archer">&#xe60a;</span>墨菲定律</span>
     

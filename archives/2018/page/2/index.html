@@ -346,48 +346,6 @@
     
     
     <article class="index-post">
-        <a class="abstract-title" href="/2018/05/17/vue/axios-获取接口，mock模拟数据配置/">
-            
-                <span>axios-获取接口，mock模拟数据配置</span>
-        </a>
-        <div class="abstract-content">
-            https://blog.csdn.net/binginsist/article/details/65630547
-1.axios
-安装 axios  :
-
-1npm install --save axios vue-axios
-
-
-在 main.js 中引入
-
-123import axios from "axios";Vue.use(axios);Vue.prototype.$http = axios;
-
-
-
-1234567893. 使用方法  1. ```javascriptthis.$http.get(URL).then(response =&gt; &#123;    // su...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/05/17</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="vue">vue</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
         <a class="abstract-title" href="/2018/05/17/vue/banner横向轮播图-组件封装思路/">
             
                 <span>banner横向轮播图-组件封装思路</span>
@@ -428,13 +386,62 @@ v-for 一定要加 key 否则会报错
     
     
     <article class="index-post">
-        <a class="abstract-title" href="/2018/05/17/vue/better-scroll-配置纵向滚动/">
+        <a class="abstract-title" href="/2018/05/17/vue/vueMusic歌手-左右链动/">
             
-                <span>better-scroll-配置纵向滚动</span>
+                <span>vueMusic歌手-左右链动</span>
         </a>
         <div class="abstract-content">
-            概念：是一个移动端滚动解决方案。不仅可以做滚动还可以做轮播图1.安装：npm install–save better-scroll2.在文件中引入 better-scroll。import BScroll from ‘better-scroll’;3.new BScroll(Dom 对象,{//opsitons}); 在 Vue 中要获得 Dom 对象，需设置标签属性‘v-el’。
-123456789101112131415161718192021222324252627例如：&lt;div v-el:betterscroll&gt;&lt;/div&gt;获取dom对象，this.$e...
+            https://blog.csdn.net/tyrionj/article/details/79145667
+1.singer.vue 数据重构与排序
+歌手页面的结构是  热门、 A-Z  的顺序排列，但抓取的接口数据只是 100 条常见的歌手，并且是乱序的，但我们可以利用接口的 Findex 进行数据的重构
+
+1234567const HOT_NAME = "热门";let map = &#123;  hot: &#123;    title: HOT_NAME,    item: []  &#125;&#125;;
+
+
+
+1234567891011121314151617181920...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/05/17</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="vue">vue</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/2018/05/17/vue/axios-获取接口，mock模拟数据配置/">
+            
+                <span>axios-获取接口，mock模拟数据配置</span>
+        </a>
+        <div class="abstract-content">
+            https://blog.csdn.net/binginsist/article/details/65630547
+1.axios
+安装 axios  :
+
+1npm install --save axios vue-axios
+
+
+在 main.js 中引入
+
+123import axios from "axios";Vue.use(axios);Vue.prototype.$http = axios;
+
+
+
+1234567893. 使用方法  1. ```javascriptthis.$http.get(URL).then(response =&gt; &#123;    // su...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -1404,9 +1411,56 @@ if…elseif…else:选择若干代码块来执行
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 43
+        Total : 44
         </div>
         <!-- search  -->
         
@@ -1423,6 +1477,11 @@ if…elseif…else:选择若干代码块来执行
     
         <li class="archive-post-item">
             <span class="archive-post-date">06/04</span><a class="archive-post-title" href="/2019/06/04/webpack4/（十一）图片处理汇总/">（十一）图片处理汇总</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/04</span><a class="archive-post-title" href="/2019/06/04/webpack4/（十二）字体文件处理/">（十二）字体文件处理</a>
         </li>
     
     
@@ -1561,22 +1620,22 @@ if…elseif…else:选择若干代码块来执行
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/17</span><a class="archive-post-title" href="/2018/05/17/vue/axios-获取接口，mock模拟数据配置/">axios-获取接口，mock模拟数据配置</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
             <span class="archive-post-date">05/17</span><a class="archive-post-title" href="/2018/05/17/vue/banner横向轮播图-组件封装思路/">banner横向轮播图-组件封装思路</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/17</span><a class="archive-post-title" href="/2018/05/17/vue/better-scroll-配置纵向滚动/">better-scroll-配置纵向滚动</a>
+            <span class="archive-post-date">05/17</span><a class="archive-post-title" href="/2018/05/17/vue/vueMusic歌手-左右链动/">vueMusic歌手-左右链动</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/17</span><a class="archive-post-title" href="/2018/05/17/vue/vueMusic歌手-左右链动/">vueMusic歌手-左右链动</a>
+            <span class="archive-post-date">05/17</span><a class="archive-post-title" href="/2018/05/17/vue/axios-获取接口，mock模拟数据配置/">axios-获取接口，mock模拟数据配置</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/17</span><a class="archive-post-title" href="/2018/05/17/vue/better-scroll-配置纵向滚动/">better-scroll-配置纵向滚动</a>
         </li>
     
     
@@ -1666,9 +1725,9 @@ if…elseif…else:选择若干代码块来执行
     
         <span class="sidebar-tag-name" data-tags="vue"><span class="iconfont-archer">&#xe606;</span>vue</span>
     
-        <span class="sidebar-tag-name" data-tags="webpack4"><span class="iconfont-archer">&#xe606;</span>webpack4</span>
-    
         <span class="sidebar-tag-name" data-tags="css和js基础面试题"><span class="iconfont-archer">&#xe606;</span>css和js基础面试题</span>
+    
+        <span class="sidebar-tag-name" data-tags="webpack4"><span class="iconfont-archer">&#xe606;</span>webpack4</span>
     
         <span class="sidebar-tag-name" data-tags="墨菲定律"><span class="iconfont-archer">&#xe606;</span>墨菲定律</span>
     
@@ -1717,9 +1776,9 @@ jsonContent:
     
         <span class="sidebar-category-name" data-categories="vue"><span class="iconfont-archer">&#xe60a;</span>vue</span>
     
-        <span class="sidebar-category-name" data-categories="webpack4"><span class="iconfont-archer">&#xe60a;</span>webpack4</span>
-    
         <span class="sidebar-category-name" data-categories="css和js基础面试题"><span class="iconfont-archer">&#xe60a;</span>css和js基础面试题</span>
+    
+        <span class="sidebar-category-name" data-categories="webpack4"><span class="iconfont-archer">&#xe60a;</span>webpack4</span>
     
         <span class="sidebar-category-name" data-categories="墨菲定律"><span class="iconfont-archer">&#xe60a;</span>墨菲定律</span>
     

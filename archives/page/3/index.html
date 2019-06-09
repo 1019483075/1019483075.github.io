@@ -346,17 +346,32 @@
     
     
     <article class="index-post">
-        <a class="abstract-title" href="/2018/06/01/php基础/数据库(1)-终端命令操作/">
+        <a class="abstract-title" href="/2018/06/04/php基础/数据库(2)-优化/">
             
-                <span>数据库(1)-终端命令操作</span>
+                <span>数据库(2)-优化</span>
         </a>
         <div class="abstract-content">
-            1.在 mysql 官网下载 mysql 安装包安装：1.mac 下的 mysql 在MySQL Community Server下下载，主要是数据库环境。 2.查看在：系统偏好设置下面 如果为绿色就是打开 3.下载Navicate Premium：主要是用于管理数据库可视化操作的。 4.下载mamp：php 虚拟服务器环境。5.mysql 在 mac 下的进入：/usr/local/mysql/bin/mysql -u root -p6.MacOs 终端打开 mysql： /usr/local/mysql/bin/mysql -u root -p 输入 root 用户名密码（windo...
+            1.mysql 基础操作
+mysql 表复制
+
+1create table （表名） like （表名）; //
+
+
+
+mysql 复制表内容
+
+1insert into t3 select * from t1;//将t1表里面的内容插入到t3表里面
+
+
+
+查看数据库的状态 mysql 索引查看，删除，创建
+
+12345678910//查看索引show index from 表名\G;//普通索引 创建  删除create index i_age on user(age);//user是指表drop index i_age on user;//唯一索引 创建 删除create uniqu...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
             <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/06/01</span>
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/06/04</span>
             </div>
             <!-- tags  -->
             
@@ -375,27 +390,23 @@
     
     
     <article class="index-post">
-        <a class="abstract-title" href="/2018/05/30/vue/router-link与redirect用法/">
+        <a class="abstract-title" href="/2018/06/01/php基础/数据库(1)-终端命令操作/">
             
-                <span>router-link与redirect用法</span>
+                <span>数据库(1)-终端命令操作</span>
         </a>
         <div class="abstract-content">
-            https://www.cnblogs.com/SamWeb/p/6610733.html
-1.router-link :
-简单的定死路由跳转：:路由跳转，将组件映射到路由。
-
-123456789101112131415161718192021&lt;!--route:是指一条路由（Home按钮  =&gt; home内容） --&gt;&lt;!--routes:是指一组路由：把每一条路由组合起来组合成一个数组[&#123;home 按钮 =&gt;home内容 &#125;， &#123; about按钮 =&gt; about 内容&#125;]--&gt;&lt;!--route...
+            1.在 mysql 官网下载 mysql 安装包安装：1.mac 下的 mysql 在MySQL Community Server下下载，主要是数据库环境。 2.查看在：系统偏好设置下面 如果为绿色就是打开 3.下载Navicate Premium：主要是用于管理数据库可视化操作的。 4.下载mamp：php 虚拟服务器环境。5.mysql 在 mac 下的进入：/usr/local/mysql/bin/mysql -u root -p6.MacOs 终端打开 mysql： /usr/local/mysql/bin/mysql -u root -p 输入 root 用户名密码（windo...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
             <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/05/30</span>
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/06/01</span>
             </div>
             <!-- tags  -->
             
             <div class="abstract-tags">
     
-        <a class="post-tag" href="javascript:void(0);" data-tags="vue">vue</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags="php">php</a>
     
 </div>
             
@@ -433,6 +444,39 @@ Updated:组件更新之后。
 actived：keep-alive，组件被激活时调用
 
 deactived：keep...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/05/30</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="vue">vue</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/2018/05/30/vue/router-link与redirect用法/">
+            
+                <span>router-link与redirect用法</span>
+        </a>
+        <div class="abstract-content">
+            https://www.cnblogs.com/SamWeb/p/6610733.html
+1.router-link :
+简单的定死路由跳转：:路由跳转，将组件映射到路由。
+
+123456789101112131415161718192021&lt;!--route:是指一条路由（Home按钮  =&gt; home内容） --&gt;&lt;!--routes:是指一组路由：把每一条路由组合起来组合成一个数组[&#123;home 按钮 =&gt;home内容 &#125;， &#123; about按钮 =&gt; about 内容&#125;]--&gt;&lt;!--route...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -577,62 +621,13 @@ main.js 中插入
     
     
     <article class="index-post">
-        <a class="abstract-title" href="/2018/05/17/vue/vueMusic歌手-左右链动/">
+        <a class="abstract-title" href="/2018/05/17/vue/better-scroll-配置纵向滚动/">
             
-                <span>vueMusic歌手-左右链动</span>
+                <span>better-scroll-配置纵向滚动</span>
         </a>
         <div class="abstract-content">
-            https://blog.csdn.net/tyrionj/article/details/79145667
-1.singer.vue 数据重构与排序
-歌手页面的结构是  热门、 A-Z  的顺序排列，但抓取的接口数据只是 100 条常见的歌手，并且是乱序的，但我们可以利用接口的 Findex 进行数据的重构
-
-1234567const HOT_NAME = "热门";let map = &#123;  hot: &#123;    title: HOT_NAME,    item: []  &#125;&#125;;
-
-
-
-1234567891011121314151617181920...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/05/17</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="vue">vue</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2018/05/17/vue/axios-获取接口，mock模拟数据配置/">
-            
-                <span>axios-获取接口，mock模拟数据配置</span>
-        </a>
-        <div class="abstract-content">
-            https://blog.csdn.net/binginsist/article/details/65630547
-1.axios
-安装 axios  :
-
-1npm install --save axios vue-axios
-
-
-在 main.js 中引入
-
-123import axios from "axios";Vue.use(axios);Vue.prototype.$http = axios;
-
-
-
-1234567893. 使用方法  1. ```javascriptthis.$http.get(URL).then(response =&gt; &#123;    // su...
+            概念：是一个移动端滚动解决方案。不仅可以做滚动还可以做轮播图1.安装：npm install–save better-scroll2.在文件中引入 better-scroll。import BScroll from ‘better-scroll’;3.new BScroll(Dom 对象,{//opsitons}); 在 Vue 中要获得 Dom 对象，需设置标签属性‘v-el’。
+123456789101112131415161718192021222324252627例如：&lt;div v-el:betterscroll&gt;&lt;/div&gt;获取dom对象，this.$e...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -696,13 +691,20 @@ v-for 一定要加 key 否则会报错
     
     
     <article class="index-post">
-        <a class="abstract-title" href="/2018/05/17/vue/better-scroll-配置纵向滚动/">
+        <a class="abstract-title" href="/2018/05/17/vue/vueMusic歌手-左右链动/">
             
-                <span>better-scroll-配置纵向滚动</span>
+                <span>vueMusic歌手-左右链动</span>
         </a>
         <div class="abstract-content">
-            概念：是一个移动端滚动解决方案。不仅可以做滚动还可以做轮播图1.安装：npm install–save better-scroll2.在文件中引入 better-scroll。import BScroll from ‘better-scroll’;3.new BScroll(Dom 对象,{//opsitons}); 在 Vue 中要获得 Dom 对象，需设置标签属性‘v-el’。
-123456789101112131415161718192021222324252627例如：&lt;div v-el:betterscroll&gt;&lt;/div&gt;获取dom对象，this.$e...
+            https://blog.csdn.net/tyrionj/article/details/79145667
+1.singer.vue 数据重构与排序
+歌手页面的结构是  热门、 A-Z  的顺序排列，但抓取的接口数据只是 100 条常见的歌手，并且是乱序的，但我们可以利用接口的 Findex 进行数据的重构
+
+1234567const HOT_NAME = "热门";let map = &#123;  hot: &#123;    title: HOT_NAME,    item: []  &#125;&#125;;
+
+
+
+1234567891011121314151617181920...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -1393,9 +1395,56 @@ v-for 一定要加 key 否则会报错
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 43
+        Total : 44
         </div>
         <!-- search  -->
         
@@ -1412,6 +1461,11 @@ v-for 一定要加 key 否则会报错
     
         <li class="archive-post-item">
             <span class="archive-post-date">06/04</span><a class="archive-post-title" href="/2019/06/04/webpack4/（十一）图片处理汇总/">（十一）图片处理汇总</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/04</span><a class="archive-post-title" href="/2019/06/04/webpack4/（十二）字体文件处理/">（十二）字体文件处理</a>
         </li>
     
     
@@ -1550,22 +1604,22 @@ v-for 一定要加 key 否则会报错
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/17</span><a class="archive-post-title" href="/2018/05/17/vue/axios-获取接口，mock模拟数据配置/">axios-获取接口，mock模拟数据配置</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
             <span class="archive-post-date">05/17</span><a class="archive-post-title" href="/2018/05/17/vue/banner横向轮播图-组件封装思路/">banner横向轮播图-组件封装思路</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/17</span><a class="archive-post-title" href="/2018/05/17/vue/better-scroll-配置纵向滚动/">better-scroll-配置纵向滚动</a>
+            <span class="archive-post-date">05/17</span><a class="archive-post-title" href="/2018/05/17/vue/vueMusic歌手-左右链动/">vueMusic歌手-左右链动</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/17</span><a class="archive-post-title" href="/2018/05/17/vue/vueMusic歌手-左右链动/">vueMusic歌手-左右链动</a>
+            <span class="archive-post-date">05/17</span><a class="archive-post-title" href="/2018/05/17/vue/axios-获取接口，mock模拟数据配置/">axios-获取接口，mock模拟数据配置</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/17</span><a class="archive-post-title" href="/2018/05/17/vue/better-scroll-配置纵向滚动/">better-scroll-配置纵向滚动</a>
         </li>
     
     
@@ -1655,9 +1709,9 @@ v-for 一定要加 key 否则会报错
     
         <span class="sidebar-tag-name" data-tags="vue"><span class="iconfont-archer">&#xe606;</span>vue</span>
     
-        <span class="sidebar-tag-name" data-tags="webpack4"><span class="iconfont-archer">&#xe606;</span>webpack4</span>
-    
         <span class="sidebar-tag-name" data-tags="css和js基础面试题"><span class="iconfont-archer">&#xe606;</span>css和js基础面试题</span>
+    
+        <span class="sidebar-tag-name" data-tags="webpack4"><span class="iconfont-archer">&#xe606;</span>webpack4</span>
     
         <span class="sidebar-tag-name" data-tags="墨菲定律"><span class="iconfont-archer">&#xe606;</span>墨菲定律</span>
     
@@ -1706,9 +1760,9 @@ jsonContent:
     
         <span class="sidebar-category-name" data-categories="vue"><span class="iconfont-archer">&#xe60a;</span>vue</span>
     
-        <span class="sidebar-category-name" data-categories="webpack4"><span class="iconfont-archer">&#xe60a;</span>webpack4</span>
-    
         <span class="sidebar-category-name" data-categories="css和js基础面试题"><span class="iconfont-archer">&#xe60a;</span>css和js基础面试题</span>
+    
+        <span class="sidebar-category-name" data-categories="webpack4"><span class="iconfont-archer">&#xe60a;</span>webpack4</span>
     
         <span class="sidebar-category-name" data-categories="墨菲定律"><span class="iconfont-archer">&#xe60a;</span>墨菲定律</span>
     

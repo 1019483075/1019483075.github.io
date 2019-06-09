@@ -22,7 +22,7 @@
     <meta name="description" content>
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>令夕</title>
+    <title>（十二）字体文件处理 · 令夕</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -77,6 +77,8 @@
 
     <link rel="preload" href="/css/style.css?v=20180824" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <link rel="stylesheet" href="/css/mobile.css?v=20180824" media="(max-width: 980px)">
+    
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
     
     <!-- /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
 /* This file is meant as a standalone workflow for
@@ -201,14 +203,23 @@
 </head>
 
     
-        <body class="home-body">
+        <body class="post-body">
     
     
-<header class="header index-header">
+<header class="header">
 
     <div class="read-progress"></div>
     <div class="header-sidebar-menu">&#xe775;</div>
     <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/">令夕</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">（十二）字体文件处理</a>
+            </div>
+    </div>
     
     <a class="home-link" href="/">令夕</a>
 </header>
@@ -227,7 +238,7 @@ height:50vh;
     <!-- 主页  -->
     
     
-    <!-- 文章页  -->
+    <!-- 404页  -->
             
     <div class="site-intro-placeholder"></div>
     <div class="site-intro-img" style="background-image: url(https://source.unsplash.com/random)"></div>
@@ -236,8 +247,8 @@ height:50vh;
         <h1 class="intro-title">
             <!-- 主页  -->
             
-            令夕
-            <!-- 文章页  -->
+            （十二）字体文件处理
+            <!-- 404 -->
             
         </h1>
         <!-- 副标题 -->
@@ -245,12 +256,49 @@ height:50vh;
             <!-- 主页副标题  -->
             
             
-                it's better to burn out than to fade away
-            
-            <!-- 文章页  -->
+            <!-- 404 -->
             
         </p>
         <!-- 文章页meta -->
+        
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                
+                    <div class="post-intro-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="webpack4">webpack4</a>
+    
+</div>
+                
+                
+                    <div class="post-intro-read">
+                        <span>字数统计: <span class="post-count word-count">771</span>阅读时长: <span class="post-count reading-time">4 min</span></span>
+                    </div>
+                
+                <div class="post-intro-meta">
+                    <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                    <span class="post-intro-time">2019/06/04</span>
+                    
+                    <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                        <span class="iconfont-archer">&#xe602;</span>
+                        <span id="busuanzi_value_page_pv"></span>
+                    </span>
+                    
+                    <span class="shareWrapper">
+                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
+                        <span class="shareText">Share</span>
+                        <ul class="shareList">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
         
     </div>
 </div>
@@ -351,243 +399,61 @@ height:50vh;
 </script>        
         <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
         <div class="container container-unloaded">
-            <main class="main index-page">
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2018/04/04/php基础/初级笔记/">
-            
-                <span>初级笔记</span>
-        </a>
-        <div class="abstract-content">
-            
-php 定义及 php 变量
+            <main class="main post-page">
+    <article class="article-entry">
+        <p><a href>demo12 源码地址</a><br>项目目录为：<br><img src="https://cdn.nlark.com/yuque/0/2019/png/105657/1560087358441-79b3205f-de1f-4c51-bb14-954cdc0dbfe7.png#align=left&display=inline&height=406&name=image.png&originHeight=812&originWidth=438&size=70390&status=done&width=219" alt="image.png"><br>package.json 中使用的依赖如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">"scripts"</span>: &#123;</span><br><span class="line">    <span class="string">"dev"</span>: <span class="string">"webpack --mode development"</span>,</span><br><span class="line">    <span class="string">"build"</span>: <span class="string">"webpack --mode production"</span></span><br><span class="line">  &#125;,</span><br><span class="line"> <span class="string">"devDependencies"</span>: &#123;</span><br><span class="line">    <span class="string">"@babel/core"</span>: <span class="string">"^7.4.5"</span>,</span><br><span class="line">    <span class="string">"@babel/plugin-transform-runtime"</span>: <span class="string">"^7.4.4"</span>,</span><br><span class="line">    <span class="string">"@babel/preset-env"</span>: <span class="string">"^7.4.5"</span>,</span><br><span class="line">    <span class="string">"autoprefixer"</span>: <span class="string">"^9.5.1"</span>,</span><br><span class="line">    <span class="string">"babel-loader"</span>: <span class="string">"^8.0.6"</span>,</span><br><span class="line">    <span class="string">"clean-webpack-plugin"</span>: <span class="string">"^2.0.2"</span>,</span><br><span class="line">    <span class="string">"css-loader"</span>: <span class="string">"^2.1.1"</span>,</span><br><span class="line">    <span class="string">"html-loader"</span>: <span class="string">"^0.5.5"</span>,</span><br><span class="line">    <span class="string">"html-webpack-plugin"</span>: <span class="string">"^3.2.0"</span>,</span><br><span class="line">    <span class="string">"image-webpack-loader"</span>: <span class="string">"^5.0.0"</span>,</span><br><span class="line">    <span class="string">"lodash"</span>: <span class="string">"^4.17.11"</span>,</span><br><span class="line">    <span class="string">"mini-css-extract-plugin"</span>: <span class="string">"^0.7.0"</span>,</span><br><span class="line">    <span class="string">"node-sass"</span>: <span class="string">"^4.12.0"</span>,</span><br><span class="line">    <span class="string">"optimize-css-assets-webpack-plugin"</span>: <span class="string">"^5.0.1"</span>,</span><br><span class="line">    <span class="string">"postcss-loader"</span>: <span class="string">"^3.0.0"</span>,</span><br><span class="line">    <span class="string">"postcss-sprites"</span>: <span class="string">"^4.2.1"</span>,</span><br><span class="line">    <span class="string">"sass-loader"</span>: <span class="string">"^7.1.0"</span>,</span><br><span class="line">    <span class="string">"style-loader"</span>: <span class="string">"^0.23.1"</span>,</span><br><span class="line">    <span class="string">"url-loader"</span>: <span class="string">"^1.1.2"</span>,</span><br><span class="line">    <span class="string">"webpack"</span>: <span class="string">"^4.29.6"</span>,</span><br><span class="line">    <span class="string">"webpack-cli"</span>: <span class="string">"^3.3.2"</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+<p>app.js 中引入字体文件</p>
+<blockquote>
+<p><strong>import</strong> ‘./assets/fonts/iconfont.css’</p>
+</blockquote>
+<p>配置 webpack.config.js 文件来处理字体<br>借助 url-loader,可以识别并且处理<strong>eot,woff</strong>等结尾的字体文件<strong>。</strong>同时，根据字体大小，可以灵活配置是否进行 base64 编码。<br>下面的 demo 就是当文件大小小于 5000B 的时候，进行 base64 编码。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">"path"</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> CleanWebpackPlugin = <span class="built_in">require</span>(<span class="string">"clean-webpack-plugin"</span>);</span><br><span class="line"><span class="keyword">const</span> HtmlWebpackPlugin = <span class="built_in">require</span>(<span class="string">"html-webpack-plugin"</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> MiniCssExtractPlugin = <span class="built_in">require</span>(<span class="string">"mini-css-extract-plugin"</span>); <span class="comment">// 将 css 单独打包成文件</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  entry: &#123;</span><br><span class="line">    app: <span class="string">"./src/app.js"</span></span><br><span class="line">  &#125;,</span><br><span class="line">  output: &#123;</span><br><span class="line">    publicPath: <span class="string">"./"</span>, <span class="comment">// js 引用的路径或者 CDN 地址</span></span><br><span class="line">    path: path.resolve(__dirname, <span class="string">"dist"</span>), <span class="comment">// 打包文件的输出目录</span></span><br><span class="line">    filename: <span class="string">"[name].bundle.js"</span>, <span class="comment">// 代码打包后的文件名</span></span><br><span class="line">    chunkFilename: <span class="string">"[name].js"</span> <span class="comment">// 代码拆分后的文件名</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="built_in">module</span>: &#123;</span><br><span class="line">    rules: [</span><br><span class="line">      &#123;</span><br><span class="line">        test: <span class="regexp">/\.(scss|css)$/</span>, <span class="comment">// 针对.css后缀文件设置loader</span></span><br><span class="line">        <span class="comment">// use: ["style-loader", "css-loader"]</span></span><br><span class="line">        use: [</span><br><span class="line">          &#123;</span><br><span class="line">            loader: MiniCssExtractPlugin.loader</span><br><span class="line">          &#125;,</span><br><span class="line">          <span class="string">"css-loader"</span>,</span><br><span class="line">          <span class="comment">//"postcss-loader", // 使用 postcss 为 css 加上浏览器前缀</span></span><br><span class="line">          &#123;</span><br><span class="line">            loader: <span class="string">"postcss-loader"</span>,</span><br><span class="line">            options: &#123;</span><br><span class="line">              ident: <span class="string">"postcss"</span>,</span><br><span class="line">              plugins: [<span class="built_in">require</span>(<span class="string">"postcss-sprites"</span>)(spritesConfig)]</span><br><span class="line">            &#125;</span><br><span class="line">          &#125;,</span><br><span class="line">          <span class="string">"sass-loader"</span> <span class="comment">// 使用 sass-loader 将 scss 转为 css</span></span><br><span class="line">        ]</span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        test: <span class="regexp">/\.(eot|woff2?|ttf|svg)$/</span>,</span><br><span class="line">        use: [</span><br><span class="line">          &#123;</span><br><span class="line">            loader: <span class="string">"url-loader"</span>,</span><br><span class="line">            options: &#123;</span><br><span class="line">              name: <span class="string">"[name]-[hash:5].min.[ext]"</span>,</span><br><span class="line">              limit: <span class="number">5000</span>, <span class="comment">// fonts file size &lt;= 5KB, use 'base64'; else, output svg file</span></span><br><span class="line">              publicPath: <span class="string">"fonts/"</span>,</span><br><span class="line">              outputPath: <span class="string">"fonts/"</span></span><br><span class="line">            &#125;</span><br><span class="line">          &#125;</span><br><span class="line">        ]</span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        test: <span class="regexp">/\.(png|jpg|jpeg|gif)$/</span>,</span><br><span class="line">        use: [</span><br><span class="line">          &#123;</span><br><span class="line">            loader: <span class="string">"url-loader"</span>,</span><br><span class="line">            options: &#123;</span><br><span class="line">              name: <span class="string">"[name]-[hash:5].min.[ext]"</span>,</span><br><span class="line">              outputPath: <span class="string">"images/"</span>, <span class="comment">//输出到 images 文件夹</span></span><br><span class="line">              limit: <span class="number">10000</span> <span class="comment">//把小于 20kb 的文件转成 Base64 的格式</span></span><br><span class="line">            &#125;</span><br><span class="line">          &#125;,</span><br><span class="line">          &#123;</span><br><span class="line">            loader: <span class="string">"image-webpack-loader"</span>,</span><br><span class="line">            options: &#123;</span><br><span class="line">              <span class="comment">// 压缩 jpg/jpeg 图片</span></span><br><span class="line">              mozjpeg: &#123;</span><br><span class="line">                progressive: <span class="literal">true</span>,</span><br><span class="line">                quality: <span class="number">65</span> <span class="comment">// 压缩率</span></span><br><span class="line">              &#125;,</span><br><span class="line">              <span class="comment">// 压缩 png 图片</span></span><br><span class="line">              pngquant: &#123;</span><br><span class="line">                quality: <span class="string">"65-90"</span>,</span><br><span class="line">                speed: <span class="number">4</span></span><br><span class="line">              &#125;</span><br><span class="line">            &#125;</span><br><span class="line">          &#125;</span><br><span class="line">        ]</span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;,</span><br><span class="line">  plugins: [</span><br><span class="line">    <span class="keyword">new</span> CleanWebpackPlugin(),</span><br><span class="line">    <span class="keyword">new</span> HtmlWebpackPlugin(&#123;</span><br><span class="line">      <span class="comment">// 打包输出HTML</span></span><br><span class="line">      title: <span class="string">"自动生成 HTML"</span>,</span><br><span class="line">      minify: &#123;</span><br><span class="line">        <span class="comment">// 压缩 HTML 文件</span></span><br><span class="line">        removeComments: <span class="literal">true</span>, <span class="comment">// 移除 HTML 中的注释</span></span><br><span class="line">        collapseWhitespace: <span class="literal">true</span>, <span class="comment">// 删除空白符与换行符</span></span><br><span class="line">        minifyCSS: <span class="literal">true</span> <span class="comment">// 压缩内联 css</span></span><br><span class="line">      &#125;,</span><br><span class="line">      filename: <span class="string">"index.html"</span>, <span class="comment">// 生成后的文件名</span></span><br><span class="line">      template: <span class="string">"index.html"</span>, <span class="comment">// 根据此模版生成 HTML 文件</span></span><br><span class="line">      chunks: [<span class="string">"app"</span>] <span class="comment">// entry中的 app 入口才会被打包</span></span><br><span class="line">    &#125;),</span><br><span class="line">    <span class="keyword">new</span> MiniCssExtractPlugin(&#123;</span><br><span class="line">      filename: <span class="string">"[name].css"</span>,</span><br><span class="line">      chunkFilename: <span class="string">"[id].css"</span></span><br><span class="line">    &#125;)</span><br><span class="line">  ]</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
-php 的定义 php 以结束 php 的拓展名是.php
+<p>在 index.html 中使用字体</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=1.0"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"X-UA-Compatible"</span> <span class="attr">content</span>=<span class="string">"ie=edge"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>处理字体文件<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"box"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">i</span> <span class="attr">class</span>=<span class="string">"iconfont icon-yanjing"</span>&gt;</span><span class="tag">&lt;/<span class="name">i</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">i</span> <span class="attr">class</span>=<span class="string">"iconfont icon-yanjing1"</span>&gt;</span><span class="tag">&lt;/<span class="name">i</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">i</span> <span class="attr">class</span>=<span class="string">"iconfont icon-yanjing2"</span>&gt;</span><span class="tag">&lt;/<span class="name">i</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">i</span> <span class="attr">class</span>=<span class="string">"iconfont icon-yanjing3"</span>&gt;</span><span class="tag">&lt;/<span class="name">i</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
-php 的变量以$符号开头，后面跟变量名规则：必须以字母或者是下划线字符开始。变量名只能包含数字字符及下划线（A-Z,0-9 和_）。不能包含空格。严格区分大小写。
+<p>打包后查看 index.html 文件，打包成功。<br><img src="https://cdn.nlark.com/yuque/0/2019/png/105657/1560089505138-bde82b05-d8fe-4555-b1ed-6aa12d9565c2.png#align=left&display=inline&height=221&name=image.png&originHeight=442&originWidth=1592&size=103488&status=done&width=796" alt="image.png"></p>
 
-echo 和 print 输出的区别 echo：可以输出一个或者是多个字符print：只允许输出一个字符 echo 比 print 输出的时间快，echo 没有返回值，print 有返回值 1。
-
-变量的类型4.1 整形($a=10)4.2 浮点型($a=10.12)4.3 字符型($a=”字符型”)4.4 布尔型($a=t...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/04/04</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="php">php</a>
-    
-</div>
-            
-        </div>
     </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2018/01/15/跨域方案/跨域与浏览器/">
-            
-                <span>跨域方案</span>
-        </a>
-        <div class="abstract-content">
-            https://segmentfault.com/a/1190000011145364
-1.跨域同源策略：是浏览器的一个安全功能，不同源的客户端脚本在没有明确的情况下，不能读写对方的资源。若地址里面的协议，域名和端口号均相同属于同源。什么情况下会遇到跨域：非同源策略的情况下会遇到跨域。跨域的解决方法：jsonp，nginx 反向代理，node.js 中间件代理跨域，后端设置 http header，后端在服务器上设置 cors。
-
-通过 jsonp 跨域
-
-123456789101112131415161718192021222324252627282930313233343536373...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/01/15</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="跨域方案">跨域方案</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2018/01/04/webpack3/webpack3.0/">
-            
-                <span>webpack3.0</span>
-        </a>
-        <div class="abstract-content">
-            理解：webpack 是运用程序的模块打包器。主要用于编译，打包，转换 ，代码分割，把第三方内库作为模板使用，模块热更新。(把 css 和 js 打包成浏览器能够运行的文件)package.json:是指项目配置文件node_mudules:npm 加载时所需的项目以来模块
-
- 步骤
-
-1.新建一个文件
-2.建src文件
-3.创建webpack.config.js
-4.终端npm init
-5.npm i webpack --save-dev
-6.src下新建:js,css,images
-7.给src新建一个静态html配置
-webpack.config.js 文件配置
-
-注...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/01/04</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="webpack3">webpack3</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2017/12/04/基础前端/css和js基础面试题/">
-            
-                <span>css和js基础面试题</span>
-        </a>
-        <div class="abstract-content">
-            css 面试题
-页面布局:
-假设高度已知，请写出三栏布局，其中左右栏宽度各为 300px，中间自适应。
-回答：绝对定位 浮动 弹性盒子 table 表格 grid 网格布局
-5 中方案的优缺点：浮动布局会脱离文档流 绝对定位不适应。弹性盒子是最优的布局方法。
-
-
-css 盒模型：标准模型+ie 模型
-区别：标准模型的宽度只是内容的宽度，不包含 padding 和 border。
-ie 盒模型：宽度计算 padding 和 border。
-设置：box-sizing:content-box/border-box
-如何去盒模型的宽度:
-dom.style.width/height,只能获取到...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2017/12/04</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="css和js基础面试题">css和js基础面试题</a>
-    
-</div>
-            
-        </div>
-    </article>
+    <!-- license  -->
     
     <!-- paginator  -->
-    
-    <nav class="page-nav">
-        <a class="extend prev" rel="prev" href="/page/4/">&#60; PREV</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span>
-    </nav>
-    
-</main>
-            <!-- profile -->
+    <ul class="post-paginator">
+        <li class="next">
             
-            <div class="profile">
-    <img class="profile-avatar" alt="avatar" src="/avatar/avatar.png">
-    <div class="profile-name">令夕</div>
-    
-    <div class="profile-signature">
-        不忘初心
-    </div>
-    
-    
-    <div class="profile-social">
-        
-    
-        
-    
-        
+                <div class="nextSlogan">Next Post</div>
+                <a href="/2019/06/04/webpack4/（十）CSS Tree Shaking/" title="（十）CSS Tree Shaking">
+                    <div class="nextTitle">（十）CSS Tree Shaking</div>
+                </a>
             
-                <a href="//github.com/fi3ework" class="iconfont-archer github" target="_blank" title="github"></a>
+        </li>
+        <li class="previous">
             
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
+                <div class="prevSlogan">Previous Post</div>
+                <a href="/2019/06/04/webpack4/（九）JS Tree Shaking/" title="（九）JS Tree Shaking">
+                    <div class="prevTitle">（九）JS Tree Shaking</div>
+                </a>
             
-                <a href="https://juejin.im/user/5ab6f52af265da23866fd966" class="iconfont-archer juejin" target="_blank" title="juejin"></a>
-            
-        
+        </li>
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+<!-- City版安装代码已完成 -->
     
-        
     
-        
+    <!-- partial('_partial/comment/changyan') -->
+    <!--PC版-->
+
+
     
-        
-    
-        
-    
-        
-    
-        
     
 
-    </div>
-    
-    
-    
-        <div class="about-me">
-            <a href="/about">ABOUT ME</a>
-        </div>
-    
-</div>
+    <!-- 评论 -->
+</main>
+            <!-- profile -->
             
         </div>
         <footer class="footer footer-unloaded">
@@ -663,6 +529,24 @@ dom.style.width/height,只能获取到...
 </footer>
     </div>
     <!-- toc -->
+    
+    <div class="toc-wrapper" style=
+    
+
+
+
+
+
+
+
+top:50vh;
+
+    >
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        
+    </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
     <div class="sidebar sidebar-hide">
@@ -1660,6 +1544,8 @@ jsonContent:
     
     </div>
     <!-- async load share.js -->
+    
+        <script src="/scripts/share.js" async></script>    
      
     </body>
 </html>
