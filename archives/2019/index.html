@@ -377,6 +377,44 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/2019/06/04/webpack4/（十一）图片处理汇总/">
+            
+                <span>（十一）图片处理汇总</span>
+        </a>
+        <div class="abstract-content">
+            demo11 源码地址目录结构：webpack4 中的图片常用的基础操作：
+
+图片处理和 Base64 编码
+图片压缩
+合成雪碧图
+
+（一）准备工作
+如项目代码目录展示的那样，除了常见的 app.js 作为入口文件，我们将用到 3 张图片放在/src/assets/imgs/目录下，并在样式 base.css 中引用这些图片。
+剩下的内容叫给 webpack 打包处理即可。样式文件和入口 app.js 文件的代码分别如下所示：
+1234567891011121314151617181920212223242526/* base.css */*,body &#123;  margin: 0...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/06/04</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="webpack4">webpack4</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/2019/06/04/webpack4/（九）JS Tree Shaking/">
             
                 <span>（九）JS Tree Shaking</span>
@@ -645,37 +683,6 @@ Webpack不知道如何进行转换但是有loading(加载器)：将他们视为�
             <!-- date  -->
             <div class="abstract-date">
                 <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/05/24</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="webpack4">webpack4</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/05/23/webpack4/（三）覆盖默认entry和output/">
-            
-                <span>（三）覆盖默认entry和output</span>
-        </a>
-        <div class="abstract-content">
-            demo3 源码地址
-1.检验 webpack 规范支持webpack 支持 ES6，CommonJS，AMD 规范创建 wendor 文件夹，其中 minus.js,multi.js 和 sum.js 分别用 CommonJS，AMD，ES6 规范编写
-1234567891011121314151617// CommonJS minus.jsmodule.exports = function(a, b) &#123;  return a - b;&#125;;// AMD multi.jsdefine(["require", "dependency"], function(requir...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/05/23</span>
             </div>
             <!-- tags  -->
             
@@ -1350,9 +1357,20 @@ Webpack不知道如何进行转换但是有loading(加载器)：将他们视为�
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 42
+        Total : 43
         </div>
         <!-- search  -->
         
@@ -1365,6 +1383,11 @@ Webpack不知道如何进行转换但是有loading(加载器)：将他们视为�
     
     <div class="archive-year"> 2019 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/04</span><a class="archive-post-title" href="/2019/06/04/webpack4/（十一）图片处理汇总/">（十一）图片处理汇总</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -1603,17 +1626,17 @@ Webpack不知道如何进行转换但是有loading(加载器)：将他们视为�
     
         <span class="sidebar-tag-name" data-tags="react"><span class="iconfont-archer">&#xe606;</span>react</span>
     
-        <span class="sidebar-tag-name" data-tags="vue"><span class="iconfont-archer">&#xe606;</span>vue</span>
-    
         <span class="sidebar-tag-name" data-tags="webpack3"><span class="iconfont-archer">&#xe606;</span>webpack3</span>
+    
+        <span class="sidebar-tag-name" data-tags="vue"><span class="iconfont-archer">&#xe606;</span>vue</span>
     
         <span class="sidebar-tag-name" data-tags="webpack4"><span class="iconfont-archer">&#xe606;</span>webpack4</span>
     
         <span class="sidebar-tag-name" data-tags="css和js基础面试题"><span class="iconfont-archer">&#xe606;</span>css和js基础面试题</span>
     
-        <span class="sidebar-tag-name" data-tags="跨域方案"><span class="iconfont-archer">&#xe606;</span>跨域方案</span>
-    
         <span class="sidebar-tag-name" data-tags="墨菲定律"><span class="iconfont-archer">&#xe606;</span>墨菲定律</span>
+    
+        <span class="sidebar-tag-name" data-tags="跨域方案"><span class="iconfont-archer">&#xe606;</span>跨域方案</span>
     
         <span class="sidebar-tag-name" data-tags="mockjs运用"><span class="iconfont-archer">&#xe606;</span>mockjs运用</span>
     
@@ -1654,17 +1677,17 @@ jsonContent:
     
         <span class="sidebar-category-name" data-categories="react"><span class="iconfont-archer">&#xe60a;</span>react</span>
     
-        <span class="sidebar-category-name" data-categories="vue"><span class="iconfont-archer">&#xe60a;</span>vue</span>
-    
         <span class="sidebar-category-name" data-categories="webpack3"><span class="iconfont-archer">&#xe60a;</span>webpack3</span>
+    
+        <span class="sidebar-category-name" data-categories="vue"><span class="iconfont-archer">&#xe60a;</span>vue</span>
     
         <span class="sidebar-category-name" data-categories="webpack4"><span class="iconfont-archer">&#xe60a;</span>webpack4</span>
     
         <span class="sidebar-category-name" data-categories="css和js基础面试题"><span class="iconfont-archer">&#xe60a;</span>css和js基础面试题</span>
     
-        <span class="sidebar-category-name" data-categories="跨域方案"><span class="iconfont-archer">&#xe60a;</span>跨域方案</span>
-    
         <span class="sidebar-category-name" data-categories="墨菲定律"><span class="iconfont-archer">&#xe60a;</span>墨菲定律</span>
+    
+        <span class="sidebar-category-name" data-categories="跨域方案"><span class="iconfont-archer">&#xe60a;</span>跨域方案</span>
     
         <span class="sidebar-category-name" data-categories="mockjs运用"><span class="iconfont-archer">&#xe60a;</span>mockjs运用</span>
     

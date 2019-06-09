@@ -1,0 +1,1563 @@
+<!DOCTYPE html>
+<html lang="">
+    <!-- title -->
+
+
+
+
+<!-- keywords -->
+
+
+
+
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="author" content="令夕">
+    <meta name="renderer" content="webkit">
+    <meta name="copyright" content="令夕">
+    
+    <meta name="keywords" content="hexo,hexo-theme,hexo-blog">
+    
+    <meta name="description" content>
+    <meta http-equiv="Cache-control" content="no-cache">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>（十一）图片处理汇总 · 令夕</title>
+    <style type="text/css">
+    @font-face {
+        font-family: 'Oswald-Regular';
+        src: url("/font/Oswald-Regular.ttf");
+    }
+
+    body {
+        margin: 0;
+    }
+
+    header,
+    footer,
+    .back-top,
+    .sidebar,
+    .container,
+    .site-intro-meta,
+    .toc-wrapper {
+        display: none;
+    }
+
+    .site-intro {
+        position: relative;
+        z-index: 3;
+        width: 100%;
+        /* height: 50vh; */
+        overflow: hidden;
+    }
+
+    .site-intro-placeholder {
+        position: absolute;
+        z-index: -2;
+        top: 0;
+        left: 0;
+        width: calc(100% + 300px);
+        height: 100%;
+        background: repeating-linear-gradient(-45deg, #444 0, #444 80px, #333 80px, #333 160px);
+        background-position: center center;
+        transform: translate3d(-226px, 0, 0);
+        animation: gradient-move 2.5s ease-out 0s infinite;
+    }
+
+    @keyframes gradient-move {
+        0% {
+            transform: translate3d(-226px, 0, 0);
+        }
+        100% {
+            transform: translate3d(0, 0, 0);
+        }
+    }
+
+</style>
+
+    <link rel="preload" href="/css/style.css?v=20180824" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="stylesheet" href="/css/mobile.css?v=20180824" media="(max-width: 980px)">
+    
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    
+    <!-- /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
+/* This file is meant as a standalone workflow for
+- testing support for link[rel=preload]
+- enabling async CSS loading in browsers that do not support rel=preload
+- applying rel preload css once loaded, whether supported or not.
+*/ -->
+<script>
+(function( w ){
+	"use strict";
+	// rel=preload support test
+	if( !w.loadCSS ){
+		w.loadCSS = function(){};
+	}
+	// define on the loadCSS obj
+	var rp = loadCSS.relpreload = {};
+	// rel=preload feature support test
+	// runs once and returns a function for compat purposes
+	rp.support = (function(){
+		var ret;
+		try {
+			ret = w.document.createElement( "link" ).relList.supports( "preload" );
+		} catch (e) {
+			ret = false;
+		}
+		return function(){
+			return ret;
+		};
+	})();
+
+	// if preload isn't supported, get an asynchronous load by using a non-matching media attribute
+	// then change that media back to its intended value on load
+	rp.bindMediaToggle = function( link ){
+		// remember existing media attr for ultimate state, or default to 'all'
+		var finalMedia = link.media || "all";
+
+		function enableStylesheet(){
+			link.media = finalMedia;
+		}
+
+		// bind load handlers to enable media
+		if( link.addEventListener ){
+			link.addEventListener( "load", enableStylesheet );
+		} else if( link.attachEvent ){
+			link.attachEvent( "onload", enableStylesheet );
+		}
+
+		// Set rel and non-applicable media type to start an async request
+		// note: timeout allows this to happen async to let rendering continue in IE
+		setTimeout(function(){
+			link.rel = "stylesheet";
+			link.media = "only x";
+		});
+		// also enable media after 3 seconds,
+		// which will catch very old browsers (android 2.x, old firefox) that don't support onload on link
+		setTimeout( enableStylesheet, 3000 );
+	};
+
+	// loop through link elements in DOM
+	rp.poly = function(){
+		// double check this to prevent external calls from running
+		if( rp.support() ){
+			return;
+		}
+		var links = w.document.getElementsByTagName( "link" );
+		for( var i = 0; i < links.length; i++ ){
+			var link = links[ i ];
+			// qualify links to those with rel=preload and as=style attrs
+			if( link.rel === "preload" && link.getAttribute( "as" ) === "style" && !link.getAttribute( "data-loadcss" ) ){
+				// prevent rerunning on link
+				link.setAttribute( "data-loadcss", true );
+				// bind listeners to toggle media back
+				rp.bindMediaToggle( link );
+			}
+		}
+	};
+
+	// if unsupported, run the polyfill
+	if( !rp.support() ){
+		// run once at least
+		rp.poly();
+
+		// rerun poly on an interval until onload
+		var run = w.setInterval( rp.poly, 500 );
+		if( w.addEventListener ){
+			w.addEventListener( "load", function(){
+				rp.poly();
+				w.clearInterval( run );
+			} );
+		} else if( w.attachEvent ){
+			w.attachEvent( "onload", function(){
+				rp.poly();
+				w.clearInterval( run );
+			} );
+		}
+	}
+
+
+	// commonjs
+	if( typeof exports !== "undefined" ){
+		exports.loadCSS = loadCSS;
+	}
+	else {
+		w.loadCSS = loadCSS;
+	}
+}( typeof global !== "undefined" ? global : this ) );
+</script>
+
+    <link rel="icon" href="/assets/favicon.ico">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js" as="script">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js" as="script">
+    <link rel="preload" href="/scripts/main.js" as="script">
+    <link rel="preload" as="font" href="/font/Oswald-Regular.ttf" crossorigin>
+    <link rel="preload" as="font" href="https://at.alicdn.com/t/font_327081_1dta1rlogw17zaor.woff" crossorigin>
+    
+    <!-- fancybox -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" defer></script>
+    <!-- 百度统计  -->
+    
+    <!-- 谷歌统计  -->
+    
+</head>
+
+    
+        <body class="post-body">
+    
+    
+<header class="header">
+
+    <div class="read-progress"></div>
+    <div class="header-sidebar-menu">&#xe775;</div>
+    <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/">令夕</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">（十一）图片处理汇总</a>
+            </div>
+    </div>
+    
+    <a class="home-link" href="/">令夕</a>
+</header>
+    <div class="wrapper">
+        <div class="site-intro" style="
+
+
+
+
+
+
+
+height:50vh;
+">
+    
+    <!-- 主页  -->
+    
+    
+    <!-- 404页  -->
+            
+    <div class="site-intro-placeholder"></div>
+    <div class="site-intro-img" style="background-image: url(https://source.unsplash.com/random)"></div>
+    <div class="site-intro-meta">
+        <!-- 标题  -->
+        <h1 class="intro-title">
+            <!-- 主页  -->
+            
+            （十一）图片处理汇总
+            <!-- 404 -->
+            
+        </h1>
+        <!-- 副标题 -->
+        <p class="intro-subtitle">
+            <!-- 主页副标题  -->
+            
+            
+            <!-- 404 -->
+            
+        </p>
+        <!-- 文章页meta -->
+        
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                
+                    <div class="post-intro-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="webpack4">webpack4</a>
+    
+</div>
+                
+                
+                    <div class="post-intro-read">
+                        <span>字数统计: <span class="post-count word-count">2.2k</span>阅读时长: <span class="post-count reading-time">9 min</span></span>
+                    </div>
+                
+                <div class="post-intro-meta">
+                    <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                    <span class="post-intro-time">2019/06/04</span>
+                    
+                    <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                        <span class="iconfont-archer">&#xe602;</span>
+                        <span id="busuanzi_value_page_pv"></span>
+                    </span>
+                    
+                    <span class="shareWrapper">
+                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
+                        <span class="shareText">Share</span>
+                        <ul class="shareList">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
+        
+    </div>
+</div>
+        <script>
+ 
+  // get user agent
+  var browser = {
+    versions: function () {
+      var u = window.navigator.userAgent;
+      return {
+        userAgent: u,
+        trident: u.indexOf('Trident') > -1, //IE内核
+        presto: u.indexOf('Presto') > -1, //opera内核
+        webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+        gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+        mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
+        ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+        android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
+        iPhone: u.indexOf('iPhone') > -1 || u.indexOf('Mac') > -1, //是否为iPhone或者安卓QQ浏览器
+        iPad: u.indexOf('iPad') > -1, //是否为iPad
+        webApp: u.indexOf('Safari') == -1, //是否为web应用程序，没有头部与底部
+        weixin: u.indexOf('MicroMessenger') == -1, //是否为微信浏览器
+        uc: u.indexOf('UCBrowser') > -1 //是否为android下的UC浏览器
+      };
+    }()
+  }
+  console.log("userAgent:" + browser.versions.userAgent);
+
+  // callback
+  function fontLoaded() {
+    console.log('font loaded');
+    if (document.getElementsByClassName('site-intro-meta')) {
+      document.getElementsByClassName('intro-title')[0].classList.add('intro-fade-in');
+      document.getElementsByClassName('intro-subtitle')[0].classList.add('intro-fade-in');
+      var postIntros = document.getElementsByClassName('post-intros')[0]
+      if (postIntros) {
+        postIntros.classList.add('post-fade-in');
+      }
+    }
+  }
+
+  // UC不支持跨域，所以直接显示
+  function asyncCb(){
+    if (browser.versions.uc) {
+      console.log("UCBrowser");
+      fontLoaded();
+    } else {
+      WebFont.load({
+        custom: {
+          families: ['Oswald-Regular']
+        },
+        loading: function () {  //所有字体开始加载
+          // console.log('loading');
+        },
+        active: function () {  //所有字体已渲染
+          fontLoaded();
+        },
+        inactive: function () { //字体预加载失败，无效字体或浏览器不支持加载
+          console.log('inactive: timeout');
+          fontLoaded();
+        },
+        timeout: 5000 // Set the timeout to two seconds
+      });
+    }
+  }
+
+  function asyncErr(){
+    console.warn('script load from CDN failed, will load local script')
+  }
+
+  // load webfont-loader async, and add callback function
+  function async(u, cb, err) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (cb) { o.addEventListener('load', function (e) { cb(null, e); }, false); }
+    if (err) { o.addEventListener('error', function (e) { err(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+
+  var asyncLoadWithFallBack = function(arr, success, reject) {
+      var currReject = function(){
+        reject()
+        arr.shift()
+        if(arr.length)
+          async(arr[0], success, currReject)
+        }
+
+      async(arr[0], success, currReject)
+  }
+
+  asyncLoadWithFallBack([
+    "https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js", 
+    "https://cdn.bootcss.com/webfont/1.6.28/webfontloader.js",
+    "/lib/webfontloader.min.js"
+  ], asyncCb, asyncErr)
+</script>        
+        <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
+        <div class="container container-unloaded">
+            <main class="main post-page">
+    <article class="article-entry">
+        <p><a href>demo11 源码地址</a><br>目录结构：<br><img src="https://cdn.nlark.com/yuque/0/2019/png/105657/1559660573548-e2ccbf1c-d8ff-496f-b5b0-4a502fdb6f3f.png#align=left&display=inline&height=345&name=image.png&originHeight=690&originWidth=426&size=54297&status=done&width=213" alt="image.png"><br>webpack4 中的图片常用的基础操作：</p>
+<ul>
+<li>图片处理和 Base64 编码</li>
+<li>图片压缩</li>
+<li>合成雪碧图<br><a name="AKwYO"></a></li>
+</ul>
+<h3 id="（一）准备工作"><a href="#（一）准备工作" class="headerlink" title="（一）准备工作"></a>（一）准备工作</h3><hr>
+<p>如项目代码目录展示的那样，除了常见的 app.js 作为入口文件，我们将用到 3 张图片放在/src/assets/imgs/目录下，并在样式 base.css 中引用这些图片。</p>
+<p>剩下的内容叫给 webpack 打包处理即可。样式文件和入口 app.js 文件的代码分别如下所示：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* base.css */</span></span><br><span class="line">*,</span><br><span class="line"><span class="selector-tag">body</span> &#123;</span><br><span class="line">  <span class="attribute">margin</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.box</span> &#123;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">400px</span>;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">400px</span>;</span><br><span class="line">  <span class="attribute">border</span>: <span class="number">5px</span> solid <span class="number">#000</span>;</span><br><span class="line">  <span class="attribute">color</span>: <span class="number">#000</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.box</span> <span class="selector-tag">div</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">100px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">100px</span>;</span><br><span class="line">  <span class="attribute">float</span>: left;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.box</span> <span class="selector-class">.ani1</span> &#123;</span><br><span class="line">  <span class="attribute">background</span>: <span class="built_in">url</span>(<span class="string">"../assets/imgs/1.jpg"</span>) no-repeat;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.box</span> <span class="selector-class">.ani2</span> &#123;</span><br><span class="line">  <span class="attribute">background</span>: <span class="built_in">url</span>(<span class="string">"../assets/imgs/2.png"</span>) no-repeat;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.box</span> <span class="selector-class">.ani3</span> &#123;</span><br><span class="line">  <span class="attribute">background</span>: <span class="built_in">url</span>(<span class="string">"../assets/imgs/3.png"</span>) no-repeat;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在 app.js 中</p>
+<blockquote>
+<p><strong>import</strong> ‘./css/base.css’</p>
+</blockquote>
+<p>安装依赖：</p>
+<blockquote>
+<p>npm install url-loader file-loader –save-dev</p>
+</blockquote>
+<p><a name="fGf70"></a></p>
+<h3 id="（二）图片处理和-base64-编码"><a href="#（二）图片处理和-base64-编码" class="headerlink" title="（二）图片处理和 base64 编码"></a>（二）图片处理和 base64 编码</h3><hr>
+<p>在 webpack.config.js 中<strong>module.rules</strong>选项中进行配置<strong>，</strong>以实现让 loader 识别图片后缀名，并且进行制定的处理操作。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  <span class="built_in">module</span>: &#123;</span><br><span class="line">    rules: [</span><br><span class="line">      &#123;</span><br><span class="line">        test: <span class="regexp">/\.(png|jpg|jpeg|gif)$/</span>,</span><br><span class="line">        use: [</span><br><span class="line">          &#123;</span><br><span class="line">            loader: <span class="string">"url-loader"</span>,</span><br><span class="line">            options: &#123;</span><br><span class="line">              name: <span class="string">"[name]-[hash:5].min.[ext]"</span>,</span><br><span class="line">              outputPath: <span class="string">"images/"</span>, <span class="comment">//输出到 images 文件夹</span></span><br><span class="line">              limit: <span class="number">20000</span> <span class="comment">//把小于 20kb 的文件转成 Base64 的格式</span></span><br><span class="line">            &#125;</span><br><span class="line">          &#125;</span><br><span class="line">        ]</span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>完整的配置文件</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">"path"</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> CleanWebpackPlugin = <span class="built_in">require</span>(<span class="string">"clean-webpack-plugin"</span>);</span><br><span class="line"><span class="keyword">const</span> HtmlWebpackPlugin = <span class="built_in">require</span>(<span class="string">"html-webpack-plugin"</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> MiniCssExtractPlugin = <span class="built_in">require</span>(<span class="string">"mini-css-extract-plugin"</span>); <span class="comment">// 将 css 单独打包成文件</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  entry: &#123;</span><br><span class="line">    app: <span class="string">"./src/app.js"</span></span><br><span class="line">  &#125;,</span><br><span class="line">  output: &#123;</span><br><span class="line">    publicPath: <span class="string">"./"</span>, <span class="comment">// js 引用的路径或者 CDN 地址</span></span><br><span class="line">    path: path.resolve(__dirname, <span class="string">"dist"</span>), <span class="comment">// 打包文件的输出目录</span></span><br><span class="line">    filename: <span class="string">"[name].bundle.js"</span>, <span class="comment">// 代码打包后的文件名</span></span><br><span class="line">    chunkFilename: <span class="string">"[name].js"</span> <span class="comment">// 代码拆分后的文件名</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="built_in">module</span>: &#123;</span><br><span class="line">    rules: [</span><br><span class="line">      &#123;</span><br><span class="line">        test: <span class="regexp">/\.css$/</span>,</span><br><span class="line">        use: [</span><br><span class="line">          &#123;</span><br><span class="line">            loader: MiniCssExtractPlugin.loader</span><br><span class="line">          &#125;,</span><br><span class="line">          <span class="string">"css-loader"</span></span><br><span class="line">        ]</span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        test: <span class="regexp">/\.(png|jpg|jpeg|gif)$/</span>,</span><br><span class="line">        use: [</span><br><span class="line">          &#123;</span><br><span class="line">            loader: <span class="string">"url-loader"</span>,</span><br><span class="line">            options: &#123;</span><br><span class="line">              name: <span class="string">"[name]-[hash:5].min.[ext]"</span>,</span><br><span class="line">              outputPath: <span class="string">"images/"</span>, <span class="comment">//输出到 images 文件夹</span></span><br><span class="line">              limit: <span class="number">20000</span> <span class="comment">//把小于 20kb 的文件转成 Base64 的格式</span></span><br><span class="line">            &#125;</span><br><span class="line">          &#125;</span><br><span class="line">        ]</span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;,</span><br><span class="line">  plugins: [</span><br><span class="line">    <span class="keyword">new</span> CleanWebpackPlugin(),</span><br><span class="line">    <span class="keyword">new</span> HtmlWebpackPlugin(&#123;</span><br><span class="line">      <span class="comment">// 打包输出HTML</span></span><br><span class="line">      title: <span class="string">"自动生成 HTML"</span>,</span><br><span class="line">      minify: &#123;</span><br><span class="line">        <span class="comment">// 压缩 HTML 文件</span></span><br><span class="line">        removeComments: <span class="literal">true</span>, <span class="comment">// 移除 HTML 中的注释</span></span><br><span class="line">        collapseWhitespace: <span class="literal">true</span>, <span class="comment">// 删除空白符与换行符</span></span><br><span class="line">        minifyCSS: <span class="literal">true</span> <span class="comment">// 压缩内联 css</span></span><br><span class="line">      &#125;,</span><br><span class="line">      filename: <span class="string">"index.html"</span>, <span class="comment">// 生成后的文件名</span></span><br><span class="line">      template: <span class="string">"index.html"</span>, <span class="comment">// 根据此模版生成 HTML 文件</span></span><br><span class="line">      chunks: [<span class="string">"app"</span>] <span class="comment">// entry中的 app 入口才会被打包</span></span><br><span class="line">    &#125;),</span><br><span class="line">    <span class="keyword">new</span> MiniCssExtractPlugin(&#123;</span><br><span class="line">      filename: <span class="string">"[name].css"</span>,</span><br><span class="line">      chunkFilename: <span class="string">"[id].css"</span></span><br><span class="line">    &#125;)</span><br><span class="line">  ]</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>打包项目，查看打包结果，并在浏览器中打开 index.html 文件：<br><img src="https://cdn.nlark.com/yuque/0/2019/png/105657/1559743992242-75c35072-420b-4ae3-9c27-559d39dd614c.png#align=left&display=inline&height=420&name=image.png&originHeight=840&originWidth=1460&size=217125&status=done&width=730" alt="image.png"><br>可以看到除了<strong>1.jpg</strong>，另外两张图片已经被打包成 base64 格式，在 app.css 文件中<strong>1.jpg</strong>这个文件超过了我们在<strong>url-loader</strong>选项中设置的<strong>limit</strong>值，所以被单独打包</p>
+<p>这就是利用了 <strong>file-loader</strong> 的能力，如果在 <strong>url-loader</strong> 中设置了 <strong>limit</strong> 的值，却<strong>没有安装 file-loader 依赖</strong>，会怎么样？来试试看，首先<strong>卸载 file-loader 依赖</strong>，<code>npm uninstall file-loader</code>，再运行打包命令，<code>npm run build</code><br><img src="https://cdn.nlark.com/yuque/0/2019/png/105657/1559744240758-6b640209-7b8f-4f28-aeff-002be3975e65.png#align=left&display=inline&height=296&name=image.png&originHeight=592&originWidth=1458&size=179301&status=done&width=729" alt="image.png"></p>
+<blockquote>
+<p>如果图片较多，会发很多 http 请求，会降低页面性能。<br><strong>url-loader</strong>会将引入的图片编码，转为 base64 字符串。在把这串字符串打包到文件中，最终只需要引入这个文件就能访问图片了，节省了图片请求。</p>
+</blockquote>
+<p>但是，如果图片较大，编码会消耗性能。因此<strong>url-loader</strong>提供了一个<strong>limit</strong>参数，小于<strong>limit</strong>参数的文件会被转为<strong>base64</strong>，大于<strong>limit</strong>的使用<strong>file-loader</strong>进行处理，单独打包。</p>
+<p><strong>url-loader</strong>依赖<strong>file-loader</strong>，<strong>url-loader</strong>可以看作是增强版的<strong>file-loader</strong><br><a name="8oeX6"></a></p>
+<h3 id="（三）图片压缩"><a href="#（三）图片压缩" class="headerlink" title="（三）图片压缩"></a>（三）图片压缩</h3><hr>
+<p>图片压缩需要使用 img-loader 插件，除此之外，<strong>针对不同的图片类型，还要引用不同的插件</strong>。例如,我们项目中使用的是<strong>png</strong>图片，需要引入的是 imagemin-pngquant，并且指定压缩率。压缩<strong>jpg/jpeg</strong>图片为<code>imagemin-mozjpeg</code>  插件</p>
+<blockquote>
+<p>这里有个 bug，可以先不急着操作，先把这一小节看完，在决定！！</p>
+</blockquote>
+<p>安装依赖</p>
+<blockquote>
+<p>npm i img-loader imagemin imagemin-pngquant imagemin-mozjpeg –save-dev</p>
+</blockquote>
+<p>在之前的配置上更改：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  test: <span class="regexp">/\.(png|jpg|jpeg|gif)$/</span>,</span><br><span class="line">  use: [</span><br><span class="line">    &#123;</span><br><span class="line">      loader: <span class="string">'url-loader'</span>,</span><br><span class="line">      options: &#123;</span><br><span class="line">        name: <span class="string">'[name]-[hash:5].min.[ext]'</span>,</span><br><span class="line">        outputPath: <span class="string">'images/'</span>, <span class="comment">// 输出到 images 文件夹</span></span><br><span class="line">        limit: <span class="number">20000</span> <span class="comment">//把小于 20kb 的文件转成 Base64 的格式</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>更改为：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  test: <span class="regexp">/\.(png|jpg|jpeg|gif)$/</span>,</span><br><span class="line">  use: [</span><br><span class="line">    &#123;</span><br><span class="line">      loader: <span class="string">'url-loader'</span>,</span><br><span class="line">      options: &#123;</span><br><span class="line">        name: <span class="string">'[name]-[hash:5].min.[ext]'</span>,</span><br><span class="line">        limit: <span class="number">1000</span>, <span class="comment">// size &lt;= 1KB</span></span><br><span class="line">        outputPath: <span class="string">'images/'</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="comment">// img-loader for zip img</span></span><br><span class="line">    &#123;</span><br><span class="line">      loader: <span class="string">'img-loader'</span>,</span><br><span class="line">      options: &#123;</span><br><span class="line">        plugins: [</span><br><span class="line">          <span class="built_in">require</span>(<span class="string">'imagemin-pngquant'</span>)(&#123;</span><br><span class="line">            quality: <span class="string">'80'</span> <span class="comment">// the quality of zip</span></span><br><span class="line">          &#125;),</span><br><span class="line">          <span class="built_in">require</span>(<span class="string">'imagemin-mozjpeg'</span>)(&#123;</span><br><span class="line">            quality: <span class="string">'80'</span></span><br><span class="line">          &#125;)</span><br><span class="line">        ]</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>打包结果：<br><img src="https://cdn.nlark.com/yuque/0/2019/png/105657/1559633005211-f93813ce-d0f3-44bc-974f-280f9b703a10.png#align=left&display=inline&height=250&name=image.png&originHeight=250&originWidth=652&size=122348&status=done&width=652" alt="image.png"><br><img src="https://cdn.nlark.com/yuque/0/2019/png/105657/1559633023959-20c774d5-1b85-41e7-af2e-b1f7fac369f4.png#align=left&display=inline&height=281&name=image.png&originHeight=281&originWidth=653&size=191018&status=done&width=653" alt="image.png"><br>原因在 png 图片上，jpg 图片可以压缩，但是去 <a href="https://link.juejin.im?target=https%3A%2F%2Fgithub.com%2Fimagemin%2Fimagemin-pngquant" target="_blank" rel="noopener">imagemin-pngquant</a> <strong>github</strong> 上也没发现有人提出类似 issue ，百度、google 找了半天，还是没发现怎么解决 <del>_</del>，于是使用另一种压缩图片的插件 <strong><a href="https://link.juejin.im?target=https%3A%2F%2Fgithub.com%2Ftcoopman%2Fimage-webpack-loader" target="_blank" rel="noopener">image-webpack-loader</a></strong><br>首先卸载了之前的依赖：</p>
+<blockquote>
+<p>npm uni img-loader imagemin imagemin-pngquant imagemin-mozjpeg</p>
+</blockquote>
+<p>安装依赖：</p>
+<blockquote>
+<p>npm i image-webpack-loader –save-dev</p>
+</blockquote>
+<p>这个依赖安装的时间会比较久。。。可以做下其他的。<br>在之前的配置上更改：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  test: <span class="regexp">/\.(png|jpg|jpeg|gif)$/</span>,</span><br><span class="line">  use: [</span><br><span class="line">    &#123;</span><br><span class="line">      loader: <span class="string">'url-loader'</span>,</span><br><span class="line">      options: &#123;</span><br><span class="line">        name: <span class="string">'[name]-[hash:5].min.[ext]'</span>,</span><br><span class="line">        outputPath: <span class="string">'images/'</span>, <span class="comment">// 输出到 images 文件夹</span></span><br><span class="line">        limit: <span class="number">20000</span> <span class="comment">//把小于 20kb 的文件转成 Base64 的格式</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>更改为：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  test: <span class="regexp">/\.(png|jpg|jpeg|gif)$/</span>,</span><br><span class="line">  use: [</span><br><span class="line">    &#123;</span><br><span class="line">      loader: <span class="string">'url-loader'</span>,</span><br><span class="line">      options: &#123;</span><br><span class="line">        name: <span class="string">'[name]-[hash:5].min.[ext]'</span>,</span><br><span class="line">        limit: <span class="number">1000</span>, <span class="comment">// size &lt;= 1KB</span></span><br><span class="line">        outputPath: <span class="string">'images/'</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="comment">// img-loader for zip img</span></span><br><span class="line">    &#123;</span><br><span class="line">      loader: <span class="string">'image-webpack-loader'</span>,</span><br><span class="line">      options: &#123;</span><br><span class="line">        <span class="comment">// 压缩 jpg/jpeg 图片</span></span><br><span class="line">        mozjpeg: &#123;</span><br><span class="line">          progressive: <span class="literal">true</span>,</span><br><span class="line">          quality: <span class="number">65</span> <span class="comment">// 压缩率</span></span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="comment">// 压缩 png 图片</span></span><br><span class="line">        pngquant: &#123;</span><br><span class="line">          quality: <span class="string">'65-90'</span>,</span><br><span class="line">          speed: <span class="number">4</span></span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这里故意吧<strong>url-loader</strong>的<strong>limit</strong>属性值设的很小，不让它转化<strong>png</strong>图片为 base64，因为我们要测试压缩<strong>png</strong>图片<br>打包结果：<br><img src="https://cdn.nlark.com/yuque/0/2019/png/105657/1559773826518-6111e227-22ea-4aba-943e-9f68ab46fee7.png#align=left&display=inline&height=380&name=image.png&originHeight=760&originWidth=1502&size=232770&status=done&width=751" alt="image.png"><br>图片压缩成功，这里我仔细看了下<a href="https://link.juejin.im/?target=https%3A%2F%2Fgithub.com%2Ftcoopman%2Fimage-webpack-loader" target="_blank" rel="noopener">image-webpack-loader 的 github</a>，其实这里的 image-webpack-loader 插件内置了好几种图片压缩的插件<br><img src="https://cdn.nlark.com/yuque/0/2019/png/105657/1559633596384-e77a68d5-01b6-4764-8a6f-c25696f0f1c4.png#align=left&display=inline&height=196&name=image.png&originHeight=196&originWidth=631&size=80961&status=done&width=631" alt="image.png"><br>这里让我很疑惑，为什么我直接安装  <code>imagemin-pngquant</code>  不行，反而使用  <code>image-webpack-loader</code>却可以，于是我去查看  <code>package-lock.json</code>  文件，搜索  <code>image-webpack-loader</code><br><img src="https://cdn.nlark.com/yuque/0/2019/png/105657/1559773886430-c2752eff-3946-4221-9b53-cf923c7600e4.png#align=left&display=inline&height=241&name=image.png&originHeight=482&originWidth=1248&size=118565&status=done&width=624" alt="image.png"><br>我看了下我之前安装的最新版本，7.0.0！！！<br>终于找到原因了，，<strong>新版本</strong>有些问题没有处理好，导致压缩 png 图片失败，找到问题就好办了，在 package.json 中，将<code>imagemin-pngquant</code>  版本改为 ^6.0.0，重新  <code>npm install</code><br>按照之前的操作，就可以压缩成了，对应如下：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"devDependencies"</span>: &#123;</span><br><span class="line">    <span class="attr">"imagemin"</span>: <span class="string">"^6.1.0"</span>,</span><br><span class="line">    <span class="attr">"imagemin-mozjpeg"</span>: <span class="string">"^8.0.0"</span>,</span><br><span class="line">    <span class="attr">"imagemin-pngquant"</span>: <span class="string">"^6.0.0"</span>,</span><br><span class="line">    <span class="attr">"img-loader"</span>: <span class="string">"^3.0.1"</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果使用  <code>image-webpack-loader</code> ，版本为  <code>4.6.0</code> .<br>这次我还是使用了 image-webpack-loader，朋友们可以自行选择使用哪个插件，只是 image-webpack-loader 引入了其他图片格式压缩的依赖，如  <strong>svg/webp/gif</strong>  等，只安装  <code>image-webpack-loader</code>  就够了，而另一种则是要一个个插件装过去，其实原理都一样。我个人比较推荐使用 image-webpack-loader<br><a name="NItHk"></a></p>
+<h3 id="（四）生成雪碧图"><a href="#（四）生成雪碧图" class="headerlink" title="（四）生成雪碧图"></a>（四）生成雪碧图</h3><hr>
+<p>安装依赖：</p>
+<blockquote>
+<p>npm i postcss-loader postcss-sprites –save-dev</p>
+</blockquote>
+<p>完整配置：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">"path"</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> CleanWebpackPlugin = <span class="built_in">require</span>(<span class="string">"clean-webpack-plugin"</span>);</span><br><span class="line"><span class="keyword">const</span> HtmlWebpackPlugin = <span class="built_in">require</span>(<span class="string">"html-webpack-plugin"</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> MiniCssExtractPlugin = <span class="built_in">require</span>(<span class="string">"mini-css-extract-plugin"</span>); <span class="comment">// 将 css 单独打包成文件</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/*********** sprites config ***************/</span></span><br><span class="line"><span class="keyword">let</span> spritesConfig = &#123;</span><br><span class="line">  spritePath: <span class="string">"./dist/images"</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">/******************************************/</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  entry: &#123;</span><br><span class="line">    app: <span class="string">"./src/app.js"</span></span><br><span class="line">  &#125;,</span><br><span class="line">  output: &#123;</span><br><span class="line">    publicPath: <span class="string">"./"</span>, <span class="comment">// js 引用的路径或者 CDN 地址</span></span><br><span class="line">    path: path.resolve(__dirname, <span class="string">"dist"</span>), <span class="comment">// 打包文件的输出目录</span></span><br><span class="line">    filename: <span class="string">"[name].bundle.js"</span>, <span class="comment">// 代码打包后的文件名</span></span><br><span class="line">    chunkFilename: <span class="string">"[name].js"</span> <span class="comment">// 代码拆分后的文件名</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="built_in">module</span>: &#123;</span><br><span class="line">    rules: [</span><br><span class="line">      &#123;</span><br><span class="line">        test: <span class="regexp">/\.css$/</span>,</span><br><span class="line">        use: [</span><br><span class="line">          &#123;</span><br><span class="line">            loader: MiniCssExtractPlugin.loader</span><br><span class="line">          &#125;,</span><br><span class="line">          <span class="string">"css-loader"</span>,</span><br><span class="line">          <span class="comment">/*********** loader for sprites ***************/</span></span><br><span class="line">          &#123;</span><br><span class="line">            loader: <span class="string">"postcss-loader"</span>,</span><br><span class="line">            options: &#123;</span><br><span class="line">              ident: <span class="string">"postcss"</span>,</span><br><span class="line">              plugins: [<span class="built_in">require</span>(<span class="string">"postcss-sprites"</span>)(spritesConfig)]</span><br><span class="line">            &#125;</span><br><span class="line">          &#125;</span><br><span class="line">          <span class="comment">/*********************************************/</span></span><br><span class="line">        ]</span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        test: <span class="regexp">/\.(png|jpg|jpeg|gif)$/</span>,</span><br><span class="line">        use: [</span><br><span class="line">          &#123;</span><br><span class="line">            loader: <span class="string">"url-loader"</span>,</span><br><span class="line">            options: &#123;</span><br><span class="line">              name: <span class="string">"[name]-[hash:5].min.[ext]"</span>,</span><br><span class="line">              limit: <span class="number">1000</span>, <span class="comment">// size &lt;= 1KB</span></span><br><span class="line">              outputPath: <span class="string">"images/"</span></span><br><span class="line">            &#125;</span><br><span class="line">          &#125;,</span><br><span class="line">          <span class="comment">// img-loader for zip img</span></span><br><span class="line">          &#123;</span><br><span class="line">            loader: <span class="string">"image-webpack-loader"</span>,</span><br><span class="line">            options: &#123;</span><br><span class="line">              <span class="comment">// 压缩 jpg/jpeg 图片</span></span><br><span class="line">              mozjpeg: &#123;</span><br><span class="line">                progressive: <span class="literal">true</span>,</span><br><span class="line">                quality: <span class="number">65</span> <span class="comment">// 压缩率</span></span><br><span class="line">              &#125;,</span><br><span class="line">              <span class="comment">// 压缩 png 图片</span></span><br><span class="line">              pngquant: &#123;</span><br><span class="line">                quality: <span class="string">"65-90"</span>,</span><br><span class="line">                speed: <span class="number">4</span></span><br><span class="line">              &#125;</span><br><span class="line">            &#125;</span><br><span class="line">          &#125;</span><br><span class="line">        ]</span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;,</span><br><span class="line">  plugins: [</span><br><span class="line">    <span class="keyword">new</span> CleanWebpackPlugin(),</span><br><span class="line">    <span class="keyword">new</span> HtmlWebpackPlugin(&#123;</span><br><span class="line">      <span class="comment">// 打包输出HTML</span></span><br><span class="line">      title: <span class="string">"自动生成 HTML"</span>,</span><br><span class="line">      minify: &#123;</span><br><span class="line">        <span class="comment">// 压缩 HTML 文件</span></span><br><span class="line">        removeComments: <span class="literal">true</span>, <span class="comment">// 移除 HTML 中的注释</span></span><br><span class="line">        collapseWhitespace: <span class="literal">true</span>, <span class="comment">// 删除空白符与换行符</span></span><br><span class="line">        minifyCSS: <span class="literal">true</span> <span class="comment">// 压缩内联 css</span></span><br><span class="line">      &#125;,</span><br><span class="line">      filename: <span class="string">"index.html"</span>, <span class="comment">// 生成后的文件名</span></span><br><span class="line">      template: <span class="string">"index.html"</span>, <span class="comment">// 根据此模版生成 HTML 文件</span></span><br><span class="line">      chunks: [<span class="string">"app"</span>] <span class="comment">// entry中的 app 入口才会被打包</span></span><br><span class="line">    &#125;),</span><br><span class="line">    <span class="keyword">new</span> MiniCssExtractPlugin(&#123;</span><br><span class="line">      filename: <span class="string">"[name].css"</span>,</span><br><span class="line">      chunkFilename: <span class="string">"[id].css"</span></span><br><span class="line">    &#125;)</span><br><span class="line">  ]</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>打包后查看结果：<br><img src="https://cdn.nlark.com/yuque/0/2019/png/105657/1559774438738-4433cce7-185c-4df3-ba9a-a738d7a0fd79.png#align=left&display=inline&height=224&name=image.png&originHeight=448&originWidth=1110&size=99887&status=done&width=555" alt="image.png"><br>雪碧图是为了减少网路请求，所以被处理雪碧图的图片多为各式各样的<strong>logo</strong>或者是<strong>大小相同的小图片。</strong><br><strong>而对于大图片，不推荐使用雪碧图。这样会使得图片体积很大。</strong><br>除此之外，雪碧图要配合<strong>css</strong>代码定制化使用，要通过  <strong>css</strong>  代码在雪碧图上精准定位需要的图片</p>
+
+    </article>
+    <!-- license  -->
+    
+    <!-- paginator  -->
+    <ul class="post-paginator">
+        <li class="next">
+            
+                <div class="nextSlogan">Next Post</div>
+                <a href="/2019/06/04/webpack4/（十）CSS Tree Shaking/" title="（十）CSS Tree Shaking">
+                    <div class="nextTitle">（十）CSS Tree Shaking</div>
+                </a>
+            
+        </li>
+        <li class="previous">
+            
+                <div class="prevSlogan">Previous Post</div>
+                <a href="/2019/06/04/webpack4/（九）JS Tree Shaking/" title="（九）JS Tree Shaking">
+                    <div class="prevTitle">（九）JS Tree Shaking</div>
+                </a>
+            
+        </li>
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+<!-- City版安装代码已完成 -->
+    
+    
+    <!-- partial('_partial/comment/changyan') -->
+    <!--PC版-->
+
+
+    
+    
+
+    <!-- 评论 -->
+</main>
+            <!-- profile -->
+            
+        </div>
+        <footer class="footer footer-unloaded">
+    <!-- social  -->
+    
+    <div class="social">
+        
+    
+        
+    
+        
+            
+                <a href="//github.com/fi3ework" class="iconfont-archer github" target="_blank" title="github"></a>
+            
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+            
+                <a href="https://juejin.im/user/5ab6f52af265da23866fd966" class="iconfont-archer juejin" target="_blank" title="juejin"></a>
+            
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+    </div>
+    
+    <!-- powered by Hexo  -->
+    <div class="copyright">
+        <span id="hexo-power">Powered by <a href="https://hexo.io/" target="_blank">Hexo</a></span><span class="iconfont-archer power">&#xe635;</span><span id="theme-info">theme <a href="https://github.com/fi3ework/hexo-theme-archer" target="_blank">Archer</a></span>
+    </div>
+    <!-- 不蒜子  -->
+    
+    <div class="busuanzi-container">
+    
+     
+    <span id="busuanzi_container_site_pv">PV: <span id="busuanzi_value_site_pv"></span> :)</span>
+    
+    </div>
+    
+</footer>
+    </div>
+    <!-- toc -->
+    
+    <div class="toc-wrapper" style=
+    
+
+
+
+
+
+
+
+top:50vh;
+
+    >
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#（一）准备工作"><span class="toc-number">1.</span> <span class="toc-text">（一）准备工作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#（二）图片处理和-base64-编码"><span class="toc-number">2.</span> <span class="toc-text">（二）图片处理和 base64 编码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#（三）图片压缩"><span class="toc-number">3.</span> <span class="toc-text">（三）图片压缩</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#（四）生成雪碧图"><span class="toc-number">4.</span> <span class="toc-text">（四）生成雪碧图</span></a></li></ol>
+    </div>
+    
+    <div class="back-top iconfont-archer">&#xe639;</div>
+    <div class="sidebar sidebar-hide">
+    <ul class="sidebar-tabs sidebar-tabs-active-0">
+        <li class="sidebar-tab-archives"><span class="iconfont-archer">&#xe67d;</span><span class="tab-name">Archive</span></li>
+        <li class="sidebar-tab-tags"><span class="iconfont-archer">&#xe61b;</span><span class="tab-name">Tag</span></li>
+        <li class="sidebar-tab-categories"><span class="iconfont-archer">&#xe666;</span><span class="tab-name">Cate</span></li>
+    </ul>
+    <div class="sidebar-content sidebar-content-show-archive">
+          <div class="sidebar-panel-archives">
+    <!-- 在ejs中将archive按照时间排序 -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <div class="total-and-search">
+        <div class="total-archive">
+        Total : 43
+        </div>
+        <!-- search  -->
+        
+    </div>
+    
+    <div class="post-archive">
+    
+    
+    
+    
+    <div class="archive-year"> 2019 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/04</span><a class="archive-post-title" href="/2019/06/04/webpack4/（十一）图片处理汇总/">（十一）图片处理汇总</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/04</span><a class="archive-post-title" href="/2019/06/04/webpack4/（十）CSS Tree Shaking/">（十）CSS Tree Shaking</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/04</span><a class="archive-post-title" href="/2019/06/04/webpack4/（九）JS Tree Shaking/">（九）JS Tree Shaking</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/03</span><a class="archive-post-title" href="/2019/06/03/webpack4/（八）处理css和scss/">（八）处理CSS/SCSS文件</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/03</span><a class="archive-post-title" href="/2019/06/03/webpack4/（七）自动生成 HTML 文件/">（七）自动生成 HTML 文件</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/02</span><a class="archive-post-title" href="/2019/06/02/webpack4/（六）Lazy Loading、Prefetching/">（六）Lazy Loading、Prefetching</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/01</span><a class="archive-post-title" href="/2019/06/01/墨菲定理/（一）成功学的秘密/">（一）成功学的秘密</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/01</span><a class="archive-post-title" href="/2019/06/01/模拟数据方案/mockjs运用/">mockjs运用</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/25</span><a class="archive-post-title" href="/2019/05/25/webpack4/（五）Code Splitting代码分割/">（五）Code  Splitting代码分割</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/24</span><a class="archive-post-title" href="/2019/05/24/webpack4/（四）用babel编译成 ES6/">（四）用babel编译成 ES6</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/23</span><a class="archive-post-title" href="/2019/05/23/webpack4/（三）覆盖默认entry和output/">（三）覆盖默认entry和output</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/22</span><a class="archive-post-title" href="/2019/05/22/webpack4/（二）生产和开发模式/">（二）生产和开发模式</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/22</span><a class="archive-post-title" href="/2019/05/22/react/（四）拆分组件与组件之前的传值/">（四）拆分组件与组件之前的传值</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/21</span><a class="archive-post-title" href="/2019/05/21/webpack4/（一）搭建项目并打包JS文件/">（一）搭建项目并打包JS文件</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/20</span><a class="archive-post-title" href="/2019/05/20/react/（三）react的jsx语法理解/">（三）react的jsx语法理解</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/18</span><a class="archive-post-title" href="/2019/05/18/react/（二）响应设计思想与事件绑定/">（二）响应设计思想与事件绑定</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/17</span><a class="archive-post-title" href="/2019/05/17/react/（一）react开发目录介绍/">（一）react开发目录介绍</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> 2018 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/15</span><a class="archive-post-title" href="/2018/07/15/vue/JYSHT-跳转同一页面判断/">JYSHT-跳转同一页面判断</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/08</span><a class="archive-post-title" href="/2018/06/08/php基础/难点(1)-面向对象/">难点(1)-面向对象</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/04</span><a class="archive-post-title" href="/2018/06/04/php基础/数据库(2)-优化/">数据库(2)-优化</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/01</span><a class="archive-post-title" href="/2018/06/01/php基础/数据库(1)-终端命令操作/">数据库(1)-终端命令操作</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/30</span><a class="archive-post-title" href="/2018/05/30/vue/组件生命周期与组件传值/">组件生命周期与组件传值</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/30</span><a class="archive-post-title" href="/2018/05/30/vue/router-link与redirect用法/">router-link与redirect用法</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/24</span><a class="archive-post-title" href="/2018/05/24/vue/vuex与父子组件通讯/">vuex与父子组件通讯</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/21</span><a class="archive-post-title" href="/2018/05/21/vue/vue-music歌手详情页/">vue-music歌手详情页</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/18</span><a class="archive-post-title" href="/2018/05/18/vue/loading-图片懒加载/">loading-图片懒加载</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/17</span><a class="archive-post-title" href="/2018/05/17/vue/axios-获取接口，mock模拟数据配置/">axios-获取接口，mock模拟数据配置</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/17</span><a class="archive-post-title" href="/2018/05/17/vue/banner横向轮播图-组件封装思路/">banner横向轮播图-组件封装思路</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/17</span><a class="archive-post-title" href="/2018/05/17/vue/better-scroll-配置纵向滚动/">better-scroll-配置纵向滚动</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/17</span><a class="archive-post-title" href="/2018/05/17/vue/vueMusic歌手-左右链动/">vueMusic歌手-左右链动</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/09</span><a class="archive-post-title" href="/2018/05/09/php基础/基础(9)-文件函数/">基础(9)-文件函数</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/06</span><a class="archive-post-title" href="/2018/05/06/php基础/基础(8)-字符串函数/">基础(8)-字符串函数</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/05</span><a class="archive-post-title" href="/2018/05/05/php基础/基础(7)-数学函数与日期函数/">基础(7)-数学函数与日期函数</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/02</span><a class="archive-post-title" href="/2018/05/02/php基础/基础(6)-自定义数组函数/">基础(6)-自定义数组函数</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/28</span><a class="archive-post-title" href="/2018/04/28/php基础/基础(5)-数组与表单/">基础(5)-数组与表单</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2018/04/23/php基础/基础(4)-函数/">基础(4)-函数</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/20</span><a class="archive-post-title" href="/2018/04/20/php基础/基础(3)-流程控制/">基础(3)-流程控制</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/10</span><a class="archive-post-title" href="/2018/04/10/php基础/基础(2)-常量与运算符/">基础(2)-常量与运算符</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/08</span><a class="archive-post-title" href="/2018/04/08/php基础/基础(1)-变量定义与类型/">基础(1)-变量定义与类型</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/04</span><a class="archive-post-title" href="/2018/04/04/php基础/初级笔记/">初级笔记</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/15</span><a class="archive-post-title" href="/2018/01/15/跨域方案/跨域与浏览器/">跨域方案</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/04</span><a class="archive-post-title" href="/2018/01/04/webpack3/webpack3.0/">webpack3.0</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> 2017 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/04</span><a class="archive-post-title" href="/2017/12/04/基础前端/css和js基础面试题/">css和js基础面试题</a>
+        </li>
+    
+    </ul></div>
+  </div>
+        <div class="sidebar-panel-tags">
+    <div class="sidebar-tags-name">
+    
+        <span class="sidebar-tag-name" data-tags="php"><span class="iconfont-archer">&#xe606;</span>php</span>
+    
+        <span class="sidebar-tag-name" data-tags="react"><span class="iconfont-archer">&#xe606;</span>react</span>
+    
+        <span class="sidebar-tag-name" data-tags="webpack3"><span class="iconfont-archer">&#xe606;</span>webpack3</span>
+    
+        <span class="sidebar-tag-name" data-tags="vue"><span class="iconfont-archer">&#xe606;</span>vue</span>
+    
+        <span class="sidebar-tag-name" data-tags="webpack4"><span class="iconfont-archer">&#xe606;</span>webpack4</span>
+    
+        <span class="sidebar-tag-name" data-tags="css和js基础面试题"><span class="iconfont-archer">&#xe606;</span>css和js基础面试题</span>
+    
+        <span class="sidebar-tag-name" data-tags="墨菲定律"><span class="iconfont-archer">&#xe606;</span>墨菲定律</span>
+    
+        <span class="sidebar-tag-name" data-tags="跨域方案"><span class="iconfont-archer">&#xe606;</span>跨域方案</span>
+    
+        <span class="sidebar-tag-name" data-tags="mockjs运用"><span class="iconfont-archer">&#xe606;</span>mockjs运用</span>
+    
+    </div>
+    <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
+    <div class="tag-load-fail" style="display: none; color: #ccc; font-size: 0.6rem;">
+    缺失模块。<br>
+    1、请确保node版本大于6.2<br>
+    2、在博客根目录（注意不是archer根目录）执行以下命令：<br>
+    <span style="color: #f75357; font-size: 1rem; line-height: 2rem;">npm i hexo-generator-json-content --save</span><br>
+    3、在根目录_config.yml里添加配置：
+    <pre style="color: #787878; font-size: 0.6rem;">
+jsonContent:
+  meta: false
+  pages: false
+  posts:
+    title: true
+    date: true
+    path: true
+    text: false
+    raw: false
+    content: false
+    slug: false
+    updated: false
+    comments: false
+    link: false
+    permalink: false
+    excerpt: false
+    categories: true
+    tags: true</pre>
+    </div> 
+    <div class="sidebar-tags-list"></div>
+</div>
+        <div class="sidebar-panel-categories">
+    <div class="sidebar-categories-name">
+    
+        <span class="sidebar-category-name" data-categories="php"><span class="iconfont-archer">&#xe60a;</span>php</span>
+    
+        <span class="sidebar-category-name" data-categories="react"><span class="iconfont-archer">&#xe60a;</span>react</span>
+    
+        <span class="sidebar-category-name" data-categories="webpack3"><span class="iconfont-archer">&#xe60a;</span>webpack3</span>
+    
+        <span class="sidebar-category-name" data-categories="vue"><span class="iconfont-archer">&#xe60a;</span>vue</span>
+    
+        <span class="sidebar-category-name" data-categories="webpack4"><span class="iconfont-archer">&#xe60a;</span>webpack4</span>
+    
+        <span class="sidebar-category-name" data-categories="css和js基础面试题"><span class="iconfont-archer">&#xe60a;</span>css和js基础面试题</span>
+    
+        <span class="sidebar-category-name" data-categories="墨菲定律"><span class="iconfont-archer">&#xe60a;</span>墨菲定律</span>
+    
+        <span class="sidebar-category-name" data-categories="跨域方案"><span class="iconfont-archer">&#xe60a;</span>跨域方案</span>
+    
+        <span class="sidebar-category-name" data-categories="mockjs运用"><span class="iconfont-archer">&#xe60a;</span>mockjs运用</span>
+    
+    </div>
+    <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
+    <div class="sidebar-categories-list"></div>
+</div>
+    </div>
+</div> 
+    <script>
+    var siteMeta = {
+        root: "/",
+        author: "令夕"
+    }
+</script>
+    <!-- CDN failover -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+    <script type="text/javascript">
+        if (typeof window.$ === 'undefined')
+        {
+            console.warn('jquery load from jsdelivr failed, will load local script')
+            document.write('<script src="/lib/jquery.min.js">\x3C/script>')
+        }
+    </script>
+    <script src="/scripts/main.js"></script>
+    <!-- algolia -->
+    
+    <!-- busuanzi  -->
+    
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+    <!-- CNZZ  -->
+    
+    </div>
+    <!-- async load share.js -->
+    
+        <script src="/scripts/share.js" async></script>    
+     
+    </body>
+</html>
+
+
