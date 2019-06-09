@@ -22,7 +22,7 @@
     <meta name="description" content>
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>axios-获取接口，mock模拟数据配置 · 令夕</title>
+    <title>13.处理第三方js文件 · 令夕</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -217,7 +217,7 @@
                 <a href="/">令夕</a>
             </div>
             <div class="post-title">
-                <a href="#" class="post-name">axios-获取接口，mock模拟数据配置</a>
+                <a href="#" class="post-name">13.处理第三方js文件</a>
             </div>
     </div>
     
@@ -247,7 +247,7 @@ height:50vh;
         <h1 class="intro-title">
             <!-- 主页  -->
             
-            axios-获取接口，mock模拟数据配置
+            13.处理第三方js文件
             <!-- 404 -->
             
         </h1>
@@ -266,18 +266,18 @@ height:50vh;
                 
                     <div class="post-intro-tags">
     
-        <a class="post-tag" href="javascript:void(0);" data-tags="vue">vue</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags="webpack4">webpack4</a>
     
 </div>
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">368</span>阅读时长: <span class="post-count reading-time">1 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">769</span>阅读时长: <span class="post-count reading-time">3 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
                     <span class="post-intro-calander iconfont-archer">&#xe676;</span>
-                    <span class="post-intro-time">2018/05/17</span>
+                    <span class="post-intro-time">2019/06/04</span>
                     
                     <span id="busuanzi_container_page_pv" class="busuanzi-pv">
                         <span class="iconfont-archer">&#xe602;</span>
@@ -401,38 +401,27 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <p><a href="https://blog.csdn.net/binginsist/article/details/65630547" target="_blank" rel="noopener">https://blog.csdn.net/binginsist/article/details/65630547</a><br><a name="8t5eic"></a></p>
-<h3 id="1-axios"><a href="#1-axios" class="headerlink" title="1.axios"></a><a href="#8t5eic"></a>1.axios</h3><ol>
-<li>安装 axios  :</li>
-</ol>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save axios vue-axios</span><br></pre></td></tr></table></figure>
+        <p><a href>demo13 源码地址</a><br>项目目录：<br><img src="https://cdn.nlark.com/yuque/0/2019/png/105657/1560092954203-d87881fd-c613-4fda-a9ca-f3669cd7a3e1.png#align=left&display=inline&height=250&name=image.png&originHeight=500&originWidth=438&size=41824&status=done&width=219" alt="image.png"><br><a name="xiEsB"></a></p>
+<h3 id="1-如何使用和管理第三方-JS-库？"><a href="#1-如何使用和管理第三方-JS-库？" class="headerlink" title="1.如何使用和管理第三方 JS 库？"></a>1.如何使用和管理第三方 JS 库？</h3><p>**<br>项目做大了之后，开发者会更多专注在业务逻辑上，其他方面则尽力使用第三方 JS 库来实现。</p>
+<p>由于 js 变化是在太快，所以出现了多种引入和管理第三库的方法，常用的 3 中：</p>
+<ul>
+<li>CDN: <script></script>标签引入即可</li>
+<li>npm 包管理：目前最常用和最推荐的方法</li>
+<li>本地 js 文件：一些库由于历史原因，没有提供 ES6 版本，需要手动下载，放入项目目录中，在手动引用。</li>
+</ul>
+<p>针对第三种方法，如果没有 webpack，则需要手动 import 或者 require 来加载文件，但是 webpack 提供了 alias 的配置，配合<strong>webpack.ProvidePlugin</strong>这款插件，可以跳过手动入，直接使用！</p>
+<p><a name="v8ZS0"></a></p>
+<h3 id="2-编写入口文件"><a href="#2-编写入口文件" class="headerlink" title="2.编写入口文件"></a>2.编写入口文件</h3><p>如项目目录图片所展示的，我们下载了<strong>jquery.min.js</strong>，放到了项目中。同时，我们<strong>也通过 npm 安装了 jquery</strong>。<br><img src="https://cdn.nlark.com/yuque/0/2019/png/105657/1560092973711-2cac1013-9f74-49e3-9322-67bf54e20e18.png#align=left&display=inline&height=250&name=image.png&originHeight=500&originWidth=438&size=41824&status=done&width=219" alt="image.png"><br>为了尽可能模仿生产环境，app.js 中使用$来调用 jq，还是用了 jQuery 来调用 jq</p>
+<p>因为正是项目中，由于需要的依赖过多，挂载到 window 对象的库，很容易发生命名冲突问题。此时，就需要重命名库。例如：$就被换成 jQuery。<br>在 app.js 中进行修改</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// app.js</span></span><br><span class="line">$(<span class="string">"div"</span>).addClass(<span class="string">"new"</span>);</span><br><span class="line"></span><br><span class="line">jQuery(<span class="string">"div"</span>).addClass(<span class="string">"old"</span>);</span><br></pre></td></tr></table></figure>
 
-<ol start="2">
-<li><p>在 main.js 中引入</p>
-</li>
-<li><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> axios <span class="keyword">from</span> <span class="string">"axios"</span>;</span><br><span class="line">Vue.use(axios);</span><br><span class="line">Vue.prototype.$http = axios;</span><br></pre></td></tr></table></figure>
+<p>1.编写配置文件<br><strong>webpack</strong>.<strong>ProvidePlugin</strong>  参数是键值对形式，键就是我们项目中使用的变量名，值就是键所在的库。<br><strong>webpack.ProvidePlugin 会先从 npm 安装的包中查找是否有符合的库</strong><br>如果<strong>webpack</strong>配置了<strong>resolve.alias</strong>选项（理解成“别名”），那么 webpack.ProvidePlugin 就会顺着这条链一直找下去。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">"path"</span>);</span><br><span class="line"><span class="keyword">const</span> webpack = <span class="built_in">require</span>(<span class="string">"webpack"</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> CleanWebpackPlugin = <span class="built_in">require</span>(<span class="string">"clean-webpack-plugin"</span>);</span><br><span class="line"><span class="keyword">const</span> HtmlWebpackPlugin = <span class="built_in">require</span>(<span class="string">"html-webpack-plugin"</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  entry: &#123;</span><br><span class="line">    app: <span class="string">"./src/app.js"</span></span><br><span class="line">  &#125;,</span><br><span class="line">  output: &#123;</span><br><span class="line">    publicPath: <span class="string">"./"</span>, <span class="comment">// js 引用的路径或者 CDN 地址</span></span><br><span class="line">    path: path.resolve(__dirname, <span class="string">"dist"</span>), <span class="comment">// 打包文件的输出目录</span></span><br><span class="line">    filename: <span class="string">"[name].bundle.js"</span>, <span class="comment">// 代码打包后的文件名</span></span><br><span class="line">    chunkFilename: <span class="string">"[name].js"</span> <span class="comment">// 代码拆分后的文件名</span></span><br><span class="line">  &#125;,</span><br><span class="line">  resolve: &#123;</span><br><span class="line">    alias: &#123;</span><br><span class="line">      jQuery$: path.resolve(__dirname, <span class="string">"src/vendor/jquery.min.js"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  plugins: [</span><br><span class="line">    <span class="keyword">new</span> CleanWebpackPlugin(),</span><br><span class="line">    <span class="keyword">new</span> HtmlWebpackPlugin(&#123;</span><br><span class="line">      <span class="comment">// 打包输出HTML</span></span><br><span class="line">      title: <span class="string">"自动生成 HTML"</span>,</span><br><span class="line">      minify: &#123;</span><br><span class="line">        <span class="comment">// 压缩 HTML 文件</span></span><br><span class="line">        removeComments: <span class="literal">true</span>, <span class="comment">// 移除 HTML 中的注释</span></span><br><span class="line">        collapseWhitespace: <span class="literal">true</span>, <span class="comment">// 删除空白符与换行符</span></span><br><span class="line">        minifyCSS: <span class="literal">true</span> <span class="comment">// 压缩内联 css</span></span><br><span class="line">      &#125;,</span><br><span class="line">      filename: <span class="string">"index.html"</span>, <span class="comment">// 生成后的文件名</span></span><br><span class="line">      template: <span class="string">"index.html"</span>, <span class="comment">// 根据此模版生成 HTML 文件</span></span><br><span class="line">      chunks: [<span class="string">"app"</span>] <span class="comment">// entry中的 app 入口才会被打包</span></span><br><span class="line">    &#125;),</span><br><span class="line">    <span class="keyword">new</span> webpack.ProvidePlugin(&#123;</span><br><span class="line">      $: <span class="string">"jquery"</span>, <span class="comment">// npm</span></span><br><span class="line">      jQuery: <span class="string">"jQuery"</span> <span class="comment">// 本地Js文件</span></span><br><span class="line">    &#125;)</span><br><span class="line">  ]</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
-</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">3. 使用方法</span><br><span class="line"></span><br><span class="line">  1. ```javascript</span><br><span class="line">this.$http.get(URL).then(response =&gt; &#123;</span><br><span class="line">    // success callback</span><br><span class="line">&#125;, response =&gt; &#123;</span><br><span class="line">    // error callback</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>修改 index.html</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=1.0"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"X-UA-Compatible"</span> <span class="attr">content</span>=<span class="string">"ie=edge"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>处理第三方 js 库<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
-<p><a name="ootger"></a></p>
-<h3 id="2-mock-的使用"><a href="#2-mock-的使用" class="headerlink" title="2.mock 的使用"></a><a href="#ootger"></a>2.mock 的使用</h3><ol>
-<li><p>在 mock 文件中定义.json 格式的数据</p>
-</li>
-<li><p>新版在 webpack.dev.conf.js 配置</p>
-</li>
-<li><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">在<span class="keyword">const</span> portfinder = <span class="built_in">require</span>(‘portfinder’)后添加</span><br><span class="line"><span class="comment">//首先</span></span><br><span class="line"><span class="keyword">const</span> express = <span class="built_in">require</span>(<span class="string">'express'</span>)<span class="comment">//是node.js的框架</span></span><br><span class="line"><span class="keyword">const</span> app = express()<span class="comment">//创建一个路由</span></span><br><span class="line"><span class="keyword">var</span> appData = <span class="built_in">require</span>(<span class="string">'../mock/getDiscList.json'</span>)<span class="comment">//加载本地数据文件</span></span><br><span class="line"><span class="keyword">var</span> data = appData.data<span class="comment">//获取对应的本地数据</span></span><br><span class="line"><span class="keyword">var</span> apiRoutes = express.Router()</span><br><span class="line">app.use(<span class="string">'/api'</span>, apiRoutes)</span><br></pre></td></tr></table></figure>
-
-</li>
-</ol>
-<p>//然后<br>找到 devServer,在里面添加<br>before(app) {<br>app.get(‘/api/seller’, (req, res) =&gt; {<br>res.json({<br>errno: 0,<br>data: seller<br>})//接口返回 json 数据，上面配置的数据 seller 就赋值给 data 请求后调用<br>}),<br>app.get(‘/api/goods’, (req, res) =&gt; {<br>res.json({<br>errno: 0,<br>data: goods<br>})<br>}),<br>app.get(‘/api/ratings’, (req, res) =&gt; {<br>res.json({<br>errno: 0,<br>data: ratings<br>})<br>})<br>}</p>
-<p>在 api 的 js 问价下获取接口<br>import axios from ‘axios’<br>export function getDiscList () {<br>return axios.get(‘/api/data’)<br>}
-在组件中调用<br>created () {<br>// this.$nextTick(() =&gt; {<br>this._getDiscList()<br>this._bannerList()<br>// })<br>},<br>methods: {<br>_getDiscList () {<br>api.getDiscList().then((res) =&gt; {<br>if (res.data.errno === ERR_OK) {<br>this.discList = res.data.data.list<br>}
-})<br>},<br>}</p>
-<p><a href="https://blog.csdn.net/firebird_one/article/details/78656500" target="_blank" rel="noopener">https://blog.csdn.net/firebird_one/article/details/78656500</a></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">3. &lt;a name=&quot;28o9vy&quot;&gt;&lt;/a&gt;</span><br><span class="line">### [](#28o9vy)3.$nextTick</span><br><span class="line">.将回调延迟到下次 DOM 更新循环之后执行。在修改数据之后立即使用它，然后等待 DOM 更新。它跟全局方法 Vue.nextTick 一样，不同的是回调的 this 自动绑定到调用它的实例上。</span><br></pre></td></tr></table></figure>
-
+<p>打包并在 Chrome 中打开 index.html。如下图所示，<div>标签已经被添加上了<strong>old</strong>和<strong>new</strong>两个样式类。证明在 app.js 中使用的$和 jQuery 都指向了 jquery 库。<br><img src="https://cdn.nlark.com/yuque/0/2019/png/105657/1560093808387-8d7c75ff-a156-4330-8b25-38a4ea14b606.png#align=left&display=inline&height=113&name=image.png&originHeight=226&originWidth=1572&size=57835&status=done&width=786" alt="image.png"></div></p>
 
     </article>
     <!-- license  -->
@@ -442,16 +431,16 @@ height:50vh;
         <li class="next">
             
                 <div class="nextSlogan">Next Post</div>
-                <a href="/2018/05/17/vue/vueMusic歌手-左右链动/" title="vueMusic歌手-左右链动">
-                    <div class="nextTitle">vueMusic歌手-左右链动</div>
+                <a href="/2019/06/04/webpack4/11.图片处理汇总/" title="11.图片处理汇总">
+                    <div class="nextTitle">11.图片处理汇总</div>
                 </a>
             
         </li>
         <li class="previous">
             
                 <div class="prevSlogan">Previous Post</div>
-                <a href="/2018/05/09/php基础/基础(9)-文件函数/" title="基础(9)-文件函数">
-                    <div class="prevTitle">基础(9)-文件函数</div>
+                <a href="/2019/06/04/webpack4/12.字体文件处理/" title="12.字体文件处理">
+                    <div class="prevTitle">12.字体文件处理</div>
                 </a>
             
         </li>
@@ -563,7 +552,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-axios"><span class="toc-number">1.</span> <span class="toc-text">1.axios</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-mock-的使用"><span class="toc-number">2.</span> <span class="toc-text">2.mock 的使用</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-如何使用和管理第三方-JS-库？"><span class="toc-number">1.</span> <span class="toc-text">1.如何使用和管理第三方 JS 库？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-编写入口文件"><span class="toc-number">2.</span> <span class="toc-text">2.编写入口文件</span></a></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
