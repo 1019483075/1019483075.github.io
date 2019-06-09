@@ -346,6 +346,41 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/2019/05/22/webpack4/（二）生产和开发模式/">
+            
+                <span>（二）生产和开发模式</span>
+        </a>
+        <div class="abstract-content">
+            demo2 源码记录拥有 2 个配置文件在 webpack 中是常见的模式。一个典型的项目可能有：
+
+用于开发的配置文件，配置热更新，跨域配置，端口设置等。
+用于生产的配置文件，配置 js 压缩，代码拆分等。
+
+虽然在较大的项目可能任然需要 2 个配置文件，但是在 webpack4.0 中，你可以在没有一行配置的情况下完成。
+细心的朋友会发现在 npm  run build 打包后会有一段报警提示‘mode’选项尚未设置，webpack 将会退到‘production’。将‘mode’选项设置为‘development’或者‘production’以启用每个环境的默认值。你还可以将其设置...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/05/22</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="webpack4">webpack4</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/2019/05/22/react/（四）拆分组件与组件之前的传值/">
             
                 <span>（四）拆分组件与组件之前的传值</span>
@@ -540,42 +575,26 @@ react 简介React 起源于 Facebook 的内部项目，因为该公司对市场�
     
     
     <article class="index-post">
-        <a class="abstract-title" href="/2018/05/30/vue/组件生命周期与组件传值/">
+        <a class="abstract-title" href="/2018/06/08/php基础/难点(1)-面向对象/">
             
-                <span>组件生命周期与组件传值</span>
+                <span>难点(1)-面向对象</span>
         </a>
         <div class="abstract-content">
-            
-组件生命周期与组件传值
-1.组件生命周期
-https://segmentfault.com/a/1190000008010666
+            1.mysql 补充12345678//1.mysql导出mysqldump --no-defaults -uroot -p789 yzmedu&gt;yzmedu.sql;//2.mysql导入mysqldump --no-defaults -uroot(数据库名) -p123(密码) -B yzmedu --skip-add-locks --compact &gt;yzmedu.sql//2.php客户端软件mysql workbenchphpmyadmin//3.doc下mysql恢复  mysql -uroot -p123 &lt; yzmedu.sql
 
-beforeCreate:组件实例刚刚被创建，组件属性刚刚创建，计算属性之前。
-
-Created：组件实例创建完成，属性已经绑定，但是 dom 还未生成，$el 属性还不存在。
-
-beforeMounted:编译挂载之前，完成了 data 和 el 初始化。
-
-Mounted:编译挂载之后。
-
-beforeUpdate:组件更新之前。
-
-Updated:组件更新之后。
-
-actived：keep-alive，组件被激活时调用
-
-deactived：keep...
+2.面向对象知识点
+概...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
             <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/05/30</span>
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/06/08</span>
             </div>
             <!-- tags  -->
             
             <div class="abstract-tags">
     
-        <a class="post-tag" href="javascript:void(0);" data-tags="vue">vue</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags="php">php</a>
     
 </div>
             
@@ -588,27 +607,38 @@ deactived：keep...
     
     
     <article class="index-post">
-        <a class="abstract-title" href="/2018/05/30/vue/router-link与redirect用法/">
+        <a class="abstract-title" href="/2018/06/04/php基础/数据库(2)-优化/">
             
-                <span>router-link与redirect用法</span>
+                <span>数据库(2)-优化</span>
         </a>
         <div class="abstract-content">
-            https://www.cnblogs.com/SamWeb/p/6610733.html
-1.router-link :
-简单的定死路由跳转：:路由跳转，将组件映射到路由。
+            1.mysql 基础操作
+mysql 表复制
 
-123456789101112131415161718192021&lt;!--route:是指一条路由（Home按钮  =&gt; home内容） --&gt;&lt;!--routes:是指一组路由：把每一条路由组合起来组合成一个数组[&#123;home 按钮 =&gt;home内容 &#125;， &#123; about按钮 =&gt; about 内容&#125;]--&gt;&lt;!--route...
+1create table （表名） like （表名）; //
+
+
+
+mysql 复制表内容
+
+1insert into t3 select * from t1;//将t1表里面的内容插入到t3表里面
+
+
+
+查看数据库的状态 mysql 索引查看，删除，创建
+
+12345678910//查看索引show index from 表名\G;//普通索引 创建  删除create index i_age on user(age);//user是指表drop index i_age on user;//唯一索引 创建 删除create uniqu...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
             <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/05/30</span>
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/06/04</span>
             </div>
             <!-- tags  -->
             
             <div class="abstract-tags">
     
-        <a class="post-tag" href="javascript:void(0);" data-tags="vue">vue</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags="php">php</a>
     
 </div>
             
@@ -621,75 +651,23 @@ deactived：keep...
     
     
     <article class="index-post">
-        <a class="abstract-title" href="/2018/05/24/vue/vuex与父子组件通讯/">
+        <a class="abstract-title" href="/2018/06/01/php基础/数据库(1)-终端命令操作/">
             
-                <span>vuex与父子组件通讯</span>
+                <span>数据库(1)-终端命令操作</span>
         </a>
         <div class="abstract-content">
-            
-1.vuex 理解
-概念：是一个公共的状态库，可以在所有组价库里面去使用，修改。
-
-目录：
-
-index.js
-
-state.js
-
-mutations.js
-
-getters.js
-
-actions.js
-
-
-
-2.store 的状态理解
-state：最基本定义的状态：
-
-1.
-123456789101112export default &#123;  count: 0,  price: 100&#125;在组件中运用:Import &#123;mapState&#125; from ‘vuex’Computed:&#123;     …mapState(&#123;	count:’...
+            1.在 mysql 官网下载 mysql 安装包安装：1.mac 下的 mysql 在MySQL Community Server下下载，主要是数据库环境。 2.查看在：系统偏好设置下面 如果为绿色就是打开 3.下载Navicate Premium：主要是用于管理数据库可视化操作的。 4.下载mamp：php 虚拟服务器环境。5.mysql 在 mac 下的进入：/usr/local/mysql/bin/mysql -u root -p6.MacOs 终端打开 mysql： /usr/local/mysql/bin/mysql -u root -p 输入 root 用户名密码（windo...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
             <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/05/24</span>
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/06/01</span>
             </div>
             <!-- tags  -->
             
             <div class="abstract-tags">
     
-        <a class="post-tag" href="javascript:void(0);" data-tags="vue">vue</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2018/05/21/vue/vue-music歌手详情页/">
-            
-                <span>vue-music歌手详情页</span>
-        </a>
-        <div class="abstract-content">
-            
-1.singer 页面引入 singer-detail 二级路由12345678910111213141516171819202122232425262728//1.在singerlist中触发事件  @click="selectItem(items)"//2.在methods中： selectItem (items) &#123;   this.$emit('select', items)//将事件传递给父组件，将items给父组件&#125;,//3.在singer组件中 &lt;div class="singer"&gt;     &lt;v-singerlist @select...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/05/21</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="vue">vue</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags="php">php</a>
     
 </div>
             
@@ -699,7 +677,7 @@ state：最基本定义的状态：
     <!-- paginator  -->
     
     <nav class="page-nav">
-        <a class="extend prev" rel="prev" href="/archives/">&#60; PREV</a><a class="page-number" href="/archives/">1</a><span class="page-number current">2</span><a class="page-number" href="/archives/page/3/">3</a><a class="extend next" rel="next" href="/archives/page/3/">NEXT &#62;</a>
+        <a class="extend prev" rel="prev" href="/archives/">&#60; PREV</a><a class="page-number" href="/archives/">1</a><span class="page-number current">2</span><a class="page-number" href="/archives/page/3/">3</a><a class="page-number" href="/archives/page/4/">4</a><a class="page-number" href="/archives/page/5/">5</a><a class="extend next" rel="next" href="/archives/page/3/">NEXT &#62;</a>
     </nav>
     
 </main>
@@ -1109,9 +1087,260 @@ state：最基本定义的状态：
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 25
+        Total : 42
         </div>
         <!-- search  -->
         
@@ -1153,6 +1382,11 @@ state：最基本定义的状态：
     
         <li class="archive-post-item">
             <span class="archive-post-date">06/01</span><a class="archive-post-title" href="/2019/06/01/墨菲定理/（一）成功学的秘密/">（一）成功学的秘密</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/01</span><a class="archive-post-title" href="/2019/06/01/模拟数据方案/mockjs运用/">mockjs运用</a>
         </li>
     
     
@@ -1216,12 +1450,27 @@ state：最基本定义的状态：
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/30</span><a class="archive-post-title" href="/2018/05/30/vue/router-link与redirect用法/">router-link与redirect用法</a>
+            <span class="archive-post-date">06/08</span><a class="archive-post-title" href="/2018/06/08/php基础/难点(1)-面向对象/">难点(1)-面向对象</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/04</span><a class="archive-post-title" href="/2018/06/04/php基础/数据库(2)-优化/">数据库(2)-优化</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/01</span><a class="archive-post-title" href="/2018/06/01/php基础/数据库(1)-终端命令操作/">数据库(1)-终端命令操作</a>
         </li>
     
     
         <li class="archive-post-item">
             <span class="archive-post-date">05/30</span><a class="archive-post-title" href="/2018/05/30/vue/组件生命周期与组件传值/">组件生命周期与组件传值</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/30</span><a class="archive-post-title" href="/2018/05/30/vue/router-link与redirect用法/">router-link与redirect用法</a>
         </li>
     
     
@@ -1241,6 +1490,11 @@ state：最基本定义的状态：
     
     
         <li class="archive-post-item">
+            <span class="archive-post-date">05/17</span><a class="archive-post-title" href="/2018/05/17/vue/better-scroll-配置纵向滚动/">better-scroll-配置纵向滚动</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
             <span class="archive-post-date">05/17</span><a class="archive-post-title" href="/2018/05/17/vue/axios-获取接口，mock模拟数据配置/">axios-获取接口，mock模拟数据配置</a>
         </li>
     
@@ -1251,12 +1505,81 @@ state：最基本定义的状态：
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/17</span><a class="archive-post-title" href="/2018/05/17/vue/better-scroll-配置纵向滚动/">better-scroll-配置纵向滚动</a>
+            <span class="archive-post-date">05/17</span><a class="archive-post-title" href="/2018/05/17/vue/vueMusic歌手-左右链动/">vueMusic歌手-左右链动</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/17</span><a class="archive-post-title" href="/2018/05/17/vue/vueMusic歌手-左右链动/">vueMusic歌手-左右链动</a>
+            <span class="archive-post-date">05/09</span><a class="archive-post-title" href="/2018/05/09/php基础/基础(9)-文件函数/">基础(9)-文件函数</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/06</span><a class="archive-post-title" href="/2018/05/06/php基础/基础(8)-字符串函数/">基础(8)-字符串函数</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/05</span><a class="archive-post-title" href="/2018/05/05/php基础/基础(7)-数学函数与日期函数/">基础(7)-数学函数与日期函数</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/02</span><a class="archive-post-title" href="/2018/05/02/php基础/基础(6)-自定义数组函数/">基础(6)-自定义数组函数</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/28</span><a class="archive-post-title" href="/2018/04/28/php基础/基础(5)-数组与表单/">基础(5)-数组与表单</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2018/04/23/php基础/基础(4)-函数/">基础(4)-函数</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/20</span><a class="archive-post-title" href="/2018/04/20/php基础/基础(3)-流程控制/">基础(3)-流程控制</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/10</span><a class="archive-post-title" href="/2018/04/10/php基础/基础(2)-常量与运算符/">基础(2)-常量与运算符</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/08</span><a class="archive-post-title" href="/2018/04/08/php基础/基础(1)-变量定义与类型/">基础(1)-变量定义与类型</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/04</span><a class="archive-post-title" href="/2018/04/04/php基础/初级笔记/">初级笔记</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/15</span><a class="archive-post-title" href="/2018/01/15/跨域方案/跨域与浏览器/">跨域方案</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/04</span><a class="archive-post-title" href="/2018/01/04/webpack3/webpack3.0/">webpack3.0</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> 2017 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/04</span><a class="archive-post-title" href="/2017/12/04/基础前端/css和js基础面试题/">css和js基础面试题</a>
         </li>
     
     </ul></div>
@@ -1264,11 +1587,21 @@ state：最基本定义的状态：
         <div class="sidebar-panel-tags">
     <div class="sidebar-tags-name">
     
+        <span class="sidebar-tag-name" data-tags="php"><span class="iconfont-archer">&#xe606;</span>php</span>
+    
         <span class="sidebar-tag-name" data-tags="react"><span class="iconfont-archer">&#xe606;</span>react</span>
     
         <span class="sidebar-tag-name" data-tags="vue"><span class="iconfont-archer">&#xe606;</span>vue</span>
     
+        <span class="sidebar-tag-name" data-tags="webpack3"><span class="iconfont-archer">&#xe606;</span>webpack3</span>
+    
+        <span class="sidebar-tag-name" data-tags="css和js基础面试题"><span class="iconfont-archer">&#xe606;</span>css和js基础面试题</span>
+    
         <span class="sidebar-tag-name" data-tags="webpack4"><span class="iconfont-archer">&#xe606;</span>webpack4</span>
+    
+        <span class="sidebar-tag-name" data-tags="mockjs运用"><span class="iconfont-archer">&#xe606;</span>mockjs运用</span>
+    
+        <span class="sidebar-tag-name" data-tags="跨域方案"><span class="iconfont-archer">&#xe606;</span>跨域方案</span>
     
         <span class="sidebar-tag-name" data-tags="墨菲定律"><span class="iconfont-archer">&#xe606;</span>墨菲定律</span>
     
@@ -1305,11 +1638,21 @@ jsonContent:
         <div class="sidebar-panel-categories">
     <div class="sidebar-categories-name">
     
+        <span class="sidebar-category-name" data-categories="php"><span class="iconfont-archer">&#xe60a;</span>php</span>
+    
         <span class="sidebar-category-name" data-categories="react"><span class="iconfont-archer">&#xe60a;</span>react</span>
     
         <span class="sidebar-category-name" data-categories="vue"><span class="iconfont-archer">&#xe60a;</span>vue</span>
     
+        <span class="sidebar-category-name" data-categories="webpack3"><span class="iconfont-archer">&#xe60a;</span>webpack3</span>
+    
+        <span class="sidebar-category-name" data-categories="css和js基础面试题"><span class="iconfont-archer">&#xe60a;</span>css和js基础面试题</span>
+    
         <span class="sidebar-category-name" data-categories="webpack4"><span class="iconfont-archer">&#xe60a;</span>webpack4</span>
+    
+        <span class="sidebar-category-name" data-categories="mockjs运用"><span class="iconfont-archer">&#xe60a;</span>mockjs运用</span>
+    
+        <span class="sidebar-category-name" data-categories="跨域方案"><span class="iconfont-archer">&#xe60a;</span>跨域方案</span>
     
         <span class="sidebar-category-name" data-categories="墨菲定律"><span class="iconfont-archer">&#xe60a;</span>墨菲定律</span>
     

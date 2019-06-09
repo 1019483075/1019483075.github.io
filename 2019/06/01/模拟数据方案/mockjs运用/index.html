@@ -1,0 +1,1697 @@
+<!DOCTYPE html>
+<html lang="">
+    <!-- title -->
+
+
+
+
+<!-- keywords -->
+
+
+
+
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="author" content="令夕">
+    <meta name="renderer" content="webkit">
+    <meta name="copyright" content="令夕">
+    
+    <meta name="keywords" content="hexo,hexo-theme,hexo-blog">
+    
+    <meta name="description" content>
+    <meta http-equiv="Cache-control" content="no-cache">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>mockjs运用 · 令夕</title>
+    <style type="text/css">
+    @font-face {
+        font-family: 'Oswald-Regular';
+        src: url("/font/Oswald-Regular.ttf");
+    }
+
+    body {
+        margin: 0;
+    }
+
+    header,
+    footer,
+    .back-top,
+    .sidebar,
+    .container,
+    .site-intro-meta,
+    .toc-wrapper {
+        display: none;
+    }
+
+    .site-intro {
+        position: relative;
+        z-index: 3;
+        width: 100%;
+        /* height: 50vh; */
+        overflow: hidden;
+    }
+
+    .site-intro-placeholder {
+        position: absolute;
+        z-index: -2;
+        top: 0;
+        left: 0;
+        width: calc(100% + 300px);
+        height: 100%;
+        background: repeating-linear-gradient(-45deg, #444 0, #444 80px, #333 80px, #333 160px);
+        background-position: center center;
+        transform: translate3d(-226px, 0, 0);
+        animation: gradient-move 2.5s ease-out 0s infinite;
+    }
+
+    @keyframes gradient-move {
+        0% {
+            transform: translate3d(-226px, 0, 0);
+        }
+        100% {
+            transform: translate3d(0, 0, 0);
+        }
+    }
+
+</style>
+
+    <link rel="preload" href="/css/style.css?v=20180824" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="stylesheet" href="/css/mobile.css?v=20180824" media="(max-width: 980px)">
+    
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    
+    <!-- /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
+/* This file is meant as a standalone workflow for
+- testing support for link[rel=preload]
+- enabling async CSS loading in browsers that do not support rel=preload
+- applying rel preload css once loaded, whether supported or not.
+*/ -->
+<script>
+(function( w ){
+	"use strict";
+	// rel=preload support test
+	if( !w.loadCSS ){
+		w.loadCSS = function(){};
+	}
+	// define on the loadCSS obj
+	var rp = loadCSS.relpreload = {};
+	// rel=preload feature support test
+	// runs once and returns a function for compat purposes
+	rp.support = (function(){
+		var ret;
+		try {
+			ret = w.document.createElement( "link" ).relList.supports( "preload" );
+		} catch (e) {
+			ret = false;
+		}
+		return function(){
+			return ret;
+		};
+	})();
+
+	// if preload isn't supported, get an asynchronous load by using a non-matching media attribute
+	// then change that media back to its intended value on load
+	rp.bindMediaToggle = function( link ){
+		// remember existing media attr for ultimate state, or default to 'all'
+		var finalMedia = link.media || "all";
+
+		function enableStylesheet(){
+			link.media = finalMedia;
+		}
+
+		// bind load handlers to enable media
+		if( link.addEventListener ){
+			link.addEventListener( "load", enableStylesheet );
+		} else if( link.attachEvent ){
+			link.attachEvent( "onload", enableStylesheet );
+		}
+
+		// Set rel and non-applicable media type to start an async request
+		// note: timeout allows this to happen async to let rendering continue in IE
+		setTimeout(function(){
+			link.rel = "stylesheet";
+			link.media = "only x";
+		});
+		// also enable media after 3 seconds,
+		// which will catch very old browsers (android 2.x, old firefox) that don't support onload on link
+		setTimeout( enableStylesheet, 3000 );
+	};
+
+	// loop through link elements in DOM
+	rp.poly = function(){
+		// double check this to prevent external calls from running
+		if( rp.support() ){
+			return;
+		}
+		var links = w.document.getElementsByTagName( "link" );
+		for( var i = 0; i < links.length; i++ ){
+			var link = links[ i ];
+			// qualify links to those with rel=preload and as=style attrs
+			if( link.rel === "preload" && link.getAttribute( "as" ) === "style" && !link.getAttribute( "data-loadcss" ) ){
+				// prevent rerunning on link
+				link.setAttribute( "data-loadcss", true );
+				// bind listeners to toggle media back
+				rp.bindMediaToggle( link );
+			}
+		}
+	};
+
+	// if unsupported, run the polyfill
+	if( !rp.support() ){
+		// run once at least
+		rp.poly();
+
+		// rerun poly on an interval until onload
+		var run = w.setInterval( rp.poly, 500 );
+		if( w.addEventListener ){
+			w.addEventListener( "load", function(){
+				rp.poly();
+				w.clearInterval( run );
+			} );
+		} else if( w.attachEvent ){
+			w.attachEvent( "onload", function(){
+				rp.poly();
+				w.clearInterval( run );
+			} );
+		}
+	}
+
+
+	// commonjs
+	if( typeof exports !== "undefined" ){
+		exports.loadCSS = loadCSS;
+	}
+	else {
+		w.loadCSS = loadCSS;
+	}
+}( typeof global !== "undefined" ? global : this ) );
+</script>
+
+    <link rel="icon" href="/assets/favicon.ico">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js" as="script">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js" as="script">
+    <link rel="preload" href="/scripts/main.js" as="script">
+    <link rel="preload" as="font" href="/font/Oswald-Regular.ttf" crossorigin>
+    <link rel="preload" as="font" href="https://at.alicdn.com/t/font_327081_1dta1rlogw17zaor.woff" crossorigin>
+    
+    <!-- fancybox -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" defer></script>
+    <!-- 百度统计  -->
+    
+    <!-- 谷歌统计  -->
+    
+</head>
+
+    
+        <body class="post-body">
+    
+    
+<header class="header">
+
+    <div class="read-progress"></div>
+    <div class="header-sidebar-menu">&#xe775;</div>
+    <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/">令夕</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">mockjs运用</a>
+            </div>
+    </div>
+    
+    <a class="home-link" href="/">令夕</a>
+</header>
+    <div class="wrapper">
+        <div class="site-intro" style="
+
+
+
+
+
+
+
+height:50vh;
+">
+    
+    <!-- 主页  -->
+    
+    
+    <!-- 404页  -->
+            
+    <div class="site-intro-placeholder"></div>
+    <div class="site-intro-img" style="background-image: url(https://source.unsplash.com/random)"></div>
+    <div class="site-intro-meta">
+        <!-- 标题  -->
+        <h1 class="intro-title">
+            <!-- 主页  -->
+            
+            mockjs运用
+            <!-- 404 -->
+            
+        </h1>
+        <!-- 副标题 -->
+        <p class="intro-subtitle">
+            <!-- 主页副标题  -->
+            
+            
+            <!-- 404 -->
+            
+        </p>
+        <!-- 文章页meta -->
+        
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                
+                    <div class="post-intro-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="mockjs运用">mockjs运用</a>
+    
+</div>
+                
+                
+                    <div class="post-intro-read">
+                        <span>字数统计: <span class="post-count word-count">2.2k</span>阅读时长: <span class="post-count reading-time">9 min</span></span>
+                    </div>
+                
+                <div class="post-intro-meta">
+                    <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                    <span class="post-intro-time">2019/06/01</span>
+                    
+                    <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                        <span class="iconfont-archer">&#xe602;</span>
+                        <span id="busuanzi_value_page_pv"></span>
+                    </span>
+                    
+                    <span class="shareWrapper">
+                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
+                        <span class="shareText">Share</span>
+                        <ul class="shareList">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
+        
+    </div>
+</div>
+        <script>
+ 
+  // get user agent
+  var browser = {
+    versions: function () {
+      var u = window.navigator.userAgent;
+      return {
+        userAgent: u,
+        trident: u.indexOf('Trident') > -1, //IE内核
+        presto: u.indexOf('Presto') > -1, //opera内核
+        webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+        gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+        mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
+        ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+        android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
+        iPhone: u.indexOf('iPhone') > -1 || u.indexOf('Mac') > -1, //是否为iPhone或者安卓QQ浏览器
+        iPad: u.indexOf('iPad') > -1, //是否为iPad
+        webApp: u.indexOf('Safari') == -1, //是否为web应用程序，没有头部与底部
+        weixin: u.indexOf('MicroMessenger') == -1, //是否为微信浏览器
+        uc: u.indexOf('UCBrowser') > -1 //是否为android下的UC浏览器
+      };
+    }()
+  }
+  console.log("userAgent:" + browser.versions.userAgent);
+
+  // callback
+  function fontLoaded() {
+    console.log('font loaded');
+    if (document.getElementsByClassName('site-intro-meta')) {
+      document.getElementsByClassName('intro-title')[0].classList.add('intro-fade-in');
+      document.getElementsByClassName('intro-subtitle')[0].classList.add('intro-fade-in');
+      var postIntros = document.getElementsByClassName('post-intros')[0]
+      if (postIntros) {
+        postIntros.classList.add('post-fade-in');
+      }
+    }
+  }
+
+  // UC不支持跨域，所以直接显示
+  function asyncCb(){
+    if (browser.versions.uc) {
+      console.log("UCBrowser");
+      fontLoaded();
+    } else {
+      WebFont.load({
+        custom: {
+          families: ['Oswald-Regular']
+        },
+        loading: function () {  //所有字体开始加载
+          // console.log('loading');
+        },
+        active: function () {  //所有字体已渲染
+          fontLoaded();
+        },
+        inactive: function () { //字体预加载失败，无效字体或浏览器不支持加载
+          console.log('inactive: timeout');
+          fontLoaded();
+        },
+        timeout: 5000 // Set the timeout to two seconds
+      });
+    }
+  }
+
+  function asyncErr(){
+    console.warn('script load from CDN failed, will load local script')
+  }
+
+  // load webfont-loader async, and add callback function
+  function async(u, cb, err) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (cb) { o.addEventListener('load', function (e) { cb(null, e); }, false); }
+    if (err) { o.addEventListener('error', function (e) { err(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+
+  var asyncLoadWithFallBack = function(arr, success, reject) {
+      var currReject = function(){
+        reject()
+        arr.shift()
+        if(arr.length)
+          async(arr[0], success, currReject)
+        }
+
+      async(arr[0], success, currReject)
+  }
+
+  asyncLoadWithFallBack([
+    "https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js", 
+    "https://cdn.bootcss.com/webfont/1.6.28/webfontloader.js",
+    "/lib/webfontloader.min.js"
+  ], asyncCb, asyncErr)
+</script>        
+        <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
+        <div class="container container-unloaded">
+            <main class="main post-page">
+    <article class="article-entry">
+        <p><a name="Oxoso"></a></p>
+<h4 id="demo-源码地址"><a href="#demo-源码地址" class="headerlink" title="demo 源码地址"></a><a href>demo 源码地址</a></h4><p><a name="Llo2a"></a></p>
+<h2 id="（一）了解-mockjs"><a href="#（一）了解-mockjs" class="headerlink" title="（一）了解 mockjs"></a>（一）了解 mockjs</h2><hr>
+<p><a name="b4Gc9"></a></p>
+<h4 id="什么是-mockjs？"><a href="#什么是-mockjs？" class="headerlink" title="什么是 mockjs？"></a>什么是 mockjs？</h4><p>mockjs 就是一个模拟数据，生成随机数据，拦截 ajax 请求。<br><a name="dBaAx"></a></p>
+<h4 id="为什么要使用-mockjs？"><a href="#为什么要使用-mockjs？" class="headerlink" title="为什么要使用 mockjs？"></a>为什么要使用 mockjs？</h4><ul>
+<li>后端给不了数据</li>
+<li>数据太长，将数据放在 js 文件里面，完成后挨个改 url</li>
+<li>还原真实数据</li>
+<li>特殊格式 ip 随机数 图片 地址</li>
+<li>分页显示<br><a name="RLASP"></a></li>
+</ul>
+<h4 id="mockjs-的功能"><a href="#mockjs-的功能" class="headerlink" title="mockjs 的功能"></a>mockjs 的功能</h4><ul>
+<li>生产数据:通过 mockjs 提供的方法,你可以轻松地创造大量随机的文本,数字,布尔值,日期,邮箱,链接,图片,颜色等.</li>
+<li>强大的拦截功能:mockjs 可以进行强大的 ajax 拦截.能判断请求类型,获取到 url,请求参数等.然后可以返回 mock 的假数据,或者你自己编好的 json 文件.功能强大易上手.<br><a name="SPaAz"></a></li>
+</ul>
+<h2 id="（二）mockjs-语法规则"><a href="#（二）mockjs-语法规则" class="headerlink" title="（二）mockjs 语法规则"></a>（二）mockjs 语法规则</h2><hr>
+<p><a name="Vud7f"></a></p>
+<h4 id="mockjs-可以模拟那些数据？"><a href="#mockjs-可以模拟那些数据？" class="headerlink" title="mockjs 可以模拟那些数据？"></a>mockjs 可以模拟那些数据？</h4><ul>
+<li>string</li>
+<li>number</li>
+<li>bool</li>
+<li>array</li>
+<li>object</li>
+<li>guid</li>
+<li>id</li>
+<li>title</li>
+<li>paragraph</li>
+<li>images</li>
+<li>address</li>
+<li>date</li>
+<li>time</li>
+<li>url</li>
+<li>email</li>
+<li>ip</li>
+<li>regexp<br><a name="pei3L"></a></li>
+</ul>
+<h4 id="mockjs-语法规范包含的两层规范"><a href="#mockjs-语法规范包含的两层规范" class="headerlink" title="mockjs 语法规范包含的两层规范"></a>mockjs 语法规范包含的两层规范</h4><ul>
+<li>数据模板（DTD）</li>
+<li>数据占位符（DPD）<br><a name="5jaFw"></a></li>
+</ul>
+<h4 id="数据模板（DTD）规范"><a href="#数据模板（DTD）规范" class="headerlink" title="数据模板（DTD）规范"></a>数据模板（DTD）规范</h4><p>数据模板中的每个属性由三部分构成：属性名、生产规则、属性值</p>
+<blockquote>
+<p>// 格式<br>‘name| rule:value’<br>name: 属性名<br>rule: 生成规则<br>value: 属性值</p>
+</blockquote>
+<p>属性名和生成规则之间用竖线|分割。生成规则是可选的。生成的规则有一下 7 中方式</p>
+<blockquote>
+<p>1）’name|min-max’: value<br>2）’name|count’: value<br>3）’name|min-max.dmin-dmax’: value<br>4）’name|min-max.dcount’: value<br>5）’name|count.dmin-dmax’: value<br>6）’name|count.dcount’: value<br>7）’name|+step’: value</p>
+</blockquote>
+<p>生成规则的含义 需要依赖   属性值   才能确定<br>属性值   中可以含有占位符<br>属性值   还可以指定最终值 初始值和类型<br><a name="UXiba"></a></p>
+<h4 id="生成规则和具体案例"><a href="#生成规则和具体案例" class="headerlink" title="生成规则和具体案例"></a>生成规则和具体案例</h4><ul>
+<li><strong>属性值是字符串 String</strong></li>
+</ul>
+<p>1）’name|min-max’: ‘value’   通过重复’value’ 生成一个字符串，重复次数大雨等于 min，小于等于 max</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Mock.mock(<span class="string">"/testString"</span>, <span class="string">"get"</span>, &#123;</span><br><span class="line">  <span class="string">"demo1|1-10"</span>: <span class="string">"*"</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>打印结果<br><img src="https://cdn.nlark.com/yuque/0/2019/png/105657/1559097402159-01ea5bcf-85cc-4432-b1a4-a2c3a49a81f6.png#align=left&display=inline&height=182&name=image.png&originHeight=173&originWidth=771&size=24339&status=done&width=811.5789575523949" alt="image.png"><br>2）’name|count’: ‘value’ ：通过重复 ‘value’ 生成一个字符串，重复次数等于 count</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Mock.mock(<span class="string">"/testString"</span>, <span class="string">"get"</span>, &#123;</span><br><span class="line">  <span class="string">"demo1|1-10"</span>: <span class="string">"*"</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>打印结果<br><img src="https://cdn.nlark.com/yuque/0/2019/png/105657/1559097661162-16a09e0a-f922-4258-9bed-e14dd481365a.png#align=left&display=inline&height=211&name=image.png&originHeight=200&originWidth=745&size=25627&status=done&width=784.2105361563348" alt="image.png"></p>
+<ul>
+<li><strong>属性值是数字 number</strong></li>
+</ul>
+<p>1）’name|min-max’:value ：生成一个大于等于 min，小于等于 max 的整数，属性值 value 只用来确定类型</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Mock.mock(<span class="string">"/testNumber"</span>, <span class="string">"get"</span>, &#123;</span><br><span class="line">  <span class="string">"demo1|1-100"</span>: <span class="number">100</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>打印结果<br><img src="https://cdn.nlark.com/yuque/0/2019/png/105657/1559098216750-8aad5362-83a4-4654-869f-1b7c4a473fd5.png#align=left&display=inline&height=137&name=image.png&originHeight=130&originWidth=789&size=21247&status=done&width=830.5263262112056" alt="image.png"><br>2）’name|+step’:value ：属性值自动加 step，初始值为 value</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Mock.mock(<span class="string">"/testNumber"</span>, <span class="string">"get"</span>, &#123;</span><br><span class="line">  <span class="string">"list|5"</span>: [</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="string">"id|+1"</span>: <span class="number">1</span></span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>打印结果<br><img src="https://cdn.nlark.com/yuque/0/2019/png/105657/1559099202948-0bacc269-ff7f-45a7-926a-33ea94d7b5e3.png#align=left&display=inline&height=187&name=image.png&originHeight=178&originWidth=771&size=19728&status=done&width=811.5789575523949" alt="image.png"><br>3）’name|min-max.dmin-dmax’:value 生成一个浮点数，整数部分大雨等于 min，大于等于 max，小数部分保留 dmin-dmax</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Mock.mock(<span class="string">"/testNumber"</span>, <span class="string">"get"</span>, &#123;</span><br><span class="line">  <span class="string">"demo3|1-100.1-10"</span>: <span class="number">100</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>打印结果<br><img src="https://cdn.nlark.com/yuque/0/2019/png/105657/1559099771619-d91e6aac-ac6a-49fd-aaf7-2b48eefe5a78.png#align=left&display=inline&height=91&name=image.png&originHeight=86&originWidth=791&size=14292&status=done&width=832.631589395518" alt="image.png"><br>4）’name|min-max.dcount’:value 生成一个浮点数，整数部分大于等于 min，小于等于 max，小数部分保留 dcount</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Mock.mock(<span class="string">"/testNumber"</span>, <span class="string">"get"</span>, &#123;</span><br><span class="line">  <span class="string">"demo6|1-100.1"</span>: <span class="number">1</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>打印结果<br><img src="https://cdn.nlark.com/yuque/0/2019/png/105657/1559100184787-4862d9db-b86e-4cea-b8c2-2364a61bc4bb.png#align=left&display=inline&height=69&name=image.png&originHeight=66&originWidth=665&size=10925&status=done&width=700.0000087838425" alt="image.png"><br>5）’name|count.dmin-dmax’:value 生成一个浮点数，整数部分为 count，小数部分保留 dmin-dmax</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Mock.mock(<span class="string">"/testNumber"</span>, <span class="string">"get"</span>, &#123;</span><br><span class="line">  <span class="string">"demo7|23.1-10"</span>: <span class="number">100</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>打印结果<br><img src="https://cdn.nlark.com/yuque/0/2019/png/105657/1559100363329-b5ffbe59-d366-46a6-8718-538ab486aca6.png#align=left&display=inline&height=81&name=image.png&originHeight=77&originWidth=744&size=12971&status=done&width=783.1579045641787" alt="image.png"></p>
+<ul>
+<li><strong>属性值是布尔</strong></li>
+</ul>
+<p>1）’name|count’:value 随机生成一个布尔值，值为 value 的概率为 count/(1+count)，值不为 value 的概率为 1/(1+count)</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Mock.mock(<span class="string">"/testBoolean"</span>, <span class="string">"get"</span>, &#123;</span><br><span class="line">  <span class="string">"demo|3"</span>: <span class="literal">true</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>打印结果<br><img src="https://cdn.nlark.com/yuque/0/2019/png/105657/1559100936099-383736f8-bb48-4b8c-a6d6-4289bae114e2.png#align=left&display=inline&height=95&name=image.png&originHeight=90&originWidth=720&size=13122&status=done&width=757.894746352431" alt="image.png"><br>2）’name|min-max’:value ：随机生成一个布尔值，值为 value 的概率是 min/(min+max)，值不为 value 的概率是 max/(min+max)</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Mock.mock(<span class="string">"/testBoolean"</span>, <span class="string">"get"</span>, &#123;</span><br><span class="line">  <span class="string">"demo10|1-10"</span>: <span class="literal">true</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>打印结果<br><img src="https://cdn.nlark.com/yuque/0/2019/png/105657/1559101372115-e32a2b65-59a0-4654-93c7-67e343d19a9c.png#align=left&display=inline&height=104&name=image.png&originHeight=99&originWidth=761&size=14825&status=done&width=801.0526416308333" alt="image.png"></p>
+<ul>
+<li><strong>属性值是 object</strong></li>
+</ul>
+<p>1）’name|min-max’: {} 从属性值{} 中随机选取 min-max 个属性</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Mock.mock(<span class="string">"/testObject"</span>, <span class="string">"get"</span>, &#123;</span><br><span class="line">  <span class="string">"demo11|2-4"</span>: &#123;</span><br><span class="line">    <span class="string">"110000"</span>: <span class="string">"北京市"</span>,</span><br><span class="line">    <span class="string">"120000"</span>: <span class="string">"天津市"</span>,</span><br><span class="line">    <span class="string">"130000"</span>: <span class="string">"河北省"</span>,</span><br><span class="line">    <span class="string">"140000"</span>: <span class="string">"山西省"</span>,</span><br><span class="line">    <span class="string">"150000"</span>: <span class="string">"宁夏省"</span>,</span><br><span class="line">    <span class="string">"160000"</span>: <span class="string">"陕西省"</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>运行结果<br><img src="https://cdn.nlark.com/yuque/0/2019/png/105657/1559111136532-72f39cd1-596b-49f2-bc37-25299d6abeb8.png#align=left&display=inline&height=144&name=image.png&originHeight=137&originWidth=702&size=16795&status=done&width=738.9473776936202" alt="image.png"><br>2）’name|count”   从属性值{}中随机选取 count 个属性</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Mock.mock(<span class="string">"/testObject"</span>, <span class="string">"get"</span>, &#123;</span><br><span class="line">  <span class="string">"demo12|2"</span>: &#123;</span><br><span class="line">    姓名: <span class="string">"张三"</span>,</span><br><span class="line">    性别: <span class="string">"男"</span>,</span><br><span class="line">    年龄: <span class="string">"32"</span>,</span><br><span class="line">    爱好: <span class="string">"敲代码"</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>运行结果<br><img src="https://cdn.nlark.com/yuque/0/2019/png/105657/1559111319321-67eb1522-53fe-4614-b427-39761f7d76f3.png#align=left&display=inline&height=131&name=image.png&originHeight=124&originWidth=757&size=15824&status=done&width=796.8421152622087" alt="image.png"></p>
+<ul>
+<li><strong>属性值是数组</strong></li>
+</ul>
+<p>1）’name|1’:[“”,””]或’’’name|1’:[{}, {} …] 从属性值[]中随机选取 1 个元素，作为最终值</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Mock.mock(<span class="string">"/testArray"</span>, <span class="string">"get"</span>, &#123;</span><br><span class="line">  <span class="string">"demo13|1"</span>: [<span class="string">"AMD"</span>, <span class="string">"CMD"</span>, <span class="string">"UMD"</span>]</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>运行结果<br><img src="https://cdn.nlark.com/yuque/0/2019/png/105657/1559111689297-787c9a06-2130-4034-84c0-bf1a2ab28410.png#align=left&display=inline&height=80&name=image.png&originHeight=76&originWidth=667&size=11934&status=done&width=702.1052719681549" alt="image.png"><br>2）’name|count’: [‘ ‘, ‘ ‘ …]              或            ‘name|count’: [{}, {} …] 通过重复属性值[]生成一个新数组，重复次数为 count 次</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Mock.mock(<span class="string">"/testArray"</span>, <span class="string">"get"</span>, &#123;</span><br><span class="line">  <span class="string">"demo15|3"</span>: [<span class="string">"AMD"</span>, <span class="string">"CMD"</span>, <span class="string">"UMD"</span>]</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>运行结果<br><img src="https://cdn.nlark.com/yuque/0/2019/png/105657/1559111838715-6b7439e0-bcc8-4714-a41d-b2d0d0b3f641.png#align=left&display=inline&height=81&name=image.png&originHeight=77&originWidth=614&size=13504&status=done&width=646.3157975838786" alt="image.png"><br>3）’name|min-max’:[‘ ‘, ‘ ‘ …]  或   ‘name|min-max’:[{}, {} …]通过重复属性值[]生成一个新数组，重复次数为 min-max 次</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Mock.mock(<span class="string">"/testArray"</span>, <span class="string">"get"</span>, &#123;</span><br><span class="line">  <span class="string">"demo16|1-1"</span>: [<span class="string">"AMD"</span>, <span class="string">"CMD"</span>, <span class="string">"UMD"</span>]</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>运行结果<br><img src="https://cdn.nlark.com/yuque/0/2019/png/105657/1559112100503-7e73e3e0-281b-44be-83af-1643cf4e060f.png#align=left&display=inline&height=55&name=image.png&originHeight=52&originWidth=733&size=9353&status=done&width=771.578957050461" alt="image.png"></p>
+<ul>
+<li><strong>属性值是函数 Function</strong></li>
+</ul>
+<p>1）’name’:function(){} 执行函数 function(){}取其返回值作为最终的属性值，上下文为’name’所在属性</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Mock.mock(<span class="string">"/testFunction"</span>, <span class="string">"get"</span>, &#123;</span><br><span class="line">  foo: <span class="string">"Demo"</span>,</span><br><span class="line">  demo17: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.foo;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>打印结果<br><img src="https://cdn.nlark.com/yuque/0/2019/png/105657/1559121359944-21a1f6ba-d18d-49f9-9b8d-b1bc379e3709.png#align=left&display=inline&height=96&name=image.png&originHeight=91&originWidth=611&size=12489&status=done&width=643.1579028074102" alt="image.png"></p>
+<ul>
+<li><strong>属性值是函数(RegExp)</strong></li>
+</ul>
+<p>1）根据正则表达式 regexp 反向生成可以匹配他的字符串。用于生成自定义格式的字符串。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Mock.mock(<span class="string">"/testRegExp"</span>, <span class="string">"get"</span>, &#123;</span><br><span class="line">  regexp1: <span class="regexp">/[a-z][A-Z][0-9]/</span>,</span><br><span class="line">  regexp2: <span class="regexp">/\w\W\s\S\d\D/</span>,</span><br><span class="line">  regexp3: <span class="regexp">/\d&#123;5,10&#125;/</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>打印结果<br><img src="https://cdn.nlark.com/yuque/0/2019/png/105657/1559121681778-cd3ac532-0668-454d-912c-e4d7ef606977.png#align=left&display=inline&height=124&name=image.png&originHeight=118&originWidth=678&size=16385&status=done&width=713.6842194818724" alt="image.png"></p>
+<ul>
+<li><strong>属性值是路径(Path)</strong></li>
+</ul>
+<p>1）匹配当前元素的上下文所在的绝对路径，返回对应值</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Mock.mock(<span class="string">"/testPath"</span>, <span class="string">"get"</span>, &#123;</span><br><span class="line">  foo: <span class="string">"hello"</span>,</span><br><span class="line">  nested: &#123;</span><br><span class="line">    a: &#123;</span><br><span class="line">      b: &#123;</span><br><span class="line">        c: <span class="string">"Mock.js"</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  demo21: <span class="string">"@/foo @/nested/a/b/c"</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>打印结果<br><img src="https://cdn.nlark.com/yuque/0/2019/png/105657/1559121894362-803097f6-98eb-4dd9-9b15-eaca5aa4f656.png#align=left&display=inline&height=148&name=image.png&originHeight=141&originWidth=688&size=19097&status=done&width=724.210535403434" alt="image.png"><br><a name="RO0gD"></a></p>
+<h4 id="数据占位符定义规范-PDP"><a href="#数据占位符定义规范-PDP" class="headerlink" title="数据占位符定义规范 PDP"></a>数据占位符定义规范 PDP</h4><p>Mock.Random 是一个工具类，用于生成各种随机数据<br>Mock.Random 的方法在数据模板中成为[占位符]，书写格式为@占位符（参数[,参数]）<br>注意：</p>
+<ul>
+<li>用@来标识其后的字符串是占位符</li>
+<li>占位符引用的是 Mock.Random 中的方法</li>
+<li>通过 Mock.Random.extend()来拓展自定义占位符</li>
+<li>占位符也可以引用数据模板中的属性</li>
+<li>占位符会用先引用数据模板中的属性</li>
+<li>占位符支持相对路径和绝对路径<br>内置方法列表：<table>
+<thead>
+<tr>
+<th><strong>Type</strong></th>
+<th><strong>Method</strong></th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Basic</td>
+<td>boolean, natural, integer, float, character, string, range, date, time, datetime, now</td>
+<td></td>
+</tr>
+<tr>
+<td>image</td>
+<td>image,dataImage</td>
+<td></td>
+</tr>
+<tr>
+<td>Color</td>
+<td>color</td>
+<td></td>
+</tr>
+<tr>
+<td>Text</td>
+<td>paragraph, sentence, word, title, cparagraph, csentence, cword, ctitle</td>
+<td></td>
+</tr>
+<tr>
+<td>Name</td>
+<td>first,last,name,cfirst,clast,cname</td>
+<td></td>
+</tr>
+<tr>
+<td>Web</td>
+<td>url,domain,email,ip,tld</td>
+<td></td>
+</tr>
+<tr>
+<td>Address</td>
+<td>area,region</td>
+<td></td>
+</tr>
+<tr>
+<td>Helper</td>
+<td>capitalize, upper, lower, pick, shuffle</td>
+<td></td>
+</tr>
+<tr>
+<td>Miscellaneous</td>
+<td>guid,id</td>
+<td></td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+<p><a name="pMP7N"></a></p>
+<h4 id="内置方法的使用："><a href="#内置方法的使用：" class="headerlink" title="内置方法的使用："></a>内置方法的使用：</h4><ul>
+<li><strong>基本方法  String integer date</strong></li>
+</ul>
+<p><img src="https://cdn.nlark.com/yuque/0/2019/png/105657/1559268975494-92a94e12-9075-4f46-9249-76dbbc8a9b69.png#align=left&display=inline&height=233&name=image.png&originHeight=221&originWidth=306&size=12475&status=done&width=322.10526719978316" alt="image.png"><br>打印结果<br><img src="https://cdn.nlark.com/yuque/0/2019/png/105657/1559201737436-be1dd2db-0610-4e88-a882-c3bf2a104538.png#align=left&display=inline&height=223&name=image.png&originHeight=212&originWidth=932&size=35063&status=done&width=981.0526438895356" alt="image.png"><br><a name="9mdN4"></a></p>
+<h4 id="拓展"><a href="#拓展" class="headerlink" title="拓展"></a>拓展</h4><p>Mock.Random 中的方法与数据模板的@占位符一一对应，在需要时还可以为 Mock.Random 拓展方法，然后在数据模板中通过@拓展方法引用。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">Random.extend(&#123;</span><br><span class="line">  weekday: <span class="function"><span class="keyword">function</span>(<span class="params">date</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> weekdays = [</span><br><span class="line">      <span class="string">"Sunday"</span>,</span><br><span class="line">      <span class="string">"Monday"</span>,</span><br><span class="line">      <span class="string">"Tuesday"</span>,</span><br><span class="line">      <span class="string">"Wednesday"</span>,</span><br><span class="line">      <span class="string">"Thursday"</span>,</span><br><span class="line">      <span class="string">"Friday"</span>,</span><br><span class="line">      <span class="string">"Saturday"</span></span><br><span class="line">    ];</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.pick(weekdays);</span><br><span class="line">  &#125;,</span><br><span class="line">  sex: <span class="function"><span class="keyword">function</span>(<span class="params">date</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> sexes = [<span class="string">"男"</span>, <span class="string">"女"</span>, <span class="string">"中性"</span>, <span class="string">"未知"</span>];</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.pick(sexes);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="built_in">console</span>.log(Random.weekday());</span><br></pre></td></tr></table></figure>
+
+<p>运行结果<br><img src="https://cdn.nlark.com/yuque/0/2019/png/105657/1559269686503-a534e168-8c78-4b1d-b79c-b5c621cc1c42.png#align=left&display=inline&height=24&name=image.png&originHeight=23&originWidth=1013&size=1910&status=done&width=1066.315802854184" alt="image.png"><br><a name="elVSh"></a></p>
+<h2 id="（三）Mockjs-在-vue-项目中的运用"><a href="#（三）Mockjs-在-vue-项目中的运用" class="headerlink" title="（三）Mockjs 在 vue 项目中的运用"></a>（三）Mockjs 在 vue 项目中的运用</h2><p><strong>安装</strong></p>
+<blockquote>
+<p>npm install mockjs –save-dev<br>npm install axios –save</p>
+</blockquote>
+<p><strong>目录结构</strong></p>
+<blockquote>
+<p>src/mock.js  mock 文件存放目录<br>src/main.js   引入 mockjs</p>
+</blockquote>
+<p><img src="https://cdn.nlark.com/yuque/0/2019/png/105657/1559700623838-7141f23c-bee7-407a-b206-43e89d7cac97.png#align=left&display=inline&height=362&name=image.png&originHeight=344&originWidth=398&size=33387&status=done&width=418.94737367814935" alt="image.png"><br><strong>在 src/mock.js</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 引入mockjs</span></span><br><span class="line"><span class="keyword">const</span> Mock = <span class="built_in">require</span>(<span class="string">"mockjs"</span>);</span><br><span class="line"><span class="comment">// 获取 mock.Random 对象</span></span><br><span class="line"><span class="keyword">const</span> Random = Mock.Random;</span><br><span class="line"><span class="comment">// mock一组数据</span></span><br><span class="line"><span class="keyword">const</span> produceNewsData = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> articles = [];</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">    <span class="keyword">let</span> newArticleObject = &#123;</span><br><span class="line">      title: Random.csentence(<span class="number">5</span>, <span class="number">30</span>), <span class="comment">//  Random.csentence( min, max )</span></span><br><span class="line">      thumbnail_pic_s: Random.dataImage(<span class="string">"300x250"</span>, <span class="string">"mock的图片1"</span>), <span class="comment">// Random.dataImage( size, text ) 生成一段随机的 Base64 图片编码</span></span><br><span class="line">      author_name: Random.cname(), <span class="comment">// Random.cname() 随机生成一个常见的中文姓名</span></span><br><span class="line">      date: Random.date() + <span class="string">" "</span> + Random.time() <span class="comment">// Random.date()指示生成的日期字符串的格式,默认为yyyy-MM-dd；Random.time() 返回一个随机的时间字符串</span></span><br><span class="line">    &#125;;</span><br><span class="line">    articles.push(newArticleObject);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    code: <span class="number">0</span>,</span><br><span class="line">    data: &#123;</span><br><span class="line">      articles: articles</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">// Mock.toJSONSchema(produceNewsData);</span></span><br><span class="line"><span class="comment">// Mock.mock( url, post/get , 返回的数据)；</span></span><br><span class="line">Mock.mock(<span class="string">"/news/index"</span>, <span class="string">"get"</span>, produceNewsData);</span><br></pre></td></tr></table></figure>
+
+<p><strong>在 src/main.js</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (process.env.NODE_ENV !== <span class="string">"production"</span>) &#123;</span><br><span class="line">  <span class="comment">// 判断只在生产环境下使用</span></span><br><span class="line">  <span class="built_in">require</span>(<span class="string">"./mock"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>在 xxx.vue 中引用</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div id=<span class="string">"app"</span>&gt;</span><br><span class="line">    &lt;img alt=<span class="string">"Vue logo"</span> src=<span class="string">"./assets/logo.png"</span>&gt;</span><br><span class="line">    &lt;HelloWorld msg=<span class="string">"Welcome to Your Vue.js App"</span>/&gt;</span><br><span class="line">    &lt;ul&gt;</span><br><span class="line">      &lt;li v-<span class="keyword">for</span>=<span class="string">"(item,index) in list"</span> :key=<span class="string">"index"</span>&gt;</span><br><span class="line">        &lt;img :src=<span class="string">"item.thumbnail_pic_s"</span> alt&gt;</span><br><span class="line">      &lt;<span class="regexp">/li&gt;</span></span><br><span class="line"><span class="regexp">    &lt;/u</span>l&gt;</span><br><span class="line">  &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line"><span class="keyword">import</span> HelloWorld <span class="keyword">from</span> <span class="string">"./components/HelloWorld.vue"</span>;</span><br><span class="line"><span class="keyword">import</span> axios <span class="keyword">from</span> <span class="string">"axios"</span>;</span><br><span class="line"><span class="comment">// import &#123; constants &#125; from 'crypto';</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  name: <span class="string">"app"</span>,</span><br><span class="line">  components: &#123;</span><br><span class="line">    HelloWorld</span><br><span class="line">  &#125;,</span><br><span class="line">  data() &#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">      list: []</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;,</span><br><span class="line">  created() &#123;</span><br><span class="line">    axios.get(<span class="string">"/news/index"</span>).then(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="built_in">console</span>.log(res.data.data.articles);</span><br><span class="line">      <span class="keyword">this</span>.list = res.data.data.articles;</span><br><span class="line">    &#125;)；</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">&lt;style&gt;</span></span><br><span class="line"><span class="regexp">#app &#123;</span></span><br><span class="line"><span class="regexp">  font-family: "Avenir", Helvetica, Arial, sans-serif;</span></span><br><span class="line"><span class="regexp">  -webkit-font-smoothing: antialiased;</span></span><br><span class="line"><span class="regexp">  -moz-osx-font-smoothing: grayscale;</span></span><br><span class="line"><span class="regexp">  text-align: center;</span></span><br><span class="line"><span class="regexp">  color: #2c3e50;</span></span><br><span class="line"><span class="regexp">  margin-top: 60px;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br><span class="line"><span class="regexp">&lt;/</span>style&gt;</span><br></pre></td></tr></table></figure>
+
+<p><strong>响应结果：</strong><br><img src="https://cdn.nlark.com/yuque/0/2019/png/105657/1559700968502-e6884d21-5a6a-4827-9dc6-194cd189d9a3.png#align=left&display=inline&height=406&name=image.png&originHeight=386&originWidth=631&size=241364&status=done&width=664.2105346505333" alt="image.png"><br><a name="cTAnN"></a></p>
+<h2 id="（四）使用总结："><a href="#（四）使用总结：" class="headerlink" title="（四）使用总结："></a>（四）使用总结：</h2><p><strong>优点</strong><br>前后端分离：让前端攻城师独立于后端进行开发。<br>增加单元测试的真实性：通过随机数据，模拟各种场景。<br>开发无侵入：不需要修改既有代码，就可以拦截 Ajax 请求，返回模拟的响应数据。<br>用法简单：符合直觉的接口。<br>数据类型丰富：支持生成随机的文本、数字、布尔值、日期、邮箱、链接、图片、颜色等。<br>方便扩展：支持支持扩展更多数据类型，支持自定义函数和正则。<br><strong>缺点</strong><br>Mock 也不是 silver bullet，所以根据项目实际情况和具体需要来确定是否选用 Mock；<br>测试过程中如果大量使用 Mock，mock 测试的场景失去了真是性，可能会导致在后续的系统性测试时才发现 bug，使得缺陷发现的较晚，可能会造成后续修复成本更大；</p>
+
+    </article>
+    <!-- license  -->
+    
+    <!-- paginator  -->
+    <ul class="post-paginator">
+        <li class="next">
+            
+                <div class="nextSlogan">Next Post</div>
+                <a href="/2019/06/01/墨菲定理/（一）成功学的秘密/" title="（一）成功学的秘密">
+                    <div class="nextTitle">（一）成功学的秘密</div>
+                </a>
+            
+        </li>
+        <li class="previous">
+            
+                <div class="prevSlogan">Previous Post</div>
+                <a href="/2019/05/25/webpack4/（五）Code Splitting代码分割/" title="（五）Code  Splitting代码分割">
+                    <div class="prevTitle">（五）Code  Splitting代码分割</div>
+                </a>
+            
+        </li>
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+<!-- City版安装代码已完成 -->
+    
+    
+    <!-- partial('_partial/comment/changyan') -->
+    <!--PC版-->
+
+
+    
+    
+
+    <!-- 评论 -->
+</main>
+            <!-- profile -->
+            
+        </div>
+        <footer class="footer footer-unloaded">
+    <!-- social  -->
+    
+    <div class="social">
+        
+    
+        
+    
+        
+            
+                <a href="//github.com/fi3ework" class="iconfont-archer github" target="_blank" title="github"></a>
+            
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+            
+                <a href="https://juejin.im/user/5ab6f52af265da23866fd966" class="iconfont-archer juejin" target="_blank" title="juejin"></a>
+            
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+    </div>
+    
+    <!-- powered by Hexo  -->
+    <div class="copyright">
+        <span id="hexo-power">Powered by <a href="https://hexo.io/" target="_blank">Hexo</a></span><span class="iconfont-archer power">&#xe635;</span><span id="theme-info">theme <a href="https://github.com/fi3ework/hexo-theme-archer" target="_blank">Archer</a></span>
+    </div>
+    <!-- 不蒜子  -->
+    
+    <div class="busuanzi-container">
+    
+     
+    <span id="busuanzi_container_site_pv">PV: <span id="busuanzi_value_site_pv"></span> :)</span>
+    
+    </div>
+    
+</footer>
+    </div>
+    <!-- toc -->
+    
+    <div class="toc-wrapper" style=
+    
+
+
+
+
+
+
+
+top:50vh;
+
+    >
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#demo-源码地址"><span class="toc-number">1.</span> <span class="toc-text">demo 源码地址</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#（一）了解-mockjs"><span class="toc-number"></span> <span class="toc-text">（一）了解 mockjs</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#什么是-mockjs？"><span class="toc-number">1.</span> <span class="toc-text">什么是 mockjs？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#为什么要使用-mockjs？"><span class="toc-number">2.</span> <span class="toc-text">为什么要使用 mockjs？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#mockjs-的功能"><span class="toc-number">3.</span> <span class="toc-text">mockjs 的功能</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#（二）mockjs-语法规则"><span class="toc-number"></span> <span class="toc-text">（二）mockjs 语法规则</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#mockjs-可以模拟那些数据？"><span class="toc-number">1.</span> <span class="toc-text">mockjs 可以模拟那些数据？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#mockjs-语法规范包含的两层规范"><span class="toc-number">2.</span> <span class="toc-text">mockjs 语法规范包含的两层规范</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#数据模板（DTD）规范"><span class="toc-number">3.</span> <span class="toc-text">数据模板（DTD）规范</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#生成规则和具体案例"><span class="toc-number">4.</span> <span class="toc-text">生成规则和具体案例</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#数据占位符定义规范-PDP"><span class="toc-number">5.</span> <span class="toc-text">数据占位符定义规范 PDP</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#内置方法的使用："><span class="toc-number">6.</span> <span class="toc-text">内置方法的使用：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#拓展"><span class="toc-number">7.</span> <span class="toc-text">拓展</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#（三）Mockjs-在-vue-项目中的运用"><span class="toc-number"></span> <span class="toc-text">（三）Mockjs 在 vue 项目中的运用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#（四）使用总结："><span class="toc-number"></span> <span class="toc-text">（四）使用总结：</span></a>
+    </div>
+    
+    <div class="back-top iconfont-archer">&#xe639;</div>
+    <div class="sidebar sidebar-hide">
+    <ul class="sidebar-tabs sidebar-tabs-active-0">
+        <li class="sidebar-tab-archives"><span class="iconfont-archer">&#xe67d;</span><span class="tab-name">Archive</span></li>
+        <li class="sidebar-tab-tags"><span class="iconfont-archer">&#xe61b;</span><span class="tab-name">Tag</span></li>
+        <li class="sidebar-tab-categories"><span class="iconfont-archer">&#xe666;</span><span class="tab-name">Cate</span></li>
+    </ul>
+    <div class="sidebar-content sidebar-content-show-archive">
+          <div class="sidebar-panel-archives">
+    <!-- 在ejs中将archive按照时间排序 -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <div class="total-and-search">
+        <div class="total-archive">
+        Total : 42
+        </div>
+        <!-- search  -->
+        
+    </div>
+    
+    <div class="post-archive">
+    
+    
+    
+    
+    <div class="archive-year"> 2019 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/04</span><a class="archive-post-title" href="/2019/06/04/webpack4/（十）CSS Tree Shaking/">（十）CSS Tree Shaking</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/04</span><a class="archive-post-title" href="/2019/06/04/webpack4/（九）JS Tree Shaking/">（九）JS Tree Shaking</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/03</span><a class="archive-post-title" href="/2019/06/03/webpack4/（八）处理css和scss/">（八）处理CSS/SCSS文件</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/03</span><a class="archive-post-title" href="/2019/06/03/webpack4/（七）自动生成 HTML 文件/">（七）自动生成 HTML 文件</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/02</span><a class="archive-post-title" href="/2019/06/02/webpack4/（六）Lazy Loading、Prefetching/">（六）Lazy Loading、Prefetching</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/01</span><a class="archive-post-title" href="/2019/06/01/墨菲定理/（一）成功学的秘密/">（一）成功学的秘密</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/01</span><a class="archive-post-title" href="/2019/06/01/模拟数据方案/mockjs运用/">mockjs运用</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/25</span><a class="archive-post-title" href="/2019/05/25/webpack4/（五）Code Splitting代码分割/">（五）Code  Splitting代码分割</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/24</span><a class="archive-post-title" href="/2019/05/24/webpack4/（四）用babel编译成 ES6/">（四）用babel编译成 ES6</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/23</span><a class="archive-post-title" href="/2019/05/23/webpack4/（三）覆盖默认entry和output/">（三）覆盖默认entry和output</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/22</span><a class="archive-post-title" href="/2019/05/22/webpack4/（二）生产和开发模式/">（二）生产和开发模式</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/22</span><a class="archive-post-title" href="/2019/05/22/react/（四）拆分组件与组件之前的传值/">（四）拆分组件与组件之前的传值</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/21</span><a class="archive-post-title" href="/2019/05/21/webpack4/（一）搭建项目并打包JS文件/">（一）搭建项目并打包JS文件</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/20</span><a class="archive-post-title" href="/2019/05/20/react/（三）react的jsx语法理解/">（三）react的jsx语法理解</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/18</span><a class="archive-post-title" href="/2019/05/18/react/（二）响应设计思想与事件绑定/">（二）响应设计思想与事件绑定</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/17</span><a class="archive-post-title" href="/2019/05/17/react/（一）react开发目录介绍/">（一）react开发目录介绍</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> 2018 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/15</span><a class="archive-post-title" href="/2018/07/15/vue/JYSHT-跳转同一页面判断/">JYSHT-跳转同一页面判断</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/08</span><a class="archive-post-title" href="/2018/06/08/php基础/难点(1)-面向对象/">难点(1)-面向对象</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/04</span><a class="archive-post-title" href="/2018/06/04/php基础/数据库(2)-优化/">数据库(2)-优化</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/01</span><a class="archive-post-title" href="/2018/06/01/php基础/数据库(1)-终端命令操作/">数据库(1)-终端命令操作</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/30</span><a class="archive-post-title" href="/2018/05/30/vue/组件生命周期与组件传值/">组件生命周期与组件传值</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/30</span><a class="archive-post-title" href="/2018/05/30/vue/router-link与redirect用法/">router-link与redirect用法</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/24</span><a class="archive-post-title" href="/2018/05/24/vue/vuex与父子组件通讯/">vuex与父子组件通讯</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/21</span><a class="archive-post-title" href="/2018/05/21/vue/vue-music歌手详情页/">vue-music歌手详情页</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/18</span><a class="archive-post-title" href="/2018/05/18/vue/loading-图片懒加载/">loading-图片懒加载</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/17</span><a class="archive-post-title" href="/2018/05/17/vue/better-scroll-配置纵向滚动/">better-scroll-配置纵向滚动</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/17</span><a class="archive-post-title" href="/2018/05/17/vue/axios-获取接口，mock模拟数据配置/">axios-获取接口，mock模拟数据配置</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/17</span><a class="archive-post-title" href="/2018/05/17/vue/banner横向轮播图-组件封装思路/">banner横向轮播图-组件封装思路</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/17</span><a class="archive-post-title" href="/2018/05/17/vue/vueMusic歌手-左右链动/">vueMusic歌手-左右链动</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/09</span><a class="archive-post-title" href="/2018/05/09/php基础/基础(9)-文件函数/">基础(9)-文件函数</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/06</span><a class="archive-post-title" href="/2018/05/06/php基础/基础(8)-字符串函数/">基础(8)-字符串函数</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/05</span><a class="archive-post-title" href="/2018/05/05/php基础/基础(7)-数学函数与日期函数/">基础(7)-数学函数与日期函数</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/02</span><a class="archive-post-title" href="/2018/05/02/php基础/基础(6)-自定义数组函数/">基础(6)-自定义数组函数</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/28</span><a class="archive-post-title" href="/2018/04/28/php基础/基础(5)-数组与表单/">基础(5)-数组与表单</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2018/04/23/php基础/基础(4)-函数/">基础(4)-函数</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/20</span><a class="archive-post-title" href="/2018/04/20/php基础/基础(3)-流程控制/">基础(3)-流程控制</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/10</span><a class="archive-post-title" href="/2018/04/10/php基础/基础(2)-常量与运算符/">基础(2)-常量与运算符</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/08</span><a class="archive-post-title" href="/2018/04/08/php基础/基础(1)-变量定义与类型/">基础(1)-变量定义与类型</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">04/04</span><a class="archive-post-title" href="/2018/04/04/php基础/初级笔记/">初级笔记</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/15</span><a class="archive-post-title" href="/2018/01/15/跨域方案/跨域与浏览器/">跨域方案</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/04</span><a class="archive-post-title" href="/2018/01/04/webpack3/webpack3.0/">webpack3.0</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> 2017 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/04</span><a class="archive-post-title" href="/2017/12/04/基础前端/css和js基础面试题/">css和js基础面试题</a>
+        </li>
+    
+    </ul></div>
+  </div>
+        <div class="sidebar-panel-tags">
+    <div class="sidebar-tags-name">
+    
+        <span class="sidebar-tag-name" data-tags="php"><span class="iconfont-archer">&#xe606;</span>php</span>
+    
+        <span class="sidebar-tag-name" data-tags="react"><span class="iconfont-archer">&#xe606;</span>react</span>
+    
+        <span class="sidebar-tag-name" data-tags="vue"><span class="iconfont-archer">&#xe606;</span>vue</span>
+    
+        <span class="sidebar-tag-name" data-tags="webpack3"><span class="iconfont-archer">&#xe606;</span>webpack3</span>
+    
+        <span class="sidebar-tag-name" data-tags="css和js基础面试题"><span class="iconfont-archer">&#xe606;</span>css和js基础面试题</span>
+    
+        <span class="sidebar-tag-name" data-tags="webpack4"><span class="iconfont-archer">&#xe606;</span>webpack4</span>
+    
+        <span class="sidebar-tag-name" data-tags="mockjs运用"><span class="iconfont-archer">&#xe606;</span>mockjs运用</span>
+    
+        <span class="sidebar-tag-name" data-tags="跨域方案"><span class="iconfont-archer">&#xe606;</span>跨域方案</span>
+    
+        <span class="sidebar-tag-name" data-tags="墨菲定律"><span class="iconfont-archer">&#xe606;</span>墨菲定律</span>
+    
+    </div>
+    <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
+    <div class="tag-load-fail" style="display: none; color: #ccc; font-size: 0.6rem;">
+    缺失模块。<br>
+    1、请确保node版本大于6.2<br>
+    2、在博客根目录（注意不是archer根目录）执行以下命令：<br>
+    <span style="color: #f75357; font-size: 1rem; line-height: 2rem;">npm i hexo-generator-json-content --save</span><br>
+    3、在根目录_config.yml里添加配置：
+    <pre style="color: #787878; font-size: 0.6rem;">
+jsonContent:
+  meta: false
+  pages: false
+  posts:
+    title: true
+    date: true
+    path: true
+    text: false
+    raw: false
+    content: false
+    slug: false
+    updated: false
+    comments: false
+    link: false
+    permalink: false
+    excerpt: false
+    categories: true
+    tags: true</pre>
+    </div> 
+    <div class="sidebar-tags-list"></div>
+</div>
+        <div class="sidebar-panel-categories">
+    <div class="sidebar-categories-name">
+    
+        <span class="sidebar-category-name" data-categories="php"><span class="iconfont-archer">&#xe60a;</span>php</span>
+    
+        <span class="sidebar-category-name" data-categories="react"><span class="iconfont-archer">&#xe60a;</span>react</span>
+    
+        <span class="sidebar-category-name" data-categories="vue"><span class="iconfont-archer">&#xe60a;</span>vue</span>
+    
+        <span class="sidebar-category-name" data-categories="webpack3"><span class="iconfont-archer">&#xe60a;</span>webpack3</span>
+    
+        <span class="sidebar-category-name" data-categories="css和js基础面试题"><span class="iconfont-archer">&#xe60a;</span>css和js基础面试题</span>
+    
+        <span class="sidebar-category-name" data-categories="webpack4"><span class="iconfont-archer">&#xe60a;</span>webpack4</span>
+    
+        <span class="sidebar-category-name" data-categories="mockjs运用"><span class="iconfont-archer">&#xe60a;</span>mockjs运用</span>
+    
+        <span class="sidebar-category-name" data-categories="跨域方案"><span class="iconfont-archer">&#xe60a;</span>跨域方案</span>
+    
+        <span class="sidebar-category-name" data-categories="墨菲定律"><span class="iconfont-archer">&#xe60a;</span>墨菲定律</span>
+    
+    </div>
+    <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
+    <div class="sidebar-categories-list"></div>
+</div>
+    </div>
+</div> 
+    <script>
+    var siteMeta = {
+        root: "/",
+        author: "令夕"
+    }
+</script>
+    <!-- CDN failover -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+    <script type="text/javascript">
+        if (typeof window.$ === 'undefined')
+        {
+            console.warn('jquery load from jsdelivr failed, will load local script')
+            document.write('<script src="/lib/jquery.min.js">\x3C/script>')
+        }
+    </script>
+    <script src="/scripts/main.js"></script>
+    <!-- algolia -->
+    
+    <!-- busuanzi  -->
+    
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+    <!-- CNZZ  -->
+    
+    </div>
+    <!-- async load share.js -->
+    
+        <script src="/scripts/share.js" async></script>    
+     
+    </body>
+</html>
+
+
