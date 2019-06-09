@@ -22,7 +22,7 @@
     <meta name="description" content>
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>（四）用babel编译成 ES6 · 令夕</title>
+    <title>（十二）字体文件处理 · 令夕</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -217,7 +217,7 @@
                 <a href="/">令夕</a>
             </div>
             <div class="post-title">
-                <a href="#" class="post-name">（四）用babel编译成 ES6</a>
+                <a href="#" class="post-name">（十二）字体文件处理</a>
             </div>
     </div>
     
@@ -247,7 +247,7 @@ height:50vh;
         <h1 class="intro-title">
             <!-- 主页  -->
             
-            （四）用babel编译成 ES6
+            （十二）字体文件处理
             <!-- 404 -->
             
         </h1>
@@ -272,12 +272,12 @@ height:50vh;
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">1.2k</span>阅读时长: <span class="post-count reading-time">5 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">771</span>阅读时长: <span class="post-count reading-time">4 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
                     <span class="post-intro-calander iconfont-archer">&#xe676;</span>
-                    <span class="post-intro-time">2019/05/24</span>
+                    <span class="post-intro-time">2019/06/04</span>
                     
                     <span id="busuanzi_container_page_pv" class="busuanzi-pv">
                         <span class="iconfont-archer">&#xe602;</span>
@@ -401,74 +401,20 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <p><a href>demo4 源码地址</a><br><a name="VsNvD"></a></p>
-<h3 id="（一）了解-Babel-及生态"><a href="#（一）了解-Babel-及生态" class="headerlink" title="（一）了解 Babel 及生态"></a>（一）了解 Babel 及生态</h3><hr>
-<p>现代 javascript 主要是用 ES6 编写的。并非每个浏览器都知道怎么去处理 ES6。我们需要某种转换，这个转换步骤称为 transpiling(转译)。transpiling(转译)是指采用 ES6 的语法，转义为旧的浏览器可以理解的行为。</p>
-<p><strong>Webpack</strong>不知道如何进行转换但是有<strong>loading(加载器)：</strong>将他们视为转换器。<br>babel-loader 是一个 webpack 的 loader（加载器），用于将 ES6 及以上的版本编译为 ES5</p>
-<p>要开始使用<strong>loader，</strong>我们需要安装一堆依赖项，建议以 ES7 为主，<a href="https://link.juejin.im/?target=https%3A%2F%2Fbabeljs.io%2Fdocs%2Fen%2Fv7-migration" target="_blank" rel="noopener">升级建议</a></p>
-<ul>
-<li><a href="https://babeljs.io/docs/en/babel-core" target="_blank" rel="noopener">@babel/core</a>  webpack 和 babel 之前的一个桥梁</li>
-<li><a href="https://babeljs.io/docs/en/babel-preset-env" target="_blank" rel="noopener">@babel/preset-env</a>: 包含 ES6、7 等版本的语法转化规则</li>
-<li><a href="https://babeljs.io/docs/en/babel-plugin-transform-runtime/" target="_blank" rel="noopener">@babel/plugin-transform-runtime</a>:避免 polyfill 污染全局变量，减小打包体积</li>
-<li><a href="https://babeljs.io/docs/en/babel-polyfill" target="_blank" rel="noopener">@babel/polyfill</a>:ES6 内置方法和函数转化垫片</li>
-<li>babel-loader: 负责 ES6 的转换</li>
-</ul>
+        <p><a href>demo12 源码地址</a><br>项目目录为：<br><img src="https://cdn.nlark.com/yuque/0/2019/png/105657/1560087358441-79b3205f-de1f-4c51-bb14-954cdc0dbfe7.png#align=left&display=inline&height=406&name=image.png&originHeight=812&originWidth=438&size=70390&status=done&width=219" alt="image.png"><br>package.json 中使用的依赖如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">"scripts"</span>: &#123;</span><br><span class="line">    <span class="string">"dev"</span>: <span class="string">"webpack --mode development"</span>,</span><br><span class="line">    <span class="string">"build"</span>: <span class="string">"webpack --mode production"</span></span><br><span class="line">  &#125;,</span><br><span class="line"> <span class="string">"devDependencies"</span>: &#123;</span><br><span class="line">    <span class="string">"@babel/core"</span>: <span class="string">"^7.4.5"</span>,</span><br><span class="line">    <span class="string">"@babel/plugin-transform-runtime"</span>: <span class="string">"^7.4.4"</span>,</span><br><span class="line">    <span class="string">"@babel/preset-env"</span>: <span class="string">"^7.4.5"</span>,</span><br><span class="line">    <span class="string">"autoprefixer"</span>: <span class="string">"^9.5.1"</span>,</span><br><span class="line">    <span class="string">"babel-loader"</span>: <span class="string">"^8.0.6"</span>,</span><br><span class="line">    <span class="string">"clean-webpack-plugin"</span>: <span class="string">"^2.0.2"</span>,</span><br><span class="line">    <span class="string">"css-loader"</span>: <span class="string">"^2.1.1"</span>,</span><br><span class="line">    <span class="string">"html-loader"</span>: <span class="string">"^0.5.5"</span>,</span><br><span class="line">    <span class="string">"html-webpack-plugin"</span>: <span class="string">"^3.2.0"</span>,</span><br><span class="line">    <span class="string">"image-webpack-loader"</span>: <span class="string">"^5.0.0"</span>,</span><br><span class="line">    <span class="string">"lodash"</span>: <span class="string">"^4.17.11"</span>,</span><br><span class="line">    <span class="string">"mini-css-extract-plugin"</span>: <span class="string">"^0.7.0"</span>,</span><br><span class="line">    <span class="string">"node-sass"</span>: <span class="string">"^4.12.0"</span>,</span><br><span class="line">    <span class="string">"optimize-css-assets-webpack-plugin"</span>: <span class="string">"^5.0.1"</span>,</span><br><span class="line">    <span class="string">"postcss-loader"</span>: <span class="string">"^3.0.0"</span>,</span><br><span class="line">    <span class="string">"postcss-sprites"</span>: <span class="string">"^4.2.1"</span>,</span><br><span class="line">    <span class="string">"sass-loader"</span>: <span class="string">"^7.1.0"</span>,</span><br><span class="line">    <span class="string">"style-loader"</span>: <span class="string">"^0.23.1"</span>,</span><br><span class="line">    <span class="string">"url-loader"</span>: <span class="string">"^1.1.2"</span>,</span><br><span class="line">    <span class="string">"webpack"</span>: <span class="string">"^4.29.6"</span>,</span><br><span class="line">    <span class="string">"webpack-cli"</span>: <span class="string">"^3.3.2"</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>app.js 中引入字体文件</p>
 <blockquote>
-<p>如果是用 babel7 来转义，则需要安装@babel/core,@babel-preset-env 和@babel/plugin-transform-runtime,而不是 babel/core,babel-preset-env 和 babel-transform-runtime，他们是用于 babel6 的。</p>
+<p><strong>import</strong> ‘./assets/fonts/iconfont.css’</p>
 </blockquote>
-<blockquote>
-<p>使用@babel/plugin-transform-runtime 的原因：Babel 使用非常小的功能才完成常见的功能。默认情况下，这将添加到需要他的每个文件中。<strong>这种重复有时是不必要的，</strong>尤其是当你的应用程序分布在多个文件上的时候。transform-runtime 可以重复使用 Babel 注入的程序代码来节省代码，减小开支。</p>
-</blockquote>
-<br>
-> 使用@babel/polyfill的原因：Babel默认只转换javascript的句法（syntax），而不转换新的**API,比如Iterator,Generator,Set,Maps,Proxy,Reflect,Symbol,Promise等全局对象,**以及一些定义在全局对象上的方法（比如Object.assgin）都不会转码。必须要使用**@babel/polyfill，**为当前环境提供一个垫片。所谓垫片也就是垫平不同浏览器或者不同环境下的差异。
+<p>配置 webpack.config.js 文件来处理字体<br>借助 url-loader,可以识别并且处理<strong>eot,woff</strong>等结尾的字体文件<strong>。</strong>同时，根据字体大小，可以灵活配置是否进行 base64 编码。<br>下面的 demo 就是当文件大小小于 5000B 的时候，进行 base64 编码。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">"path"</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> CleanWebpackPlugin = <span class="built_in">require</span>(<span class="string">"clean-webpack-plugin"</span>);</span><br><span class="line"><span class="keyword">const</span> HtmlWebpackPlugin = <span class="built_in">require</span>(<span class="string">"html-webpack-plugin"</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> MiniCssExtractPlugin = <span class="built_in">require</span>(<span class="string">"mini-css-extract-plugin"</span>); <span class="comment">// 将 css 单独打包成文件</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  entry: &#123;</span><br><span class="line">    app: <span class="string">"./src/app.js"</span></span><br><span class="line">  &#125;,</span><br><span class="line">  output: &#123;</span><br><span class="line">    publicPath: <span class="string">"./"</span>, <span class="comment">// js 引用的路径或者 CDN 地址</span></span><br><span class="line">    path: path.resolve(__dirname, <span class="string">"dist"</span>), <span class="comment">// 打包文件的输出目录</span></span><br><span class="line">    filename: <span class="string">"[name].bundle.js"</span>, <span class="comment">// 代码打包后的文件名</span></span><br><span class="line">    chunkFilename: <span class="string">"[name].js"</span> <span class="comment">// 代码拆分后的文件名</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="built_in">module</span>: &#123;</span><br><span class="line">    rules: [</span><br><span class="line">      &#123;</span><br><span class="line">        test: <span class="regexp">/\.(scss|css)$/</span>, <span class="comment">// 针对.css后缀文件设置loader</span></span><br><span class="line">        <span class="comment">// use: ["style-loader", "css-loader"]</span></span><br><span class="line">        use: [</span><br><span class="line">          &#123;</span><br><span class="line">            loader: MiniCssExtractPlugin.loader</span><br><span class="line">          &#125;,</span><br><span class="line">          <span class="string">"css-loader"</span>,</span><br><span class="line">          <span class="comment">//"postcss-loader", // 使用 postcss 为 css 加上浏览器前缀</span></span><br><span class="line">          &#123;</span><br><span class="line">            loader: <span class="string">"postcss-loader"</span>,</span><br><span class="line">            options: &#123;</span><br><span class="line">              ident: <span class="string">"postcss"</span>,</span><br><span class="line">              plugins: [<span class="built_in">require</span>(<span class="string">"postcss-sprites"</span>)(spritesConfig)]</span><br><span class="line">            &#125;</span><br><span class="line">          &#125;,</span><br><span class="line">          <span class="string">"sass-loader"</span> <span class="comment">// 使用 sass-loader 将 scss 转为 css</span></span><br><span class="line">        ]</span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        test: <span class="regexp">/\.(eot|woff2?|ttf|svg)$/</span>,</span><br><span class="line">        use: [</span><br><span class="line">          &#123;</span><br><span class="line">            loader: <span class="string">"url-loader"</span>,</span><br><span class="line">            options: &#123;</span><br><span class="line">              name: <span class="string">"[name]-[hash:5].min.[ext]"</span>,</span><br><span class="line">              limit: <span class="number">5000</span>, <span class="comment">// fonts file size &lt;= 5KB, use 'base64'; else, output svg file</span></span><br><span class="line">              publicPath: <span class="string">"fonts/"</span>,</span><br><span class="line">              outputPath: <span class="string">"fonts/"</span></span><br><span class="line">            &#125;</span><br><span class="line">          &#125;</span><br><span class="line">        ]</span><br><span class="line">      &#125;,</span><br><span class="line">      &#123;</span><br><span class="line">        test: <span class="regexp">/\.(png|jpg|jpeg|gif)$/</span>,</span><br><span class="line">        use: [</span><br><span class="line">          &#123;</span><br><span class="line">            loader: <span class="string">"url-loader"</span>,</span><br><span class="line">            options: &#123;</span><br><span class="line">              name: <span class="string">"[name]-[hash:5].min.[ext]"</span>,</span><br><span class="line">              outputPath: <span class="string">"images/"</span>, <span class="comment">//输出到 images 文件夹</span></span><br><span class="line">              limit: <span class="number">10000</span> <span class="comment">//把小于 20kb 的文件转成 Base64 的格式</span></span><br><span class="line">            &#125;</span><br><span class="line">          &#125;,</span><br><span class="line">          &#123;</span><br><span class="line">            loader: <span class="string">"image-webpack-loader"</span>,</span><br><span class="line">            options: &#123;</span><br><span class="line">              <span class="comment">// 压缩 jpg/jpeg 图片</span></span><br><span class="line">              mozjpeg: &#123;</span><br><span class="line">                progressive: <span class="literal">true</span>,</span><br><span class="line">                quality: <span class="number">65</span> <span class="comment">// 压缩率</span></span><br><span class="line">              &#125;,</span><br><span class="line">              <span class="comment">// 压缩 png 图片</span></span><br><span class="line">              pngquant: &#123;</span><br><span class="line">                quality: <span class="string">"65-90"</span>,</span><br><span class="line">                speed: <span class="number">4</span></span><br><span class="line">              &#125;</span><br><span class="line">            &#125;</span><br><span class="line">          &#125;</span><br><span class="line">        ]</span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;,</span><br><span class="line">  plugins: [</span><br><span class="line">    <span class="keyword">new</span> CleanWebpackPlugin(),</span><br><span class="line">    <span class="keyword">new</span> HtmlWebpackPlugin(&#123;</span><br><span class="line">      <span class="comment">// 打包输出HTML</span></span><br><span class="line">      title: <span class="string">"自动生成 HTML"</span>,</span><br><span class="line">      minify: &#123;</span><br><span class="line">        <span class="comment">// 压缩 HTML 文件</span></span><br><span class="line">        removeComments: <span class="literal">true</span>, <span class="comment">// 移除 HTML 中的注释</span></span><br><span class="line">        collapseWhitespace: <span class="literal">true</span>, <span class="comment">// 删除空白符与换行符</span></span><br><span class="line">        minifyCSS: <span class="literal">true</span> <span class="comment">// 压缩内联 css</span></span><br><span class="line">      &#125;,</span><br><span class="line">      filename: <span class="string">"index.html"</span>, <span class="comment">// 生成后的文件名</span></span><br><span class="line">      template: <span class="string">"index.html"</span>, <span class="comment">// 根据此模版生成 HTML 文件</span></span><br><span class="line">      chunks: [<span class="string">"app"</span>] <span class="comment">// entry中的 app 入口才会被打包</span></span><br><span class="line">    &#125;),</span><br><span class="line">    <span class="keyword">new</span> MiniCssExtractPlugin(&#123;</span><br><span class="line">      filename: <span class="string">"[name].css"</span>,</span><br><span class="line">      chunkFilename: <span class="string">"[id].css"</span></span><br><span class="line">    &#125;)</span><br><span class="line">  ]</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
-<p><a name="iEagB"></a></p>
-<h3 id="（二）安装依赖或配置"><a href="#（二）安装依赖或配置" class="headerlink" title="（二）安装依赖或配置"></a>（二）安装依赖或配置</h3><hr>
-<p>1.安装依赖</p>
-<blockquote>
-<p>npm i @babel/core babel-loader @babel/preset-env @babel/plugin-transform-runtime –save-dev<br>npm i @babel/polyfill @babel/runtime</p>
-</blockquote>
-<p>2.在项目的根目录中创建名.babelrc 的新文件来配置 Babel;</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">	<span class="string">"presets"</span>: [<span class="string">"@babel/preset-env"</span>],</span><br><span class="line">  <span class="string">"plugins"</span>: [<span class="string">"@babel/plugin-transform-runtime"</span>]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在 index.html 中使用字体</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=1.0"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"X-UA-Compatible"</span> <span class="attr">content</span>=<span class="string">"ie=edge"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>处理字体文件<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"box"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">i</span> <span class="attr">class</span>=<span class="string">"iconfont icon-yanjing"</span>&gt;</span><span class="tag">&lt;/<span class="name">i</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">i</span> <span class="attr">class</span>=<span class="string">"iconfont icon-yanjing1"</span>&gt;</span><span class="tag">&lt;/<span class="name">i</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">i</span> <span class="attr">class</span>=<span class="string">"iconfont icon-yanjing2"</span>&gt;</span><span class="tag">&lt;/<span class="name">i</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">i</span> <span class="attr">class</span>=<span class="string">"iconfont icon-yanjing3"</span>&gt;</span><span class="tag">&lt;/<span class="name">i</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
-<p>如果遇到如下错误：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">WARNING: We noticed you<span class="string">'re using the `useBuiltIns` option without declaring a core-js version. Currently, we assume version 2.x when no version is passed. Since this default version will likely change in future versions of Babel, we recommend explicitly setting the core-js version you are using via the `corejs` option.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">You should also be sure that the version you pass to the `corejs` option matches the version specified in your `package.json`'</span>s <span class="string">`dependencies`</span> section. If it doesn<span class="string">'t, you need to run one of the following commands:</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">  npm install --save core-js@2    npm install --save core-js@3</span></span><br><span class="line"><span class="string">  yarn add core-js@2              yarn add core-js@3</span></span><br></pre></td></tr></table></figure>
-
-<p>不仅仅要安装 npm install –save core-js@3 还需要设置 .babelrc 设置 “corejs”: 3</p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"preset"</span>: [</span><br><span class="line">    [</span><br><span class="line">      <span class="string">"@babel/preset-env"</span>,</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="attr">"useBuiltIns"</span>: <span class="string">"usage"</span>,</span><br><span class="line">        <span class="attr">"corejs"</span>: <span class="number">3</span></span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  ],</span><br><span class="line">  <span class="attr">"plugins"</span>: [<span class="string">"@babel/plugin-transform-runtime"</span>]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>3.webpack 配置 loader（加载器）</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">module:&#123;</span><br><span class="line">	rules: [</span><br><span class="line">    &#123;</span><br><span class="line">    	test: /\.js$/, // 使用正则来匹配js文件</span><br><span class="line">      exclude: /node_modules/, // 排除依赖包文件</span><br><span class="line">      use: &#123;</span><br><span class="line">      	loader: 'babel-loader' //使用babel-loader</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>webpack.config.js 配置：<br><img src="https://cdn.nlark.com/yuque/0/2019/png/105657/1558878196442-c0fed897-dec9-4aa7-a63e-4dde270088ab.png#align=left&display=inline&height=509&name=image.png&originHeight=1018&originWidth=1294&size=215995&status=done&width=647" alt="image.png"><br>4.在 app.js 全局引入@babel/polyfill 并写入 ES6 语法，并执行 npm run build 打包</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">// 全局引入</span><br><span class="line">import '@babel/polyfill'</span><br><span class="line"></span><br><span class="line">// 测试ES6语法是否通过babel转义</span><br><span class="line">const array = [1,2,3]</span><br><span class="line">const isES6 = () =&gt; console.log(...array)</span><br><span class="line"></span><br><span class="line">isES6()</span><br><span class="line"></span><br><span class="line">const arr = [new Promise(() =&gt; &#123;&#125;),new Promise(() =&gt; &#123;&#125;)]</span><br><span class="line">arr.map(item =&gt; &#123;</span><br><span class="line">	console.log(item)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://cdn.nlark.com/yuque/0/2019/png/105657/1558885023517-1b909ae1-eda5-4ee3-942a-f1530516245a.png#align=left&display=inline&height=340&name=image.png&originHeight=680&originWidth=1458&size=150342&status=done&width=729" alt="image.png"></p>
-<p>5.打包完之后使用<strong>IE 浏览器</strong>打开 index.html 文件，看控制台是否有输出，如果是新版的 chrome，是可以使用 es6 语法的，所以要用<strong>IE 这个浏览器试试</strong><br>  更改<code>.babelrc</code>，只转译我们使用到的</p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"presets"</span>: [</span><br><span class="line">    [</span><br><span class="line">      <span class="string">"@babel/preset-env"</span>,</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="attr">"useBuiltIns"</span>: <span class="string">"usage"</span>,</span><br><span class="line">        <span class="attr">"corejs"</span>: <span class="number">2</span></span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  ],</span><br><span class="line">  <span class="attr">"plugins"</span>: [<span class="string">"@babel/plugin-transform-runtime"</span>]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>同时，将全局引入这段代码注释掉在打包</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// 全局引入js</span><br><span class="line">// import '@babel/polyfill'</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://cdn.nlark.com/yuque/0/2019/png/105657/1558885093021-c8be7b15-893c-4e9e-a0c9-ccaaf3f49734.png#align=left&display=inline&height=193&name=image.png&originHeight=386&originWidth=1464&size=84292&status=done&width=732" alt="image.png"><br>体积就减小了很多，但是更多的情况是我们并不确切的知道项目中引发兼容性的具体原因，所以还是全局的引入比较好。</p>
-<p><a name="HP3ka"></a></p>
-<h3 id="（三）了解-browserslistrc-配置文件"><a href="#（三）了解-browserslistrc-配置文件" class="headerlink" title="（三）了解.browserslistrc 配置文件"></a>（三）了解.browserslistrc 配置文件</h3><hr>
-<p><a href="https://link.juejin.im/?target=https%3A%2F%2Fgithub.com%2Fbrowserslist%2Fbrowserslist" target="_blank" rel="noopener">browserslistrc</a>  用于在不同前端工具之间共享目标浏览器和 Node.js 版本的配置<br>可以看看 browserslist <a href="https://link.juejin.im/?target=https%3A%2F%2Fbrowserl.ist%2F" target="_blank" rel="noopener">兼容浏览器的页面</a><br>当您将一下内容添加到 package.json 时，所有工具都会自动找到目标浏览器</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">"browserslist": [</span><br><span class="line">  "&gt; 1%",</span><br><span class="line">  "last 2 version",</span><br><span class="line">  <span class="string">"not ie &lt;= 8"</span></span><br><span class="line">]</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://cdn.nlark.com/yuque/0/2019/png/105657/1558885679741-72d97c80-c9cc-4520-905e-0d0e282ade34.png#align=left&display=inline&height=331&name=image.png&originHeight=662&originWidth=1132&size=93831&status=done&width=566" alt="image.png"><br>也可以创建.browserslistrc 文件单独写配置</p>
-<blockquote>
-<p><a name="1f5521b8"></a></p>
-</blockquote>
-<h1 id="所支持的浏览器版本"><a href="#所支持的浏览器版本" class="headerlink" title="# 所支持的浏览器版本"></a># 所支持的浏览器版本</h1><blockquote>
-<blockquote>
-<p>1% #全球使用统计选择的浏览器版本样式<br>last 2 version #每个浏览器的最后两个版本<br>not ie &lt;= 8 排除小于 ie8 一下的浏览器</p>
-</blockquote>
-</blockquote>
-<p>该项目还是使用<strong>单独创建配置文件</strong>的方式，便于理解，如果觉得配置文件不好，也可以写在  <code>package.json</code>  中</p>
-<p><a name="Mz2nz"></a></p>
-<h3 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h3><hr>
-<p><a href="https://link.juejin.im/?target=https%3A%2F%2Fgodbmw.com%2Fpassages%2F2018-07-31-webpack-compile-ES6%2F" target="_blank" rel="noopener">webpack4 系列教程 (二): 编译 ES6</a><br><a href="https://link.juejin.im/?target=https%3A%2F%2Fwww.jianshu.com%2Fp%2Fcbd48919a0cc" target="_blank" rel="noopener">babel 7 的使用的个人理解</a><br><a href="https://link.juejin.im/?target=https%3A%2F%2Fbabeljs.io%2Fdocs%2Fen%2Fv7-migration" target="_blank" rel="noopener">babel 7 升级建议</a><br><a href="https://link.juejin.im/?target=https%3A%2F%2Fgithub.com%2Fbrowserslist%2Fbrowserslist" target="_blank" rel="noopener">browserslist</a></p>
+<p>打包后查看 index.html 文件，打包成功。<br><img src="https://cdn.nlark.com/yuque/0/2019/png/105657/1560089505138-bde82b05-d8fe-4555-b1ed-6aa12d9565c2.png#align=left&display=inline&height=221&name=image.png&originHeight=442&originWidth=1592&size=103488&status=done&width=796" alt="image.png"></p>
 
     </article>
     <!-- license  -->
@@ -478,16 +424,16 @@ height:50vh;
         <li class="next">
             
                 <div class="nextSlogan">Next Post</div>
-                <a href="/2019/05/25/webpack4/（五）Code Splitting代码分割/" title="（五）Code  Splitting代码分割">
-                    <div class="nextTitle">（五）Code  Splitting代码分割</div>
+                <a href="/2019/06/04/webpack4/10.CSS Tree Shaking/" title="（十）CSS Tree Shaking">
+                    <div class="nextTitle">（十）CSS Tree Shaking</div>
                 </a>
             
         </li>
         <li class="previous">
             
                 <div class="prevSlogan">Previous Post</div>
-                <a href="/2019/05/23/webpack4/（三）覆盖默认entry和output/" title="（三）覆盖默认entry和output">
-                    <div class="prevTitle">（三）覆盖默认entry和output</div>
+                <a href="/2019/06/04/webpack4/11.图片处理汇总/" title="（十一）图片处理汇总">
+                    <div class="prevTitle">（十一）图片处理汇总</div>
                 </a>
             
         </li>
@@ -599,7 +545,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#（一）了解-Babel-及生态"><span class="toc-number">1.</span> <span class="toc-text">（一）了解 Babel 及生态</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#（二）安装依赖或配置"><span class="toc-number">2.</span> <span class="toc-text">（二）安装依赖或配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#（三）了解-browserslistrc-配置文件"><span class="toc-number">3.</span> <span class="toc-text">（三）了解.browserslistrc 配置文件</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#所支持的浏览器版本"><span class="toc-number"></span> <span class="toc-text"># 所支持的浏览器版本</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#参考文献"><span class="toc-number">1.</span> <span class="toc-text">参考文献</span></a></li></ol>
+        
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
@@ -612,6 +558,44 @@ top:50vh;
     <div class="sidebar-content sidebar-content-show-archive">
           <div class="sidebar-panel-archives">
     <!-- 在ejs中将archive按照时间排序 -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     
     
@@ -1256,37 +1240,37 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">06/04</span><a class="archive-post-title" href="/2019/06/04/webpack4/（十一）图片处理汇总/">（十一）图片处理汇总</a>
+            <span class="archive-post-date">06/04</span><a class="archive-post-title" href="/2019/06/04/webpack4/11.图片处理汇总/">（十一）图片处理汇总</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">06/04</span><a class="archive-post-title" href="/2019/06/04/webpack4/（十二）字体文件处理/">（十二）字体文件处理</a>
+            <span class="archive-post-date">06/04</span><a class="archive-post-title" href="/2019/06/04/webpack4/12.字体文件处理/">（十二）字体文件处理</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">06/04</span><a class="archive-post-title" href="/2019/06/04/webpack4/（十）CSS Tree Shaking/">（十）CSS Tree Shaking</a>
+            <span class="archive-post-date">06/04</span><a class="archive-post-title" href="/2019/06/04/webpack4/10.CSS Tree Shaking/">（十）CSS Tree Shaking</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">06/04</span><a class="archive-post-title" href="/2019/06/04/webpack4/（九）JS Tree Shaking/">（九）JS Tree Shaking</a>
+            <span class="archive-post-date">06/04</span><a class="archive-post-title" href="/2019/06/04/webpack4/9.JS Tree Shaking/">（九）JS Tree Shaking</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">06/03</span><a class="archive-post-title" href="/2019/06/03/webpack4/（八）处理css和scss/">（八）处理CSS/SCSS文件</a>
+            <span class="archive-post-date">06/03</span><a class="archive-post-title" href="/2019/06/03/webpack4/8.处理css和scss/">（八）处理CSS/SCSS文件</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">06/03</span><a class="archive-post-title" href="/2019/06/03/webpack4/（七）自动生成 HTML 文件/">（七）自动生成 HTML 文件</a>
+            <span class="archive-post-date">06/03</span><a class="archive-post-title" href="/2019/06/03/webpack4/7.自动生成 HTML 文件/">（七）自动生成 HTML 文件</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">06/02</span><a class="archive-post-title" href="/2019/06/02/webpack4/（六）Lazy Loading、Prefetching/">（六）Lazy Loading、Prefetching</a>
+            <span class="archive-post-date">06/02</span><a class="archive-post-title" href="/2019/06/02/webpack4/6.Lazy Loading、Prefetching/">（六）Lazy Loading、Prefetching</a>
         </li>
     
     
@@ -1301,22 +1285,22 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/25</span><a class="archive-post-title" href="/2019/05/25/webpack4/（五）Code Splitting代码分割/">（五）Code  Splitting代码分割</a>
+            <span class="archive-post-date">05/25</span><a class="archive-post-title" href="/2019/05/25/webpack4/5.Code Splitting代码分割/">（五）Code  Splitting代码分割</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/24</span><a class="archive-post-title" href="/2019/05/24/webpack4/（四）用babel编译成 ES6/">（四）用babel编译成 ES6</a>
+            <span class="archive-post-date">05/24</span><a class="archive-post-title" href="/2019/05/24/webpack4/4.用babel编译成 ES6/">（四）用babel编译成 ES6</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/23</span><a class="archive-post-title" href="/2019/05/23/webpack4/（三）覆盖默认entry和output/">（三）覆盖默认entry和output</a>
+            <span class="archive-post-date">05/23</span><a class="archive-post-title" href="/2019/05/23/webpack4/3.覆盖默认entry和output/">（三）覆盖默认entry和output</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/22</span><a class="archive-post-title" href="/2019/05/22/webpack4/（二）生产和开发模式/">（二）生产和开发模式</a>
+            <span class="archive-post-date">05/22</span><a class="archive-post-title" href="/2019/05/22/webpack4/2.生产和开发模式/">（二）生产和开发模式</a>
         </li>
     
     
@@ -1326,7 +1310,7 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/21</span><a class="archive-post-title" href="/2019/05/21/webpack4/（一）搭建项目并打包JS文件/">（一）搭建项目并打包JS文件</a>
+            <span class="archive-post-date">05/21</span><a class="archive-post-title" href="/2019/05/21/webpack4/1.搭建项目并打包JS文件/">（一）搭建项目并打包JS文件</a>
         </li>
     
     
@@ -1375,12 +1359,12 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/30</span><a class="archive-post-title" href="/2018/05/30/vue/组件生命周期与组件传值/">组件生命周期与组件传值</a>
+            <span class="archive-post-date">05/30</span><a class="archive-post-title" href="/2018/05/30/vue/router-link与redirect用法/">router-link与redirect用法</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/30</span><a class="archive-post-title" href="/2018/05/30/vue/router-link与redirect用法/">router-link与redirect用法</a>
+            <span class="archive-post-date">05/30</span><a class="archive-post-title" href="/2018/05/30/vue/组件生命周期与组件传值/">组件生命周期与组件传值</a>
         </li>
     
     
@@ -1405,17 +1389,17 @@ top:50vh;
     
     
         <li class="archive-post-item">
+            <span class="archive-post-date">05/17</span><a class="archive-post-title" href="/2018/05/17/vue/better-scroll-配置纵向滚动/">better-scroll-配置纵向滚动</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
             <span class="archive-post-date">05/17</span><a class="archive-post-title" href="/2018/05/17/vue/vueMusic歌手-左右链动/">vueMusic歌手-左右链动</a>
         </li>
     
     
         <li class="archive-post-item">
             <span class="archive-post-date">05/17</span><a class="archive-post-title" href="/2018/05/17/vue/axios-获取接口，mock模拟数据配置/">axios-获取接口，mock模拟数据配置</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">05/17</span><a class="archive-post-title" href="/2018/05/17/vue/better-scroll-配置纵向滚动/">better-scroll-配置纵向滚动</a>
         </li>
     
     
@@ -1503,17 +1487,17 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="webpack3"><span class="iconfont-archer">&#xe606;</span>webpack3</span>
     
-        <span class="sidebar-tag-name" data-tags="vue"><span class="iconfont-archer">&#xe606;</span>vue</span>
-    
-        <span class="sidebar-tag-name" data-tags="css和js基础面试题"><span class="iconfont-archer">&#xe606;</span>css和js基础面试题</span>
+        <span class="sidebar-tag-name" data-tags="墨菲定律"><span class="iconfont-archer">&#xe606;</span>墨菲定律</span>
     
         <span class="sidebar-tag-name" data-tags="webpack4"><span class="iconfont-archer">&#xe606;</span>webpack4</span>
     
-        <span class="sidebar-tag-name" data-tags="墨菲定律"><span class="iconfont-archer">&#xe606;</span>墨菲定律</span>
+        <span class="sidebar-tag-name" data-tags="mockjs运用"><span class="iconfont-archer">&#xe606;</span>mockjs运用</span>
     
         <span class="sidebar-tag-name" data-tags="跨域方案"><span class="iconfont-archer">&#xe606;</span>跨域方案</span>
     
-        <span class="sidebar-tag-name" data-tags="mockjs运用"><span class="iconfont-archer">&#xe606;</span>mockjs运用</span>
+        <span class="sidebar-tag-name" data-tags="vue"><span class="iconfont-archer">&#xe606;</span>vue</span>
+    
+        <span class="sidebar-tag-name" data-tags="css和js基础面试题"><span class="iconfont-archer">&#xe606;</span>css和js基础面试题</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
@@ -1554,17 +1538,17 @@ jsonContent:
     
         <span class="sidebar-category-name" data-categories="webpack3"><span class="iconfont-archer">&#xe60a;</span>webpack3</span>
     
-        <span class="sidebar-category-name" data-categories="vue"><span class="iconfont-archer">&#xe60a;</span>vue</span>
-    
-        <span class="sidebar-category-name" data-categories="css和js基础面试题"><span class="iconfont-archer">&#xe60a;</span>css和js基础面试题</span>
+        <span class="sidebar-category-name" data-categories="墨菲定律"><span class="iconfont-archer">&#xe60a;</span>墨菲定律</span>
     
         <span class="sidebar-category-name" data-categories="webpack4"><span class="iconfont-archer">&#xe60a;</span>webpack4</span>
     
-        <span class="sidebar-category-name" data-categories="墨菲定律"><span class="iconfont-archer">&#xe60a;</span>墨菲定律</span>
+        <span class="sidebar-category-name" data-categories="mockjs运用"><span class="iconfont-archer">&#xe60a;</span>mockjs运用</span>
     
         <span class="sidebar-category-name" data-categories="跨域方案"><span class="iconfont-archer">&#xe60a;</span>跨域方案</span>
     
-        <span class="sidebar-category-name" data-categories="mockjs运用"><span class="iconfont-archer">&#xe60a;</span>mockjs运用</span>
+        <span class="sidebar-category-name" data-categories="vue"><span class="iconfont-archer">&#xe60a;</span>vue</span>
+    
+        <span class="sidebar-category-name" data-categories="css和js基础面试题"><span class="iconfont-archer">&#xe60a;</span>css和js基础面试题</span>
     
     </div>
     <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>

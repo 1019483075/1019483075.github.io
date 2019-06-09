@@ -22,7 +22,7 @@
     <meta name="description" content>
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>（六）Lazy Loading、Prefetching · 令夕</title>
+    <title>（四）用babel编译成 ES6 · 令夕</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -217,7 +217,7 @@
                 <a href="/">令夕</a>
             </div>
             <div class="post-title">
-                <a href="#" class="post-name">（六）Lazy Loading、Prefetching</a>
+                <a href="#" class="post-name">（四）用babel编译成 ES6</a>
             </div>
     </div>
     
@@ -247,7 +247,7 @@ height:50vh;
         <h1 class="intro-title">
             <!-- 主页  -->
             
-            （六）Lazy Loading、Prefetching
+            （四）用babel编译成 ES6
             <!-- 404 -->
             
         </h1>
@@ -272,12 +272,12 @@ height:50vh;
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">1.6k</span>阅读时长: <span class="post-count reading-time">5 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">1.2k</span>阅读时长: <span class="post-count reading-time">5 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
                     <span class="post-intro-calander iconfont-archer">&#xe676;</span>
-                    <span class="post-intro-time">2019/06/02</span>
+                    <span class="post-intro-time">2019/05/24</span>
                     
                     <span id="busuanzi_container_page_pv" class="busuanzi-pv">
                         <span class="iconfont-archer">&#xe602;</span>
@@ -401,49 +401,74 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <p><a href>demo6 源码地址</a></p>
-<p>在 demo5 的基础上修改 index.js 文件，并删除了多余的 js 文件</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">document</span>.addEventListener(<span class="string">"click"</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">import</span>(<span class="comment">/* webpackChunkName: 'use-lodash'*/</span> <span class="string">"lodash"</span>).then(<span class="function"><span class="keyword">function</span>(<span class="params">_</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(_.join([<span class="string">"3"</span>, <span class="string">"4"</span>]));</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<p>这段代码表示的是，当点击页面的时候，异步加载 lodash 并输出内容。</p>
-<p>第一次进入页面的时候，并没有加载 lodash 和 use-lodash，当去点击网页的时候，浏览器在去加载，并且控制台输出内容，这就是代码<strong>懒加载</strong>，如果有用过<strong>vue-router</strong>的朋友应该会知道<strong>路由懒加载</strong>，并且官方也推荐使用懒加载的写法，就是为了结合 webpack，下图是生成的项目<br><img src="https://cdn.nlark.com/yuque/0/2019/png/105657/1559305528818-f2caf21f-bc31-4920-ae35-dfe5658ae9d5.png#align=left&display=inline&height=137&name=image.png&originHeight=274&originWidth=670&size=98156&status=done&width=335" alt="image.png"></p>
-<p>其实懒加载就是通过 import 去异步的加载一个模块，具体什么时候加载，这要根据业务来写，比如弹窗组件，模态框组件等等，都是点击按钮后再出现。</p>
-<p>懒加载能加载网页的加载速度，如果把你的详情页，弹窗页面打包到一个 js 文件中，用户如果只是访问首页，只需要首页的代码，不需要其他页面的代码，加入多余的代码只会让加载时间变长，所以我们可以对路由进行懒加载，只有当用户访问到对应路由时，再去加载对应的模块</p>
+        <p><a href>demo4 源码地址</a><br><a name="VsNvD"></a></p>
+<h3 id="（一）了解-Babel-及生态"><a href="#（一）了解-Babel-及生态" class="headerlink" title="（一）了解 Babel 及生态"></a>（一）了解 Babel 及生态</h3><hr>
+<p>现代 javascript 主要是用 ES6 编写的。并非每个浏览器都知道怎么去处理 ES6。我们需要某种转换，这个转换步骤称为 transpiling(转译)。transpiling(转译)是指采用 ES6 的语法，转义为旧的浏览器可以理解的行为。</p>
+<p><strong>Webpack</strong>不知道如何进行转换但是有<strong>loading(加载器)：</strong>将他们视为转换器。<br>babel-loader 是一个 webpack 的 loader（加载器），用于将 ES6 及以上的版本编译为 ES5</p>
+<p>要开始使用<strong>loader，</strong>我们需要安装一堆依赖项，建议以 ES7 为主，<a href="https://link.juejin.im/?target=https%3A%2F%2Fbabeljs.io%2Fdocs%2Fen%2Fv7-migration" target="_blank" rel="noopener">升级建议</a></p>
+<ul>
+<li><a href="https://babeljs.io/docs/en/babel-core" target="_blank" rel="noopener">@babel/core</a>  webpack 和 babel 之前的一个桥梁</li>
+<li><a href="https://babeljs.io/docs/en/babel-preset-env" target="_blank" rel="noopener">@babel/preset-env</a>: 包含 ES6、7 等版本的语法转化规则</li>
+<li><a href="https://babeljs.io/docs/en/babel-plugin-transform-runtime/" target="_blank" rel="noopener">@babel/plugin-transform-runtime</a>:避免 polyfill 污染全局变量，减小打包体积</li>
+<li><a href="https://babeljs.io/docs/en/babel-polyfill" target="_blank" rel="noopener">@babel/polyfill</a>:ES6 内置方法和函数转化垫片</li>
+<li>babel-loader: 负责 ES6 的转换</li>
+</ul>
 <blockquote>
-<p>懒加载并不是 webpack 里的概念，而是 ES6 中的  <strong>import</strong>  语法，webpack 只能识别 important 语法，能进行代码分割而已。<br>important 后面返回的是一个 then，说明这是一个 promise 类型，一些低端浏览器不支持 promise，比如  <strong>IE</strong> ，如果要使用这种异步代码，就要使用 babel 以及 babel-polyfill 来做转换，因为我使用的是 73 版本的  <strong>chrome</strong>  浏览器，对 ES6 语法是支持的，所以我并没有安装 babel 也能使用</p>
+<p>如果是用 babel7 来转义，则需要安装@babel/core,@babel-preset-env 和@babel/plugin-transform-runtime,而不是 babel/core,babel-preset-env 和 babel-transform-runtime，他们是用于 babel6 的。</p>
 </blockquote>
-<p>更改 index.js 文件</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">document</span>.addEventListener(<span class="string">"click"</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> element = <span class="built_in">document</span>.createElement(<span class="string">"div"</span>);</span><br><span class="line">  element.innerHTML = <span class="string">"Hello World"</span>;</span><br><span class="line">  <span class="built_in">document</span>.body.appendChild(element);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<p>重新打包，并打开 index.html,打开浏览器控制台，按  <code>ctrl + shift + p</code> ，输入  <code>coverage</code><br><img src="https://cdn.nlark.com/yuque/0/2019/png/105657/1559308796918-4cee6fa3-15a6-4b93-a695-73e8fd4732c5.png#align=left&display=inline&height=34&name=image.png&originHeight=67&originWidth=358&size=17429&status=done&width=179" alt="image.png"><br>就能看到当前页面加载的 js 代码未使用率，红色区域表示未被使用的代码段<br><img src="https://cdn.nlark.com/yuque/0/2019/png/105657/1559308863168-595dd94f-c36b-47a8-89d0-48e83c6bf0e4.png#align=left&display=inline&height=264&name=image.png&originHeight=528&originWidth=1280&size=244098&status=done&width=640" alt="image.png"></p>
-<p>打开  <code>coverage</code>  如果没出现分析的文件，记得刷新一下</p>
-<p>这里一开始红色区域的代码未被使用，当我点击了页面后，变成绿色，页面出现了  <code>Hello World</code>，说明代码被使用了</p>
-<p>页面刚加载的时候，异步的代码根本就不会执行，但是我们却把它下载下来，实际上就会浪费页面执行性能，webpack 就希望像这样交互的功能，应该把它放到一个异步加载的模块去写</p>
-<p>新建一个 click.js 文件</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">handleClick</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> element = <span class="built_in">document</span>.createElement(<span class="string">"div"</span>);</span><br><span class="line">  element.innerHTML = <span class="string">"Dell Lee"</span>;</span><br><span class="line">  <span class="built_in">document</span>.body.appendChild(element);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> handleClick;</span><br></pre></td></tr></table></figure>
-
-<p>并且将 index.js 文件改为异步加载的模块</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">document</span>.addEventListener(<span class="string">"click"</span>, () =&gt; &#123;</span><br><span class="line">  <span class="keyword">import</span>(<span class="string">"./click.js"</span>).then(<span class="function">(<span class="params">&#123; <span class="keyword">default</span>: func &#125;</span>) =&gt;</span> &#123;</span><br><span class="line">    func();</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<p>重新打包，使用 coverage 分析<br>演示<br><img src="https://cdn.nlark.com/yuque/0/2019/png/105657/1559481795859-ba109348-a1a0-49d5-a57c-76fbbcf9abef.png#align=left&display=inline&height=358&name=image.png&originHeight=715&originWidth=1409&size=86091&status=done&width=704.5" alt="image.png"><br>当加载页面的时候，没有加载业务逻辑，当点击网页的时候，才会加载 1.js 模块，也就是我们在 index.js 中异步引入的 click.js</p>
-<p>这么去写代码，才是使页面加载最快的一种方式，写高性能前端代码的时候，<strong>不关是考虑缓存，还要考虑代码使用率</strong><br>**</p>
 <blockquote>
-<p>**所以 webpack 在打包过程中，是希望我们多写这种异步的代码，才能提升网站的性能，这也是为什么 webpack 的 splitChunks 中的 chunks 默认是 async，异步的</p>
+<p>使用@babel/plugin-transform-runtime 的原因：Babel 使用非常小的功能才完成常见的功能。默认情况下，这将添加到需要他的每个文件中。<strong>这种重复有时是不必要的，</strong>尤其是当你的应用程序分布在多个文件上的时候。transform-runtime 可以重复使用 Babel 注入的程序代码来节省代码，减小开支。</p>
 </blockquote>
-<p><img src="https://cdn.nlark.com/yuque/0/2019/png/105657/1559481959012-87dfd5f1-b080-4b65-a43e-7b61f5b48d96.png#align=left&display=inline&height=391&name=image.png&originHeight=395&originWidth=750&size=95195&status=done&width=745" alt="image.png"><br>异步能提高你网页打开的性能，而同步代码是增加一个缓存，对性能的提升是非常有限的，因为缓存一般是<strong>第二次打开网页或者刷新页面</strong>的时候，缓存很有用，但是网页的性能一般是用户<strong>第一次打开网页</strong>，看首屏的时候。</p>
-<p>当然，这也会出现另一个问题，当用户点击的时候，才去加载业务模块，如果业务模块较大的时候，用户点击后并没有立马看到结果，而是要等待几秒，这样体验上也不好，怎么去解决这个问题</p>
-<p>一：如果访问首页的时候，不需要加载详情页的逻辑，等用户首页加载完以后，页面展示出来了，页面的宽带被释放出来了，网络空闲了，再「偷偷」的去加载详情页的内容，而不是等用户去点击的时候再去加载</p>
-<p>这个解决方案就是依赖 webpack 的  <a href="https://link.juejin.im/?target=https%3A%2F%2Fwebpack.js.org%2Fguides%2Fcode-splitting%23prefetchingpreloading-modules" target="_blank" rel="noopener">Prefetching/Preloading</a>  特性<br>修改 index.js</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">document</span>.addEventListener(<span class="string">"click"</span>, () =&gt; &#123;</span><br><span class="line">  <span class="keyword">import</span>(<span class="comment">/* webpackPrefetch: true */</span> <span class="string">"./click.js"</span>).then(<span class="function">(<span class="params">&#123; <span class="keyword">default</span>: func &#125;</span>) =&gt;</span> &#123;</span><br><span class="line">    func();</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<br>
+> 使用@babel/polyfill的原因：Babel默认只转换javascript的句法（syntax），而不转换新的**API,比如Iterator,Generator,Set,Maps,Proxy,Reflect,Symbol,Promise等全局对象,**以及一些定义在全局对象上的方法（比如Object.assgin）都不会转码。必须要使用**@babel/polyfill，**为当前环境提供一个垫片。所谓垫片也就是垫平不同浏览器或者不同环境下的差异。
 
-<p><code>webpackPrefetch: true</code>  会等你主要的 JS 都加载完了之后，网络带宽空闲的时候，它就会预先帮你加载好</p>
-<p>重新打包后刷新页面，注意看  <strong>Network</strong><br><strong><img src="https://cdn.nlark.com/yuque/0/2019/png/105657/1559483110302-c78ab02e-eda6-4ee8-b431-629eec0db1ac.png#align=left&display=inline&height=358&name=image.png&originHeight=715&originWidth=1409&size=64480&status=done&width=704.5" alt="image.png"></strong><br>当网页打开的时候，main.bundle.js 被加载完了，网络空闲了，就会预先加载 1.js 耗时 14ms，等我去点击页面的时候，Network 又多了一个 1.js，耗时 2ms，这是因为第一次加载完了 1.js，被浏览器给缓存起来了，等我点击的时候，浏览器直接从缓存中取，响应速度非常快<br>这里</p>
-<p>这里我们使用的是 webpackPrefetch，还有一种 webpackPreload</p>
+<p><a name="iEagB"></a></p>
+<h3 id="（二）安装依赖或配置"><a href="#（二）安装依赖或配置" class="headerlink" title="（二）安装依赖或配置"></a>（二）安装依赖或配置</h3><hr>
+<p>1.安装依赖</p>
 <blockquote>
-<p><br>与 prefetch 相比，Preload 指令有很多<strong>不同之处</strong>：
-<strong>Prefetch</strong>  会等待核心代码加载完之后，有空闲之后再去加载。Preload 会和核心的代码并行加载，还是不推荐</p>
+<p>npm i @babel/core babel-loader @babel/preset-env @babel/plugin-transform-runtime –save-dev<br>npm i @babel/polyfill @babel/runtime</p>
 </blockquote>
-<p>针对优化，不仅仅是局限于缓存，缓存能带来的代码性能提升是非常有限的，而是如何让代码的<strong>使用率</strong>最高，有一些交互后才用的代码，可以写到异步组件里面去，通过懒加载的形式，去把代码逻辑加载进来，这样会使得页面访问速度变的更快，如果你觉得懒加载会影响用户体验，可以使用 Prefetch 这种方式来预加载，不过在某些游览器<strong>不兼容</strong>，会有兼容性的问题，重点不是在 Prefetch 怎么去用，而是在做前端代码性能优化的时候，<strong>缓存不是最重要的点，最重要的是代码使用的覆盖率上(coverage)</strong></p>
+<p>2.在项目的根目录中创建名.babelrc 的新文件来配置 Babel;</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">	<span class="string">"presets"</span>: [<span class="string">"@babel/preset-env"</span>],</span><br><span class="line">  <span class="string">"plugins"</span>: [<span class="string">"@babel/plugin-transform-runtime"</span>]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果遇到如下错误：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">WARNING: We noticed you<span class="string">'re using the `useBuiltIns` option without declaring a core-js version. Currently, we assume version 2.x when no version is passed. Since this default version will likely change in future versions of Babel, we recommend explicitly setting the core-js version you are using via the `corejs` option.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">You should also be sure that the version you pass to the `corejs` option matches the version specified in your `package.json`'</span>s <span class="string">`dependencies`</span> section. If it doesn<span class="string">'t, you need to run one of the following commands:</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">  npm install --save core-js@2    npm install --save core-js@3</span></span><br><span class="line"><span class="string">  yarn add core-js@2              yarn add core-js@3</span></span><br></pre></td></tr></table></figure>
+
+<p>不仅仅要安装 npm install –save core-js@3 还需要设置 .babelrc 设置 “corejs”: 3</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"preset"</span>: [</span><br><span class="line">    [</span><br><span class="line">      <span class="string">"@babel/preset-env"</span>,</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="attr">"useBuiltIns"</span>: <span class="string">"usage"</span>,</span><br><span class="line">        <span class="attr">"corejs"</span>: <span class="number">3</span></span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  ],</span><br><span class="line">  <span class="attr">"plugins"</span>: [<span class="string">"@babel/plugin-transform-runtime"</span>]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>3.webpack 配置 loader（加载器）</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">module:&#123;</span><br><span class="line">	rules: [</span><br><span class="line">    &#123;</span><br><span class="line">    	test: /\.js$/, // 使用正则来匹配js文件</span><br><span class="line">      exclude: /node_modules/, // 排除依赖包文件</span><br><span class="line">      use: &#123;</span><br><span class="line">      	loader: 'babel-loader' //使用babel-loader</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>webpack.config.js 配置：<br><img src="https://cdn.nlark.com/yuque/0/2019/png/105657/1558878196442-c0fed897-dec9-4aa7-a63e-4dde270088ab.png#align=left&display=inline&height=509&name=image.png&originHeight=1018&originWidth=1294&size=215995&status=done&width=647" alt="image.png"><br>4.在 app.js 全局引入@babel/polyfill 并写入 ES6 语法，并执行 npm run build 打包</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">// 全局引入</span><br><span class="line">import '@babel/polyfill'</span><br><span class="line"></span><br><span class="line">// 测试ES6语法是否通过babel转义</span><br><span class="line">const array = [1,2,3]</span><br><span class="line">const isES6 = () =&gt; console.log(...array)</span><br><span class="line"></span><br><span class="line">isES6()</span><br><span class="line"></span><br><span class="line">const arr = [new Promise(() =&gt; &#123;&#125;),new Promise(() =&gt; &#123;&#125;)]</span><br><span class="line">arr.map(item =&gt; &#123;</span><br><span class="line">	console.log(item)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.nlark.com/yuque/0/2019/png/105657/1558885023517-1b909ae1-eda5-4ee3-942a-f1530516245a.png#align=left&display=inline&height=340&name=image.png&originHeight=680&originWidth=1458&size=150342&status=done&width=729" alt="image.png"></p>
+<p>5.打包完之后使用<strong>IE 浏览器</strong>打开 index.html 文件，看控制台是否有输出，如果是新版的 chrome，是可以使用 es6 语法的，所以要用<strong>IE 这个浏览器试试</strong><br>  更改<code>.babelrc</code>，只转译我们使用到的</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"presets"</span>: [</span><br><span class="line">    [</span><br><span class="line">      <span class="string">"@babel/preset-env"</span>,</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="attr">"useBuiltIns"</span>: <span class="string">"usage"</span>,</span><br><span class="line">        <span class="attr">"corejs"</span>: <span class="number">2</span></span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  ],</span><br><span class="line">  <span class="attr">"plugins"</span>: [<span class="string">"@babel/plugin-transform-runtime"</span>]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>同时，将全局引入这段代码注释掉在打包</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// 全局引入js</span><br><span class="line">// import '@babel/polyfill'</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.nlark.com/yuque/0/2019/png/105657/1558885093021-c8be7b15-893c-4e9e-a0c9-ccaaf3f49734.png#align=left&display=inline&height=193&name=image.png&originHeight=386&originWidth=1464&size=84292&status=done&width=732" alt="image.png"><br>体积就减小了很多，但是更多的情况是我们并不确切的知道项目中引发兼容性的具体原因，所以还是全局的引入比较好。</p>
+<p><a name="HP3ka"></a></p>
+<h3 id="（三）了解-browserslistrc-配置文件"><a href="#（三）了解-browserslistrc-配置文件" class="headerlink" title="（三）了解.browserslistrc 配置文件"></a>（三）了解.browserslistrc 配置文件</h3><hr>
+<p><a href="https://link.juejin.im/?target=https%3A%2F%2Fgithub.com%2Fbrowserslist%2Fbrowserslist" target="_blank" rel="noopener">browserslistrc</a>  用于在不同前端工具之间共享目标浏览器和 Node.js 版本的配置<br>可以看看 browserslist <a href="https://link.juejin.im/?target=https%3A%2F%2Fbrowserl.ist%2F" target="_blank" rel="noopener">兼容浏览器的页面</a><br>当您将一下内容添加到 package.json 时，所有工具都会自动找到目标浏览器</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">"browserslist": [</span><br><span class="line">  "&gt; 1%",</span><br><span class="line">  "last 2 version",</span><br><span class="line">  <span class="string">"not ie &lt;= 8"</span></span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.nlark.com/yuque/0/2019/png/105657/1558885679741-72d97c80-c9cc-4520-905e-0d0e282ade34.png#align=left&display=inline&height=331&name=image.png&originHeight=662&originWidth=1132&size=93831&status=done&width=566" alt="image.png"><br>也可以创建.browserslistrc 文件单独写配置</p>
+<blockquote>
+<p><a name="1f5521b8"></a></p>
+</blockquote>
+<h1 id="所支持的浏览器版本"><a href="#所支持的浏览器版本" class="headerlink" title="# 所支持的浏览器版本"></a># 所支持的浏览器版本</h1><blockquote>
+<blockquote>
+<p>1% #全球使用统计选择的浏览器版本样式<br>last 2 version #每个浏览器的最后两个版本<br>not ie &lt;= 8 排除小于 ie8 一下的浏览器</p>
+</blockquote>
+</blockquote>
+<p>该项目还是使用<strong>单独创建配置文件</strong>的方式，便于理解，如果觉得配置文件不好，也可以写在  <code>package.json</code>  中</p>
+<p><a name="Mz2nz"></a></p>
+<h3 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h3><hr>
+<p><a href="https://link.juejin.im/?target=https%3A%2F%2Fgodbmw.com%2Fpassages%2F2018-07-31-webpack-compile-ES6%2F" target="_blank" rel="noopener">webpack4 系列教程 (二): 编译 ES6</a><br><a href="https://link.juejin.im/?target=https%3A%2F%2Fwww.jianshu.com%2Fp%2Fcbd48919a0cc" target="_blank" rel="noopener">babel 7 的使用的个人理解</a><br><a href="https://link.juejin.im/?target=https%3A%2F%2Fbabeljs.io%2Fdocs%2Fen%2Fv7-migration" target="_blank" rel="noopener">babel 7 升级建议</a><br><a href="https://link.juejin.im/?target=https%3A%2F%2Fgithub.com%2Fbrowserslist%2Fbrowserslist" target="_blank" rel="noopener">browserslist</a></p>
 
     </article>
     <!-- license  -->
@@ -453,16 +478,16 @@ height:50vh;
         <li class="next">
             
                 <div class="nextSlogan">Next Post</div>
-                <a href="/2019/06/03/webpack4/（七）自动生成 HTML 文件/" title="（七）自动生成 HTML 文件">
-                    <div class="nextTitle">（七）自动生成 HTML 文件</div>
+                <a href="/2019/05/25/webpack4/5.Code Splitting代码分割/" title="（五）Code  Splitting代码分割">
+                    <div class="nextTitle">（五）Code  Splitting代码分割</div>
                 </a>
             
         </li>
         <li class="previous">
             
                 <div class="prevSlogan">Previous Post</div>
-                <a href="/2019/06/01/墨菲定理/（一）成功学的秘密/" title="（一）成功学的秘密">
-                    <div class="prevTitle">（一）成功学的秘密</div>
+                <a href="/2019/05/23/webpack4/3.覆盖默认entry和output/" title="（三）覆盖默认entry和output">
+                    <div class="prevTitle">（三）覆盖默认entry和output</div>
                 </a>
             
         </li>
@@ -574,7 +599,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#（一）了解-Babel-及生态"><span class="toc-number">1.</span> <span class="toc-text">（一）了解 Babel 及生态</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#（二）安装依赖或配置"><span class="toc-number">2.</span> <span class="toc-text">（二）安装依赖或配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#（三）了解-browserslistrc-配置文件"><span class="toc-number">3.</span> <span class="toc-text">（三）了解.browserslistrc 配置文件</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#所支持的浏览器版本"><span class="toc-number"></span> <span class="toc-text"># 所支持的浏览器版本</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#参考文献"><span class="toc-number">1.</span> <span class="toc-text">参考文献</span></a></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
@@ -587,6 +612,44 @@ top:50vh;
     <div class="sidebar-content sidebar-content-show-archive">
           <div class="sidebar-panel-archives">
     <!-- 在ejs中将archive按照时间排序 -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     
     
@@ -1231,37 +1294,37 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">06/04</span><a class="archive-post-title" href="/2019/06/04/webpack4/（十一）图片处理汇总/">（十一）图片处理汇总</a>
+            <span class="archive-post-date">06/04</span><a class="archive-post-title" href="/2019/06/04/webpack4/11.图片处理汇总/">（十一）图片处理汇总</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">06/04</span><a class="archive-post-title" href="/2019/06/04/webpack4/（十二）字体文件处理/">（十二）字体文件处理</a>
+            <span class="archive-post-date">06/04</span><a class="archive-post-title" href="/2019/06/04/webpack4/12.字体文件处理/">（十二）字体文件处理</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">06/04</span><a class="archive-post-title" href="/2019/06/04/webpack4/（十）CSS Tree Shaking/">（十）CSS Tree Shaking</a>
+            <span class="archive-post-date">06/04</span><a class="archive-post-title" href="/2019/06/04/webpack4/10.CSS Tree Shaking/">（十）CSS Tree Shaking</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">06/04</span><a class="archive-post-title" href="/2019/06/04/webpack4/（九）JS Tree Shaking/">（九）JS Tree Shaking</a>
+            <span class="archive-post-date">06/04</span><a class="archive-post-title" href="/2019/06/04/webpack4/9.JS Tree Shaking/">（九）JS Tree Shaking</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">06/03</span><a class="archive-post-title" href="/2019/06/03/webpack4/（八）处理css和scss/">（八）处理CSS/SCSS文件</a>
+            <span class="archive-post-date">06/03</span><a class="archive-post-title" href="/2019/06/03/webpack4/8.处理css和scss/">（八）处理CSS/SCSS文件</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">06/03</span><a class="archive-post-title" href="/2019/06/03/webpack4/（七）自动生成 HTML 文件/">（七）自动生成 HTML 文件</a>
+            <span class="archive-post-date">06/03</span><a class="archive-post-title" href="/2019/06/03/webpack4/7.自动生成 HTML 文件/">（七）自动生成 HTML 文件</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">06/02</span><a class="archive-post-title" href="/2019/06/02/webpack4/（六）Lazy Loading、Prefetching/">（六）Lazy Loading、Prefetching</a>
+            <span class="archive-post-date">06/02</span><a class="archive-post-title" href="/2019/06/02/webpack4/6.Lazy Loading、Prefetching/">（六）Lazy Loading、Prefetching</a>
         </li>
     
     
@@ -1276,22 +1339,22 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/25</span><a class="archive-post-title" href="/2019/05/25/webpack4/（五）Code Splitting代码分割/">（五）Code  Splitting代码分割</a>
+            <span class="archive-post-date">05/25</span><a class="archive-post-title" href="/2019/05/25/webpack4/5.Code Splitting代码分割/">（五）Code  Splitting代码分割</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/24</span><a class="archive-post-title" href="/2019/05/24/webpack4/（四）用babel编译成 ES6/">（四）用babel编译成 ES6</a>
+            <span class="archive-post-date">05/24</span><a class="archive-post-title" href="/2019/05/24/webpack4/4.用babel编译成 ES6/">（四）用babel编译成 ES6</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/23</span><a class="archive-post-title" href="/2019/05/23/webpack4/（三）覆盖默认entry和output/">（三）覆盖默认entry和output</a>
+            <span class="archive-post-date">05/23</span><a class="archive-post-title" href="/2019/05/23/webpack4/3.覆盖默认entry和output/">（三）覆盖默认entry和output</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/22</span><a class="archive-post-title" href="/2019/05/22/webpack4/（二）生产和开发模式/">（二）生产和开发模式</a>
+            <span class="archive-post-date">05/22</span><a class="archive-post-title" href="/2019/05/22/webpack4/2.生产和开发模式/">（二）生产和开发模式</a>
         </li>
     
     
@@ -1301,7 +1364,7 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/21</span><a class="archive-post-title" href="/2019/05/21/webpack4/（一）搭建项目并打包JS文件/">（一）搭建项目并打包JS文件</a>
+            <span class="archive-post-date">05/21</span><a class="archive-post-title" href="/2019/05/21/webpack4/1.搭建项目并打包JS文件/">（一）搭建项目并打包JS文件</a>
         </li>
     
     
@@ -1350,12 +1413,12 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/30</span><a class="archive-post-title" href="/2018/05/30/vue/组件生命周期与组件传值/">组件生命周期与组件传值</a>
+            <span class="archive-post-date">05/30</span><a class="archive-post-title" href="/2018/05/30/vue/router-link与redirect用法/">router-link与redirect用法</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/30</span><a class="archive-post-title" href="/2018/05/30/vue/router-link与redirect用法/">router-link与redirect用法</a>
+            <span class="archive-post-date">05/30</span><a class="archive-post-title" href="/2018/05/30/vue/组件生命周期与组件传值/">组件生命周期与组件传值</a>
         </li>
     
     
@@ -1380,17 +1443,17 @@ top:50vh;
     
     
         <li class="archive-post-item">
+            <span class="archive-post-date">05/17</span><a class="archive-post-title" href="/2018/05/17/vue/better-scroll-配置纵向滚动/">better-scroll-配置纵向滚动</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
             <span class="archive-post-date">05/17</span><a class="archive-post-title" href="/2018/05/17/vue/vueMusic歌手-左右链动/">vueMusic歌手-左右链动</a>
         </li>
     
     
         <li class="archive-post-item">
             <span class="archive-post-date">05/17</span><a class="archive-post-title" href="/2018/05/17/vue/axios-获取接口，mock模拟数据配置/">axios-获取接口，mock模拟数据配置</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">05/17</span><a class="archive-post-title" href="/2018/05/17/vue/better-scroll-配置纵向滚动/">better-scroll-配置纵向滚动</a>
         </li>
     
     
@@ -1478,17 +1541,17 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="webpack3"><span class="iconfont-archer">&#xe606;</span>webpack3</span>
     
-        <span class="sidebar-tag-name" data-tags="vue"><span class="iconfont-archer">&#xe606;</span>vue</span>
-    
-        <span class="sidebar-tag-name" data-tags="css和js基础面试题"><span class="iconfont-archer">&#xe606;</span>css和js基础面试题</span>
+        <span class="sidebar-tag-name" data-tags="墨菲定律"><span class="iconfont-archer">&#xe606;</span>墨菲定律</span>
     
         <span class="sidebar-tag-name" data-tags="webpack4"><span class="iconfont-archer">&#xe606;</span>webpack4</span>
     
-        <span class="sidebar-tag-name" data-tags="墨菲定律"><span class="iconfont-archer">&#xe606;</span>墨菲定律</span>
+        <span class="sidebar-tag-name" data-tags="mockjs运用"><span class="iconfont-archer">&#xe606;</span>mockjs运用</span>
     
         <span class="sidebar-tag-name" data-tags="跨域方案"><span class="iconfont-archer">&#xe606;</span>跨域方案</span>
     
-        <span class="sidebar-tag-name" data-tags="mockjs运用"><span class="iconfont-archer">&#xe606;</span>mockjs运用</span>
+        <span class="sidebar-tag-name" data-tags="vue"><span class="iconfont-archer">&#xe606;</span>vue</span>
+    
+        <span class="sidebar-tag-name" data-tags="css和js基础面试题"><span class="iconfont-archer">&#xe606;</span>css和js基础面试题</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
@@ -1529,17 +1592,17 @@ jsonContent:
     
         <span class="sidebar-category-name" data-categories="webpack3"><span class="iconfont-archer">&#xe60a;</span>webpack3</span>
     
-        <span class="sidebar-category-name" data-categories="vue"><span class="iconfont-archer">&#xe60a;</span>vue</span>
-    
-        <span class="sidebar-category-name" data-categories="css和js基础面试题"><span class="iconfont-archer">&#xe60a;</span>css和js基础面试题</span>
+        <span class="sidebar-category-name" data-categories="墨菲定律"><span class="iconfont-archer">&#xe60a;</span>墨菲定律</span>
     
         <span class="sidebar-category-name" data-categories="webpack4"><span class="iconfont-archer">&#xe60a;</span>webpack4</span>
     
-        <span class="sidebar-category-name" data-categories="墨菲定律"><span class="iconfont-archer">&#xe60a;</span>墨菲定律</span>
+        <span class="sidebar-category-name" data-categories="mockjs运用"><span class="iconfont-archer">&#xe60a;</span>mockjs运用</span>
     
         <span class="sidebar-category-name" data-categories="跨域方案"><span class="iconfont-archer">&#xe60a;</span>跨域方案</span>
     
-        <span class="sidebar-category-name" data-categories="mockjs运用"><span class="iconfont-archer">&#xe60a;</span>mockjs运用</span>
+        <span class="sidebar-category-name" data-categories="vue"><span class="iconfont-archer">&#xe60a;</span>vue</span>
+    
+        <span class="sidebar-category-name" data-categories="css和js基础面试题"><span class="iconfont-archer">&#xe60a;</span>css和js基础面试题</span>
     
     </div>
     <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
