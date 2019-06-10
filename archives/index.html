@@ -346,6 +346,37 @@
     
     
     <article class="index-post">
+        <a class="abstract-title" href="/2019/06/04/webpack4/10.CSS Tree Shaking/">
+            
+                <span>10.CSS Tree Shaking</span>
+        </a>
+        <div class="abstract-content">
+            demo10 源码地址CSS Tree Shaking 并不像 Js Tree Shaking 那样方便理解，首先要模拟一个真实的项目环境，来体现 CSS 的 Tree Shaking 的配置和效果。
+此章节源码给予第八节处理 CSS 项目上做修改我们首先编写/src/css/base.css 样式文件，在文件中，我们编写了 3 个样式类。但在代码中，我们只会使用.box 和.box–big 这两个类。代码如下所示：
+12345678910111213141516171819202122232425/* base.css */html &#123;  background: red;&#...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/06/04</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="webpack4">webpack4</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
         <a class="abstract-title" href="/2019/06/04/webpack4/11.图片处理汇总/">
             
                 <span>11.图片处理汇总</span>
@@ -361,6 +392,36 @@
 如项目代码目录展示的那样，除了常见的 app.js 作为入口文件，我们将用到 3 张图片放在/src/assets/imgs/目录下，并在样式 base.css 中引用这些图片。
 剩下的内容叫给 webpack 打包处理即可。样式文件和入口 app.js 文件的代码分别如下所示：
 1234567891011121314151617181920212223242526/* base.css */*,body &#123;  margin: 0...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/06/04</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="webpack4">webpack4</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/2019/06/04/webpack4/12.字体文件处理/">
+            
+                <span>12.字体文件处理</span>
+        </a>
+        <div class="abstract-content">
+            demo12 源码地址项目目录为：package.json 中使用的依赖如下：
+1234567891011121314151617181920212223242526272829&#123;  "scripts": &#123;    "dev": "webpack --mode development",    "build": "webpack --mode production"  &#125;, "devDependencies": &#123;    "@babel/core": "^7.4.5",    "@babel/plugin-transform-runtime": "...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -421,44 +482,16 @@ npm 包管理：目前最常用和最推荐的方法
     
     
     <article class="index-post">
-        <a class="abstract-title" href="/2019/06/04/webpack4/12.字体文件处理/">
+        <a class="abstract-title" href="/2019/06/04/webpack4/14.开发模式与webpack-dev-server/">
             
-                <span>12.字体文件处理</span>
+                <span>14.开发模式与webpack-dev-server</span>
         </a>
         <div class="abstract-content">
-            demo12 源码地址项目目录为：package.json 中使用的依赖如下：
-1234567891011121314151617181920212223242526272829&#123;  "scripts": &#123;    "dev": "webpack --mode development",    "build": "webpack --mode production"  &#125;, "devDependencies": &#123;    "@babel/core": "^7.4.5",    "@babel/plugin-transform-runtime": "...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/06/04</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="webpack4">webpack4</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/06/04/webpack4/10.CSS Tree Shaking/">
-            
-                <span>10.CSS Tree Shaking</span>
-        </a>
-        <div class="abstract-content">
-            demo10 源码地址CSS Tree Shaking 并不像 Js Tree Shaking 那样方便理解，首先要模拟一个真实的项目环境，来体现 CSS 的 Tree Shaking 的配置和效果。
-此章节源码给予第八节处理 CSS 项目上做修改我们首先编写/src/css/base.css 样式文件，在文件中，我们编写了 3 个样式类。但在代码中，我们只会使用.box 和.box–big 这两个类。代码如下所示：
-12345678910111213141516171819202122232425/* base.css */html &#123;  background: red;&#...
+            demo14 源码地址
+1.为什么需要开发模式？这十几节来我们使用的最多的就是生产环境，也就是 npm run build 的命令，打包项目中各种文件及压缩。
+而开发模式就是制定 mode 为 development。对应我们在 package.json 中配置的，就是 npm run dev,在第二小节也涉及到了这一点。
+在开发模式下，我们需要对代码进行调试，对应的配置就是：devtool  设置为  source-map。在非开发模式西啊，需要关闭此选项，以减小打包体积。详情见: devtool
+在开发模式下，还需要热重载，路由重定向，设置代理等，webpack4.0 已经提供了 d...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -648,49 +681,6 @@ package.json 如下：
             <div class="abstract-tags">
     
         <a class="post-tag" href="javascript:void(0);" data-tags="墨菲定律">墨菲定律</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/06/01/模拟数据方案/mockjs运用/">
-            
-                <span>mockjs运用</span>
-        </a>
-        <div class="abstract-content">
-            
-demo 源码地址
-（一）了解 mockjs
-
-什么是 mockjs？mockjs 就是一个模拟数据，生成随机数据，拦截 ajax 请求。
-为什么要使用 mockjs？
-后端给不了数据
-数据太长，将数据放在 js 文件里面，完成后挨个改 url
-还原真实数据
-特殊格式 ip 随机数 图片 地址
-分页显示
-
-mockjs 的功能
-生产数据:通过 mockjs 提供的方法,你可以轻松地创造大量随机的文本,数字,布尔值,日期,邮箱,链接,图片,颜色等.
-强大的拦截功能:mockjs 可以进行强大的 ajax 拦截.能判断请求类型,获取到 url,请求参数等.然后可以返回 mock 的假数据,...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/06/01</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="mockjs运用">mockjs运用</a>
     
 </div>
             
@@ -1412,9 +1402,54 @@ mockjs 的功能
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 45
+        Total : 46
         </div>
         <!-- search  -->
         
@@ -1430,7 +1465,7 @@ mockjs 的功能
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">06/04</span><a class="archive-post-title" href="/2019/06/04/webpack4/10.CSS Tree Shaking/">10.CSS Tree Shaking</a>
+            <span class="archive-post-date">06/04</span><a class="archive-post-title" href="/2019/06/04/webpack4/14.开发模式与webpack-dev-server/">14.开发模式与webpack-dev-server</a>
         </li>
     
     
@@ -1440,12 +1475,17 @@ mockjs 的功能
     
     
         <li class="archive-post-item">
+            <span class="archive-post-date">06/04</span><a class="archive-post-title" href="/2019/06/04/webpack4/12.字体文件处理/">12.字体文件处理</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
             <span class="archive-post-date">06/04</span><a class="archive-post-title" href="/2019/06/04/webpack4/11.图片处理汇总/">11.图片处理汇总</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">06/04</span><a class="archive-post-title" href="/2019/06/04/webpack4/12.字体文件处理/">12.字体文件处理</a>
+            <span class="archive-post-date">06/04</span><a class="archive-post-title" href="/2019/06/04/webpack4/10.CSS Tree Shaking/">10.CSS Tree Shaking</a>
         </li>
     
     
@@ -1554,12 +1594,12 @@ mockjs 的功能
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/30</span><a class="archive-post-title" href="/2018/05/30/vue/router-link与redirect用法/">router-link与redirect用法</a>
+            <span class="archive-post-date">05/30</span><a class="archive-post-title" href="/2018/05/30/vue/组件生命周期与组件传值/">组件生命周期与组件传值</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/30</span><a class="archive-post-title" href="/2018/05/30/vue/组件生命周期与组件传值/">组件生命周期与组件传值</a>
+            <span class="archive-post-date">05/30</span><a class="archive-post-title" href="/2018/05/30/vue/router-link与redirect用法/">router-link与redirect用法</a>
         </li>
     
     
@@ -1678,21 +1718,21 @@ mockjs 的功能
     
         <span class="sidebar-tag-name" data-tags="php"><span class="iconfont-archer">&#xe606;</span>php</span>
     
+        <span class="sidebar-tag-name" data-tags="react"><span class="iconfont-archer">&#xe606;</span>react</span>
+    
         <span class="sidebar-tag-name" data-tags="webpack3"><span class="iconfont-archer">&#xe606;</span>webpack3</span>
     
         <span class="sidebar-tag-name" data-tags="vue"><span class="iconfont-archer">&#xe606;</span>vue</span>
     
         <span class="sidebar-tag-name" data-tags="css和js基础面试题"><span class="iconfont-archer">&#xe606;</span>css和js基础面试题</span>
     
-        <span class="sidebar-tag-name" data-tags="墨菲定律"><span class="iconfont-archer">&#xe606;</span>墨菲定律</span>
-    
         <span class="sidebar-tag-name" data-tags="webpack4"><span class="iconfont-archer">&#xe606;</span>webpack4</span>
+    
+        <span class="sidebar-tag-name" data-tags="墨菲定律"><span class="iconfont-archer">&#xe606;</span>墨菲定律</span>
     
         <span class="sidebar-tag-name" data-tags="跨域方案"><span class="iconfont-archer">&#xe606;</span>跨域方案</span>
     
         <span class="sidebar-tag-name" data-tags="mockjs运用"><span class="iconfont-archer">&#xe606;</span>mockjs运用</span>
-    
-        <span class="sidebar-tag-name" data-tags="react"><span class="iconfont-archer">&#xe606;</span>react</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
@@ -1729,21 +1769,21 @@ jsonContent:
     
         <span class="sidebar-category-name" data-categories="php"><span class="iconfont-archer">&#xe60a;</span>php</span>
     
+        <span class="sidebar-category-name" data-categories="react"><span class="iconfont-archer">&#xe60a;</span>react</span>
+    
         <span class="sidebar-category-name" data-categories="webpack3"><span class="iconfont-archer">&#xe60a;</span>webpack3</span>
     
         <span class="sidebar-category-name" data-categories="vue"><span class="iconfont-archer">&#xe60a;</span>vue</span>
     
         <span class="sidebar-category-name" data-categories="css和js基础面试题"><span class="iconfont-archer">&#xe60a;</span>css和js基础面试题</span>
     
-        <span class="sidebar-category-name" data-categories="墨菲定律"><span class="iconfont-archer">&#xe60a;</span>墨菲定律</span>
-    
         <span class="sidebar-category-name" data-categories="webpack4"><span class="iconfont-archer">&#xe60a;</span>webpack4</span>
+    
+        <span class="sidebar-category-name" data-categories="墨菲定律"><span class="iconfont-archer">&#xe60a;</span>墨菲定律</span>
     
         <span class="sidebar-category-name" data-categories="跨域方案"><span class="iconfont-archer">&#xe60a;</span>跨域方案</span>
     
         <span class="sidebar-category-name" data-categories="mockjs运用"><span class="iconfont-archer">&#xe60a;</span>mockjs运用</span>
-    
-        <span class="sidebar-category-name" data-categories="react"><span class="iconfont-archer">&#xe60a;</span>react</span>
     
     </div>
     <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
