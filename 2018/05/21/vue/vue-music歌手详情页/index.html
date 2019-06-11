@@ -402,7 +402,7 @@ height:50vh;
             <main class="main post-page">
     <article class="article-entry">
         <p><a name="ryt4ka"></a></p>
-<h3 id="1-singer-页面引入-singer-detail-二级路由"><a href="#1-singer-页面引入-singer-detail-二级路由" class="headerlink" title="1.singer 页面引入 singer-detail 二级路由"></a><a href="#ryt4ka"></a>1.singer 页面引入 singer-detail 二级路由</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//1.在singerlist中触发事件</span></span><br><span class="line">  @click=<span class="string">"selectItem(items)"</span></span><br><span class="line"><span class="comment">//2.在methods中：</span></span><br><span class="line"> selectItem (items) &#123;</span><br><span class="line">   <span class="keyword">this</span>.$emit(<span class="string">'select'</span>, items)<span class="comment">//将事件传递给父组件，将items给父组件</span></span><br><span class="line">&#125;,</span><br><span class="line"><span class="comment">//3.在singer组件中</span></span><br><span class="line"> &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"singer"</span>&gt;</span><br><span class="line">     &lt;v-singerlist @select=<span class="string">"selectSinger"</span> :singerDatas=<span class="string">"singers"</span>&gt;&lt;/v-singerlist&gt;</span><br><span class="line">     &lt;router-view&gt;&lt;/router-view&gt;</span><br><span class="line">  &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">/</span><span class="regexp">/4.在父组件的methods中使用</span></span><br><span class="line"><span class="regexp"> selectSinger (singer) &#123;</span></span><br><span class="line"><span class="regexp">      this.$router.push(&#123;</span></span><br><span class="line"><span class="regexp">        path: `/</span>singer/$&#123;singer.id&#125;<span class="string">`</span></span><br><span class="line"><span class="string">      &#125;)</span></span><br><span class="line"><span class="string">      this.setSinger(singer)</span></span><br><span class="line"><span class="string">&#125;</span></span><br><span class="line"><span class="string">//5.index.js路由中配置</span></span><br><span class="line"><span class="string">&#123;</span></span><br><span class="line"><span class="string">    path: '/singer',</span></span><br><span class="line"><span class="string">    component: Singer,</span></span><br><span class="line"><span class="string">    children: [</span></span><br><span class="line"><span class="string">    &#123;</span></span><br><span class="line"><span class="string">      path: ':id',</span></span><br><span class="line"><span class="string">      component: SingerDetail</span></span><br><span class="line"><span class="string">    &#125;</span></span><br><span class="line"><span class="string">    ]</span></span><br></pre></td></tr></table></figure>
+<h3 id="1-singer-页面引入-singer-detail-二级路由"><a href="#1-singer-页面引入-singer-detail-二级路由" class="headerlink" title="1.singer 页面引入 singer-detail 二级路由"></a><a href="#ryt4ka"></a>1.singer 页面引入 singer-detail 二级路由</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//1.在singerlist中触发事件</span></span><br><span class="line">  @click=<span class="string">"selectItem(items)"</span></span><br><span class="line"><span class="comment">//2.在methods中：</span></span><br><span class="line"> selectItem (items) &#123;</span><br><span class="line">   <span class="keyword">this</span>.$emit(<span class="string">'select'</span>, items)<span class="comment">//将事件传递给父组件，将items给父组件</span></span><br><span class="line">&#125;,</span><br><span class="line"><span class="comment">//3.在singer组件中</span></span><br><span class="line"> &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"singer"</span>&gt;</span><br><span class="line">     &lt;v-singerlist @select=<span class="string">"selectSinger"</span> :singerDatas=<span class="string">"singers"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">v-singerlist</span>&gt;</span></span></span><br><span class="line">     &lt;router-view&gt;<span class="xml"><span class="tag">&lt;/<span class="name">router-view</span>&gt;</span></span></span><br><span class="line">  &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">/</span><span class="regexp">/4.在父组件的methods中使用</span></span><br><span class="line"><span class="regexp"> selectSinger (singer) &#123;</span></span><br><span class="line"><span class="regexp">      this.$router.push(&#123;</span></span><br><span class="line"><span class="regexp">        path: `/</span>singer/$&#123;singer.id&#125;<span class="string">`</span></span><br><span class="line"><span class="string">      &#125;)</span></span><br><span class="line"><span class="string">      this.setSinger(singer)</span></span><br><span class="line"><span class="string">&#125;</span></span><br><span class="line"><span class="string">//5.index.js路由中配置</span></span><br><span class="line"><span class="string">&#123;</span></span><br><span class="line"><span class="string">    path: '/singer',</span></span><br><span class="line"><span class="string">    component: Singer,</span></span><br><span class="line"><span class="string">    children: [</span></span><br><span class="line"><span class="string">    &#123;</span></span><br><span class="line"><span class="string">      path: ':id',</span></span><br><span class="line"><span class="string">      component: SingerDetail</span></span><br><span class="line"><span class="string">    &#125;</span></span><br><span class="line"><span class="string">    ]</span></span><br></pre></td></tr></table></figure>
 
 <p><a name="gn5tzv"></a></p>
 <h3 id="2-Vuex-传值"><a href="#2-Vuex-传值" class="headerlink" title="2.Vuex 传值"></a><a href="#gn5tzv"></a>2.Vuex 传值</h3><p>vuex 的安装与配置：</p>
@@ -426,7 +426,7 @@ height:50vh;
 </li>
 </ol>
 <p>vuex 传值：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//通过vuex将singerlist.vue的数据传值给singerdetail</span></span><br><span class="line"><span class="comment">//1.首先singerlist.vue检测点击事件，将具体点击的歌手派发出去，以供父组件监听</span></span><br><span class="line">selectItem(item)&#123;</span><br><span class="line"> <span class="keyword">this</span>.$emit(<span class="string">"select"</span>,item)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//2.父组件监听事件执行selectSinger(singer)</span></span><br><span class="line">selectSinger(singer)&#123;</span><br><span class="line"><span class="keyword">this</span>.$router.push(&#123;</span><br><span class="line"> path:<span class="string">`/singer/<span class="subst">$&#123;singer.id&#125;</span>`</span></span><br><span class="line"> &#125;)</span><br><span class="line"><span class="keyword">this</span>.setSinger(singer)</span><br><span class="line">&#125;</span><br><span class="line">...mapMutations(&#123;</span><br><span class="line">  setSinger: <span class="string">'SET_SINGER'</span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">//3.使用mapMutations语法映射mutations，this.setSinger(singer)相当于执行this.$store.commit('SET_SINGER')</span></span><br><span class="line"><span class="comment">//singer为mutation的地呢个参数</span></span><br><span class="line">[types.SET_SINGER](state, singer) &#123;</span><br><span class="line">  state.singer = singer</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//4.SingerDetail取vuex中存好的数据</span></span><br><span class="line">computed: &#123;</span><br><span class="line">  ...mapGetters([</span><br><span class="line">    <span class="string">'singer'</span></span><br><span class="line">  ])</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//getters内singer的逻辑为：</span></span><br><span class="line">singer = <span class="function"><span class="params">state</span> =&gt;</span> state.singer</span><br><span class="line"><span class="comment">//singerdetail获取的数据的name和avatar通过props传值给MusicList</span></span><br><span class="line"><span class="comment">//在singerdetail中</span></span><br><span class="line">&lt;transition name=<span class="string">"slider"</span>&gt;</span><br><span class="line">    &lt;v-musiclist :title=<span class="string">"title"</span> :bgImage=<span class="string">"bgImage"</span>&gt;&lt;/v-musiclist&gt;</span><br><span class="line">&lt;<span class="regexp">/transition&gt;</span></span><br><span class="line"><span class="regexp">computed: &#123;</span></span><br><span class="line"><span class="regexp">    title () &#123;</span></span><br><span class="line"><span class="regexp">      return this.singer.name</span></span><br><span class="line"><span class="regexp">    &#125;,</span></span><br><span class="line"><span class="regexp">    bgImage () &#123;</span></span><br><span class="line"><span class="regexp">      return this.singer.avatar</span></span><br><span class="line"><span class="regexp">    &#125;,</span></span><br><span class="line"><span class="regexp">    ...mapGetters([</span></span><br><span class="line"><span class="regexp">      'singer'</span></span><br><span class="line"><span class="regexp">    ])</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp">/</span><span class="regexp">/在musiclist中</span></span><br><span class="line"><span class="regexp">props: &#123;</span></span><br><span class="line"><span class="regexp">    title: &#123;</span></span><br><span class="line"><span class="regexp">      type: String,</span></span><br><span class="line"><span class="regexp">      default: ''</span></span><br><span class="line"><span class="regexp">    &#125;,</span></span><br><span class="line"><span class="regexp">    bgImage: &#123;</span></span><br><span class="line"><span class="regexp">      type: String,</span></span><br><span class="line"><span class="regexp">      default: ''</span></span><br><span class="line"><span class="regexp">    &#125;</span></span><br><span class="line"><span class="regexp">  &#125;,</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//通过vuex将singerlist.vue的数据传值给singerdetail</span></span><br><span class="line"><span class="comment">//1.首先singerlist.vue检测点击事件，将具体点击的歌手派发出去，以供父组件监听</span></span><br><span class="line">selectItem(item)&#123;</span><br><span class="line"> <span class="keyword">this</span>.$emit(<span class="string">"select"</span>,item)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//2.父组件监听事件执行selectSinger(singer)</span></span><br><span class="line">selectSinger(singer)&#123;</span><br><span class="line"><span class="keyword">this</span>.$router.push(&#123;</span><br><span class="line"> path:<span class="string">`/singer/<span class="subst">$&#123;singer.id&#125;</span>`</span></span><br><span class="line"> &#125;)</span><br><span class="line"><span class="keyword">this</span>.setSinger(singer)</span><br><span class="line">&#125;</span><br><span class="line">...mapMutations(&#123;</span><br><span class="line">  setSinger: <span class="string">'SET_SINGER'</span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">//3.使用mapMutations语法映射mutations，this.setSinger(singer)相当于执行this.$store.commit('SET_SINGER')</span></span><br><span class="line"><span class="comment">//singer为mutation的地呢个参数</span></span><br><span class="line">[types.SET_SINGER](state, singer) &#123;</span><br><span class="line">  state.singer = singer</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//4.SingerDetail取vuex中存好的数据</span></span><br><span class="line">computed: &#123;</span><br><span class="line">  ...mapGetters([</span><br><span class="line">    <span class="string">'singer'</span></span><br><span class="line">  ])</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//getters内singer的逻辑为：</span></span><br><span class="line">singer = <span class="function"><span class="params">state</span> =&gt;</span> state.singer</span><br><span class="line"><span class="comment">//singerdetail获取的数据的name和avatar通过props传值给MusicList</span></span><br><span class="line"><span class="comment">//在singerdetail中</span></span><br><span class="line">&lt;transition name=<span class="string">"slider"</span>&gt;</span><br><span class="line">    &lt;v-musiclist :title=<span class="string">"title"</span> :bgImage=<span class="string">"bgImage"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">v-musiclist</span>&gt;</span></span></span><br><span class="line">&lt;<span class="regexp">/transition&gt;</span></span><br><span class="line"><span class="regexp">computed: &#123;</span></span><br><span class="line"><span class="regexp">    title () &#123;</span></span><br><span class="line"><span class="regexp">      return this.singer.name</span></span><br><span class="line"><span class="regexp">    &#125;,</span></span><br><span class="line"><span class="regexp">    bgImage () &#123;</span></span><br><span class="line"><span class="regexp">      return this.singer.avatar</span></span><br><span class="line"><span class="regexp">    &#125;,</span></span><br><span class="line"><span class="regexp">    ...mapGetters([</span></span><br><span class="line"><span class="regexp">      'singer'</span></span><br><span class="line"><span class="regexp">    ])</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp">/</span><span class="regexp">/在musiclist中</span></span><br><span class="line"><span class="regexp">props: &#123;</span></span><br><span class="line"><span class="regexp">    title: &#123;</span></span><br><span class="line"><span class="regexp">      type: String,</span></span><br><span class="line"><span class="regexp">      default: ''</span></span><br><span class="line"><span class="regexp">    &#125;,</span></span><br><span class="line"><span class="regexp">    bgImage: &#123;</span></span><br><span class="line"><span class="regexp">      type: String,</span></span><br><span class="line"><span class="regexp">      default: ''</span></span><br><span class="line"><span class="regexp">    &#125;</span></span><br><span class="line"><span class="regexp">  &#125;,</span></span><br></pre></td></tr></table></figure>
 
 <p><a name="sbcanb"></a></p>
 <h3 id="3-歌手详情页对应数据的获取"><a href="#3-歌手详情页对应数据的获取" class="headerlink" title="3.歌手详情页对应数据的获取"></a><a href="#sbcanb"></a>3.歌手详情页对应数据的获取</h3>
@@ -1247,6 +1247,44 @@ top:50vh;
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
         Total : 47
@@ -1265,7 +1303,7 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">06/11</span><a class="archive-post-title" href="/2019/06/11/webpack4/15.开发模式和生产模式实战/">14.开发模式和生产模式实战</a>
+            <span class="archive-post-date">06/11</span><a class="archive-post-title" href="/2019/06/11/webpack4/15.开发模式和生产模式实战/">15.开发模式和生产模式实战</a>
         </li>
     
     
@@ -1275,22 +1313,22 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">06/04</span><a class="archive-post-title" href="/2019/06/04/webpack4/13.处理第三方js文件/">13.处理第三方js文件</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
             <span class="archive-post-date">06/04</span><a class="archive-post-title" href="/2019/06/04/webpack4/12.字体文件处理/">12.字体文件处理</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">06/04</span><a class="archive-post-title" href="/2019/06/04/webpack4/10.CSS Tree Shaking/">10.CSS Tree Shaking</a>
+            <span class="archive-post-date">06/04</span><a class="archive-post-title" href="/2019/06/04/webpack4/11.图片处理汇总/">11.图片处理汇总</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">06/04</span><a class="archive-post-title" href="/2019/06/04/webpack4/11.图片处理汇总/">11.图片处理汇总</a>
+            <span class="archive-post-date">06/04</span><a class="archive-post-title" href="/2019/06/04/webpack4/13.处理第三方js文件/">13.处理第三方js文件</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/04</span><a class="archive-post-title" href="/2019/06/04/webpack4/10.CSS Tree Shaking/">10.CSS Tree Shaking</a>
         </li>
     
     
@@ -1424,22 +1462,22 @@ top:50vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/17</span><a class="archive-post-title" href="/2018/05/17/vue/banner横向轮播图-组件封装思路/">banner横向轮播图-组件封装思路</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
             <span class="archive-post-date">05/17</span><a class="archive-post-title" href="/2018/05/17/vue/vueMusic歌手-左右链动/">vueMusic歌手-左右链动</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/17</span><a class="archive-post-title" href="/2018/05/17/vue/better-scroll-配置纵向滚动/">better-scroll-配置纵向滚动</a>
+            <span class="archive-post-date">05/17</span><a class="archive-post-title" href="/2018/05/17/vue/axios-获取接口，mock模拟数据配置/">axios-获取接口，mock模拟数据配置</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/17</span><a class="archive-post-title" href="/2018/05/17/vue/axios-获取接口，mock模拟数据配置/">axios-获取接口，mock模拟数据配置</a>
+            <span class="archive-post-date">05/17</span><a class="archive-post-title" href="/2018/05/17/vue/banner横向轮播图-组件封装思路/">banner横向轮播图-组件封装思路</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/17</span><a class="archive-post-title" href="/2018/05/17/vue/better-scroll-配置纵向滚动/">better-scroll-配置纵向滚动</a>
         </li>
     
     
@@ -1521,23 +1559,23 @@ top:50vh;
         <div class="sidebar-panel-tags">
     <div class="sidebar-tags-name">
     
+        <span class="sidebar-tag-name" data-tags="php"><span class="iconfont-archer">&#xe606;</span>php</span>
+    
         <span class="sidebar-tag-name" data-tags="react"><span class="iconfont-archer">&#xe606;</span>react</span>
     
         <span class="sidebar-tag-name" data-tags="vue"><span class="iconfont-archer">&#xe606;</span>vue</span>
     
         <span class="sidebar-tag-name" data-tags="webpack3"><span class="iconfont-archer">&#xe606;</span>webpack3</span>
     
-        <span class="sidebar-tag-name" data-tags="php"><span class="iconfont-archer">&#xe606;</span>php</span>
+        <span class="sidebar-tag-name" data-tags="webpack4"><span class="iconfont-archer">&#xe606;</span>webpack4</span>
     
         <span class="sidebar-tag-name" data-tags="css和js基础面试题"><span class="iconfont-archer">&#xe606;</span>css和js基础面试题</span>
+    
+        <span class="sidebar-tag-name" data-tags="mockjs运用"><span class="iconfont-archer">&#xe606;</span>mockjs运用</span>
     
         <span class="sidebar-tag-name" data-tags="墨菲定律"><span class="iconfont-archer">&#xe606;</span>墨菲定律</span>
     
         <span class="sidebar-tag-name" data-tags="跨域方案"><span class="iconfont-archer">&#xe606;</span>跨域方案</span>
-    
-        <span class="sidebar-tag-name" data-tags="webpack4"><span class="iconfont-archer">&#xe606;</span>webpack4</span>
-    
-        <span class="sidebar-tag-name" data-tags="mockjs运用"><span class="iconfont-archer">&#xe606;</span>mockjs运用</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
@@ -1572,23 +1610,23 @@ jsonContent:
         <div class="sidebar-panel-categories">
     <div class="sidebar-categories-name">
     
+        <span class="sidebar-category-name" data-categories="php"><span class="iconfont-archer">&#xe60a;</span>php</span>
+    
         <span class="sidebar-category-name" data-categories="react"><span class="iconfont-archer">&#xe60a;</span>react</span>
     
         <span class="sidebar-category-name" data-categories="vue"><span class="iconfont-archer">&#xe60a;</span>vue</span>
     
         <span class="sidebar-category-name" data-categories="webpack3"><span class="iconfont-archer">&#xe60a;</span>webpack3</span>
     
-        <span class="sidebar-category-name" data-categories="php"><span class="iconfont-archer">&#xe60a;</span>php</span>
+        <span class="sidebar-category-name" data-categories="webpack4"><span class="iconfont-archer">&#xe60a;</span>webpack4</span>
     
         <span class="sidebar-category-name" data-categories="css和js基础面试题"><span class="iconfont-archer">&#xe60a;</span>css和js基础面试题</span>
+    
+        <span class="sidebar-category-name" data-categories="mockjs运用"><span class="iconfont-archer">&#xe60a;</span>mockjs运用</span>
     
         <span class="sidebar-category-name" data-categories="墨菲定律"><span class="iconfont-archer">&#xe60a;</span>墨菲定律</span>
     
         <span class="sidebar-category-name" data-categories="跨域方案"><span class="iconfont-archer">&#xe60a;</span>跨域方案</span>
-    
-        <span class="sidebar-category-name" data-categories="webpack4"><span class="iconfont-archer">&#xe60a;</span>webpack4</span>
-    
-        <span class="sidebar-category-name" data-categories="mockjs运用"><span class="iconfont-archer">&#xe60a;</span>mockjs运用</span>
     
     </div>
     <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
