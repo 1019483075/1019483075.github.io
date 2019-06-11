@@ -346,19 +346,18 @@
     
     
     <article class="index-post">
-        <a class="abstract-title" href="/2019/06/04/webpack4/10.CSS Tree Shaking/">
+        <a class="abstract-title" href="/2019/06/11/webpack4/15.开发模式和生产模式实战/">
             
-                <span>10.CSS Tree Shaking</span>
+                <span>14.开发模式和生产模式实战</span>
         </a>
         <div class="abstract-content">
-            demo10 源码地址CSS Tree Shaking 并不像 Js Tree Shaking 那样方便理解，首先要模拟一个真实的项目环境，来体现 CSS 的 Tree Shaking 的配置和效果。
-此章节源码给予第八节处理 CSS 项目上做修改我们首先编写/src/css/base.css 样式文件，在文件中，我们编写了 3 个样式类。但在代码中，我们只会使用.box 和.box–big 这两个类。代码如下所示：
-12345678910111213141516171819202122232425/* base.css */html &#123;  background: red;&#...
+            demo15 链接首先新建一个文件夹：demo15，执行 npm init -y 初始化 package.json,生成后的文件如下：
+123456789101112&#123;  "name": "demo15",  "version": "1.0.0",  "description": "",  "main": "index.js",  "scripts": &#123;    "test": "echo \"Error: no test specified\" &amp;&amp; exit 1"  &#125;,  "keywords": [],  "author": "",  ...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
             <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/06/04</span>
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/06/11</span>
             </div>
             <!-- tags  -->
             
@@ -377,18 +376,21 @@
     
     
     <article class="index-post">
-        <a class="abstract-title" href="/2019/06/04/webpack4/12.字体文件处理/">
+        <a class="abstract-title" href="/2019/06/09/webpack4/14.开发模式与webpack-dev-server/">
             
-                <span>12.字体文件处理</span>
+                <span>14.开发模式与webpack-dev-server</span>
         </a>
         <div class="abstract-content">
-            demo12 源码地址项目目录为：package.json 中使用的依赖如下：
-1234567891011121314151617181920212223242526272829&#123;  "scripts": &#123;    "dev": "webpack --mode development",    "build": "webpack --mode production"  &#125;, "devDependencies": &#123;    "@babel/core": "^7.4.5",    "@babel/plugin-transform-runtime": "...
+            demo14 源码地址
+1.为什么需要开发模式？这十几节来我们使用的最多的就是生产环境，也就是 npm run build 的命令，打包项目中各种文件及压缩。
+而开发模式就是制定 mode 为 development。对应我们在 package.json 中配置的，就是 npm run dev,在第二小节也涉及到了这一点。
+在开发模式下，我们需要对代码进行调试，对应的配置就是：devtool  设置为  source-map。在非开发模式西啊，需要关闭此选项，以减小打包体积。详情见: devtool
+在开发模式下，还需要热重载，路由重定向，设置代理等，webpack4.0 已经提供了 d...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
             <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/06/04</span>
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/06/09</span>
             </div>
             <!-- tags  -->
             
@@ -482,16 +484,44 @@ npm 包管理：目前最常用和最推荐的方法
     
     
     <article class="index-post">
-        <a class="abstract-title" href="/2019/06/04/webpack4/14.开发模式与webpack-dev-server/">
+        <a class="abstract-title" href="/2019/06/04/webpack4/12.字体文件处理/">
             
-                <span>14.开发模式与webpack-dev-server</span>
+                <span>12.字体文件处理</span>
         </a>
         <div class="abstract-content">
-            demo14 源码地址
-1.为什么需要开发模式？这十几节来我们使用的最多的就是生产环境，也就是 npm run build 的命令，打包项目中各种文件及压缩。
-而开发模式就是制定 mode 为 development。对应我们在 package.json 中配置的，就是 npm run dev,在第二小节也涉及到了这一点。
-在开发模式下，我们需要对代码进行调试，对应的配置就是：devtool  设置为  source-map。在非开发模式西啊，需要关闭此选项，以减小打包体积。详情见: devtool
-在开发模式下，还需要热重载，路由重定向，设置代理等，webpack4.0 已经提供了 d...
+            demo12 源码地址项目目录为：package.json 中使用的依赖如下：
+1234567891011121314151617181920212223242526272829&#123;  "scripts": &#123;    "dev": "webpack --mode development",    "build": "webpack --mode production"  &#125;, "devDependencies": &#123;    "@babel/core": "^7.4.5",    "@babel/plugin-transform-runtime": "...
+        </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/06/04</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="webpack4">webpack4</a>
+    
+</div>
+            
+        </div>
+    </article>
+    
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/2019/06/04/webpack4/10.CSS Tree Shaking/">
+            
+                <span>10.CSS Tree Shaking</span>
+        </a>
+        <div class="abstract-content">
+            demo10 源码地址CSS Tree Shaking 并不像 Js Tree Shaking 那样方便理解，首先要模拟一个真实的项目环境，来体现 CSS 的 Tree Shaking 的配置和效果。
+此章节源码给予第八节处理 CSS 项目上做修改我们首先编写/src/css/base.css 样式文件，在文件中，我们编写了 3 个样式类。但在代码中，我们只会使用.box 和.box–big 这两个类。代码如下所示：
+12345678910111213141516171819202122232425/* base.css */html &#123;  background: red;&#...
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -635,36 +665,6 @@ package.json 如下：
             <!-- date  -->
             <div class="abstract-date">
                 <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/06/02</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="webpack4">webpack4</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/05/25/webpack4/5.Code Splitting代码分割/">
-            
-                <span>5.Code  Splitting代码分割</span>
-        </a>
-        <div class="abstract-content">
-            demo5 源码地址package.json 文件所用依赖，npm  install 安装：
-1234567891011121314&#123;  "script": &#123;    "dev": "webpack --mode development",    "build": "webpack --mode production"  &#125;,  "devDependencies": &#123;    "clean-webpack-plugin": "^2.0.0",    "webpack": "^4.29.6",    "webpack-cli": "^3.2.3"  ...
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/05/25</span>
             </div>
             <!-- tags  -->
             
@@ -1437,9 +1437,18 @@ package.json 如下：
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 46
+        Total : 47
         </div>
         <!-- search  -->
         
@@ -1455,7 +1464,12 @@ package.json 如下：
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">06/04</span><a class="archive-post-title" href="/2019/06/04/webpack4/14.开发模式与webpack-dev-server/">14.开发模式与webpack-dev-server</a>
+            <span class="archive-post-date">06/11</span><a class="archive-post-title" href="/2019/06/11/webpack4/15.开发模式和生产模式实战/">14.开发模式和生产模式实战</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/09</span><a class="archive-post-title" href="/2019/06/09/webpack4/14.开发模式与webpack-dev-server/">14.开发模式与webpack-dev-server</a>
         </li>
     
     
@@ -1470,12 +1484,12 @@ package.json 如下：
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">06/04</span><a class="archive-post-title" href="/2019/06/04/webpack4/11.图片处理汇总/">11.图片处理汇总</a>
+            <span class="archive-post-date">06/04</span><a class="archive-post-title" href="/2019/06/04/webpack4/10.CSS Tree Shaking/">10.CSS Tree Shaking</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">06/04</span><a class="archive-post-title" href="/2019/06/04/webpack4/10.CSS Tree Shaking/">10.CSS Tree Shaking</a>
+            <span class="archive-post-date">06/04</span><a class="archive-post-title" href="/2019/06/04/webpack4/11.图片处理汇总/">11.图片处理汇总</a>
         </li>
     
     
@@ -1584,12 +1598,12 @@ package.json 如下：
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/30</span><a class="archive-post-title" href="/2018/05/30/vue/组件生命周期与组件传值/">组件生命周期与组件传值</a>
+            <span class="archive-post-date">05/30</span><a class="archive-post-title" href="/2018/05/30/vue/router-link与redirect用法/">router-link与redirect用法</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/30</span><a class="archive-post-title" href="/2018/05/30/vue/router-link与redirect用法/">router-link与redirect用法</a>
+            <span class="archive-post-date">05/30</span><a class="archive-post-title" href="/2018/05/30/vue/组件生命周期与组件传值/">组件生命周期与组件传值</a>
         </li>
     
     
@@ -1609,22 +1623,22 @@ package.json 如下：
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/17</span><a class="archive-post-title" href="/2018/05/17/vue/vueMusic歌手-左右链动/">vueMusic歌手-左右链动</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
             <span class="archive-post-date">05/17</span><a class="archive-post-title" href="/2018/05/17/vue/banner横向轮播图-组件封装思路/">banner横向轮播图-组件封装思路</a>
         </li>
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">05/17</span><a class="archive-post-title" href="/2018/05/17/vue/axios-获取接口，mock模拟数据配置/">axios-获取接口，mock模拟数据配置</a>
+            <span class="archive-post-date">05/17</span><a class="archive-post-title" href="/2018/05/17/vue/vueMusic歌手-左右链动/">vueMusic歌手-左右链动</a>
         </li>
     
     
         <li class="archive-post-item">
             <span class="archive-post-date">05/17</span><a class="archive-post-title" href="/2018/05/17/vue/better-scroll-配置纵向滚动/">better-scroll-配置纵向滚动</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/17</span><a class="archive-post-title" href="/2018/05/17/vue/axios-获取接口，mock模拟数据配置/">axios-获取接口，mock模拟数据配置</a>
         </li>
     
     
@@ -1706,21 +1720,21 @@ package.json 如下：
         <div class="sidebar-panel-tags">
     <div class="sidebar-tags-name">
     
-        <span class="sidebar-tag-name" data-tags="php"><span class="iconfont-archer">&#xe606;</span>php</span>
-    
         <span class="sidebar-tag-name" data-tags="react"><span class="iconfont-archer">&#xe606;</span>react</span>
-    
-        <span class="sidebar-tag-name" data-tags="webpack3"><span class="iconfont-archer">&#xe606;</span>webpack3</span>
     
         <span class="sidebar-tag-name" data-tags="vue"><span class="iconfont-archer">&#xe606;</span>vue</span>
     
-        <span class="sidebar-tag-name" data-tags="css和js基础面试题"><span class="iconfont-archer">&#xe606;</span>css和js基础面试题</span>
+        <span class="sidebar-tag-name" data-tags="webpack3"><span class="iconfont-archer">&#xe606;</span>webpack3</span>
     
-        <span class="sidebar-tag-name" data-tags="webpack4"><span class="iconfont-archer">&#xe606;</span>webpack4</span>
+        <span class="sidebar-tag-name" data-tags="php"><span class="iconfont-archer">&#xe606;</span>php</span>
+    
+        <span class="sidebar-tag-name" data-tags="css和js基础面试题"><span class="iconfont-archer">&#xe606;</span>css和js基础面试题</span>
     
         <span class="sidebar-tag-name" data-tags="墨菲定律"><span class="iconfont-archer">&#xe606;</span>墨菲定律</span>
     
         <span class="sidebar-tag-name" data-tags="跨域方案"><span class="iconfont-archer">&#xe606;</span>跨域方案</span>
+    
+        <span class="sidebar-tag-name" data-tags="webpack4"><span class="iconfont-archer">&#xe606;</span>webpack4</span>
     
         <span class="sidebar-tag-name" data-tags="mockjs运用"><span class="iconfont-archer">&#xe606;</span>mockjs运用</span>
     
@@ -1757,21 +1771,21 @@ jsonContent:
         <div class="sidebar-panel-categories">
     <div class="sidebar-categories-name">
     
-        <span class="sidebar-category-name" data-categories="php"><span class="iconfont-archer">&#xe60a;</span>php</span>
-    
         <span class="sidebar-category-name" data-categories="react"><span class="iconfont-archer">&#xe60a;</span>react</span>
-    
-        <span class="sidebar-category-name" data-categories="webpack3"><span class="iconfont-archer">&#xe60a;</span>webpack3</span>
     
         <span class="sidebar-category-name" data-categories="vue"><span class="iconfont-archer">&#xe60a;</span>vue</span>
     
-        <span class="sidebar-category-name" data-categories="css和js基础面试题"><span class="iconfont-archer">&#xe60a;</span>css和js基础面试题</span>
+        <span class="sidebar-category-name" data-categories="webpack3"><span class="iconfont-archer">&#xe60a;</span>webpack3</span>
     
-        <span class="sidebar-category-name" data-categories="webpack4"><span class="iconfont-archer">&#xe60a;</span>webpack4</span>
+        <span class="sidebar-category-name" data-categories="php"><span class="iconfont-archer">&#xe60a;</span>php</span>
+    
+        <span class="sidebar-category-name" data-categories="css和js基础面试题"><span class="iconfont-archer">&#xe60a;</span>css和js基础面试题</span>
     
         <span class="sidebar-category-name" data-categories="墨菲定律"><span class="iconfont-archer">&#xe60a;</span>墨菲定律</span>
     
         <span class="sidebar-category-name" data-categories="跨域方案"><span class="iconfont-archer">&#xe60a;</span>跨域方案</span>
+    
+        <span class="sidebar-category-name" data-categories="webpack4"><span class="iconfont-archer">&#xe60a;</span>webpack4</span>
     
         <span class="sidebar-category-name" data-categories="mockjs运用"><span class="iconfont-archer">&#xe60a;</span>mockjs运用</span>
     
