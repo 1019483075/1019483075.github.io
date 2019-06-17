@@ -1,1716 +1,580 @@
 <!DOCTYPE html>
-<html lang="">
-    <!-- title -->
+<html lang="en">
 
-
-
-
-<!-- keywords -->
-
-
-
-
+<!-- Head tag -->
 <head><meta name="generator" content="Hexo 3.8.0">
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <meta name="author" content="令夕">
-    <meta name="renderer" content="webkit">
-    <meta name="copyright" content="令夕">
-    
-    <meta name="keywords" content="hexo,hexo-theme,hexo-blog">
-    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content>
-    <meta http-equiv="Cache-control" content="no-cache">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>数据库(2)-优化 · 令夕</title>
-    <style type="text/css">
-    @font-face {
-        font-family: 'Oswald-Regular';
-        src: url("/font/Oswald-Regular.ttf");
-    }
+    <meta name="keyword" content>
+    <link rel="shortcut icon" href="/img/ironman-draw.png">
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <title>
+        
+          数据库(2)-优化 - 令夕
+        
+    </title>
 
-    body {
-        margin: 0;
-    }
+    <link rel="canonical" href="http://yoursite-url/2018/06/04/php基础/数据库(2)-优化/">
 
-    header,
-    footer,
-    .back-top,
-    .sidebar,
-    .container,
-    .site-intro-meta,
-    .toc-wrapper {
-        display: none;
-    }
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
 
-    .site-intro {
-        position: relative;
-        z-index: 3;
-        width: 100%;
-        /* height: 50vh; */
-        overflow: hidden;
-    }
-
-    .site-intro-placeholder {
-        position: absolute;
-        z-index: -2;
-        top: 0;
-        left: 0;
-        width: calc(100% + 300px);
-        height: 100%;
-        background: repeating-linear-gradient(-45deg, #444 0, #444 80px, #333 80px, #333 160px);
-        background-position: center center;
-        transform: translate3d(-226px, 0, 0);
-        animation: gradient-move 2.5s ease-out 0s infinite;
-    }
-
-    @keyframes gradient-move {
-        0% {
-            transform: translate3d(-226px, 0, 0);
-        }
-        100% {
-            transform: translate3d(0, 0, 0);
-        }
-    }
-
-</style>
-
-    <link rel="preload" href="/css/style.css?v=20180824" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <link rel="stylesheet" href="/css/mobile.css?v=20180824" media="(max-width: 980px)">
+    <!-- Custom CSS --> 
+    <link rel="stylesheet" href="/css/beantech.min.css">
     
-    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    
-    <!-- /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
-/* This file is meant as a standalone workflow for
-- testing support for link[rel=preload]
-- enabling async CSS loading in browsers that do not support rel=preload
-- applying rel preload css once loaded, whether supported or not.
-*/ -->
-<script>
-(function( w ){
-	"use strict";
-	// rel=preload support test
-	if( !w.loadCSS ){
-		w.loadCSS = function(){};
-	}
-	// define on the loadCSS obj
-	var rp = loadCSS.relpreload = {};
-	// rel=preload feature support test
-	// runs once and returns a function for compat purposes
-	rp.support = (function(){
-		var ret;
-		try {
-			ret = w.document.createElement( "link" ).relList.supports( "preload" );
-		} catch (e) {
-			ret = false;
-		}
-		return function(){
-			return ret;
-		};
-	})();
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
 
-	// if preload isn't supported, get an asynchronous load by using a non-matching media attribute
-	// then change that media back to its intended value on load
-	rp.bindMediaToggle = function( link ){
-		// remember existing media attr for ultimate state, or default to 'all'
-		var finalMedia = link.media || "all";
+    <link rel="stylesheet" href="/css/widget.css">
 
-		function enableStylesheet(){
-			link.media = finalMedia;
-		}
+    <link rel="stylesheet" href="/css/rocket.css">
 
-		// bind load handlers to enable media
-		if( link.addEventListener ){
-			link.addEventListener( "load", enableStylesheet );
-		} else if( link.attachEvent ){
-			link.attachEvent( "onload", enableStylesheet );
-		}
+    <link rel="stylesheet" href="/css/signature.css">
 
-		// Set rel and non-applicable media type to start an async request
-		// note: timeout allows this to happen async to let rendering continue in IE
-		setTimeout(function(){
-			link.rel = "stylesheet";
-			link.media = "only x";
-		});
-		// also enable media after 3 seconds,
-		// which will catch very old browsers (android 2.x, old firefox) that don't support onload on link
-		setTimeout( enableStylesheet, 3000 );
-	};
+    <link rel="stylesheet" href="/css/toc.css">
 
-	// loop through link elements in DOM
-	rp.poly = function(){
-		// double check this to prevent external calls from running
-		if( rp.support() ){
-			return;
-		}
-		var links = w.document.getElementsByTagName( "link" );
-		for( var i = 0; i < links.length; i++ ){
-			var link = links[ i ];
-			// qualify links to those with rel=preload and as=style attrs
-			if( link.rel === "preload" && link.getAttribute( "as" ) === "style" && !link.getAttribute( "data-loadcss" ) ){
-				// prevent rerunning on link
-				link.setAttribute( "data-loadcss", true );
-				// bind listeners to toggle media back
-				rp.bindMediaToggle( link );
-			}
-		}
-	};
-
-	// if unsupported, run the polyfill
-	if( !rp.support() ){
-		// run once at least
-		rp.poly();
-
-		// rerun poly on an interval until onload
-		var run = w.setInterval( rp.poly, 500 );
-		if( w.addEventListener ){
-			w.addEventListener( "load", function(){
-				rp.poly();
-				w.clearInterval( run );
-			} );
-		} else if( w.attachEvent ){
-			w.attachEvent( "onload", function(){
-				rp.poly();
-				w.clearInterval( run );
-			} );
-		}
-	}
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
 
-	// commonjs
-	if( typeof exports !== "undefined" ){
-		exports.loadCSS = loadCSS;
-	}
-	else {
-		w.loadCSS = loadCSS;
-	}
-}( typeof global !== "undefined" ? global : this ) );
-</script>
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
 
-    <link rel="icon" href="/assets/favicon.ico">
-    <link rel="preload" href="https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js" as="script">
-    <link rel="preload" href="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js" as="script">
-    <link rel="preload" href="/scripts/main.js" as="script">
-    <link rel="preload" as="font" href="/font/Oswald-Regular.ttf" crossorigin>
-    <link rel="preload" as="font" href="https://at.alicdn.com/t/font_327081_1dta1rlogw17zaor.woff" crossorigin>
-    
-    <!-- fancybox -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" defer></script>
-    <!-- 百度统计  -->
-    
-    <!-- 谷歌统计  -->
-    
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
 </head>
 
-    
-        <body class="post-body">
-    
-    
-<header class="header">
 
-    <div class="read-progress"></div>
-    <div class="header-sidebar-menu">&#xe775;</div>
-    <!-- post页的toggle banner  -->
-    
-    <div class="banner">
-            <div class="blog-title">
-                <a href="/">令夕</a>
-            </div>
-            <div class="post-title">
-                <a href="#" class="post-name">数据库(2)-优化</a>
-            </div>
-    </div>
-    
-    <a class="home-link" href="/">令夕</a>
-</header>
-    <div class="wrapper">
-        <div class="site-intro" style="
-
-
-
-
-
-
-
-height:50vh;
-">
-    
-    <!-- 主页  -->
-    
-    
-    <!-- 404页  -->
-            
-    <div class="site-intro-placeholder"></div>
-    <div class="site-intro-img" style="background-image: url(https://source.unsplash.com/random)"></div>
-    <div class="site-intro-meta">
-        <!-- 标题  -->
-        <h1 class="intro-title">
-            <!-- 主页  -->
-            
-            数据库(2)-优化
-            <!-- 404 -->
-            
-        </h1>
-        <!-- 副标题 -->
-        <p class="intro-subtitle">
-            <!-- 主页副标题  -->
-            
-            
-            <!-- 404 -->
-            
-        </p>
-        <!-- 文章页meta -->
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+	<!-- Modified by Yu-Hsuan Yen -->
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
         
-            <div class="post-intros">
-                <!-- 文章页标签  -->
-                
-                    <div class="post-intro-tags">
+            background-image: url('https://source.unsplash.com/random')
+            /*post*/
+        
+    }
     
-        <a class="post-tag" href="javascript:void(0);" data-tags="php">php</a>
-    
-</div>
+</style>
+
+<header class="intro-header">
+    <!-- Signature -->
+    <div id="signature">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 
-                
-                    <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">1.2k</span>阅读时长: <span class="post-count reading-time">5 min</span></span>
+                    <div class="post-heading">
+                        <div class="tags">
+                            
+                              <a class="tag" href="/tags/#php" title="php">php</a>
+                            
+                        </div>
+                        <h1>数据库(2)-优化</h1>
+                        <h2 class="subheading"></h2>
+                        <span class="meta">
+                            Posted by 令夕 on
+                            2018-06-04
+                        </span>
                     </div>
                 
-                <div class="post-intro-meta">
-                    <span class="post-intro-calander iconfont-archer">&#xe676;</span>
-                    <span class="post-intro-time">2018/06/04</span>
-                    
-                    <span id="busuanzi_container_page_pv" class="busuanzi-pv">
-                        <span class="iconfont-archer">&#xe602;</span>
-                        <span id="busuanzi_value_page_pv"></span>
-                    </span>
-                    
-                    <span class="shareWrapper">
-                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
-                        <span class="shareText">Share</span>
-                        <ul class="shareList">
-                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
-                                <div class="share-qrcode"></div>
-                            </li>
-                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
-                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
-                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
-                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
-                        </ul>
-                    </span>
+
+
                 </div>
             </div>
-        
+        </div>
     </div>
-</div>
-        <script>
- 
-  // get user agent
-  var browser = {
-    versions: function () {
-      var u = window.navigator.userAgent;
-      return {
-        userAgent: u,
-        trident: u.indexOf('Trident') > -1, //IE内核
-        presto: u.indexOf('Presto') > -1, //opera内核
-        webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
-        gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
-        mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
-        ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
-        android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
-        iPhone: u.indexOf('iPhone') > -1 || u.indexOf('Mac') > -1, //是否为iPhone或者安卓QQ浏览器
-        iPad: u.indexOf('iPad') > -1, //是否为iPad
-        webApp: u.indexOf('Safari') == -1, //是否为web应用程序，没有头部与底部
-        weixin: u.indexOf('MicroMessenger') == -1, //是否为微信浏览器
-        uc: u.indexOf('UCBrowser') > -1 //是否为android下的UC浏览器
-      };
-    }()
-  }
-  console.log("userAgent:" + browser.versions.userAgent);
+</header>
 
-  // callback
-  function fontLoaded() {
-    console.log('font loaded');
-    if (document.getElementsByClassName('site-intro-meta')) {
-      document.getElementsByClassName('intro-title')[0].classList.add('intro-fade-in');
-      document.getElementsByClassName('intro-subtitle')[0].classList.add('intro-fade-in');
-      var postIntros = document.getElementsByClassName('post-intros')[0]
-      if (postIntros) {
-        postIntros.classList.add('post-fade-in');
-      }
-    }
-  }
+	
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">令夕</a>
+        </div>
 
-  // UC不支持跨域，所以直接显示
-  function asyncCb(){
-    if (browser.versions.uc) {
-      console.log("UCBrowser");
-      fontLoaded();
-    } else {
-      WebFont.load({
-        custom: {
-          families: ['Oswald-Regular']
-        },
-        loading: function () {  //所有字体开始加载
-          // console.log('loading');
-        },
-        active: function () {  //所有字体已渲染
-          fontLoaded();
-        },
-        inactive: function () { //字体预加载失败，无效字体或浏览器不支持加载
-          console.log('inactive: timeout');
-          fontLoaded();
-        },
-        timeout: 5000 // Set the timeout to two seconds
-      });
-    }
-  }
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
 
-  function asyncErr(){
-    console.warn('script load from CDN failed, will load local script')
-  }
+                    
 
-  // load webfont-loader async, and add callback function
-  function async(u, cb, err) {
-    var d = document, t = 'script',
-      o = d.createElement(t),
-      s = d.getElementsByTagName(t)[0];
-    o.src = u;
-    if (cb) { o.addEventListener('load', function (e) { cb(null, e); }, false); }
-    if (err) { o.addEventListener('error', function (e) { err(null, e); }, false); }
-    s.parentNode.insertBefore(o, s);
-  }
+                        
+                    
 
-  var asyncLoadWithFallBack = function(arr, success, reject) {
-      var currReject = function(){
-        reject()
-        arr.shift()
-        if(arr.length)
-          async(arr[0], success, currReject)
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archive/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
         }
+    }
+</script>
 
-      async(arr[0], success, currReject)
-  }
 
-  asyncLoadWithFallBack([
-    "https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js", 
-    "https://cdn.bootcss.com/webfont/1.6.28/webfontloader.js",
-    "/lib/webfontloader.min.js"
-  ], asyncCb, asyncErr)
-</script>        
-        <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
-        <div class="container container-unloaded">
-            <main class="main post-page">
-    <article class="article-entry">
-        <h3 id="1-mysql-基础操作"><a href="#1-mysql-基础操作" class="headerlink" title="1.mysql 基础操作"></a><span data-type="color" style="color:#003A8C">1.mysql 基础操作</span></h3><ol>
-<li><p>mysql 表复制</p>
-<ol>
-<li><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">create table （表名） like （表名）; <span class="comment">//</span></span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-</li>
-<li><p>mysql 复制表内容</p>
-<ol>
-<li><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">insert into t3 select * from t1;<span class="comment">//将t1表里面的内容插入到t3表里面</span></span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-</li>
-<li><p>查看数据库的状态 mysql 索引查看，删除，创建</p>
-<ol>
-<li><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//查看索引</span></span><br><span class="line">show index from 表名\G;</span><br><span class="line"><span class="comment">//普通索引 创建  删除</span></span><br><span class="line">create index i_age on user(age);<span class="comment">//user是指表</span></span><br><span class="line">drop index i_age on user;</span><br><span class="line"><span class="comment">//唯一索引 创建 删除</span></span><br><span class="line">create unique index u_username on user(username );<span class="comment">//user表格中username 创建unique</span></span><br><span class="line">drop index u_username on user;</span><br><span class="line"><span class="comment">//主键索引  创建 删除</span></span><br><span class="line">alter table user modify id int unsigned primary key;</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-</li>
-<li><p>mysql 视图</p>
-<ol>
-<li><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//视图添加</span></span><br><span class="line">create view userclass <span class="keyword">as</span> select user.username,user.age,<span class="class"><span class="keyword">class</span>.<span class="title">name</span> <span class="title">from</span> <span class="title">user</span>,<span class="title">class</span> <span class="title">where</span> <span class="title">user</span>.<span class="title">class_id</span>=<span class="title">class</span>.<span class="title">id</span>;</span></span><br><span class="line"><span class="class">//删除视图</span></span><br><span class="line"><span class="class"><span class="title">drop</span> <span class="title">view</span> <span class="title">userclass</span>;</span></span><br><span class="line"><span class="class">//多表查询</span></span><br><span class="line"><span class="class"><span class="title">select</span> <span class="title">user</span>.<span class="title">username</span>,<span class="title">user</span>.<span class="title">age</span>,<span class="title">class</span>.<span class="title">name</span> <span class="title">from</span> <span class="title">user</span>,<span class="title">class</span> <span class="title">where</span> <span class="title">user</span>.<span class="title">class_id</span>=<span class="title">class</span>.<span class="title">id</span>;</span></span><br><span class="line"><span class="class">//查看视图数据</span></span><br><span class="line"><span class="class"><span class="title">select</span> * <span class="title">from</span> <span class="title">userclass</span></span></span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-</li>
-<li><p>查看</p>
-</li>
-</ol>
-<h3 id="2-数据库函数"><a href="#2-数据库函数" class="headerlink" title="2.数据库函数"></a><span data-type="color" style="color:#003A8C">2.数据库函数</span></h3><ol>
-<li><p><span data-type="color" style="color:#003A8C"> 字符串函数</span></p>
-<ol>
-<li><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">CONCAT(string2,[...]);<span class="comment">//连接字符</span></span><br><span class="line">LCASE(string2)；<span class="comment">//转换成小写 select lcase('PHP IS VERY MUCH');</span></span><br><span class="line">UCASE（string2）；<span class="comment">//转换成大写  select ucase('php is very much');</span></span><br><span class="line">LENGTH(string2)；<span class="comment">//string长度 select length('linux');</span></span><br><span class="line">LIRIM（string2);<span class="comment">//去除左端空格  select ltrim(' linux');</span></span><br><span class="line">RTRIM(string2);<span class="comment">//去除右边空格 select length(rtrim('linux '));</span></span><br><span class="line">REPEAT(string2);<span class="comment">//重复count次数 select repeat('-',20);</span></span><br><span class="line">REPLACE(str,search_str,replcae_str);<span class="comment">//在str中国用replace_str替换 select replace('linux nad java','linux','php');</span></span><br><span class="line">SUBSTRING(str,position,[length]);<span class="comment">//position开始取length个字符 字符串截取 select substring('/user/local/src',5,5);</span></span><br><span class="line">SPACE();<span class="comment">//空格  select concat('linux',space(20),'php');</span></span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-</li>
-<li><p><span data-type="color" style="color:#003A8C">数学函数</span></p>
-<ol>
-<li><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">bin();<span class="comment">//把某个数字转换成2进制 例：select bin(10);</span></span><br><span class="line">ceiling();<span class="comment">//取上一个整数 select ceiling(10.5);</span></span><br><span class="line">floor();<span class="comment">//取下一个整数 select floor(10.5);</span></span><br><span class="line">max();<span class="comment">//取最大整数 select max(id) from user;必须是一列一面的最大整数</span></span><br><span class="line">min();<span class="comment">//取最小值 select min(id) from user;</span></span><br><span class="line">sqrt();<span class="comment">//开平方  select sqrt(100);</span></span><br><span class="line">rand();<span class="comment">//随机值</span></span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-</li>
-<li><p><span data-type="color" style="color:#003A8C">日期函数</span></p>
-<ol>
-<li><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">curdate();<span class="comment">//当前的年月日  select curdate();</span></span><br><span class="line">curtime();<span class="comment">//当前的时分秒 select curtime();</span></span><br><span class="line">now();<span class="comment">//当前日期和时间 selct now();</span></span><br><span class="line">unix_timestamp();<span class="comment">//当前时间戳 select unix_timestamp();</span></span><br><span class="line">from_unixtime();<span class="comment">//时间戳转时间 select from_unixtime(1528078872);</span></span><br><span class="line">week(date);<span class="comment">//一年里面的第几周 select week('201-2-14');</span></span><br><span class="line">year(date);<span class="comment">//里面里面的年的部分 select year('201-2-14');</span></span><br><span class="line">datediff();<span class="comment">//日期差值 select datediff('2017-4-14');</span></span><br></pre></td></tr></table></figure>
+    <!-- Main Content -->
+    <!-- Modify by Yu-Hsuan Yen -->
 
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">4. &lt;span data-type=&quot;color&quot; style=&quot;color:#003A8C&quot;&gt;重排 auto_increment()&lt;/span&gt;</span><br><span class="line">   1. ```php</span><br><span class="line">      delete();//删掉数据</span><br><span class="line">      1.delete from user();</span><br><span class="line">      2.alter table user auto_increment=1;</span><br><span class="line">      truncate();</span><br><span class="line">      1.truncate test；</span><br><span class="line">      //? sh%</span><br><span class="line">      //更多以sh开头的方法</span><br></pre></td></tr></table></figure>
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
 
+            <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h3><span id="1mysql-基础操作"><span data-type="color" style="color:#003A8C">1.mysql 基础操作</span></span></h3>
+<ol>
+<li>
+<p>mysql 表复制</p>
+<ol>
+<li>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">create table （表名） like （表名）; <span class="comment">//</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</li>
+<li>
+<p>mysql 复制表内容</p>
+<ol>
+<li>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">insert into t3 select * from t1;<span class="comment">//将t1表里面的内容插入到t3表里面</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</li>
+<li>
+<p>查看数据库的状态 mysql 索引查看，删除，创建</p>
+<ol>
+<li>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//查看索引</span></span><br><span class="line">show index from 表名\G;</span><br><span class="line"><span class="comment">//普通索引 创建  删除</span></span><br><span class="line">create index i_age on user(age);<span class="comment">//user是指表</span></span><br><span class="line">drop index i_age on user;</span><br><span class="line"><span class="comment">//唯一索引 创建 删除</span></span><br><span class="line">create unique index u_username on user(username );<span class="comment">//user表格中username 创建unique</span></span><br><span class="line">drop index u_username on user;</span><br><span class="line"><span class="comment">//主键索引  创建 删除</span></span><br><span class="line">alter table user modify id int unsigned primary key;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</li>
+<li>
+<p>mysql 视图</p>
+<ol>
+<li>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//视图添加</span></span><br><span class="line">create view userclass <span class="keyword">as</span> select user.username,user.age,<span class="class"><span class="keyword">class</span>.<span class="title">name</span> <span class="title">from</span> <span class="title">user</span>,<span class="title">class</span> <span class="title">where</span> <span class="title">user</span>.<span class="title">class_id</span>=<span class="title">class</span>.<span class="title">id</span>;</span></span><br><span class="line"><span class="class">//删除视图</span></span><br><span class="line"><span class="class"><span class="title">drop</span> <span class="title">view</span> <span class="title">userclass</span>;</span></span><br><span class="line"><span class="class">//多表查询</span></span><br><span class="line"><span class="class"><span class="title">select</span> <span class="title">user</span>.<span class="title">username</span>,<span class="title">user</span>.<span class="title">age</span>,<span class="title">class</span>.<span class="title">name</span> <span class="title">from</span> <span class="title">user</span>,<span class="title">class</span> <span class="title">where</span> <span class="title">user</span>.<span class="title">class_id</span>=<span class="title">class</span>.<span class="title">id</span>;</span></span><br><span class="line"><span class="class">//查看视图数据</span></span><br><span class="line"><span class="class"><span class="title">select</span> * <span class="title">from</span> <span class="title">userclass</span></span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</li>
+<li>
+<p>查看</p>
+</li>
+</ol>
+<h3><span id="2数据库函数"><span data-type="color" style="color:#003A8C">2.数据库函数</span></span></h3>
+<ol>
+<li>
+<p><span data-type="color" style="color:#003A8C"> 字符串函数</span></p>
+<ol>
+<li>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">CONCAT(string2,[...]);<span class="comment">//连接字符</span></span><br><span class="line">LCASE(string2)；<span class="comment">//转换成小写 select lcase('PHP IS VERY MUCH');</span></span><br><span class="line">UCASE（string2）；<span class="comment">//转换成大写  select ucase('php is very much');</span></span><br><span class="line">LENGTH(string2)；<span class="comment">//string长度 select length('linux');</span></span><br><span class="line">LIRIM（string2);<span class="comment">//去除左端空格  select ltrim(' linux');</span></span><br><span class="line">RTRIM(string2);<span class="comment">//去除右边空格 select length(rtrim('linux '));</span></span><br><span class="line">REPEAT(string2);<span class="comment">//重复count次数 select repeat('-',20);</span></span><br><span class="line">REPLACE(str,search_str,replcae_str);<span class="comment">//在str中国用replace_str替换 select replace('linux nad java','linux','php');</span></span><br><span class="line">SUBSTRING(str,position,[length]);<span class="comment">//position开始取length个字符 字符串截取 select substring('/user/local/src',5,5);</span></span><br><span class="line">SPACE();<span class="comment">//空格  select concat('linux',space(20),'php');</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</li>
+<li>
+<p><span data-type="color" style="color:#003A8C">数学函数</span></p>
+<ol>
+<li>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">bin();<span class="comment">//把某个数字转换成2进制 例：select bin(10);</span></span><br><span class="line">ceiling();<span class="comment">//取上一个整数 select ceiling(10.5);</span></span><br><span class="line">floor();<span class="comment">//取下一个整数 select floor(10.5);</span></span><br><span class="line">max();<span class="comment">//取最大整数 select max(id) from user;必须是一列一面的最大整数</span></span><br><span class="line">min();<span class="comment">//取最小值 select min(id) from user;</span></span><br><span class="line">sqrt();<span class="comment">//开平方  select sqrt(100);</span></span><br><span class="line">rand();<span class="comment">//随机值</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</li>
+<li>
+<p><span data-type="color" style="color:#003A8C">日期函数</span></p>
+<ol>
+<li>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">curdate();<span class="comment">//当前的年月日  select curdate();</span></span><br><span class="line">curtime();<span class="comment">//当前的时分秒 select curtime();</span></span><br><span class="line">now();<span class="comment">//当前日期和时间 selct now();</span></span><br><span class="line">unix_timestamp();<span class="comment">//当前时间戳 select unix_timestamp();</span></span><br><span class="line">from_unixtime();<span class="comment">//时间戳转时间 select from_unixtime(1528078872);</span></span><br><span class="line">week(date);<span class="comment">//一年里面的第几周 select week('201-2-14');</span></span><br><span class="line">year(date);<span class="comment">//里面里面的年的部分 select year('201-2-14');</span></span><br><span class="line">datediff();<span class="comment">//日期差值 select datediff('2017-4-14');</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="number">4.</span> &lt;span data-type=<span class="string">"color"</span> style=<span class="string">"color:#003A8C"</span>&gt;重排 auto_increment()&lt;/span&gt;</span><br><span class="line">   <span class="number">1.</span> ```php</span><br><span class="line">      delete();<span class="comment">//删掉数据</span></span><br><span class="line">      <span class="number">1.</span>delete from user();</span><br><span class="line">      <span class="number">2.</span>alter table user auto_increment=<span class="number">1</span>;</span><br><span class="line">      truncate();</span><br><span class="line">      <span class="number">1.</span>truncate test；</span><br><span class="line">      <span class="comment">//? sh%</span></span><br><span class="line">      <span class="comment">//更多以sh开头的方法</span></span><br></pre></td></tr></table></figure>
 </li>
 </ol>
 </li>
 </ol>
-<h3 id="3-常见-sql-技巧与问题"><a href="#3-常见-sql-技巧与问题" class="headerlink" title="3.常见 sql 技巧与问题"></a><strong><span data-type="color" style="color:#003A8C">3.常见 sql 技巧与问题</span></strong></h3><ol>
-<li>巧用 rand()提取随机数<ol>
+<h3><span id="3常见-sql-技巧与问题"><strong><span data-type="color" style="color:#003A8C">3.常见 sql 技巧与问题</span></strong></span></h3>
+<ol>
+<li>巧用 rand()提取随机数
+<ol>
 <li>select * from stu order by rand()</li>
 </ol>
 </li>
-<li>musql 中 help 使用：<ol>
+<li>musql 中 help 使用：
+<ol>
 <li>？ show</li>
 <li>? sh%</li>
 </ol>
 </li>
 </ol>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//1.mysql语句优化的一般步骤：</span></span><br><span class="line"><span class="comment">//1.定位执行效率较低的sql语句</span></span><br><span class="line">desc select * from table where id=<span class="number">1000</span>;</span><br><span class="line">explain select * from table where id=<span class="number">1000</span>;</span><br><span class="line"><span class="comment">//2.一共操作的次数</span></span><br><span class="line">show status; <span class="comment">//show[session|global]status; session:表示当前的连接</span></span><br><span class="line">show <span class="keyword">global</span> status;<span class="comment">// global：表示自数据库启动至今</span></span><br><span class="line"><span class="comment">//3.'%Com_delete%'  '%Com_insert%' '%Com_select%' '%Com_update%'</span></span><br><span class="line">show status like <span class="string">'%Com_delete%'</span>;<span class="comment">//检查服务器增，删，改，查的使用频次（本次连接以来）</span></span><br><span class="line">show <span class="keyword">global</span> status like <span class="string">'%Com_%'</span>;<span class="comment">//本次服务器启动以来</span></span><br><span class="line"><span class="comment">//2.mysql索引优化</span></span><br><span class="line"><span class="comment">//3.check和option的使用方法</span></span><br><span class="line"><span class="comment">//4.常用mysql优化</span></span><br></pre></td></tr></table></figure>
-
 <p>3.查看 mysql 的慢查询</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//1.查看慢查询的日志是否开启</span></span><br><span class="line">show variables like <span class="string">"%quer%"</span>;  <span class="comment">//打印: slow_query_log    | OFF</span></span><br><span class="line"><span class="comment">//2.查看慢查询的次数</span></span><br><span class="line">show  status like <span class="string">"%quer%"</span>;</span><br><span class="line"><span class="comment">//3.显示表的行数</span></span><br><span class="line">select count(*) from 表名;</span><br><span class="line"><span class="comment">//4.修改慢查询的时间: long_query_time=6</span></span><br><span class="line"><span class="comment">//复制表格</span></span><br><span class="line">create table test like user;<span class="comment">//复制一份user表给test</span></span><br><span class="line"><span class="comment">//重启mysql服务器</span></span><br><span class="line">net stop mysql</span><br><span class="line">net start mysql</span><br><span class="line"><span class="comment">//复制表格内容</span></span><br><span class="line">insert into test select * from user;<span class="comment">//复制一份user表给test</span></span><br></pre></td></tr></table></figure>
-
 <p>4.优化表空间 check 与 optimize</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//索引是数据库优化中最常见也是最重要的手段之一，通过mysql索引通常可以帮助用户解决大多数sql问题</span></span><br><span class="line"><span class="comment">//删除了表格数据大小还存在的   优化空间的方法:</span></span><br><span class="line"><span class="number">1.</span>optimize table 表名;</span><br><span class="line">注意：在myisam表是没有问题的，但是在innodb表和ibdata1文件无法回收空间。</span><br><span class="line"><span class="number">2.</span>check table 表名;<span class="comment">//检查表格</span></span><br></pre></td></tr></table></figure>
-
 <p>5.索引存储空间的分类</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span>myisam</span><br><span class="line"><span class="number">1</span>)frm 表结构</span><br><span class="line"><span class="number">2</span>）myd 表数据</span><br><span class="line"><span class="number">3</span>）myi 表索引</span><br><span class="line"><span class="number">2.</span>innodb</span><br><span class="line"><span class="number">1</span>）frm 表结构</span><br><span class="line"><span class="number">2</span>)idb 索引+部分表数据</span><br><span class="line"><span class="number">3</span>)ibdata1 所有表共享的空间</span><br><span class="line"><span class="comment">//简单普通的多表查询</span></span><br><span class="line">select user.username,<span class="class"><span class="keyword">class</span>.<span class="title">name</span> <span class="title">from</span> <span class="title">user</span>,<span class="title">class</span> <span class="title">where</span> <span class="title">user</span>.<span class="title">class_id</span>=<span class="title">class</span>.<span class="title">id</span>;</span></span><br><span class="line"><span class="class">//创建视图</span></span><br><span class="line"><span class="class"><span class="title">create</span> <span class="title">view</span> <span class="title">v_user</span> <span class="title">as</span> <span class="title">select</span> <span class="title">user</span>.<span class="title">username</span>,<span class="title">class</span>.<span class="title">name</span> <span class="title">from</span> <span class="title">user</span>,<span class="title">class</span> <span class="title">where</span> <span class="title">user</span>.<span class="title">class_id</span>=<span class="title">class</span>.<span class="title">id</span>;</span></span><br><span class="line"><span class="class">//删除视图的莫一项</span></span><br><span class="line"> delete from user where username="user9";</span><br><span class="line"><span class="comment">//其中company表名ind_company2——name索引名</span></span><br><span class="line"> create index ind_company2_name on company2(name(<span class="number">4</span>));</span><br><span class="line"><span class="comment">//mysql中使用索引</span></span><br><span class="line">create index i_uername on user(username);</span><br><span class="line"><span class="comment">//使用like的查询，后面如果是常量并且只有%号不在第一个字符，索引才可能会被使用 %在前可能会导致索引失效</span></span><br><span class="line">explain select * from company2 where name like <span class="string">"%3"</span>\G;<span class="comment">//是指名字以3结尾</span></span><br><span class="line"><span class="comment">//null 判断</span></span><br><span class="line">desc select * from user where username is <span class="keyword">null</span>;</span><br></pre></td></tr></table></figure>
+<h3><span id="3root-密码丢失"><span data-type="color" style="color:#003A8C">3.root 密码丢失</span></span></h3>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//1.密码没有忘，但是要改密码</span><br><span class="line">set password=password(&quot;123&quot;);</span><br><span class="line">//2.密码忘记了需要破解密码</span><br><span class="line">//修改密码</span><br></pre></td></tr></table></figure>
 
-<h3 id="3-root-密码丢失"><a href="#3-root-密码丢失" class="headerlink" title="3.root 密码丢失"></a><span data-type="color" style="color:#003A8C">3.root 密码丢失</span></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//1.密码没有忘，但是要改密码</span><br><span class="line">set password=password(&quot;123&quot;);</span><br><span class="line">//2.密码忘记了需要破解密码</span><br><span class="line">//修改密码</span><br></pre></td></tr></table></figure>
+                
 
+                <hr>
+                <!-- Pager -->
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/2018/06/08/php基础/难点(1)-面向对象/" data-toggle="tooltip" data-placement="top" title="难点(1)-面向对象">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/2018/06/01/php基础/数据库(1)-终端命令操作/" data-toggle="tooltip" data-placement="top" title="数据库(1)-终端命令操作">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
 
-    </article>
-    <!-- license  -->
-    
-    <!-- paginator  -->
-    <ul class="post-paginator">
-        <li class="next">
+                <!-- duoshuo Share start -->
+                
+                <!-- 多说 Share end-->
+
+                <!-- 多说评论框 start -->
+                
+                <!-- 多说评论框 end -->
+
+                <!-- disqus comment start -->
+                
+                    <div class="comment">
+                        <div id="disqus_thread" class="disqus-thread"></div>
+                    </div>
+                
+                <!-- disqus comment end -->
+            </div>
             
-                <div class="nextSlogan">Next Post</div>
-                <a href="/2018/06/08/php基础/难点(1)-面向对象/" title="难点(1)-面向对象">
-                    <div class="nextTitle">难点(1)-面向对象</div>
-                </a>
-            
-        </li>
-        <li class="previous">
-            
-                <div class="prevSlogan">Previous Post</div>
-                <a href="/2018/06/01/php基础/数据库(1)-终端命令操作/" title="数据库(1)-终端命令操作">
-                    <div class="prevTitle">数据库(1)-终端命令操作</div>
-                </a>
-            
-        </li>
-    </ul>
-    <!-- 评论插件 -->
-    <!-- 来必力City版安装代码 -->
+            <!-- Tabe of Content -->
+            <!-- Table of Contents -->
 
-<!-- City版安装代码已完成 -->
-    
-    
-    <!-- partial('_partial/comment/changyan') -->
-    <!--PC版-->
+                
+            <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
 
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#php" title="php">php</a>
+                        
+                    </div>
+                </section>
+                
 
-    
-    
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
 
-    <!-- 评论 -->
-</main>
-            <!-- profile -->
-            
+                    
+                </ul>
+                
+            </div>
         </div>
-        <footer class="footer footer-unloaded">
-    <!-- social  -->
-    
-    <div class="social">
-        
-    
-        
-    
-        
-            
-                <a href="//github.com/fi3ework" class="iconfont-archer github" target="_blank" title="github"></a>
-            
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-            
-                <a href="https://juejin.im/user/5ab6f52af265da23866fd966" class="iconfont-archer juejin" target="_blank" title="juejin"></a>
-            
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-
     </div>
-    
-    <!-- powered by Hexo  -->
-    <div class="copyright">
-        <span id="hexo-power">Powered by <a href="https://hexo.io/" target="_blank">Hexo</a></span><span class="iconfont-archer power">&#xe635;</span><span id="theme-info">theme <a href="https://github.com/fi3ework/hexo-theme-archer" target="_blank">Archer</a></span>
-    </div>
-    <!-- 不蒜子  -->
-    
-    <div class="busuanzi-container">
-    
-     
-    <span id="busuanzi_container_site_pv">PV: <span id="busuanzi_value_site_pv"></span> :)</span>
-    
-    </div>
-    
-</footer>
-    </div>
-    <!-- toc -->
-    
-    <div class="toc-wrapper" style=
-    
+</article>
 
 
 
 
+<!-- disqus embedded js code start (one page only need to embed once) -->
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = "your-disqus-ID";
+    var disqus_identifier = "http://yoursite-url/2018/06/04/php基础/数据库(2)-优化/";
+    var disqus_url = "http://yoursite-url/2018/06/04/php基础/数据库(2)-优化/";
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<!-- disqus embedded js code start end -->
 
 
 
-top:50vh;
 
-    >
-        <div class="toc-catalog">
-            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
-        </div>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-mysql-基础操作"><span class="toc-number">1.</span> <span class="toc-text">1.mysql 基础操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-数据库函数"><span class="toc-number">2.</span> <span class="toc-text">2.数据库函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-常见-sql-技巧与问题"><span class="toc-number">3.</span> <span class="toc-text">3.常见 sql 技巧与问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-root-密码丢失"><span class="toc-number">4.</span> <span class="toc-text">3.root 密码丢失</span></a></li></ol>
-    </div>
-    
-    <div class="back-top iconfont-archer">&#xe639;</div>
-    <div class="sidebar sidebar-hide">
-    <ul class="sidebar-tabs sidebar-tabs-active-0">
-        <li class="sidebar-tab-archives"><span class="iconfont-archer">&#xe67d;</span><span class="tab-name">Archive</span></li>
-        <li class="sidebar-tab-tags"><span class="iconfont-archer">&#xe61b;</span><span class="tab-name">Tag</span></li>
-        <li class="sidebar-tab-categories"><span class="iconfont-archer">&#xe666;</span><span class="tab-name">Cate</span></li>
-    </ul>
-    <div class="sidebar-content sidebar-content-show-archive">
-          <div class="sidebar-panel-archives">
-    <!-- 在ejs中将archive按照时间排序 -->
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    <div class="total-and-search">
-        <div class="total-archive">
-        Total : 47
-        </div>
-        <!-- search  -->
-        
-    </div>
-    
-    <div class="post-archive">
-    
-    
-    
-    
-    <div class="archive-year"> 2019 </div>
-    <ul class="year-list">
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">06/11</span><a class="archive-post-title" href="/2019/06/11/webpack4/15.开发模式和生产模式实战/">15.开发模式和生产模式实战</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">06/09</span><a class="archive-post-title" href="/2019/06/09/webpack4/14.开发模式与webpack-dev-server/">14.开发模式与webpack-dev-server</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">06/04</span><a class="archive-post-title" href="/2019/06/04/webpack4/12.字体文件处理/">12.字体文件处理</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">06/04</span><a class="archive-post-title" href="/2019/06/04/webpack4/11.图片处理汇总/">11.图片处理汇总</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">06/04</span><a class="archive-post-title" href="/2019/06/04/webpack4/13.处理第三方js文件/">13.处理第三方js文件</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">06/04</span><a class="archive-post-title" href="/2019/06/04/webpack4/10.CSS Tree Shaking/">10.CSS Tree Shaking</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">06/04</span><a class="archive-post-title" href="/2019/06/04/webpack4/9.JS Tree Shaking/">9.JS Tree Shaking</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">06/03</span><a class="archive-post-title" href="/2019/06/03/webpack4/8.处理css和scss/">8.处理CSS/SCSS文件</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">06/03</span><a class="archive-post-title" href="/2019/06/03/webpack4/7.自动生成 HTML 文件/">7.自动生成 HTML 文件</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">06/02</span><a class="archive-post-title" href="/2019/06/02/webpack4/6.Lazy Loading、Prefetching/">6.Lazy Loading、Prefetching</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">06/01</span><a class="archive-post-title" href="/2019/06/01/墨菲定理/（一）成功学的秘密/">（一）成功学的秘密</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">06/01</span><a class="archive-post-title" href="/2019/06/01/模拟数据方案/mockjs运用/">mockjs运用</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">05/25</span><a class="archive-post-title" href="/2019/05/25/webpack4/5.Code Splitting代码分割/">5.Code  Splitting代码分割</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">05/24</span><a class="archive-post-title" href="/2019/05/24/webpack4/4.用babel编译成 ES6/">4.用babel编译成 ES6</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">05/23</span><a class="archive-post-title" href="/2019/05/23/webpack4/3.覆盖默认entry和output/">3.覆盖默认entry和output</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">05/22</span><a class="archive-post-title" href="/2019/05/22/webpack4/2.生产和开发模式/">2.生产和开发模式</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">05/22</span><a class="archive-post-title" href="/2019/05/22/react/（四）拆分组件与组件之前的传值/">（四）拆分组件与组件之前的传值</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">05/21</span><a class="archive-post-title" href="/2019/05/21/webpack4/1.搭建项目并打包JS文件/">1.搭建项目并打包JS文件</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">05/20</span><a class="archive-post-title" href="/2019/05/20/react/（三）react的jsx语法理解/">（三）react的jsx语法理解</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">05/18</span><a class="archive-post-title" href="/2019/05/18/react/（二）响应设计思想与事件绑定/">（二）响应设计思想与事件绑定</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">05/17</span><a class="archive-post-title" href="/2019/05/17/react/（一）react开发目录介绍/">（一）react开发目录介绍</a>
-        </li>
-    
-    
-    
-    
-    
-        </ul>
-    
-    <div class="archive-year"> 2018 </div>
-    <ul class="year-list">
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">07/15</span><a class="archive-post-title" href="/2018/07/15/vue/JYSHT-跳转同一页面判断/">JYSHT-跳转同一页面判断</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">06/08</span><a class="archive-post-title" href="/2018/06/08/php基础/难点(1)-面向对象/">难点(1)-面向对象</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">06/04</span><a class="archive-post-title" href="/2018/06/04/php基础/数据库(2)-优化/">数据库(2)-优化</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">06/01</span><a class="archive-post-title" href="/2018/06/01/php基础/数据库(1)-终端命令操作/">数据库(1)-终端命令操作</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">05/30</span><a class="archive-post-title" href="/2018/05/30/vue/router-link与redirect用法/">router-link与redirect用法</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">05/30</span><a class="archive-post-title" href="/2018/05/30/vue/组件生命周期与组件传值/">组件生命周期与组件传值</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">05/24</span><a class="archive-post-title" href="/2018/05/24/vue/vuex与父子组件通讯/">vuex与父子组件通讯</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">05/21</span><a class="archive-post-title" href="/2018/05/21/vue/vue-music歌手详情页/">vue-music歌手详情页</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">05/18</span><a class="archive-post-title" href="/2018/05/18/vue/loading-图片懒加载/">loading-图片懒加载</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">05/17</span><a class="archive-post-title" href="/2018/05/17/vue/vueMusic歌手-左右链动/">vueMusic歌手-左右链动</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">05/17</span><a class="archive-post-title" href="/2018/05/17/vue/axios-获取接口，mock模拟数据配置/">axios-获取接口，mock模拟数据配置</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">05/17</span><a class="archive-post-title" href="/2018/05/17/vue/banner横向轮播图-组件封装思路/">banner横向轮播图-组件封装思路</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">05/17</span><a class="archive-post-title" href="/2018/05/17/vue/better-scroll-配置纵向滚动/">better-scroll-配置纵向滚动</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">05/09</span><a class="archive-post-title" href="/2018/05/09/php基础/基础(9)-文件函数/">基础(9)-文件函数</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">05/06</span><a class="archive-post-title" href="/2018/05/06/php基础/基础(8)-字符串函数/">基础(8)-字符串函数</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">05/05</span><a class="archive-post-title" href="/2018/05/05/php基础/基础(7)-数学函数与日期函数/">基础(7)-数学函数与日期函数</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">05/02</span><a class="archive-post-title" href="/2018/05/02/php基础/基础(6)-自定义数组函数/">基础(6)-自定义数组函数</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">04/28</span><a class="archive-post-title" href="/2018/04/28/php基础/基础(5)-数组与表单/">基础(5)-数组与表单</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">04/23</span><a class="archive-post-title" href="/2018/04/23/php基础/基础(4)-函数/">基础(4)-函数</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">04/20</span><a class="archive-post-title" href="/2018/04/20/php基础/基础(3)-流程控制/">基础(3)-流程控制</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">04/10</span><a class="archive-post-title" href="/2018/04/10/php基础/基础(2)-常量与运算符/">基础(2)-常量与运算符</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">04/08</span><a class="archive-post-title" href="/2018/04/08/php基础/基础(1)-变量定义与类型/">基础(1)-变量定义与类型</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">04/04</span><a class="archive-post-title" href="/2018/04/04/php基础/初级笔记/">初级笔记</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">01/15</span><a class="archive-post-title" href="/2018/01/15/跨域方案/跨域与浏览器/">跨域方案</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">01/04</span><a class="archive-post-title" href="/2018/01/04/webpack3/webpack3.0/">webpack3.0</a>
-        </li>
-    
-    
-    
-    
-    
-        </ul>
-    
-    <div class="archive-year"> 2017 </div>
-    <ul class="year-list">
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">12/04</span><a class="archive-post-title" href="/2017/12/04/基础前端/css和js基础面试题/">css和js基础面试题</a>
-        </li>
-    
-    </ul></div>
-  </div>
-        <div class="sidebar-panel-tags">
-    <div class="sidebar-tags-name">
-    
-        <span class="sidebar-tag-name" data-tags="php"><span class="iconfont-archer">&#xe606;</span>php</span>
-    
-        <span class="sidebar-tag-name" data-tags="react"><span class="iconfont-archer">&#xe606;</span>react</span>
-    
-        <span class="sidebar-tag-name" data-tags="vue"><span class="iconfont-archer">&#xe606;</span>vue</span>
-    
-        <span class="sidebar-tag-name" data-tags="webpack3"><span class="iconfont-archer">&#xe606;</span>webpack3</span>
-    
-        <span class="sidebar-tag-name" data-tags="webpack4"><span class="iconfont-archer">&#xe606;</span>webpack4</span>
-    
-        <span class="sidebar-tag-name" data-tags="css和js基础面试题"><span class="iconfont-archer">&#xe606;</span>css和js基础面试题</span>
-    
-        <span class="sidebar-tag-name" data-tags="mockjs运用"><span class="iconfont-archer">&#xe606;</span>mockjs运用</span>
-    
-        <span class="sidebar-tag-name" data-tags="墨菲定律"><span class="iconfont-archer">&#xe606;</span>墨菲定律</span>
-    
-        <span class="sidebar-tag-name" data-tags="跨域方案"><span class="iconfont-archer">&#xe606;</span>跨域方案</span>
-    
-    </div>
-    <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
-    <div class="tag-load-fail" style="display: none; color: #ccc; font-size: 0.6rem;">
-    缺失模块。<br>
-    1、请确保node版本大于6.2<br>
-    2、在博客根目录（注意不是archer根目录）执行以下命令：<br>
-    <span style="color: #f75357; font-size: 1rem; line-height: 2rem;">npm i hexo-generator-json-content --save</span><br>
-    3、在根目录_config.yml里添加配置：
-    <pre style="color: #787878; font-size: 0.6rem;">
-jsonContent:
-  meta: false
-  pages: false
-  posts:
-    title: true
-    date: true
-    path: true
-    text: false
-    raw: false
-    content: false
-    slug: false
-    updated: false
-    comments: false
-    link: false
-    permalink: false
-    excerpt: false
-    categories: true
-    tags: true</pre>
-    </div> 
-    <div class="sidebar-tags-list"></div>
-</div>
-        <div class="sidebar-panel-categories">
-    <div class="sidebar-categories-name">
-    
-        <span class="sidebar-category-name" data-categories="php"><span class="iconfont-archer">&#xe60a;</span>php</span>
-    
-        <span class="sidebar-category-name" data-categories="react"><span class="iconfont-archer">&#xe60a;</span>react</span>
-    
-        <span class="sidebar-category-name" data-categories="vue"><span class="iconfont-archer">&#xe60a;</span>vue</span>
-    
-        <span class="sidebar-category-name" data-categories="webpack3"><span class="iconfont-archer">&#xe60a;</span>webpack3</span>
-    
-        <span class="sidebar-category-name" data-categories="webpack4"><span class="iconfont-archer">&#xe60a;</span>webpack4</span>
-    
-        <span class="sidebar-category-name" data-categories="css和js基础面试题"><span class="iconfont-archer">&#xe60a;</span>css和js基础面试题</span>
-    
-        <span class="sidebar-category-name" data-categories="mockjs运用"><span class="iconfont-archer">&#xe60a;</span>mockjs运用</span>
-    
-        <span class="sidebar-category-name" data-categories="墨菲定律"><span class="iconfont-archer">&#xe60a;</span>墨菲定律</span>
-    
-        <span class="sidebar-category-name" data-categories="跨域方案"><span class="iconfont-archer">&#xe60a;</span>跨域方案</span>
-    
-    </div>
-    <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
-    <div class="sidebar-categories-list"></div>
-</div>
-    </div>
-</div> 
-    <script>
-    var siteMeta = {
-        root: "/",
-        author: "令夕"
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
     }
 </script>
-    <!-- CDN failover -->
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
-    <script type="text/javascript">
-        if (typeof window.$ === 'undefined')
-        {
-            console.warn('jquery load from jsdelivr failed, will load local script')
-            document.write('<script src="/lib/jquery.min.js">\x3C/script>')
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'hover',
+          placement: 'left',
+          icon: 'ℬ'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
         }
-    </script>
-    <script src="/scripts/main.js"></script>
-    <!-- algolia -->
-    
-    <!-- busuanzi  -->
-    
-    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-    
-    <!-- CNZZ  -->
-    
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank" href="https://github.com/令夕">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; 令夕 2019 
+                    <br>
+                    <!-- Theme by <a href="http://huangxuan.me">Hux</a> 
+                    <span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span> 
+                    re-Ported by <a href="http://beantech.org">BeanTech</a> | 
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="91px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=YenYuHsuan&repo=hexo-theme-beantech&type=star&count=true" >
+                    </iframe> -->
+                </p>
+            </div>
+        </div>
     </div>
-    <!-- async load share.js -->
-    
-        <script src="/scripts/share.js" async></script>    
-     
-    </body>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://yoursite-url/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-XXXXXXXX-X';
+    var _gaDomain = 'yoursite';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+
+<!-- Baidu Tongji -->
+
+
+
+
+
+
+	<a id="rocket" href="#top" class=""></a>
+	<script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+    <script type="text/javascript" src="/js/toc.js?v=1.0.0" async=""></script>
+<!-- Image to hack wechat -->
+<img src="http://yoursite-url/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
 </html>
-
-
