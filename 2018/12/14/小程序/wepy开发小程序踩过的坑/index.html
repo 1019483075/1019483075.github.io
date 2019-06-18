@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content>
+    <meta name="keyword" content>
+    <link rel="shortcut icon" href="/img/ironman-draw.png">
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <title>
+        
+          小程序 - 令夕
+        
+    </title>
+
+    <link rel="canonical" href="http://yoursite-url/2018/12/14/小程序/wepy开发小程序踩过的坑/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS --> 
+    <link rel="stylesheet" href="/css/beantech.min.css">
+    
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <link rel="stylesheet" href="/css/widget.css">
+
+    <link rel="stylesheet" href="/css/rocket.css">
+
+    <link rel="stylesheet" href="/css/signature.css">
+
+    <link rel="stylesheet" href="/css/toc.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+	<!-- Modified by Yu-Hsuan Yen -->
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        
+            background-image: url('https://source.unsplash.com/random')
+            /*post*/
+        
+    }
+    
+</style>
+
+<header class="intro-header">
+    <!-- Signature -->
+    <div id="signature">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                
+                    <div class="post-heading">
+                        <div class="tags">
+                            
+                              <a class="tag" href="/tags/#小程序" title="小程序">小程序</a>
+                            
+                        </div>
+                        <h1>小程序</h1>
+                        <h2 class="subheading"></h2>
+                        <span class="meta">
+                            Posted by 令夕 on
+                            2018-12-14
+                        </span>
+                    </div>
+                
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+	
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">令夕</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archive/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    <!-- Modify by Yu-Hsuan Yen -->
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <p><a name="S513q"></a></p>
+<h3><span id="h5内嵌富文本编辑器">H5内嵌富文本编辑器</span></h3>
+<p>微信小程序没有支持的原生富文本组件，可以通过web-view内嵌H5实现富文本编辑功能，起初使用的是wangEditor富文本编辑器，因为项目使用的是七牛云存储，wangEditor在pc端上传是没有问题的，但在在移动端调用不了本地图片，于是换了个功能强大二次开发较强的富文本编辑器<a href="https://link.juejin.im?target=!https%3A%2F%2Fgithub.com%2Fsurmon-china%2Fvue-quill-editor" target="_blank" rel="noopener">vue-quill-editor</a>,更多请参考<a href="https://link.juejin.im?target=!https%3A%2F%2Fgithub.com%2Fsurmon-china%2Fvue-quill-editor" target="_blank" rel="noopener">官方文档</a>， 基于此对上传图片进行二次开发。</p>
+<blockquote>
+<p>七牛云 + elementUi + vue-quill-editor上传图片和富文本</p>
+<p>$ npm install vue-quill-editor element-ui --save</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"editor"</span>&gt;</span><br><span class="line">    &lt;quill-editor</span><br><span class="line">      v-model=<span class="string">"content"</span></span><br><span class="line">      ref=<span class="string">"myQuillEditor"</span></span><br><span class="line">      :options=<span class="string">"editorOption"</span></span><br><span class="line">      @focus=<span class="string">"onEditorFocus($event)"</span></span><br><span class="line">      @change=<span class="string">"onEditorChange($event)"</span>&gt;</span><br><span class="line">      &lt;!-- @blur=<span class="string">"onEditorBlur($event)"</span> --&gt;</span><br><span class="line">    &lt;<span class="regexp">/quill-editor&gt;</span></span><br><span class="line"><span class="regexp">    &lt;!-- 文件上传input 将它隐藏--&gt;</span></span><br><span class="line"><span class="regexp">    &lt;el-upload</span></span><br><span class="line"><span class="regexp">      class="upload-demo"</span></span><br><span class="line"><span class="regexp">      :action="qnLocation"</span></span><br><span class="line"><span class="regexp">      :before-upload='beforeUpload'</span></span><br><span class="line"><span class="regexp">      :data="uploadData"</span></span><br><span class="line"><span class="regexp">      :on-success='upScuccess'</span></span><br><span class="line"><span class="regexp">      ref="upload"</span></span><br><span class="line"><span class="regexp">      style="display:none"&gt;</span></span><br><span class="line"><span class="regexp">      &lt;el-button</span></span><br><span class="line"><span class="regexp">        size="small"</span></span><br><span class="line"><span class="regexp">        type="primary"</span></span><br><span class="line"><span class="regexp">        id="imgInput"</span></span><br><span class="line"><span class="regexp">        v-loading.fullscreen.lock="fullscreenLoading"&gt;</span></span><br><span class="line"><span class="regexp">      &lt;/</span>el-button&gt;</span><br><span class="line">    &lt;<span class="regexp">/el-upload&gt;</span></span><br><span class="line"><span class="regexp">    &lt;div class="btn_box flex"&gt;</span></span><br><span class="line"><span class="regexp">      &lt;button class="flex-1 save_draft" @click="handleCancel"&gt;取消&lt;/</span>button&gt;</span><br><span class="line">      &lt;button <span class="class"><span class="keyword">class</span></span>=<span class="string">"flex-1 save_release"</span> @click=<span class="string">"handleSubmit"</span> :disabled=<span class="string">"!content"</span>&gt;确定&lt;<span class="regexp">/button&gt;</span></span><br><span class="line"><span class="regexp">    &lt;/</span>div&gt;</span><br><span class="line">  &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line"><span class="keyword">import</span> Quill <span class="keyword">from</span> <span class="string">'quill'</span></span><br><span class="line"><span class="keyword">import</span> api <span class="keyword">from</span> <span class="string">'@/request/api'</span></span><br><span class="line"><span class="keyword">import</span> Cookies <span class="keyword">from</span> <span class="string">'js-cookie'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> DOMAIN = <span class="string">'https://img.makeapoint.info/'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  name: <span class="string">'qillEditor'</span>,</span><br><span class="line">  computed: &#123;</span><br><span class="line">    editor() &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">this</span>.$refs.myQuillEditor.quill</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  created () &#123;</span><br><span class="line">    <span class="keyword">this</span>.$nextTick(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">if</span> (<span class="keyword">this</span>.$route.query.content) &#123;</span><br><span class="line">        <span class="keyword">this</span>.content = <span class="keyword">this</span>.$route.query.content</span><br><span class="line">        <span class="keyword">this</span>.tempRichText = <span class="keyword">this</span>.content</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">let</span> token = <span class="keyword">this</span>.$route.query.currentToken</span><br><span class="line">      Cookies.set(<span class="string">'currentToken_mini'</span>, token)</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;,</span><br><span class="line">  mounted () &#123;</span><br><span class="line">    <span class="keyword">this</span>.$refs.myQuillEditor.quill.getModule(<span class="string">'toolbar'</span>).addHandler(<span class="string">'image'</span>, <span class="keyword">this</span>.imgHandler)</span><br><span class="line">  &#125;,</span><br><span class="line">  data () &#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">      qnLocation: <span class="string">'https://up-z2.qbox.me'</span>,</span><br><span class="line">      uploadData: &#123;&#125;, <span class="comment">// 上传参数</span></span><br><span class="line">      fullscreenLoading: <span class="literal">false</span>,</span><br><span class="line">      addRange: [],</span><br><span class="line">      uploadType: <span class="string">''</span>, <span class="comment">// 上传的文件类型</span></span><br><span class="line">      content: <span class="string">''</span>, <span class="comment">// 提交的富文本内容</span></span><br><span class="line">      tempRichText: <span class="string">''</span>, <span class="comment">// 临时富文本内容</span></span><br><span class="line">      editorOption: &#123; <span class="comment">// 自定义菜单</span></span><br><span class="line">        placeholder: <span class="string">"请输入游记正文"</span>,</span><br><span class="line">        modules: &#123;</span><br><span class="line">          toolbar: [</span><br><span class="line">            <span class="comment">// ['bold', 'italic', 'underline', 'strike'],</span></span><br><span class="line">            <span class="comment">// [&#123; 'header': 1 &#125;, &#123; 'header': 2 &#125;],</span></span><br><span class="line">            [&#123; <span class="string">'list'</span>: <span class="string">'ordered'</span> &#125;, &#123; <span class="string">'list'</span>: <span class="string">'bullet'</span> &#125;],</span><br><span class="line">            <span class="comment">// [&#123; 'script': 'sub' &#125;, &#123; 'script': 'super' &#125;],</span></span><br><span class="line">            <span class="comment">// [&#123; 'indent': '-1' &#125;, &#123; 'indent': '+1' &#125;], // 缩进</span></span><br><span class="line">            <span class="comment">// [&#123; 'direction': 'rtl' &#125;], // 反向</span></span><br><span class="line">            <span class="comment">// [&#123; 'size': ['small', false, 'large', 'huge'] &#125;], // 字体大小</span></span><br><span class="line">            <span class="comment">// [&#123; 'header': [1, 2, 3, 4, 5, 6, false] &#125;], // 标题</span></span><br><span class="line">            <span class="comment">// [&#123; 'font': [] &#125;], // 字体</span></span><br><span class="line">            [&#123; <span class="string">'color'</span>: [] &#125;, &#123; <span class="string">'background'</span>: [] &#125;],</span><br><span class="line">            [&#123; <span class="string">'align'</span>: [] &#125;],</span><br><span class="line">            [<span class="string">'blockquote'</span>],</span><br><span class="line">            [<span class="string">'link'</span>, <span class="string">'image'</span>],</span><br><span class="line">            [<span class="string">'clean'</span>]</span><br><span class="line">          ]</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  methods: &#123;</span><br><span class="line">    handleCancel () &#123; <span class="comment">// 回退至小程序</span></span><br><span class="line">      <span class="built_in">window</span>.wx.miniProgram.navigateBack(&#123;</span><br><span class="line">        delta: <span class="number">1</span></span><br><span class="line">      &#125;)</span><br><span class="line">      <span class="built_in">window</span>.wx.miniProgram.postMessage(&#123; <span class="comment">// 向小程序发送数据</span></span><br><span class="line">        data: <span class="keyword">this</span>.tempRichText</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;,</span><br><span class="line">    handleSubmit () &#123; <span class="comment">// 返回小程序并提交富文本内容</span></span><br><span class="line">      <span class="built_in">window</span>.wx.miniProgram.navigateBack(&#123;</span><br><span class="line">        delta: <span class="number">1</span></span><br><span class="line">      &#125;)</span><br><span class="line">      <span class="built_in">window</span>.wx.miniProgram.postMessage(&#123; <span class="comment">// 向小程序发送数据</span></span><br><span class="line">        data: <span class="keyword">this</span>.content</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="comment">// 图片上传前获得数据token数据</span></span><br><span class="line">    qnUpload (file) &#123;</span><br><span class="line">      <span class="keyword">this</span>.fullscreenLoading = <span class="literal">true</span></span><br><span class="line">      <span class="keyword">const</span> suffix = file.name.split(<span class="string">'.'</span>)</span><br><span class="line">      <span class="keyword">const</span> ext = suffix.splice(suffix.length - <span class="number">1</span>, <span class="number">1</span>)[<span class="number">0</span>]</span><br><span class="line">      <span class="keyword">return</span> api.upload().then(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">this</span>.uploadData = &#123;</span><br><span class="line">          key: <span class="string">`image/<span class="subst">$&#123;suffix.join(<span class="string">'.'</span>)&#125;</span>_<span class="subst">$&#123;<span class="keyword">new</span> <span class="built_in">Date</span>().getTime()&#125;</span>.<span class="subst">$&#123;ext&#125;</span>`</span>,</span><br><span class="line">          token: res.data.data</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="comment">// 图片上传之前调取的函数</span></span><br><span class="line">    beforeUpload (file) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">this</span>.qnUpload(file)</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="comment">// 图片上传成功回调插入到编辑器中</span></span><br><span class="line">    upScuccess (e, file, fileList) &#123;</span><br><span class="line">      <span class="keyword">this</span>.fullscreenLoading = <span class="literal">false</span></span><br><span class="line">      <span class="keyword">let</span> url = <span class="string">''</span></span><br><span class="line">      url = DOMAIN + e.key</span><br><span class="line">      <span class="keyword">if</span> (url != <span class="literal">null</span> &amp;&amp; url.length &gt; <span class="number">0</span>) &#123;  <span class="comment">// 将文件上传后的URL地址插入到编辑器文本中</span></span><br><span class="line">        <span class="keyword">let</span> value = url</span><br><span class="line">        <span class="keyword">this</span>.addRange = <span class="keyword">this</span>.$refs.myQuillEditor.quill.getSelection()</span><br><span class="line">        <span class="comment">// 调用编辑器的 insertEmbed 方法，插入URL</span></span><br><span class="line">        <span class="keyword">this</span>.$refs.myQuillEditor.quill.insertEmbed(<span class="keyword">this</span>.addRange !== <span class="literal">null</span> ? <span class="keyword">this</span>.addRange.index : <span class="number">0</span>, <span class="keyword">this</span>.uploadType, value, Quill.sources.USER)</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">this</span>.$refs[<span class="string">'upload'</span>].clearFiles() <span class="comment">// 插入成功后清除input的内容</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="comment">// 点击图片icon触发事件</span></span><br><span class="line">    imgHandler(state) &#123;</span><br><span class="line">      <span class="keyword">this</span>.addRange = <span class="keyword">this</span>.$refs.myQuillEditor.quill.getSelection()</span><br><span class="line">      <span class="keyword">if</span> (state) &#123;</span><br><span class="line">        <span class="keyword">let</span> fileInput = <span class="built_in">document</span>.getElementById(<span class="string">'imgInput'</span>)</span><br><span class="line">        fileInput.click() <span class="comment">// 加一个触发事件</span></span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">this</span>.uploadType = <span class="string">'image'</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="comment">// 点击视频icon触发事件</span></span><br><span class="line">    <span class="comment">// videoHandler(state) &#123;</span></span><br><span class="line">    <span class="comment">//   this.addRange = this.$refs.myQuillEditor.quill.getSelection()</span></span><br><span class="line">    <span class="comment">//   if (state) &#123;</span></span><br><span class="line">    <span class="comment">//     let fileInput = document.getElementById('imgInput')</span></span><br><span class="line">    <span class="comment">//     fileInput.click() // 加一个触发事件</span></span><br><span class="line">    <span class="comment">//   &#125;</span></span><br><span class="line">    <span class="comment">//   this.uploadType = 'video'</span></span><br><span class="line">    <span class="comment">// &#125;,</span></span><br><span class="line">    <span class="comment">// onEditorBlur(editor) &#123;</span></span><br><span class="line">    <span class="comment">//   this.content = html</span></span><br><span class="line">    <span class="comment">// &#125;,</span></span><br><span class="line">    <span class="comment">// 编辑器获得光标</span></span><br><span class="line">    onEditorFocus(editor) &#123;</span><br><span class="line">      editor.enable(<span class="literal">true</span>)</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="comment">// 编辑器文本发生变化</span></span><br><span class="line">    onEditorChange(&#123; editor, html, text &#125;) &#123;</span><br><span class="line">      <span class="keyword">this</span>.content = html</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line">&lt;style lang=<span class="string">"less"</span>&gt;</span><br><span class="line">.quill-editor &#123;</span><br><span class="line">  .ql-container &#123;</span><br><span class="line">    min-height: <span class="number">50</span>vh;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">.ql-editor img &#123;</span><br><span class="line">  width: <span class="number">100</span>%;</span><br><span class="line">  height: <span class="number">200</span>px;</span><br><span class="line">&#125;</span><br><span class="line">&lt;<span class="regexp">/style&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">&lt;style lang="less" scoped&gt;</span></span><br><span class="line"><span class="regexp">.editor &#123;</span></span><br><span class="line"><span class="regexp">  width: 100%;</span></span><br><span class="line"><span class="regexp">  height: 100vh;</span></span><br><span class="line"><span class="regexp">  .flex &#123;</span></span><br><span class="line"><span class="regexp">    display: flex;</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp">  .flex-1 &#123;</span></span><br><span class="line"><span class="regexp">    flex: 1;</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp">  .btn_box &#123;</span></span><br><span class="line"><span class="regexp">    position: fixed;</span></span><br><span class="line"><span class="regexp">    bottom: 0;</span></span><br><span class="line"><span class="regexp">    left: 0;</span></span><br><span class="line"><span class="regexp">    width: 100%;</span></span><br><span class="line"><span class="regexp">    height: 50px;</span></span><br><span class="line"><span class="regexp">    line-height: 50px;</span></span><br><span class="line"><span class="regexp">    z-index: 999;</span></span><br><span class="line"><span class="regexp">    background: #FAFAFA;</span></span><br><span class="line"><span class="regexp">    box-shadow:0px 1px 0px 0px rgba(217,217,217,0.5);</span></span><br><span class="line"><span class="regexp">    border-top: 1px solid #D9D9D9;</span></span><br><span class="line"><span class="regexp">    text-align: center;</span></span><br><span class="line"><span class="regexp">    button &#123;</span></span><br><span class="line"><span class="regexp">      font-size: 16px;</span></span><br><span class="line"><span class="regexp">      line-height: 50px;</span></span><br><span class="line"><span class="regexp">      margin: 0;</span></span><br><span class="line"><span class="regexp">      padding: 0;</span></span><br><span class="line"><span class="regexp">      border: 1px solid #D9D9D9;  /</span><span class="regexp">/自定义边框</span></span><br><span class="line"><span class="regexp">      outline: none;</span></span><br><span class="line"><span class="regexp">    &#125;</span></span><br><span class="line"><span class="regexp">    .save_draft&#123;</span></span><br><span class="line"><span class="regexp">      color: #B3B3B3;</span></span><br><span class="line"><span class="regexp">      border-right: 1px solid #D9D9D9;</span></span><br><span class="line"><span class="regexp">    &#125;</span></span><br><span class="line"><span class="regexp">    .save_release&#123;</span></span><br><span class="line"><span class="regexp">      color: #fff;</span></span><br><span class="line"><span class="regexp">      border: 1px solid #00DBD2;</span></span><br><span class="line"><span class="regexp">      background: #00DBD2</span></span><br><span class="line"><span class="regexp">    &#125;</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br><span class="line"><span class="regexp">&lt;/</span>style&gt;</span><br></pre></td></tr></table></figure>
+<p><a name="U3lL6"></a></p>
+<h3><span id="使用web-view组件传递数据的问题">使用组件传递数据的问题</span></h3>
+<p>小程序内嵌网页向小程序回传数据时，尽量不要使用路由传参，比如富文本内容会自动截取掉src等号之后的字符串，应使用wx.miniProgram.postMessage()方法向小程序发送数据</p>
+<blockquote>
+<p>注意：官方描述–网页向小程序 postMessage 时，会在特定时机（小程序后退、组件销毁、分享）触发并收到消息</p>
+</blockquote>
+<p>也就是说只有在小程序后退、组件销毁、分享时才会触发，若无效可以调换下顺序就可以了<br>内嵌的网页代码：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">wx</span><span class="selector-class">.miniProgram</span><span class="selector-class">.navigateBack</span>(&#123;<span class="attribute">delta</span>: <span class="number">1</span>&#125;)</span><br><span class="line"><span class="selector-tag">wx</span><span class="selector-class">.miniProgram</span><span class="selector-class">.postMessage</span>(&#123; <span class="attribute">data</span>: <span class="string">'数据'</span> &#125;)</span><br></pre></td></tr></table></figure>
+<p>小程序内代码：</p>
+<figure class="highlight django"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">web-view</span> <span class="attr">src</span>=<span class="string">"</span></span></span><span class="template-variable">&#123;&#123;url&#125;&#125;</span><span class="xml"><span class="tag"><span class="string">"</span> <span class="attr">bindmessage</span>=<span class="string">"handleGetmsg"</span>&gt;</span><span class="tag">&lt;/<span class="name">web-view</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">methods = &#123;</span><br><span class="line">    handleGetmsg (ev) &#123;</span><br><span class="line">      <span class="keyword">this</span>.<span class="keyword">data</span> = ev.detail.<span class="keyword">data</span>[<span class="number">0</span>]</span><br><span class="line">      <span class="keyword">this</span>.$apply()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>总结一下：wepy开发最多的问题就是数据缓存，组件双向绑定最好使用twoWay: true来实现。</p>
+
+                
+
+                <hr>
+                <!-- Pager -->
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/2019/05/17/react/（一）react开发目录介绍/" data-toggle="tooltip" data-placement="top" title="（一）react开发目录介绍">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/2018/07/15/vue/JYSHT-跳转同一页面判断/" data-toggle="tooltip" data-placement="top" title="JYSHT-跳转同一页面判断">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                <!-- duoshuo Share start -->
+                
+                <!-- 多说 Share end-->
+
+                <!-- 多说评论框 start -->
+                
+                <!-- 多说评论框 end -->
+
+                <!-- disqus comment start -->
+                
+                    <div class="comment">
+                        <div id="disqus_thread" class="disqus-thread"></div>
+                    </div>
+                
+                <!-- disqus comment end -->
+            </div>
+            
+            <!-- Tabe of Content -->
+            <!-- Table of Contents -->
+
+                
+            <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#小程序" title="小程序">小程序</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                </ul>
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+<!-- disqus embedded js code start (one page only need to embed once) -->
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = "your-disqus-ID";
+    var disqus_identifier = "http://yoursite-url/2018/12/14/小程序/wepy开发小程序踩过的坑/";
+    var disqus_url = "http://yoursite-url/2018/12/14/小程序/wepy开发小程序踩过的坑/";
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<!-- disqus embedded js code start end -->
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'hover',
+          placement: 'left',
+          icon: 'ℬ'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank" href="https://github.com/令夕">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; 令夕 2019 
+                    <br>
+                    <!-- Theme by <a href="http://huangxuan.me">Hux</a> 
+                    <span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span> 
+                    re-Ported by <a href="http://beantech.org">BeanTech</a> | 
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="91px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=YenYuHsuan&repo=hexo-theme-beantech&type=star&count=true" >
+                    </iframe> -->
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://yoursite-url/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-XXXXXXXX-X';
+    var _gaDomain = 'yoursite';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+
+<!-- Baidu Tongji -->
+
+
+
+
+
+
+	<a id="rocket" href="#top" class=""></a>
+	<script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+    <script type="text/javascript" src="/js/toc.js?v=1.0.0" async=""></script>
+<!-- Image to hack wechat -->
+<img src="http://yoursite-url/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>
