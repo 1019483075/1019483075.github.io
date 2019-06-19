@@ -209,6 +209,36 @@
 
 <div class="post-preview">
 
+    <a href="/2019/06/02/webpack4/6.Lazy Loading、Prefetching/">
+        <h2 class="post-title">
+            6.Lazy Loading、Prefetching
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            demo6 源码地址
+在 demo5 的基础上修改 index.js 文件，并删除了多余的 js 文件
+12345document.addEventListener("click", function() &#123;  import(/* webpackChunkName: 'use-lodash'*/ "lodash").then(function(_) &#123;    consol......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by 令夕 on
+            2019-06-02
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#webpack4" title="webpack4">webpack4</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
     <a href="/2019/06/01/墨菲定理/（一）成功学的秘密/">
         <h2 class="post-title">
             （一）成功学的秘密
@@ -519,36 +549,6 @@ demo1 源码地址创建空文件夹，通过运行一下命令进行初始化 p
 </div>
 <hr>
 
-<div class="post-preview">
-
-    <a href="/2019/05/18/react/（二）响应设计思想与事件绑定/">
-        <h2 class="post-title">
-            （二）响应设计思想与事件绑定
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            
-1.react的新建组件
-12345678important React from 'react'class App extends React.Components&#123; //新建一个react组件    render()&#123;        return(        &lt;div&gt;hello&lt;/div&gt;        )    &#125;&#125......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by 令夕 on
-            2019-05-18
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#react" title="react">react</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
 
 
 <!-- Pager -->
@@ -597,23 +597,23 @@ demo1 源码地址创建空文件夹，通过运行一下命令进行初始化 p
             
         
             
-        
-            
-            <a href="/tags/#webpack4" title="webpack4" rel="15">webpack4</a>
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
-        
-            
             <a href="/tags/#vue" title="vue" rel="10">vue</a>
+            
+        
+            
+            <a href="/tags/#webpack4" title="webpack4" rel="16">webpack4</a>
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
             
         
     </div>
@@ -668,6 +668,10 @@ demo1 源码地址创建空文件夹，通过运行一下命令进行初始化 p
     <ul>
       
         <li>
+          <a href="/2019/06/11/webpack4/18.Eslint配置/">18.Eslint配置</a>
+        </li>
+      
+        <li>
           <a href="/2019/06/11/webpack4/15.开发模式和生产模式实战/">15.开发模式和生产模式实战</a>
         </li>
       
@@ -676,15 +680,11 @@ demo1 源码地址创建空文件夹，通过运行一下命令进行初始化 p
         </li>
       
         <li>
-          <a href="/2019/06/04/webpack4/13.处理第三方js文件/">13.处理第三方js文件</a>
-        </li>
-      
-        <li>
           <a href="/2019/06/04/webpack4/10.CSS Tree Shaking/">10.CSS Tree Shaking</a>
         </li>
       
         <li>
-          <a href="/2019/06/04/webpack4/11.图片处理汇总/">11.图片处理汇总</a>
+          <a href="/2019/06/04/webpack4/12.字体文件处理/">12.字体文件处理</a>
         </li>
       
     </ul>

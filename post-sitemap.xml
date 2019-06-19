@@ -7,6 +7,14 @@
     </url>
 
     <url>
+        <loc>http://yoursite-url/2019/06/11/webpack4/18.Eslint%E9%85%8D%E7%BD%AE/</loc>
+        <lastmod>2019-06-19T15:02:31.618Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>http://yoursite-url/2018/12/14/%E5%B0%8F%E7%A8%8B%E5%BA%8F/wepy%E5%BC%80%E5%8F%91%E5%B0%8F%E7%A8%8B%E5%BA%8F%E8%B8%A9%E8%BF%87%E7%9A%84%E5%9D%91/</loc>
         <lastmod>2019-06-18T12:27:07.569Z</lastmod>
         <changefreq>weekly</changefreq>
