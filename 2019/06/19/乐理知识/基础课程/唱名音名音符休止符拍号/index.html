@@ -14,11 +14,11 @@
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <title>
         
-          基础(9)-文件函数 - 令夕
+          18.唱名，音名，音符，休止符，拍号 - 令夕
         
     </title>
 
-    <link rel="canonical" href="http://yoursite-url/2018/05/09/php基础/基础(9)-文件函数/">
+    <link rel="canonical" href="http://yoursite-url/2019/06/19/乐理知识/基础课程/唱名音名音符休止符拍号/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -86,14 +86,14 @@
                     <div class="post-heading">
                         <div class="tags">
                             
-                              <a class="tag" href="/tags/#php" title="php">php</a>
+                              <a class="tag" href="/tags/#基础乐理" title="基础乐理">基础乐理</a>
                             
                         </div>
-                        <h1>基础(9)-文件函数</h1>
+                        <h1>18.唱名，音名，音符，休止符，拍号</h1>
                         <h2 class="subheading"></h2>
                         <span class="meta">
                             Posted by 令夕 on
-                            2018-05-09
+                            2019-06-19
                         </span>
                     </div>
                 
@@ -210,123 +210,22 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h3><span id="include和-require"><span data-type="background" style="background-color:#FADB14">include()和 require():</span></span></h3>
-<p>概念：用于创建多个页面重复使用的函数，页眉，页脚和元素。</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//新建一个footer.php文件 写入需要引入的代码</span></span><br><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="keyword">echo</span> <span class="string">"&lt;p&gt;我是尾部公用文件&lt;/p&gt;"</span></span><br><span class="line"><span class="meta">?&gt;</span></span><br><span class="line"><span class="comment">//在需要的.php文件中引入</span></span><br><span class="line"><span class="meta">&lt;?php</span> <span class="keyword">include</span> <span class="string">'footer.php'</span>;<span class="meta">?&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">include</span>()：只是生成警告会继续执行脚本</span><br><span class="line"><span class="keyword">require</span>():会生成致命的错误并且停止脚本</span><br></pre></td></tr></table></figure>
-<h3><span id="php-操作文件错误会造成的影响">php 操作文件错误会造成的影响：</span></h3>
-<p>编辑错误的文件，被垃圾数据填满硬盘，意外删除文件内容</p>
-<h3><span id="1文件的基本操作">1.文件的基本操作</span></h3>
-<ol>
-<li>filetype()：测试是否为文件目录</li>
-<li>is_dir()：是否为目录</li>
-<li>is_file():是否为函数</li>
-<li>file_exists():文件或者是目录是否存在</li>
-<li>fontsize（）：文件目录大小</li>
-</ol>
-<h3><span id="2文件操作">2.文件操作</span></h3>
-<ol>
-<li>
-<p><span data-type="background" style="background-color:#FADB14">打开文件</span>：fopen()</p>
-<ol>
-<li>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fopen($file,类型) 类型:r(读) w(写：重新开始写】】) a（写：接着上次的内容写）</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-</li>
-<li>
-<p><span data-type="background" style="background-color:#FADB14">读取文件</span>:fread(文件名，字节数)，file_get_contents()</p>
-<ol>
-<li>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$file=&apos;wj.txt&apos;;</span><br><span class="line">$fp=fopen($file,&apos;r&apos;);</span><br><span class="line">$str=fread($fp,3);</span><br><span class="line">echo $str;</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-</li>
-<li>
-<p>文件复制</p>
-<ol>
-<li>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">copy(源文件，要复制的文件)</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-</li>
-<li>
-<p>重命名</p>
-<ol>
-<li>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rename(源文件，重命名文件)</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-</li>
-<li>
-<p><span data-type="background" style="background-color:#FADB14">关闭文件</span>：close(关闭文件的名称，变量) 关闭文件的好处不想文件暂用服务资源</p>
-<ol>
-<li>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fclose（$file）</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-</li>
-<li>
-<p>创建文件：</p>
-<ol>
-<li>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//文件打开</span><br><span class="line">fopen($file,类型) 类型:r(读) w(写：重新开始写】】) a（写：接着上次的内容写）</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-</li>
-<li>
-<p>写入文件</p>
-<ol>
-<li>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fwrite($file,&apos;abc)</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-</li>
-<li>
-<p>删除文件</p>
-<ol>
-<li>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">unlink($file)</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-</li>
-</ol>
-<h3><span id="3目录操作与文件上传">3.目录操作与文件上传</span></h3>
-<ol>
-<li>遍历目录：
-<ol>
-<li>
-<p>opendir：打开目录</p>
-</li>
-<li>
-<p>readdir：读取目录</p>
-</li>
-<li>
-<p>closedir()：关闭目录资源</p>
-<ol>
-<li>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">$op=opendir(<span class="string">'home'</span>);</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fdir</span><span class="params">($op)</span></span>&#123;<span class="comment">//此处去掉. ..</span></span><br><span class="line">    readdir($op);</span><br><span class="line">    readdir($op);</span><br><span class="line">&#125;</span><br><span class="line">fdir($op);</span><br><span class="line"><span class="comment">//$rd=readdir($op);</span></span><br><span class="line"><span class="keyword">while</span>($file=readdir($op))&#123;</span><br><span class="line">    <span class="keyword">echo</span> $file;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">"&lt;br&gt;"</span>;</span><br><span class="line">&#125;</span><br><span class="line">closedir($op);</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-</li>
-<li>
-<p>scandir:目录遍历</p>
-</li>
-</ol>
-</li>
-<li>创建目录:mkdir()</li>
-<li>删除空目录(是指里面没有内容的目录):rmdir()</li>
-<li>删除非空目录:deldir()
-<ol>
-<li>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">$dir=<span class="string">'home'</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">deldir</span><span class="params">($dir)</span></span>&#123;</span><br><span class="line">    $files=scandir($dir);</span><br><span class="line">    <span class="keyword">foreach</span> ($files <span class="keyword">as</span> $file)&#123;</span><br><span class="line">        <span class="keyword">if</span>($file!=<span class="string">'.'</span>&amp;&amp;$file!=<span class="string">'..'</span>)&#123;</span><br><span class="line">            <span class="keyword">echo</span> <span class="string">"我是遍历目录"</span>.$file;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">deldir($dir);</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-</li>
-</ol>
-<h3><span id="4文件上传与下载">4.文件上传与下载</span></h3>
-<ol>
-<li></li>
-</ol>
+                <p><a name="DIFc1"></a></p>
+<h2><span id="一唱名">（一）唱名</span></h2>
+<p>唱名是音乐术语，在演唱旋律时为方便唱谱而采用的名称称唱名，目前，我们采用的将自然大调式中的七个基本音级分别唱作do、re、mi、fa、sol、la、si（或ti）。七个固定音节的唱名方法产生于11世纪，由<a href="https://baike.baidu.com/item/%E6%84%8F%E5%A4%A7%E5%88%A9/148336" target="_blank" rel="noopener">意大利</a>音乐家圭多发明。他采用自己<a href="https://baike.baidu.com/item/%E7%BC%96%E9%85%8D/7715463" target="_blank" rel="noopener">编配</a>的一首赞美诗每一行歌词的第一个音节作唱名，沿用至今（原do为ut、si为sa，后改）。在唱名的具体使用中，有首调唱名法和<a href="https://baike.baidu.com/item/%E5%9B%BA%E5%AE%9A%E8%B0%83%E5%94%B1%E5%90%8D%E6%B3%95/2896678" target="_blank" rel="noopener">固定调唱名法</a>两种。此外，我国工尺谱中的上、尺、工、凡、六、五、乙为音名（六、五、乙的低八度唱作合、四、一）。中国音名为：宫、商、角、徵、羽。</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2019/png/105657/1560957454100-6ede8511-0710-40b1-b9bd-6057225b71a3.png#align=left&amp;display=inline&amp;height=172&amp;name=image.png&amp;originHeight=344&amp;originWidth=1336&amp;size=315346&amp;status=done&amp;width=668" alt="image.png"><br>
+<a name="nm9I1"></a></p>
+<h2><span id="二音名">（二）音名</span></h2>
+<p>音名是指：CDEFGAB字母，它们的音高是固定的。它的外文名是pitch names。<br><img src="https://cdn.nlark.com/yuque/0/2019/png/105657/1560957536223-897bc367-6a8f-4bd6-8a90-7982627a561c.png#align=left&amp;display=inline&amp;height=268&amp;name=image.png&amp;originHeight=536&amp;originWidth=1380&amp;size=525720&amp;status=done&amp;width=690" alt="image.png"><br><img src="https://cdn.nlark.com/yuque/0/2019/png/105657/1560957590050-abd40fc9-18ab-4d4f-8a74-0c5faa1d6171.png#align=left&amp;display=inline&amp;height=158&amp;name=image.png&amp;originHeight=316&amp;originWidth=1176&amp;size=294773&amp;status=done&amp;width=588" alt="image.png"><br>
+<a name="OgQDh"></a></p>
+<h2><span id="三音符">（三）音符</span></h2>
+<p>用来记录不同长短的音的进行符号。<a href="https://baike.baidu.com/item/%E5%85%A8%E9%9F%B3%E7%AC%A6/719165" target="_blank" rel="noopener">全音符</a>、<a href="https://baike.baidu.com/item/%E4%BA%8C%E5%88%86%E9%9F%B3%E7%AC%A6/9431860" target="_blank" rel="noopener">二分音符</a>、<a href="https://baike.baidu.com/item/%E5%9B%9B%E5%88%86%E9%9F%B3%E7%AC%A6/9431872" target="_blank" rel="noopener">四分音符</a>、<a href="https://baike.baidu.com/item/%E5%85%AB%E5%88%86%E9%9F%B3%E7%AC%A6/6786714" target="_blank" rel="noopener">八分音符</a>、<a href="https://baike.baidu.com/item/%E5%8D%81%E5%85%AD%E5%88%86%E9%9F%B3%E7%AC%A6/9431973" target="_blank" rel="noopener">十六分音符</a>是最常见的音符。是<a href="https://baike.baidu.com/item/%E4%BA%94%E7%BA%BF%E8%B0%B1/383586" target="_blank" rel="noopener">五线谱</a>中最重要的元素。<br><img src="https://cdn.nlark.com/yuque/0/2019/png/105657/1560957632135-85beaf0d-892c-480c-a400-6d229614bc2e.png#align=left&amp;display=inline&amp;height=382&amp;name=image.png&amp;originHeight=764&amp;originWidth=1112&amp;size=480220&amp;status=done&amp;width=556" alt="image.png"><br>
+<a name="gxuPU"></a></p>
+<h2><span id="四休止符">（四）休止符</span></h2>
+<p>用以记录不同长短音的间断时值的符号叫做_休止符_。<br><img src="https://cdn.nlark.com/yuque/0/2019/png/105657/1560957667988-465ebc7a-1e58-48a2-a519-b156507e9941.png#align=left&amp;display=inline&amp;height=492&amp;name=image.png&amp;originHeight=984&amp;originWidth=1160&amp;size=639681&amp;status=done&amp;width=580" alt="image.png"><br><img src="https://cdn.nlark.com/yuque/0/2019/png/105657/1560957681888-dd2754f3-27be-41ad-8ef6-25cc0556d993.png#align=left&amp;display=inline&amp;height=58&amp;name=image.png&amp;originHeight=116&amp;originWidth=712&amp;size=66502&amp;status=done&amp;width=356" alt="image.png"><br>
+<a name="gu1js"></a></p>
+<h2><span id="五拍号">（五）拍号</span></h2>
+<p><em>拍号_是在乐谱中使用的符号，用分数的形式来标画。每一个乐谱前面都有_拍号</em>，中间如果改变节奏会标出改变的_拍号_，_拍号_如同分数，如2/4、3/4等。<br><img src="https://cdn.nlark.com/yuque/0/2019/png/105657/1560957738372-5e0f9f8f-5ec6-4238-863f-e9db893e1b0a.png#align=left&amp;display=inline&amp;height=516&amp;name=image.png&amp;originHeight=1032&amp;originWidth=1328&amp;size=778185&amp;status=done&amp;width=664" alt="image.png"></p>
 
                 
 
@@ -334,13 +233,9 @@
                 <!-- Pager -->
                 <ul class="pager">
                     
-                        <li class="previous">
-                            <a href="/2018/05/17/vue/better-scroll-配置纵向滚动/" data-toggle="tooltip" data-placement="top" title="better-scroll-配置纵向滚动">&larr; Previous Post</a>
-                        </li>
-                    
                     
                         <li class="next">
-                            <a href="/2018/05/06/php基础/基础(8)-字符串函数/" data-toggle="tooltip" data-placement="top" title="基础(8)-字符串函数">Next Post &rarr;</a>
+                            <a href="/2019/06/19/webpack4/18.Eslint配置/" data-toggle="tooltip" data-placement="top" title="18.Eslint配置">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -379,7 +274,7 @@
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
                        
-                          <a class="tag" href="/tags/#php" title="php">php</a>
+                          <a class="tag" href="/tags/#基础乐理" title="基础乐理">基础乐理</a>
                         
                     </div>
                 </section>
@@ -406,8 +301,8 @@
 <script type="text/javascript">
     /* * * CONFIGURATION VARIABLES * * */
     var disqus_shortname = "your-disqus-ID";
-    var disqus_identifier = "http://yoursite-url/2018/05/09/php基础/基础(9)-文件函数/";
-    var disqus_url = "http://yoursite-url/2018/05/09/php基础/基础(9)-文件函数/";
+    var disqus_identifier = "http://yoursite-url/2019/06/19/乐理知识/基础课程/唱名音名音符休止符拍号/";
+    var disqus_url = "http://yoursite-url/2019/06/19/乐理知识/基础课程/唱名音名音符休止符拍号/";
 
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
