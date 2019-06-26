@@ -299,7 +299,7 @@ npm install --save-dev less-loader less 编译 less<br></li>
 <p>5.抽离 css<br><br>
 安装：npm I extract-text-webpack-plugin —save-dev<br>
 <br>引入:var ExtractTextPlugin = require(‘extract-text-webpack-plugin’);</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">插件配置: <span class="keyword">new</span> ExtractTextPlugin(<span class="string">"css/[name].css"</span>),</span><br></pre></td></tr></table></figure>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">插件配置: <span class="keyword">new</span> ExtractTextPlugin(<span class="string">"css/[name].css"</span>),</span><br></pre></td></tr></table></figure>
 <ol start="6">
 <li>图片获取<br><br>
 安装:<br><br>
@@ -348,7 +348,7 @@ Npm i url-loader —save-dev 将图片转换为字符 减少 http 请求 但是�
 <li>webpack 优化：ProvidePlugin 和 import：CommonsChunkPlugin</li>
 <li>package.json 中配置运行与打包：</li>
 </ol>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"scripts"</span>: &#123;</span><br><span class="line">    <span class="string">"dev"</span>: <span class="string">"cross-env WEBPACK_ENV=dev webpack-dev-server --inline --port 8088"</span>,</span><br><span class="line">    <span class="string">"build"</span>: <span class="string">"cross-env WEBPACK_ENV=online webpack -p"</span></span><br><span class="line">  &#125;,</span><br></pre></td></tr></table></figure>
+<figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"scripts"</span>: &#123;</span><br><span class="line">    <span class="string">"dev"</span>: <span class="string">"cross-env WEBPACK_ENV=dev webpack-dev-server --inline --port 8088"</span>,</span><br><span class="line">    <span class="string">"build"</span>: <span class="string">"cross-env WEBPACK_ENV=online webpack -p"</span></span><br><span class="line">  &#125;,</span><br></pre></td></tr></table></figure>
 <p>7.__dirname 表示相对路径</p>
 
                 
