@@ -339,27 +339,23 @@ main.js 中插入
 
 <div class="post-preview">
 
-    <a href="/2018/05/17/vue/axios-获取接口，mock模拟数据配置/">
+    <a href="/2018/05/17/vue/vueMusic歌手-左右链动/">
         <h2 class="post-title">
-            axios-获取接口，mock模拟数据配置
+            vueMusic歌手-左右链动
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
-            https://blog.csdn.net/binginsist/article/details/65630547
+            https://blog.csdn.net/tyrionj/article/details/79145667
 
-1.axios
-
-安装 axios  :
-
-1npm install --save axios vue-axios
+1.singer.vue 数据重构与排序
 
 
-在 main.js 中引入
+歌手页面的结构是  热门、 A-Z  的顺序排列，但抓取的接口数据只是 100 条常见的歌手，并且是乱序的，但我们可以利用接口的 Findex 进行数据的重构
 
 
-123import axios from "axios";Vue.use(axios);Vue.prototype.$htt......
+1234567const HOT_NAME = "热门";let map......
         </div>
     </a>
     
@@ -418,16 +414,27 @@ v-for 一定要加 key 否则会报错
 
 <div class="post-preview">
 
-    <a href="/2018/05/17/vue/better-scroll-配置纵向滚动/">
+    <a href="/2018/05/17/vue/axios-获取接口，mock模拟数据配置/">
         <h2 class="post-title">
-            better-scroll-配置纵向滚动
+            axios-获取接口，mock模拟数据配置
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
-            概念：是一个移动端滚动解决方案。不仅可以做滚动还可以做轮播图1.安装：npm install–save better-scroll2.在文件中引入 better-scroll。import BScroll from ‘better-scroll’;3.new BScroll(Dom 对象,{//opsitons}); 在 Vue 中要获得 Dom 对象，需设置标签属性‘v-el’。
-1234......
+            https://blog.csdn.net/binginsist/article/details/65630547
+
+1.axios
+
+安装 axios  :
+
+1npm install --save axios vue-axios
+
+
+在 main.js 中引入
+
+
+123import axios from "axios";Vue.use(axios);Vue.prototype.$htt......
         </div>
     </a>
     
@@ -447,23 +454,16 @@ v-for 一定要加 key 否则会报错
 
 <div class="post-preview">
 
-    <a href="/2018/05/17/vue/vueMusic歌手-左右链动/">
+    <a href="/2018/05/17/vue/better-scroll-配置纵向滚动/">
         <h2 class="post-title">
-            vueMusic歌手-左右链动
+            better-scroll-配置纵向滚动
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
-            https://blog.csdn.net/tyrionj/article/details/79145667
-
-1.singer.vue 数据重构与排序
-
-
-歌手页面的结构是  热门、 A-Z  的顺序排列，但抓取的接口数据只是 100 条常见的歌手，并且是乱序的，但我们可以利用接口的 Findex 进行数据的重构
-
-
-1234567const HOT_NAME = "热门";let map......
+            概念：是一个移动端滚动解决方案。不仅可以做滚动还可以做轮播图1.安装：npm install–save better-scroll2.在文件中引入 better-scroll。import BScroll from ‘better-scroll’;3.new BScroll(Dom 对象,{//opsitons}); 在 Vue 中要获得 Dom 对象，需设置标签属性‘v-el’。
+1234......
         </div>
     </a>
     
@@ -644,19 +644,11 @@ mt_rand():生成一定范围的随机数     取整 0 到 21
     <div class="tags">
         
             
-            <a href="/tags/#react" title="react" rel="4">react</a>
-            
-        
-            
-            <a href="/tags/#vue" title="vue" rel="10">vue</a>
-            
-        
-            
             <a href="/tags/#php" title="php" rel="13">php</a>
             
         
             
-        
+            <a href="/tags/#react" title="react" rel="4">react</a>
             
         
             
@@ -669,6 +661,14 @@ mt_rand():生成一定范围的随机数     取整 0 到 21
         
             
         
+            
+        
+            
+        
+            
+        
+            
+            <a href="/tags/#vue" title="vue" rel="10">vue</a>
             
         
             
@@ -741,7 +741,7 @@ mt_rand():生成一定范围的随机数     取整 0 到 21
         </li>
       
         <li>
-          <a href="/2019/06/04/webpack4/12.字体文件处理/">12.字体文件处理</a>
+          <a href="/2019/06/04/webpack4/13.处理第三方js文件/">13.处理第三方js文件</a>
         </li>
       
     </ul>

@@ -336,16 +336,52 @@ npm i eslint -D
 
 <div class="post-preview">
 
-    <a href="/2019/06/04/webpack4/12.字体文件处理/">
+    <a href="/2019/06/04/webpack4/13.处理第三方js文件/">
         <h2 class="post-title">
-            12.字体文件处理
+            13.处理第三方js文件
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
-            demo12 源码地址项目目录为：package.json 中使用的依赖如下：
-1234567891011121314151617181920212223242526272829&#123;  "scripts": &#123;    "dev": "webpack --mode development",    "build": "webpack --mode production"  &......
+            demo13 源码地址项目目录：
+
+1.如何使用和管理第三方 JS 库？
+**项目做大了之后，开发者会更多专注在业务逻辑上，其他方面则尽力使用第三方 JS 库来实现。
+由于 js 变化是在太快，所以出现了多种引入和管理第三库的方法，常用的 3 中：
+
+CDN: 标签引入即可
+npm 包管理：目前最常用和最推荐的方法
+本地 js 文件：一些库由于历史原因，没有提供 ES6 版本，需要手动下载，......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by 令夕 on
+            2019-06-04
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#webpack4" title="webpack4">webpack4</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2019/06/04/webpack4/10.CSS Tree Shaking/">
+        <h2 class="post-title">
+            10.CSS Tree Shaking
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            demo10 源码地址CSS Tree Shaking 并不像 Js Tree Shaking 那样方便理解，首先要模拟一个真实的项目环境，来体现 CSS 的 Tree Shaking 的配置和效果。
+此章节源码给予第八节处理 CSS 项目上做修改我们首先编写/src/css/base.css 样式文件，在文件中，我们编写了 3 个样式类。但在代码中，我们只会使用.box 和.box–big......
         </div>
     </a>
     
@@ -403,52 +439,16 @@ npm i eslint -D
 
 <div class="post-preview">
 
-    <a href="/2019/06/04/webpack4/10.CSS Tree Shaking/">
+    <a href="/2019/06/04/webpack4/12.字体文件处理/">
         <h2 class="post-title">
-            10.CSS Tree Shaking
+            12.字体文件处理
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
-            demo10 源码地址CSS Tree Shaking 并不像 Js Tree Shaking 那样方便理解，首先要模拟一个真实的项目环境，来体现 CSS 的 Tree Shaking 的配置和效果。
-此章节源码给予第八节处理 CSS 项目上做修改我们首先编写/src/css/base.css 样式文件，在文件中，我们编写了 3 个样式类。但在代码中，我们只会使用.box 和.box–big......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by 令夕 on
-            2019-06-04
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#webpack4" title="webpack4">webpack4</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2019/06/04/webpack4/13.处理第三方js文件/">
-        <h2 class="post-title">
-            13.处理第三方js文件
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            demo13 源码地址项目目录：
-
-1.如何使用和管理第三方 JS 库？
-**项目做大了之后，开发者会更多专注在业务逻辑上，其他方面则尽力使用第三方 JS 库来实现。
-由于 js 变化是在太快，所以出现了多种引入和管理第三库的方法，常用的 3 中：
-
-CDN: 标签引入即可
-npm 包管理：目前最常用和最推荐的方法
-本地 js 文件：一些库由于历史原因，没有提供 ES6 版本，需要手动下载，......
+            demo12 源码地址项目目录为：package.json 中使用的依赖如下：
+1234567891011121314151617181920212223242526272829&#123;  "scripts": &#123;    "dev": "webpack --mode development",    "build": "webpack --mode production"  &......
         </div>
     </a>
     
@@ -568,19 +568,11 @@ CSS 在 HTML 中常引入方法有&lt;link&gt;标签和&lt;style&gt;标签两种
     <div class="tags">
         
             
-            <a href="/tags/#react" title="react" rel="4">react</a>
-            
-        
-            
-            <a href="/tags/#vue" title="vue" rel="10">vue</a>
-            
-        
-            
             <a href="/tags/#php" title="php" rel="13">php</a>
             
         
             
-        
+            <a href="/tags/#react" title="react" rel="4">react</a>
             
         
             
@@ -593,6 +585,14 @@ CSS 在 HTML 中常引入方法有&lt;link&gt;标签和&lt;style&gt;标签两种
         
             
         
+            
+        
+            
+        
+            
+        
+            
+            <a href="/tags/#vue" title="vue" rel="10">vue</a>
             
         
             
@@ -665,7 +665,7 @@ CSS 在 HTML 中常引入方法有&lt;link&gt;标签和&lt;style&gt;标签两种
         </li>
       
         <li>
-          <a href="/2019/06/04/webpack4/12.字体文件处理/">12.字体文件处理</a>
+          <a href="/2019/06/04/webpack4/13.处理第三方js文件/">13.处理第三方js文件</a>
         </li>
       
     </ul>
