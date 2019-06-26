@@ -242,21 +242,18 @@
 
 <div class="post-preview">
 
-    <a href="/2018/03/09/ES6/7.module语法/">
+    <a href="/2018/03/09/ES6/8.proxy与object.assgin/">
         <h2 class="post-title">
-            7.module语法
+            8.proxy与object.assgin
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
             
-1.单个指定加载某个输出值（export）
-1.导出
-1234567export ｛变量名｝导出具名的接口export default 导出匿名的接口例如：let xlet yexport ｛x｝export default y
-2.导入
-12import &#123; x &#125; from "./module.js";import y from "./module.js";
-3.输......
+概念：proxy 理解为代理器。可以对外界的访问进行过滤和改写。
+1.object.defineProperty()方法会在对象上定义一个新的属性，或者修改现有对象的现有属性，并返回这个对象。
+12345678910111213object.definePrototype(obj,prop,descriptor)obj:定义属性的对象prop:定义或者修改属性的对象descriptor:定......
         </div>
     </a>
     
@@ -276,18 +273,21 @@
 
 <div class="post-preview">
 
-    <a href="/2018/03/09/ES6/8.proxy与object.assgin/">
+    <a href="/2018/03/09/ES6/7.module语法/">
         <h2 class="post-title">
-            8.proxy与object.assgin
+            7.module语法
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
             
-概念：proxy 理解为代理器。可以对外界的访问进行过滤和改写。
-1.object.defineProperty()方法会在对象上定义一个新的属性，或者修改现有对象的现有属性，并返回这个对象。
-12345678910111213object.definePrototype(obj,prop,descriptor)obj:定义属性的对象prop:定义或者修改属性的对象descriptor:定......
+1.单个指定加载某个输出值（export）
+1.导出
+1234567export ｛变量名｝导出具名的接口export default 导出匿名的接口例如：let xlet yexport ｛x｝export default y
+2.导入
+12import &#123; x &#125; from "./module.js";import y from "./module.js";
+3.输......
         </div>
     </a>
     
