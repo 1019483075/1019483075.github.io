@@ -14,11 +14,11 @@
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <title>
         
-          9.JS Tree Shaking - 令夕
+          mpvue框架的小程序和H5同时开发 - 令夕
         
     </title>
 
-    <link rel="canonical" href="http://yoursite-url/2019/06/04/webpack4/9.JS Tree Shaking/">
+    <link rel="canonical" href="http://yoursite-url/2019/07/03/小程序/mpvue框架的小程序和H5同时开发/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -86,14 +86,14 @@
                     <div class="post-heading">
                         <div class="tags">
                             
-                              <a class="tag" href="/tags/#webpack4" title="webpack4">webpack4</a>
+                              <a class="tag" href="/tags/#小程序" title="小程序">小程序</a>
                             
                         </div>
-                        <h1>9.JS Tree Shaking</h1>
+                        <h1>mpvue框架的小程序和H5同时开发</h1>
                         <h2 class="subheading"></h2>
                         <span class="meta">
                             Posted by 令夕 on
-                            2019-06-04
+                            2019-07-03
                         </span>
                     </div>
                 
@@ -210,26 +210,17 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <p><a href>demo9 源码地址</a><br>什么是 Tree Shaking?<br>字面意思是摇树。项目中没有使用的代码会在打包的时候丢掉。<strong>JS 的 Tree Shaking 依赖的是 ES6 的模块系统（比如：import 和 export）</strong><br>项目目录如下：<br><img src="https://cdn.nlark.com/yuque/0/2019/png/105657/1559658721554-f0bc91d9-2753-4779-9082-d523add92939.png#align=left&amp;display=inline&amp;height=261&amp;name=image.png&amp;originHeight=522&amp;originWidth=424&amp;size=41476&amp;status=done&amp;width=212" alt="image.png"><br>在 util.js 文件中写入测试代码</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// util.js</span></span><br><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="string">"this is function a"</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">b</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="string">"this is a function b"</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">c</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="string">"this is a function c"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>在 app.js 中引用 util.js 的 function a() 函数，<strong>按需引入</strong>：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// app.js</span></span><br><span class="line"><span class="keyword">import</span> &#123; a &#125; <span class="keyword">from</span> <span class="string">"./vendor/until"</span>;</span><br><span class="line"><span class="built_in">console</span>.log(a);</span><br></pre></td></tr></table></figure>
-<p>命令行运行 webpack 打包后，打开打包后生成的/dist/app.bundle.js 文件。查找我们 a()函数输出的字符串，如下图所示：<br><img src="https://cdn.nlark.com/yuque/0/2019/png/105657/1559659224296-0f32b6ae-9446-495e-9501-c55c70bae5c0.png#align=left&amp;display=inline&amp;height=331&amp;name=image.png&amp;originHeight=662&amp;originWidth=1396&amp;size=128878&amp;status=done&amp;width=698" alt="image.png"><br>如果将查找内容换成<code>this is function &quot;c&quot;</code>  或者  <code>this is function &quot;b&quot;</code>, 并没有相关查找结果。<br>说明 JS Tree Shaking 成功。<br><strong>1.如何处理第三方 JS 库？</strong><br>对于经常使用第三方库（例如 jQuery，lodash 等等），如何实现 Tree Shaking？<br>下面以 lodash.js 为例，进行介绍</p>
-<blockquote>
-<p>安装 lodash.js：npm  install lodash --save</p>
-</blockquote>
-<p>在 app.js 中引入 lodash.js 的一个函数：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// app.js</span></span><br><span class="line"><span class="keyword">import</span> &#123; chunk &#125; <span class="keyword">from</span> <span class="string">"lodash"</span>;</span><br><span class="line"><span class="built_in">console</span>.log(chunk([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>], <span class="number">2</span>));</span><br></pre></td></tr></table></figure>
-<p>命令行打包。如下图所示，打包后大小是 70kb。显然，只是引用了一个函数，不应该这么大。并没有进行 Tree Shaking。<br><img src="https://cdn.nlark.com/yuque/0/2019/png/105657/1559659486615-78d4278e-62d5-452f-937b-aa8986d68b83.png#align=left&amp;display=inline&amp;height=290&amp;name=image.png&amp;originHeight=580&amp;originWidth=1448&amp;size=155362&amp;status=done&amp;width=724" alt="image.png"><br>开头讲过，js tree shaking 利用的是 ES 的模块系统。而 lodash.js 使用的是<strong>CommonJS</strong>  而不是<strong>ES6</strong>的写法。所以，安装对应的模块系统即可。</p>
-<blockquote>
-<p>安装 lodash.js 的 ES 写法的版本：npm install lodash-es --save</p>
-</blockquote>
-<p>修改下 app.js:</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// app.js</span></span><br><span class="line"><span class="keyword">import</span> &#123; chunk &#125; <span class="keyword">from</span> <span class="string">"lodash-es"</span>;</span><br><span class="line"><span class="built_in">console</span>.log(chunk([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>], <span class="number">2</span>));</span><br></pre></td></tr></table></figure>
-<p>在次打包，打包结果只有 3.5KB（如下图所示）。显然，tree shaking 成功。<br><img src="https://cdn.nlark.com/yuque/0/2019/png/105657/1559659639797-59ad46fa-4df0-4b68-9dce-d4f9ff96cc69.png#align=left&amp;display=inline&amp;height=311&amp;name=image.png&amp;originHeight=622&amp;originWidth=1446&amp;size=168428&amp;status=done&amp;width=723" alt="image.png"></p>
-<blockquote>
-<p>在一些对加载速度敏感的项目中使用第三方库，请注意库的写法是否符合 ES 模块系统规范，一方面 webpack 进行 tree shaking。</p>
-</blockquote>
+                <p><a href>demo链接</a><br>1、样式统一<br>为了达到共用一套样式，采用<strong>px2rem-loader</strong>和<strong>px2rpx-loader</strong>进行代码的打包，细节如下：</p>
+<ul>
+<li>由于UI设计图是在蓝湖上标注，宽度750，选择像素 PX</li>
+<li>样式中直接写px，在小程序端会转化成rpx，在H5端会转化成rem</li>
+</ul>
+<p>2、参数配置<br>在px2rem-loader中配置如下</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">options: &#123;</span><br><span class="line">  remUnit: <span class="number">75</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在px2rpx-loader中配置如下</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">options: &#123;</span><br><span class="line">  baseDpr: <span class="number">1</span>,</span><br><span class="line">    rpxUnit: <span class="number">1</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>3、注意事项<br>由于在px2rem-loader中，所有px均转化成rem，故在使用1px时会将1转化成一个很小的rem小数，可能会造成样式失效，故可以使用 /* no */ ，表示不进行转化</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">border: 1px solid #ca150f; /* no */</span><br></pre></td></tr></table></figure>
 
                 
 
@@ -237,13 +228,9 @@
                 <!-- Pager -->
                 <ul class="pager">
                     
-                        <li class="previous">
-                            <a href="/2019/06/04/webpack4/12.字体文件处理/" data-toggle="tooltip" data-placement="top" title="12.字体文件处理">&larr; Previous Post</a>
-                        </li>
-                    
                     
                         <li class="next">
-                            <a href="/2019/06/03/webpack4/8.处理css和scss/" data-toggle="tooltip" data-placement="top" title="8.处理CSS/SCSS文件">Next Post &rarr;</a>
+                            <a href="/2019/06/26/前端杂记/clipboard在Vue项目中点击两次解决/" data-toggle="tooltip" data-placement="top" title="clipboard在Vue项目中点击两次解决">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -282,7 +269,7 @@
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
                        
-                          <a class="tag" href="/tags/#webpack4" title="webpack4">webpack4</a>
+                          <a class="tag" href="/tags/#小程序" title="小程序">小程序</a>
                         
                     </div>
                 </section>
@@ -309,8 +296,8 @@
 <script type="text/javascript">
     /* * * CONFIGURATION VARIABLES * * */
     var disqus_shortname = "your-disqus-ID";
-    var disqus_identifier = "http://yoursite-url/2019/06/04/webpack4/9.JS Tree Shaking/";
-    var disqus_url = "http://yoursite-url/2019/06/04/webpack4/9.JS Tree Shaking/";
+    var disqus_identifier = "http://yoursite-url/2019/07/03/小程序/mpvue框架的小程序和H5同时开发/";
+    var disqus_url = "http://yoursite-url/2019/07/03/小程序/mpvue框架的小程序和H5同时开发/";
 
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

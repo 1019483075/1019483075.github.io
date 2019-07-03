@@ -209,6 +209,41 @@
 
 <div class="post-preview">
 
+    <a href="/2019/07/03/小程序/mpvue框架的小程序和H5同时开发/">
+        <h2 class="post-title">
+            mpvue框架的小程序和H5同时开发
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            demo链接1、样式统一为了达到共用一套样式，采用px2rem-loader和px2rpx-loader进行代码的打包，细节如下：
+
+由于UI设计图是在蓝湖上标注，宽度750，选择像素 PX
+样式中直接写px，在小程序端会转化成rpx，在H5端会转化成rem
+
+2、参数配置在px2rem-loader中配置如下
+123options: &#123;  remUnit: 75&#125;
+在p......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by 令夕 on
+            2019-07-03
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#小程序" title="小程序">小程序</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
     <a href="/2019/06/26/前端杂记/clipboard在Vue项目中点击两次解决/">
         <h2 class="post-title">
             clipboard在Vue项目中点击两次解决
@@ -364,25 +399,23 @@ npm i eslint -D
 
 <div class="post-preview">
 
-    <a href="/2019/06/04/webpack4/11.图片处理汇总/">
+    <a href="/2019/06/04/webpack4/13.处理第三方js文件/">
         <h2 class="post-title">
-            11.图片处理汇总
+            13.处理第三方js文件
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
-            demo11 源码地址目录结构：webpack4 中的图片常用的基础操作：
+            demo13 源码地址项目目录：
 
-图片处理和 Base64 编码
-图片压缩
-合成雪碧图
+1.如何使用和管理第三方 JS 库？
+**项目做大了之后，开发者会更多专注在业务逻辑上，其他方面则尽力使用第三方 JS 库来实现。
+由于 js 变化是在太快，所以出现了多种引入和管理第三库的方法，常用的 3 中：
 
-
-（一）准备工作
-
-如项目代码目录展示的那样，除了常见的 app.js 作为入口文件，我们将用到 3 张图片放在/src/assets/imgs/目录下，并在样式 base.css 中引用这些图片。
-剩下的内容叫给 webpack 打包处理即可。样式文件和入口......
+CDN: 标签引入即可
+npm 包管理：目前最常用和最推荐的方法
+本地 js 文件：一些库由于历史原因，没有提供 ES6 版本，需要手动下载，......
         </div>
     </a>
     
@@ -402,16 +435,25 @@ npm i eslint -D
 
 <div class="post-preview">
 
-    <a href="/2019/06/04/webpack4/12.字体文件处理/">
+    <a href="/2019/06/04/webpack4/11.图片处理汇总/">
         <h2 class="post-title">
-            12.字体文件处理
+            11.图片处理汇总
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
-            demo12 源码地址项目目录为：package.json 中使用的依赖如下：
-1234567891011121314151617181920212223242526272829&#123;  "scripts": &#123;    "dev": "webpack --mode development",    "build": "webpack --mode production"  &......
+            demo11 源码地址目录结构：webpack4 中的图片常用的基础操作：
+
+图片处理和 Base64 编码
+图片压缩
+合成雪碧图
+
+
+（一）准备工作
+
+如项目代码目录展示的那样，除了常见的 app.js 作为入口文件，我们将用到 3 张图片放在/src/assets/imgs/目录下，并在样式 base.css 中引用这些图片。
+剩下的内容叫给 webpack 打包处理即可。样式文件和入口......
         </div>
     </a>
     
@@ -460,52 +502,16 @@ npm i eslint -D
 
 <div class="post-preview">
 
-    <a href="/2019/06/04/webpack4/13.处理第三方js文件/">
+    <a href="/2019/06/04/webpack4/12.字体文件处理/">
         <h2 class="post-title">
-            13.处理第三方js文件
+            12.字体文件处理
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
-            demo13 源码地址项目目录：
-
-1.如何使用和管理第三方 JS 库？
-**项目做大了之后，开发者会更多专注在业务逻辑上，其他方面则尽力使用第三方 JS 库来实现。
-由于 js 变化是在太快，所以出现了多种引入和管理第三库的方法，常用的 3 中：
-
-CDN: 标签引入即可
-npm 包管理：目前最常用和最推荐的方法
-本地 js 文件：一些库由于历史原因，没有提供 ES6 版本，需要手动下载，......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by 令夕 on
-            2019-06-04
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#webpack4" title="webpack4">webpack4</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2019/06/04/webpack4/9.JS Tree Shaking/">
-        <h2 class="post-title">
-            9.JS Tree Shaking
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            demo9 源码地址什么是 Tree Shaking?字面意思是摇树。项目中没有使用的代码会在打包的时候丢掉。JS 的 Tree Shaking 依赖的是 ES6 的模块系统（比如：import 和 export）项目目录如下：在 util.js 文件中写入测试代码
-123456789101112// util.jsexport function a() &#123;  return "th......
+            demo12 源码地址项目目录为：package.json 中使用的依赖如下：
+1234567891011121314151617181920212223242526272829&#123;  "scripts": &#123;    "dev": "webpack --mode development",    "build": "webpack --mode production"  &......
         </div>
     </a>
     
@@ -575,15 +581,17 @@ npm 包管理：目前最常用和最推荐的方法
             
         
             
-        
-            
             <a href="/tags/#webpack4" title="webpack4" rel="16">webpack4</a>
+            
+        
             
         
             
             <a href="/tags/#前端杂记" title="前端杂记" rel="10">前端杂记</a>
             
         
+            
+            <a href="/tags/#小程序" title="小程序" rel="2">小程序</a>
             
         
             
@@ -648,6 +656,10 @@ npm 包管理：目前最常用和最推荐的方法
     <ul>
       
         <li>
+          <a href="/2019/07/03/小程序/mpvue框架的小程序和H5同时开发/">mpvue框架的小程序和H5同时开发</a>
+        </li>
+      
+        <li>
           <a href="/2019/06/26/前端杂记/clipboard在Vue项目中点击两次解决/">clipboard在Vue项目中点击两次解决</a>
         </li>
       
@@ -661,10 +673,6 @@ npm 包管理：目前最常用和最推荐的方法
       
         <li>
           <a href="/2019/06/11/webpack4/15.开发模式和生产模式实战/">15.开发模式和生产模式实战</a>
-        </li>
-      
-        <li>
-          <a href="/2019/06/09/webpack4/14.开发模式与webpack-dev-server/">14.开发模式与webpack-dev-server</a>
         </li>
       
     </ul>
