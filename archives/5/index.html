@@ -132,14 +132,14 @@
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/archive/">Archives</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/archive/">Archives</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
@@ -206,6 +206,219 @@
             
                 <!-- Main Content -->
 
+
+<div class="post-preview">
+
+    <a href="/2018/05/21/vue/vue-music歌手详情页/">
+        <h2 class="post-title">
+            vue-music歌手详情页
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            
+1.singer 页面引入 singer-detail 二级路由
+12345678910111213141516171819202122232425262728//1.在singerlist中触发事件  @click="selectItem(items)"//2.在methods中： selectItem (items) &#123;   this.$emit('select', item......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by 令夕 on
+            2018-05-21
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#vue" title="vue">vue</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2018/05/18/vue/loading-图片懒加载/">
+        <h2 class="post-title">
+            loading-图片懒加载
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            
+
+https://www.cnblogs.com/xyyt/p/7650539.html
+
+
+安装插件 npm install vue-lazyload --save-dev
+
+
+main.js 中插入
+
+
+12345import VueLazyLoad from "vue-lazyload";Vue.use(VueLazyLoad, &#123;  error: "./static/er......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by 令夕 on
+            2018-05-18
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#vue" title="vue">vue</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2018/05/17/vue/axios-获取接口，mock模拟数据配置/">
+        <h2 class="post-title">
+            axios-获取接口，mock模拟数据配置
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            https://blog.csdn.net/binginsist/article/details/65630547
+
+1.axios
+
+安装 axios  :
+
+1npm install --save axios vue-axios
+
+
+在 main.js 中引入
+
+
+123import axios from "axios";Vue.use(axios);Vue.prototype.$htt......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by 令夕 on
+            2018-05-17
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#vue" title="vue">vue</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2018/05/17/vue/better-scroll-配置纵向滚动/">
+        <h2 class="post-title">
+            better-scroll-配置纵向滚动
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            概念：是一个移动端滚动解决方案。不仅可以做滚动还可以做轮播图1.安装：npm install–save better-scroll2.在文件中引入 better-scroll。import BScroll from ‘better-scroll’;3.new BScroll(Dom 对象,{//opsitons}); 在 Vue 中要获得 Dom 对象，需设置标签属性‘v-el’。
+1234......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by 令夕 on
+            2018-05-17
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#vue" title="vue">vue</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2018/05/17/vue/banner横向轮播图-组件封装思路/">
+        <h2 class="post-title">
+            banner横向轮播图-组件封装思路
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            
+
+https://segmentfault.com/a/1190000013294187
+
+
+https://github.com/ustbhuangyi/better-scroll/blob/master/example/components/slide/slide.vue
+
+
+v-for 一定要加 key 否则会报错
+
+
+1&lt;li v-for="item in discList"......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by 令夕 on
+            2018-05-17
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#vue" title="vue">vue</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2018/05/17/vue/vueMusic歌手-左右链动/">
+        <h2 class="post-title">
+            vueMusic歌手-左右链动
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            https://blog.csdn.net/tyrionj/article/details/79145667
+
+1.singer.vue 数据重构与排序
+
+
+歌手页面的结构是  热门、 A-Z  的顺序排列，但抓取的接口数据只是 100 条常见的歌手，并且是乱序的，但我们可以利用接口的 Findex 进行数据的重构
+
+
+1234567const HOT_NAME = "热门";let map......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by 令夕 on
+            2018-05-17
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#vue" title="vue">vue</a>
+            
+        </div>
+    
+
+</div>
+<hr>
 
 <div class="post-preview">
 
@@ -371,220 +584,6 @@ header(“Content-Type:text/html;charset=utf-8”);这一行代码是为了解�
 </div>
 <hr>
 
-<div class="post-preview">
-
-    <a href="/2018/04/28/php基础/基础(5)-数组与表单/">
-        <h2 class="post-title">
-            基础(5)-数组与表单
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            1.php 数组定义与数组遍历
-
-
-数组的作用
-
-作用：单独的一个变量可以存储一个或者是多个值，类型可以是 8 种变量中的任意一种。
-
-
-
-数组的定义
-
-$arr=array(1,2,3,4,5);   $arr=[1,2,3,4];
-
-
-1234arr=array(1,3,5,7,9);echo "&lt;pre&gt;";print_r($arr);//print_r输出关于变量易于理解......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by 令夕 on
-            2018-04-28
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#php" title="php">php</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2018/04/23/php基础/基础(4)-函数/">
-        <h2 class="post-title">
-            基础(4)-函数
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            1.函数的定义
-函数：重复使用的代码块，提高代码的重用性。降低冗余度。
-函数调用:函数名()
-1234//语法function functionName() &#123;  被执行的代码;&#125;
-判断是否为函数：function_exists()
-12345function show()&#123;    echo "我是一个函数";&#125;$func="show";var_dum......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by 令夕 on
-            2018-04-23
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#php" title="php">php</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2018/04/20/php基础/基础(3)-流程控制/">
-        <h2 class="post-title">
-            基础(3)-流程控制
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            1.分支结构
-
-if…else…：如果条件为 true，则执行代码。如果条件为 false 则执行另外的代码。
-
-123456$user="admin";if($user=="admin")&#123;    echo "正确","&lt;br&gt;";&#125;else&#123;    echo "错误","&lt;br&gt;";&#125;
-
-
-if…elseif…else:选择......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by 令夕 on
-            2018-04-20
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#php" title="php">php</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2018/04/10/php基础/基础(2)-常量与运算符/">
-        <h2 class="post-title">
-            基础(2)-常量与运算符
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            1.常量
-
-define()函数 是指声明一个常量 ，常量一旦定义就不允许更改，常量的声明不需要用$,常量名称必须是大写。
-
-参数一：定义常量的名称
-参数二：定义常量的值
-参数三：常量名是否对带下不敏感
-
-
-常量的格式：define(“USERNAME”,“user123”);;
-判断一个常量是否存在:defined()
-常量与变量的区别：
-
-变量：不会随着环境而改变，同名变量后面的会覆盖前......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by 令夕 on
-            2018-04-10
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#php" title="php">php</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2018/04/08/php基础/基础(1)-变量定义与类型/">
-        <h2 class="post-title">
-            基础(1)-变量定义与类型
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            mysql，apache，php 之间的关系:
-apache:是一个服务器，是构筑一个 php 和数据库可以沟通的环境。是指 php 和 mysql 两个不同语言的人打电话，通过 Apache 这个同声翻译系统进行构建。
-1.php 定义
-
-php 的定义 php 以&lt;?php 开始,代码块 以 ?&gt;结束 php 的拓展名是.php
-php 的变量以$符号开头，后面跟变量名规则：......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by 令夕 on
-            2018-04-08
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#php" title="php">php</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2018/04/07/前端杂记/webpack配置配置px转rem/">
-        <h2 class="post-title">
-            vscode中配置eslint
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            
-1.webpack 中配置 px 自动转 rem
-12345678910111213141516//1.在webpack中配置，px自动转换为rem，代码中些px。浏览器中自动转换为rem//2.安装语句npm install px2rem-loader --save-dev//3.loaders中配置 &#123;   test: /\.less|css$/,   loaders: Ex......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by 令夕 on
-            2018-04-07
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#前端杂记" title="前端杂记">前端杂记</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
 
 
 <!-- Pager -->
@@ -629,6 +628,10 @@ php 的变量以$符号开头，后面跟变量名规则：......
             
         
             
+            <a href="/tags/#js理解" title="js理解" rel="3">js理解</a>
+            
+        
+            
             <a href="/tags/#php" title="php" rel="13">php</a>
             
         
@@ -637,7 +640,9 @@ php 的变量以$符号开头，后面跟变量名规则：......
             
         
             
-            <a href="/tags/#vue" title="vue" rel="10">vue</a>
+            <a href="/tags/#vue" title="vue" rel="11">vue</a>
+            
+        
             
         
             
@@ -645,17 +650,15 @@ php 的变量以$符号开头，后面跟变量名规则：......
             
         
             
+            <a href="/tags/#前端杂记" title="前端杂记" rel="12">前端杂记</a>
+            
         
             
-            <a href="/tags/#前端杂记" title="前端杂记" rel="10">前端杂记</a>
+        
             
         
             
             <a href="/tags/#小程序" title="小程序" rel="2">小程序</a>
-            
-        
-            
-        
             
         
             
@@ -716,23 +719,23 @@ php 的变量以$符号开头，后面跟变量名规则：......
     <ul>
       
         <li>
+          <a href="/2019/07/07/js理解/浅谈深拷贝与浅拷贝/">浅谈深拷贝与浅拷贝</a>
+        </li>
+      
+        <li>
+          <a href="/2019/07/05/js理解/js遍历方法理解/">js遍历方法理解</a>
+        </li>
+      
+        <li>
+          <a href="/2019/07/04/前端杂记/深入理解HTTP协议/">深入理解HTTP协议</a>
+        </li>
+      
+        <li>
           <a href="/2019/07/03/小程序/mpvue框架的小程序和H5同时开发/">mpvue框架的小程序和H5同时开发</a>
         </li>
       
         <li>
           <a href="/2019/06/26/前端杂记/clipboard在Vue项目中点击两次解决/">clipboard在Vue项目中点击两次解决</a>
-        </li>
-      
-        <li>
-          <a href="/2019/06/19/乐理知识/基础课程/唱名音名音符休止符拍号/">唱名，音名，音符，休止符，拍号</a>
-        </li>
-      
-        <li>
-          <a href="/2019/06/19/webpack4/18.Eslint配置/">18.Eslint配置</a>
-        </li>
-      
-        <li>
-          <a href="/2019/06/11/webpack4/15.开发模式和生产模式实战/">15.开发模式和生产模式实战</a>
         </li>
       
     </ul>

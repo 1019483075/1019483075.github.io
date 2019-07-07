@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content>
+    <meta name="keyword" content>
+    <link rel="shortcut icon" href="/img/ironman-draw.png">
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <title>
+        
+          深入理解HTTP协议 - 令夕
+        
+    </title>
+
+    <link rel="canonical" href="http://yoursite-url/2019/07/04/前端杂记/深入理解HTTP协议/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS --> 
+    <link rel="stylesheet" href="/css/beantech.min.css">
+    
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <link rel="stylesheet" href="/css/widget.css">
+
+    <link rel="stylesheet" href="/css/rocket.css">
+
+    <link rel="stylesheet" href="/css/signature.css">
+
+    <link rel="stylesheet" href="/css/toc.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+	<!-- Modified by Yu-Hsuan Yen -->
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        
+            background-image: url('https://source.unsplash.com/random')
+            /*post*/
+        
+    }
+    
+</style>
+
+<header class="intro-header">
+    <!-- Signature -->
+    <div id="signature">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                
+                    <div class="post-heading">
+                        <div class="tags">
+                            
+                              <a class="tag" href="/tags/#前端杂记" title="前端杂记">前端杂记</a>
+                            
+                        </div>
+                        <h1>深入理解HTTP协议</h1>
+                        <h2 class="subheading"></h2>
+                        <span class="meta">
+                            Posted by 令夕 on
+                            2019-07-04
+                        </span>
+                    </div>
+                
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+	
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">令夕</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archive/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    <!-- Modify by Yu-Hsuan Yen -->
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <blockquote>
+<blockquote>
+<ol>
+<li>什么是 HTTP？它有什么属性？我们最常用的是什么呢？快阅读本文为你一一道来。</li>
+</ol>
+</blockquote>
+</blockquote>
+<p><a name="9ruRv"></a></p>
+<h2><span id="一什么是-http-协议">一，什么是 HTTP 协议？</span></h2>
+<hr>
+<p>在了解 HTTP 之前，我们需要了解什么是通络通信模型（也就是我们常说的 OSI 模型）<br>
+<a name="PcLOT"></a></p>
+<h3><span id="1-osi-模型">1. OSI 模型</span></h3>
+<p>OSI 模型是对网络中数据是如何被传送和接收的一个具象化的展示，如下图展示<br><img src="https://cdn.nlark.com/yuque/0/2019/png/105657/1562037471203-b374b433-36ea-499c-b24c-b2a2be33d077.png#align=left&amp;display=inline&amp;height=688&amp;name=image.png&amp;originHeight=688&amp;originWidth=1016&amp;size=94922&amp;status=done&amp;width=1016" alt="image.png"><br>在 OSI 中我们所处在最顶层，我们所有的网络的行为，数据的传递都是从顶至下然后在从下至顶完成一次传递的。每一层都会有对应的一些协议，协议就好比是数据的 <strong>'通行证</strong>’，有些协议会把我们的数据加密，让它更安全，有些协议帮助数据建立通道，指明去路。而我们这次要说的 HTTP 协议属于应用层中的协议，它的主要作用就是传递资源，建立通道让我们更加方便的去访问网络资源。资源必须是通过 URL 地址可以访问到的，包括但不限于图片，数据，文件等等。<br>
+<a name="L5mSR"></a></p>
+<h2><span id="二http-属性">二，HTTP 属性</span></h2>
+<hr>
+<p>我们称呼 HTTP 内容为报文，一个 HTTP 由请求报文和响应报文组成，最方便的报文查看就是浏览器开发者工具的 Network 这一项<br><img src="https://cdn.nlark.com/yuque/0/2019/png/105657/1562037612571-0f7177f7-47a3-4cd4-ac06-ec2977eb6d23.png#align=left&amp;display=inline&amp;height=856&amp;name=image.png&amp;originHeight=856&amp;originWidth=1428&amp;size=170158&amp;status=done&amp;width=1428" alt="image.png"><br>以上是访问  <strong><a href="https://link.juejin.im/?target=https%3A%2F%2Fhellogithub.com%2F" target="_blank" rel="noopener">hellogithub.com/</a></strong>  后查看到的请求报文 (Request Headers) 和响应报文(Response Headers)。完整的请求就是客户端发送请求，服务器返回响应，关闭连接</p>
+<p>请求和响应的格式都差不多，他们都是由;</p>
+<ul>
+<li>一条初始行</li>
+<li>零或多条信息</li>
+<li>一个空行</li>
+<li>一个可选的消息体组成</li>
+</ul>
+<p>接下来进一步分析<br>
+<a name="TZs7D"></a></p>
+<h2><span id="三-general-内容展示的是通用头">三、General 内容展示的是通用头</span></h2>
+<hr>
+<p><img src="https://cdn.nlark.com/yuque/0/2019/png/105657/1562037811271-8f5ffceb-a542-4c6b-8864-633ea37b717f.png#align=left&amp;display=inline&amp;height=139&amp;name=image.png&amp;originHeight=139&amp;originWidth=375&amp;size=10800&amp;status=done&amp;width=375" alt="image.png"><br><strong>Request URL</strong>：请求地址（目前资源所在的地址）<br><strong>Request Method</strong>： 请求方法，请求方法是讲 HTTP 动词来对目标资源进行操作，常用的请求方式有以下七种：</p>
+<ol>
+<li>GET：请求访问被 URL 识别的资源，可以通过 url 传参给服务器</li>
+<li>POST：用于传输信息给服务器</li>
+<li>PUT：传输文件，报文体中包含文件内容，保存对应的 url 地址</li>
+<li>HEDE：获取报文首部，与 GET 方法相似，只是不返回报文的主体，一般用于验证一个内容是否正常存在，或者 url 是否有效。</li>
+<li>OPTIONS：返回服务器可用的方法</li>
+<li>TRACE：查看 http 协议有没有被修改</li>
+<li>DELETE：删除对应 url 的位置</li>
+</ol>
+<p><strong>Status Code</strong>：状态码，不同的状态码代表不同的情况，罗列一下常用的状态码：</p>
+<ol>
+<li>1 开头的状态码表示信息响应</li>
+<li>2 开头的表示信息成功</li>
+<li>3 开头的表示重定向</li>
+<li>4 开头的表示客户端响应，常见的状态码（404 Not Found）</li>
+<li>5 开头的表示服务器响应，常见的有 500（服务器遇到了问题）</li>
+</ol>
+<p>详细状态码地址：** <a href="https://link.juejin.im/?target=https%3A%2F%2Fdeveloper.mozilla.org%2Fzh-CN%2Fdocs%2FWeb%2FHTTP%2FStatus" target="_blank" rel="noopener">developer.mozilla.org/zh-CN/docs/…</a>**<br>**Remote Address：**远程地址，这个地址代表的是远程服务器所在的 ip 地址<br><strong>Referrer Policy</strong>：用来监管那些访问的来源信息，no-referrer-when-downgrade (默认值)意思是在没有指定任何策略的情况下用户代理的默认行为。在同级安全级别的情况下，引用页面的地址会被发送( HTTPS-&gt;HTTPS )，但是在降级的情况下不会被发送 ( HTTPS-&gt;HTTP )。</p>
+<p><a name="lbqWP"></a></p>
+<h2><span id="四response-header代表服务器响应的信息">四，Response Header（代表服务器响应的信息）</span></h2>
+<hr>
+<p><img src="https://cdn.nlark.com/yuque/0/2019/png/105657/1562221375790-9806a8d4-0ceb-4c0b-a896-03c1240f913d.png#align=left&amp;display=inline&amp;height=236&amp;name=image.png&amp;originHeight=236&amp;originWidth=1025&amp;size=29007&amp;status=done&amp;width=1025" alt="image.png"><br>**Connection：**keep-alive,这个 header 表示客户端和服务端在一次请求和响应后不要关闭连接<br>但是为什么要使用这个头部呢？原因是在早期的 HTTP 1.0 中，每发出一个请求都要创建一个连接，但是创建连接的过程是一个损耗资源的过程，所以在后期的 HTTP/1.0 以及 HTTP/1.1 中引入了重用连接机制，需要添加该请求头，而在 HTTP/1.1 中已经默认是长连接了。<br>**Content-Enconding: <strong>gzip，这个 header *</strong>*主要设置数据压缩，在 Web 版我们通常要打开 gzip 压缩，这样使得我们数据体积更小，所占的宽带也更小所以达到了性能优化的目的。<br>**Content-type:**text/html; charset=utf-8，这个 header 表明了资源类型，因为我们访问的是网页所以类型便是 text-html 而我们设置的编码是 utf-8。<br>**Date: **表示报文创建的日期<br>**Server: **nginx，header 表示服务器的类型，nignx 说明了使用代理的服务器，也许并不是运用正在的服务器类型。<br>**Set-Cookie: **被用来服务端向客户端设置 cookie<br>**Strict-Transport-Security: **这是一个安全设置，表示只有 HTTPS (一种加密的 HTTP 协议，通常可以代替第 6 层 OSI 模型的功能)才能访问<br>**Transfer-Encoding**:消息首部指明了将 entity 安全传递给用户所采用的编码形式。chunked 表示数据以一系列分块的形式进行发送</p>
+<p><a name="1GDJB"></a></p>
+<h2><span id="五request-headers代表客户端请求信息">五，Request Headers（代表客户端请求信息）</span></h2>
+<hr>
+<p><img src="https://cdn.nlark.com/yuque/0/2019/png/105657/1562223248501-d20799c9-2d53-455b-9668-e1a4a8d943bc.png#align=left&amp;display=inline&amp;height=316&amp;name=image.png&amp;originHeight=316&amp;originWidth=1011&amp;size=49090&amp;status=done&amp;width=1011" alt="image.png"><br>**Accept：**用来告诉客户端可以处理的内容类型，这种内容类型由 MIME 类型来表示。借助内容协商机制, 服务器可以从诸多备选项中选择一项进行应用，并使用  <strong>Content-Type</strong>  应答头通知客户端它的选择<br>**Accept-Encoding： **会将客户端能够理解的内容编码方式——通常是某种压缩算法——进行通知。通过内容协商的方式，服务端会选择一个客户端提议的方式，使用并在响应报文首部  <br><strong>Content-Encoding：</strong>  中通知客户端该选择。<br>**Accept-Language： **请求头允许客户端声明它可以理解的自然语言，以及优先选择的区域方言。<br>**Cache-Control： **设置缓存<br>**Cookie：**客户端传递 cookie<br><strong>Host：</strong><br><strong>Referer：</strong><br><strong>Upgrade-Insecure-Requests：</strong><br>**User-Agent：**客户端一些基本信息<br>
+<a name="YDHhd"></a></p>
+<h2><span id="六结语">六，结语</span></h2>
+<hr>
+<p>本文中我们学习了 OSI 模型，知道了 HTTP 协议是在模型的那一层，知道了一个完整的 HTTP 请求是怎么样的，然后通过 Chrome DevTools 分析了一个完整的 HTTP 请求，我们知道了常用的请求方法，常用的网络状态码，响应头以及请求头，还有一些常用到的 header。但是本文介绍的只是 HTTP 中的一小部分，还有很多有用的 header 等待我们去发现，以及还有 HTTP 2.0 版本的激动人心的新特性。下面给大家安利一个常用网站 <a href="https://link.juejin.im?target=https%3A%2F%2Fdeveloper.mozilla.org%2Fzh-CN%2F" target="_blank" rel="noopener">developer.mozilla.org/zh-CN/</a> （MDN）如果你是 Web 开发者千万不要错过，这个网站囊括了关于 Web 开发全路线教程</p>
+<p>参考文献：<a href="https://juejin.im/post/5d19f71f518825392a5cfb45?utm_source=gold_browser_extension" target="_blank" rel="noopener">https://juejin.im/post/5d19f71f518825392a5cfb45?utm_source=gold_browser_extension</a><br>HTTP 响应代码：<a href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Status" target="_blank" rel="noopener">https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Status</a></p>
+
+                
+
+                <hr>
+                <!-- Pager -->
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/2019/07/05/js理解/js遍历方法理解/" data-toggle="tooltip" data-placement="top" title="js遍历方法理解">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/2019/07/03/小程序/mpvue框架的小程序和H5同时开发/" data-toggle="tooltip" data-placement="top" title="mpvue框架的小程序和H5同时开发">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                <!-- duoshuo Share start -->
+                
+                <!-- 多说 Share end-->
+
+                <!-- 多说评论框 start -->
+                
+                <!-- 多说评论框 end -->
+
+                <!-- disqus comment start -->
+                
+                    <div class="comment">
+                        <div id="disqus_thread" class="disqus-thread"></div>
+                    </div>
+                
+                <!-- disqus comment end -->
+            </div>
+            
+            <!-- Tabe of Content -->
+            <!-- Table of Contents -->
+
+                
+            <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#前端杂记" title="前端杂记">前端杂记</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                </ul>
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+<!-- disqus embedded js code start (one page only need to embed once) -->
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = "your-disqus-ID";
+    var disqus_identifier = "http://yoursite-url/2019/07/04/前端杂记/深入理解HTTP协议/";
+    var disqus_url = "http://yoursite-url/2019/07/04/前端杂记/深入理解HTTP协议/";
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<!-- disqus embedded js code start end -->
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'hover',
+          placement: 'left',
+          icon: 'ℬ'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank" href="https://github.com/令夕">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; 令夕 2019 
+                    <br>
+                    <!-- Theme by <a href="http://huangxuan.me">Hux</a> 
+                    <span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span> 
+                    re-Ported by <a href="http://beantech.org">BeanTech</a> | 
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="91px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=YenYuHsuan&repo=hexo-theme-beantech&type=star&count=true" >
+                    </iframe> -->
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://yoursite-url/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-XXXXXXXX-X';
+    var _gaDomain = 'yoursite';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+
+<!-- Baidu Tongji -->
+
+
+
+
+
+
+	<a id="rocket" href="#top" class=""></a>
+	<script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+    <script type="text/javascript" src="/js/toc.js?v=1.0.0" async=""></script>
+<!-- Image to hack wechat -->
+<img src="http://yoursite-url/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

@@ -14,13 +14,6 @@
     </url>
 
     <url>
-        <loc>http://yoursite-url/categories/vue/</loc>
-        <lastmod>2019-06-01T13:35:42.915Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>http://yoursite-url/categories/react/</loc>
         <lastmod>2019-06-01T13:54:35.731Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -84,15 +77,29 @@
     </url>
 
     <url>
-        <loc>http://yoursite-url/categories/%E5%89%8D%E7%AB%AF%E6%9D%82%E8%AE%B0/</loc>
-        <lastmod>2019-06-26T14:07:41.921Z</lastmod>
+        <loc>http://yoursite-url/categories/%E5%B0%8F%E7%A8%8B%E5%BA%8F/</loc>
+        <lastmod>2019-07-03T11:46:55.072Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>http://yoursite-url/categories/%E5%B0%8F%E7%A8%8B%E5%BA%8F/</loc>
-        <lastmod>2019-07-03T11:46:55.072Z</lastmod>
+        <loc>http://yoursite-url/categories/js%E7%90%86%E8%A7%A3/</loc>
+        <lastmod>2019-07-07T15:14:07.067Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://yoursite-url/categories/vue/</loc>
+        <lastmod>2019-07-07T15:22:37.562Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://yoursite-url/categories/%E5%89%8D%E7%AB%AF%E6%9D%82%E8%AE%B0/</loc>
+        <lastmod>2019-07-07T15:26:01.912Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>

@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content>
+    <meta name="keyword" content>
+    <link rel="shortcut icon" href="/img/ironman-draw.png">
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <title>
+        
+          vue-cli3.0多页配置理解 - 令夕
+        
+    </title>
+
+    <link rel="canonical" href="http://yoursite-url/2019/03/21/vue/vue-cli3.0多页配置理解/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS --> 
+    <link rel="stylesheet" href="/css/beantech.min.css">
+    
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <link rel="stylesheet" href="/css/widget.css">
+
+    <link rel="stylesheet" href="/css/rocket.css">
+
+    <link rel="stylesheet" href="/css/signature.css">
+
+    <link rel="stylesheet" href="/css/toc.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+	<!-- Modified by Yu-Hsuan Yen -->
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        
+            background-image: url('https://source.unsplash.com/random')
+            /*post*/
+        
+    }
+    
+</style>
+
+<header class="intro-header">
+    <!-- Signature -->
+    <div id="signature">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                
+                    <div class="post-heading">
+                        <div class="tags">
+                            
+                              <a class="tag" href="/tags/#vue" title="vue">vue</a>
+                            
+                        </div>
+                        <h1>vue-cli3.0多页配置理解</h1>
+                        <h2 class="subheading"></h2>
+                        <span class="meta">
+                            Posted by 令夕 on
+                            2019-03-21
+                        </span>
+                    </div>
+                
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+	
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">令夕</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archive/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    <!-- Modify by Yu-Hsuan Yen -->
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <p><a href="https://github.com/18228642594/morepage.git" target="_blank" rel="noopener">demo 链接</a><br>参考文献：<a href="https://cli.vuejs.org/guide/creating-a-project.html#installation" target="_blank" rel="noopener">vue-cli3.0 官网</a><br>参考文献：<a href="https://juejin.im/post/5c0b8d74f265da6115109d68#top" target="_blank" rel="noopener">vue-cli3.0 通用多页脚手架</a><br>
+<a name="GdiBP"></a></p>
+<h3><span id="前言">前言</span></h3>
+<hr>
+<p>Vue-cli 是 Vue.js 官方推出的脚手架，它功能丰富拓展性强，为 Vue 应用开发带来了极大的便捷，它提供了多种开发范式，诠释了开箱即用。vue-cli@3 版本经历了 alpha，beta，rc 版本近 7 个月的迭代开发，在最近几天正式版终于发布，本文主要讲解如何使用 vue-cli 创建一个多入口工程，若要进一步了解 vue-cli，请访问<a href="https://link.juejin.im/?target=https%3A%2F%2Fcli.vuejs.org%2Fguide%2F" target="_blank" rel="noopener">官方文档</a>。</p>
+<p><a name="Fd2JP"></a></p>
+<h3><span id="什么是多页应用">什么是多页应用？</span></h3>
+<hr>
+<p>单页运用（SPA）往往只含有一个主入口文件与 index.html,页面间切换通过局部刷新资源来完成。而在多页应用中，我们会为每个 HTML 文档文件都指定好一个 JS 入口，这样一来当页面跳转时用户会获得一个新的 HTML 文档，整个页面会重新渲染。</p>
+<p>单页应用于多页应用优劣势在此就不进行分析了，总而言之，多页架构模式暂时是无法取代的，如果尝试吧几十个不关联的页面做成一个，那么开发成本会非常大的<strong>Not every app has to be an SPA。</strong></p>
+<p><a name="rbZUK"></a></p>
+<h3><span id="新建项目">新建项目</span></h3>
+<hr>
+<p>安装</p>
+<blockquote>
+<p>npm isntall -g @vue/cli</p>
+</blockquote>
+<p>新建项目</p>
+<blockquote>
+<p>vue create my-project</p>
+</blockquote>
+<p>项目启动</p>
+<blockquote>
+<p>npm run serve</p>
+</blockquote>
+<p>打包</p>
+<blockquote>
+<p>npm run build</p>
+</blockquote>
+<p>打包后的文件，对引用资源注入了预加载（preload/prefetch），启用 PWA 插件时注入 manifest/icon 链接，并且引入(inlines) webpack runtime / chunk manifest 清单已获得最佳性能。</p>
+<p><a name="GDcmH"></a></p>
+<h3><span id="功能选择">功能选择</span></h3>
+<hr>
+<p>新建文件夹，在该文件夹下打开命令窗口，输入以下命令，<br>vue create project-name<br>这是你会看见<br><img src="https://cdn.nlark.com/yuque/0/2019/jpeg/105657/1558686990408-8b0de217-6a75-4577-be4c-92ca9bdba7c9.jpeg#align=left&amp;display=inline&amp;height=330&amp;originHeight=330&amp;originWidth=866&amp;size=0&amp;status=done&amp;width=866" alt></p>
+<p>按键盘上下键选择默认（default）还是手动（Manually），如果选择 default，一路回车执行下去就行了（注：现在 vue-cli3.0 默认使用 yarn 下载）</p>
+<p>3.0 版本包括默认预设配置和用户自定义配置，在用户自定义配置之后，会询问是否保存当前的配置功能为将来的项目配置的预设值，这样下次可直接使用不需要再次配置。</p>
+<p>自定义功能配置包含如下功能：</p>
+<ul>
+<li>babel</li>
+<li>TypeScript</li>
+<li>Progressive Web App(PWA) Support</li>
+<li>Router</li>
+<li>Vuex</li>
+<li>CSS Pre-processors</li>
+<li>Linter/Formatter</li>
+<li>Unit Testing</li>
+<li>E2E Testing</li>
+</ul>
+<p>可以根据项目大小和功能体验配置不同的功能，空格键 选中/反选，按 a 键 全选/全不选，按 i 键反选已选择项， 上下键 上下移动选择。</p>
+<p><a name="ywyBY"></a></p>
+<h3><span id="功能细节配置">功能细节配置</span></h3>
+<hr>
+<p><img src="https://cdn.nlark.com/yuque/0/2019/jpeg/105657/1558687415333-91348c85-4f47-4346-ba4b-d0e23e598fe5.jpeg#align=left&amp;display=inline&amp;height=261&amp;originHeight=261&amp;originWidth=1042&amp;size=0&amp;status=done&amp;width=1042" alt></p>
+<p>在选择功能后，会询问更细节的配置，<br>
+<a name="hyImS"></a></p>
+<h4><span id="typescript">TypeScript</span></h4>
+<p>1.是否使用 class 风格的组件语法：Use class-style component syntax?<br>2.是否使用 babel 做转义：Use Babel alongside TypeScript for auto-detected polyfills?<br>
+<a name="FVCE4"></a></p>
+<h4><span id="css-pre-processors">CSS Pre-processors</span></h4>
+<p>1.选择 CSS 预处理类型： Pick a CSS Pre-processor<br>
+<a name="f9bhc"></a></p>
+<h4><span id="linter-formatter">Linter / Formatter</span></h4>
+<p>1.选择 Linter / Formatter 规范类型：Pick a linter / formatter config<br>2.选择 lint 方式，保存时检查/提交时检查：Pick additional lint features<br>
+<a name="0u3PY"></a></p>
+<h4><span id="testing">Testing</span></h4>
+<p>1.选择 Unit 测试方式<br>单元测试：按空间切割，对每个组件进行测试<br>比如，我要测试日期输入框，那么我编写的测试用例应该包括以下部分：</p>
+<ul>
+<li>
+<p>默认日期是否为当天</p>
+</li>
+<li>
+<p>当用户选择日期范围，data 是否会做相应改变</p>
+</li>
+<li>
+<p>…</p>
+<p>2.选择 E2E 测试方式<br>E2E 测试：按时间切割，对每个流程进行测试<br>比如，我要测试搜索功能，那么我编写的测试用例应该模拟以下步骤：</p>
+</li>
+<li>
+<p>打开主页</p>
+</li>
+<li>
+<p>点击菜单跳转到详情页</p>
+</li>
+<li>
+<p>输入搜索条件</p>
+</li>
+<li>
+<p>点击搜索</p>
+</li>
+<li>
+<p>查看搜索结果是否与预期一致</p>
+</li>
+</ul>
+<p>创建成功如下：<br><img src="https://cdn.nlark.com/yuque/0/2019/png/105657/1559273627439-ceca4298-e404-4de4-9b17-415c2c121471.png#align=left&amp;display=inline&amp;height=375&amp;name=image.png&amp;originHeight=356&amp;originWidth=570&amp;size=80777&amp;status=done&amp;width=600.0000075290078" alt="image.png"><br>使用 IDE 打开工程，备注：</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2019/png/105657/1559273833411-f167a4ff-1db5-4842-902d-5a4fa5e847ab.png#align=left&amp;display=inline&amp;height=728&amp;name=image.png&amp;originHeight=692&amp;originWidth=1150&amp;size=84148&amp;status=done&amp;width=1210.5263309795773" alt="image.png"><br>自动生成的 <a href="http://README.md" target="_blank" rel="noopener">README.md</a> 中为我们给出了常用的命令。执行 yarn run serve 使工程以开发模式运行，编译完成后可正常访问<a href="http://localhost:8080/" target="_blank" rel="noopener">http://localhos</a><a href="http://localhost:8080/" target="_blank" rel="noopener">t:</a>8081（若端口被占用则端口号会自动加 1）说明成功。<br>这里会涉及一些 vue 的基础，在这篇文章中不做详细说明，不太了解的小哥哥小姐姐可以查阅 vue 相关教程（ps：vue 的文档还是相当全面和详细的）。<br>
+<a name="JMAEz"></a></p>
+<h3><span id="多页项目文件目录说明">多页项目文件目录说明</span></h3>
+<blockquote>
+<p>#项目结构<br>
+├── dist 输出文件<br>
+├── node_modules #npm 依赖包<br>
+├── public 模板来源</p>
+</blockquote>
+<blockquote>
+<p>│ ├────favicon #浏览器窗口图标</p>
+</blockquote>
+<blockquote>
+<p>│ ├────index.html</p>
+</blockquote>
+<blockquote>
+<p>├── src 开发目录</p>
+</blockquote>
+<blockquote>
+<p>│ ├────assets #页面静态资源（js，css 之类的就可以放这里）</p>
+</blockquote>
+<blockquote>
+<p>│ ├────component #公用组件编写的地方</p>
+</blockquote>
+<blockquote>
+<p>│ ├────pages #页面编写的地方（页面是用组件拼出来的，也是 vue 文件）</p>
+</blockquote>
+<blockquote>
+<p>│ ├────router #路由文件夹（配置页面跳转）</p>
+</blockquote>
+<blockquote>
+<p>│ ├────store #vuex 状态管理器</p>
+</blockquote>
+<blockquote>
+<p>│ ├────untils #存放公用逻辑 js 文件</p>
+</blockquote>
+<blockquote>
+<p>│ ├────App.vue #项目入口文件</p>
+</blockquote>
+<blockquote>
+<p>│ └──index.js #页面程序入口文件</p>
+</blockquote>
+<blockquote>
+<p>├── .browserslistrc #这个配置能够分享目标浏览器和 node.js 版本在不同的前端工具，这个工具能够根据目标浏览器自动浏览器自动来进行配置</p>
+</blockquote>
+<blockquote>
+<p>├── eslintrc.js #eslint 的配置文件，eslint 是用来管理和检测 js 代码风格的工具，可以和编辑器搭配使用，如 vscode 的 eslint 插件，当有不符合配置文件内容的代码出现就会报错或者警告。</p>
+</blockquote>
+<blockquote>
+<p>├── gitignore # 配置 Git 仓库忽略的一些文件(不会上传)</p>
+</blockquote>
+<blockquote>
+<p>├── babel.config.js #bable 如何和其他组件库混合使用按需加载</p>
+</blockquote>
+<blockquote>
+<p>├── package-lock.json #项目的一些配置信息的版本号</p>
+</blockquote>
+<blockquote>
+<p>└── package.json #项目的一些配置信息(项目的一些具体信息)</p>
+</blockquote>
+<blockquote>
+<p>└── vue.config.js #vue.config.js 页面配置</p>
+</blockquote>
+<blockquote>
+<p>└── yarn.lock #是一个快速可靠安全的依赖管理工具</p>
+</blockquote>
+<p><a name="DDdnB"></a></p>
+<h3><span id="初始化目录">初始化目录</span></h3>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">├── assets</span><br><span class="line">│   └── logo.png</span><br><span class="line">├── components</span><br><span class="line">│   ├── About.vue</span><br><span class="line">│   ├── HelloWorld.vue</span><br><span class="line">│   └── Home.vue</span><br><span class="line">├── pages</span><br><span class="line">│   ├── page1</span><br><span class="line">│   │   ├── page1.html</span><br><span class="line">│   │   ├── page1.js</span><br><span class="line">│   │   └── page1.vue</span><br><span class="line">│   └── page2</span><br><span class="line">│       ├── page2.html</span><br><span class="line">│       ├── page2.js</span><br><span class="line">│       └── page2.vue</span><br><span class="line">└── style</span><br><span class="line">    ├── common.css</span><br><span class="line">    └── common.less</span><br></pre></td></tr></table></figure>
+<p>vue.config.js 是一个可选文件，用户需要自行创建，它会被<code>@vue/cli-service</code>读取。当正确添加配置后，重启一下项目，测试一下项目在改变目录结构后能否正常运行。试想一下，若照着这个思路进行配置多入口，那么首先需要删除或修改掉原有 webpack 配置项，然后还需添加多入口的一些插件，虽然通过脚手架对外提供的 API 可以实现，可是这种修改方式还不是直接修改原生构建配置更快，那么还有其他解决方法吗？<br>
+<a name="YXi2h"></a></p>
+<h3><span id="vueconfigjs-配置">vue.config.js 配置</span></h3>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  <span class="comment">// 基本路径</span></span><br><span class="line">  baseUrl: <span class="string">"/"</span>,</span><br><span class="line">  <span class="comment">// 输出文件目录</span></span><br><span class="line">  outputDir: <span class="string">"dist"</span>,</span><br><span class="line">  <span class="comment">// eslint-loader 是否在保存的时候检查</span></span><br><span class="line">  lintOnSave: <span class="literal">true</span>,</span><br><span class="line">  <span class="comment">// use the full build with in-browser compiler?</span></span><br><span class="line">  <span class="comment">// https://vuejs.org/v2/guide/installation.html#Runtime-Compiler-vs-Runtime-only</span></span><br><span class="line">  compiler: <span class="literal">false</span>,</span><br><span class="line">  <span class="comment">// webpack配置</span></span><br><span class="line">  <span class="comment">// see https://github.com/vuejs/vue-cli/blob/dev/docs/webpack.md</span></span><br><span class="line">  chainWebpack: <span class="function"><span class="params">()</span> =&gt;</span> &#123;&#125;,</span><br><span class="line">  configureWebpack: <span class="function"><span class="params">()</span> =&gt;</span> &#123;&#125;,</span><br><span class="line">  <span class="comment">// vue-loader 配置项</span></span><br><span class="line">  <span class="comment">// https://vue-loader.vuejs.org/en/options.html</span></span><br><span class="line">  vueLoader: &#123;&#125;,</span><br><span class="line">  <span class="comment">// 生产环境是否生成 sourceMap 文件</span></span><br><span class="line">  productionSourceMap: <span class="literal">true</span>,</span><br><span class="line">  <span class="comment">// css相关配置</span></span><br><span class="line">  css: &#123;</span><br><span class="line">    <span class="comment">// 是否使用css分离插件 ExtractTextPlugin</span></span><br><span class="line">    extract: <span class="literal">true</span>,</span><br><span class="line">    <span class="comment">// 开启 CSS source maps?</span></span><br><span class="line">    sourceMap: <span class="literal">false</span>,</span><br><span class="line">    <span class="comment">// css预设器配置项</span></span><br><span class="line">    loaderOptions: &#123;&#125;,</span><br><span class="line">    <span class="comment">// 启用 CSS modules for all css / pre-processor files.</span></span><br><span class="line">    modules: <span class="literal">false</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">// use thread-loader for babel &amp; TS in production build</span></span><br><span class="line">  <span class="comment">// enabled by default if the machine has more than 1 cores</span></span><br><span class="line">  parallel: <span class="built_in">require</span>(<span class="string">"os"</span>).cpus().length &gt; <span class="number">1</span>,</span><br><span class="line">  <span class="comment">// 是否启用dll</span></span><br><span class="line">  <span class="comment">// See https://github.com/vuejs/vue-cli/blob/dev/docs/cli-service.md#dll-mode</span></span><br><span class="line">  dll: <span class="literal">false</span>,</span><br><span class="line">  <span class="comment">// PWA 插件相关配置</span></span><br><span class="line">  <span class="comment">// see https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-pwa</span></span><br><span class="line">  pwa: &#123;&#125;,</span><br><span class="line">  <span class="comment">// webpack-dev-server 相关配置</span></span><br><span class="line">  devServer: &#123;</span><br><span class="line">    open: process.platform === <span class="string">"darwin"</span>,</span><br><span class="line">    host: <span class="string">"0.0.0.0"</span>,</span><br><span class="line">    port: <span class="number">8080</span>,</span><br><span class="line">    https: <span class="literal">false</span>,</span><br><span class="line">    hotOnly: <span class="literal">false</span>,</span><br><span class="line">    proxy: <span class="literal">null</span>, <span class="comment">// 设置代理</span></span><br><span class="line">    before: <span class="function"><span class="params">app</span> =&gt;</span> &#123;&#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">// 第三方插件配置</span></span><br><span class="line">  pluginOptions: &#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>dist 打包目录</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">├── css</span><br><span class="line">│   ├── page1<span class="number">.9951</span>d5a1.css</span><br><span class="line">│   └── page2<span class="number">.009</span>d0d6f.css</span><br><span class="line">├── img</span><br><span class="line">│   └── logo<span class="number">.82</span>b9c7a5.png</span><br><span class="line">├── js</span><br><span class="line">│   ├── chunk-vendors.f061f10e.js</span><br><span class="line">│   ├── page1<span class="number">.5</span>a5322e0.js</span><br><span class="line">│   └── page2.db57562b.js</span><br><span class="line">├── page1.html</span><br><span class="line">└── page2.html</span><br></pre></td></tr></table></figure>
+
+                
+
+                <hr>
+                <!-- Pager -->
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/2019/05/17/react/（一）react开发目录介绍/" data-toggle="tooltip" data-placement="top" title="（一）react开发目录介绍">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/2019/02/28/前端杂记/object-fit以及object-postion/" data-toggle="tooltip" data-placement="top" title="object-fit以及object-postion">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                <!-- duoshuo Share start -->
+                
+                <!-- 多说 Share end-->
+
+                <!-- 多说评论框 start -->
+                
+                <!-- 多说评论框 end -->
+
+                <!-- disqus comment start -->
+                
+                    <div class="comment">
+                        <div id="disqus_thread" class="disqus-thread"></div>
+                    </div>
+                
+                <!-- disqus comment end -->
+            </div>
+            
+            <!-- Tabe of Content -->
+            <!-- Table of Contents -->
+
+                
+            <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#vue" title="vue">vue</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                </ul>
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+<!-- disqus embedded js code start (one page only need to embed once) -->
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = "your-disqus-ID";
+    var disqus_identifier = "http://yoursite-url/2019/03/21/vue/vue-cli3.0多页配置理解/";
+    var disqus_url = "http://yoursite-url/2019/03/21/vue/vue-cli3.0多页配置理解/";
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<!-- disqus embedded js code start end -->
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'hover',
+          placement: 'left',
+          icon: 'ℬ'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank" href="https://github.com/令夕">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; 令夕 2019 
+                    <br>
+                    <!-- Theme by <a href="http://huangxuan.me">Hux</a> 
+                    <span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span> 
+                    re-Ported by <a href="http://beantech.org">BeanTech</a> | 
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="91px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=YenYuHsuan&repo=hexo-theme-beantech&type=star&count=true" >
+                    </iframe> -->
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://yoursite-url/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-XXXXXXXX-X';
+    var _gaDomain = 'yoursite';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+
+<!-- Baidu Tongji -->
+
+
+
+
+
+
+	<a id="rocket" href="#top" class=""></a>
+	<script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+    <script type="text/javascript" src="/js/toc.js?v=1.0.0" async=""></script>
+<!-- Image to hack wechat -->
+<img src="http://yoursite-url/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

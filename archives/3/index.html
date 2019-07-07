@@ -132,14 +132,14 @@
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/archive/">Archives</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/archive/">Archives</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
@@ -206,6 +206,134 @@
             
                 <!-- Main Content -->
 
+
+<div class="post-preview">
+
+    <a href="/2019/05/25/webpack4/5.Code Splitting代码分割/">
+        <h2 class="post-title">
+            5.Code  Splitting代码分割
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            demo5 源码地址package.json 文件所用依赖，npm  install 安装：
+1234567891011121314&#123;  "script": &#123;    "dev": "webpack --mode development",    "build": "webpack --mode production"  &#125;,  "devDependencies......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by 令夕 on
+            2019-05-25
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#webpack4" title="webpack4">webpack4</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2019/05/24/webpack4/4.用babel编译成 ES6/">
+        <h2 class="post-title">
+            4.用babel编译成 ES6
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            demo4 源码地址
+
+（一）了解 Babel 及生态
+
+现代 javascript 主要是用 ES6 编写的。并非每个浏览器都知道怎么去处理 ES6。我们需要某种转换，这个转换步骤称为 transpiling(转译)。transpiling(转译)是指采用 ES6 的语法，转义为旧的浏览器可以理解的行为。
+Webpack不知道如何进行转换但是有**loading(加载器)：**将他们视为转......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by 令夕 on
+            2019-05-24
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#webpack4" title="webpack4">webpack4</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2019/05/23/webpack4/3.覆盖默认entry和output/">
+        <h2 class="post-title">
+            3.覆盖默认entry和output
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            demo3 源码地址
+
+1.检验 webpack 规范支持
+webpack 支持 ES6，CommonJS，AMD 规范创建 wendor 文件夹，其中 minus.js,multi.js 和 sum.js 分别用 CommonJS，AMD，ES6 规范编写
+1234567891011121314151617// CommonJS minus.jsmodule.exports = funct......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by 令夕 on
+            2019-05-23
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#webpack4" title="webpack4">webpack4</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2019/05/22/webpack4/2.生产和开发模式/">
+        <h2 class="post-title">
+            2.生产和开发模式
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            demo2 源码记录拥有 2 个配置文件在 webpack 中是常见的模式。一个典型的项目可能有：
+
+用于开发的配置文件，配置热更新，跨域配置，端口设置等。
+用于生产的配置文件，配置 js 压缩，代码拆分等。
+
+虽然在较大的项目可能任然需要 2 个配置文件，但是在 webpack4.0 中，你可以在没有一行配置的情况下完成。
+细心的朋友会发现在 npm  run build 打包后会有一段报......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by 令夕 on
+            2019-05-22
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#webpack4" title="webpack4">webpack4</a>
+            
+        </div>
+    
+
+</div>
+<hr>
 
 <div class="post-preview">
 
@@ -371,167 +499,29 @@ React 起源于 Facebook 的内部项目，因为该公司对市场上所有 Jav
 
 <div class="post-preview">
 
-    <a href="/2019/02/28/前端杂记/object-fit以及object-postion/">
+    <a href="/2019/03/21/vue/vue-cli3.0多页配置理解/">
         <h2 class="post-title">
-            object-fit以及object-postion
+            vue-cli3.0多页配置理解
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
-            
-object-fit:替换元素
-替换元素：是指其内容不收 css 视觉格式化影响
-12345678910111213141516// 参数值.fill &#123;  object-fit: fill;&#125;.contain &#123;  object-fit: contain;&#125;.cover &#123;  object-fit: cover;&#125;.none &......
+            demo 链接参考文献：vue-cli3.0 官网参考文献：vue-cli3.0 通用多页脚手架
+
+前言
+
+Vue-cli 是 Vue.js 官方推出的脚手架，它功能丰富拓展性强，为 Vue 应用开发带来了极大的便捷，它提供了多种开发范式，诠释了开箱即用。vue-cli@3 版本经历了 alpha，beta，rc 版本近 7 个月的迭代开发，在最近几天正式版终于发布，本文主要讲解如何使用 v......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 令夕 on
-            2019-02-28
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#前端杂记" title="前端杂记">前端杂记</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2018/12/14/小程序/wepy开发小程序踩过的坑/">
-        <h2 class="post-title">
-            小程序
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            
-H5内嵌富文本编辑器
-微信小程序没有支持的原生富文本组件，可以通过web-view内嵌H5实现富文本编辑功能，起初使用的是wangEditor富文本编辑器，因为项目使用的是七牛云存储，wangEditor在pc端上传是没有问题的，但在在移动端调用不了本地图片，于是换了个功能强大二次开发较强的富文本编辑器vue-quill-editor,更多请参考官方文档， 基于此对上传图片进行二次开发。
-......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by 令夕 on
-            2018-12-14
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#小程序" title="小程序">小程序</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2018/07/15/vue/JYSHT-跳转同一页面判断/">
-        <h2 class="post-title">
-            JYSHT-跳转同一页面判断
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            例如：交易所后端的法币增值税，跳转到新增和修改页面。但是新增和修改同为一个页面的情况
-123456789101112131415161718192021222324252627282930313233343536373839404142434445461.可以通过路由的一个type来判断&#123;  path: '/exchange/new',  component: ExchangeNe......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by 令夕 on
-            2018-07-15
+            2019-03-21
         </p>
         <div class="tags">
             
               <a href="/tags/#vue" title="vue">vue</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2018/06/08/php基础/难点(1)-面向对象/">
-        <h2 class="post-title">
-            难点(1)-面向对象
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            1.mysql 补充
-12345678//1.mysql导出mysqldump --no-defaults -uroot -p789 yzmedu&gt;yzmedu.sql;//2.mysql导入mysqldump --no-defaults -uroot(数据库名) -p123(密码) -B yzmedu --skip-add-locks --compact &gt;yzmedu.sql......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by 令夕 on
-            2018-06-08
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#php" title="php">php</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2018/06/04/php基础/数据库(2)-优化/">
-        <h2 class="post-title">
-            数据库(2)-优化
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            1.mysql 基础操作
-
-
-mysql 表复制
-
-
-1create table （表名） like （表名）; //
-
-
-
-
-mysql 复制表内容
-
-
-1insert into t3 select * from t1;//将t1表里面的内容插入到t3表里面
-
-
-
-
-查看数据库的状态 mysql 索引查看，删除，创建
-
-
-12345678910//查看索引show index from 表......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by 令夕 on
-            2018-06-04
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#php" title="php">php</a>
             
         </div>
     
@@ -583,6 +573,10 @@ mysql 复制表内容
             
         
             
+            <a href="/tags/#js理解" title="js理解" rel="3">js理解</a>
+            
+        
+            
             <a href="/tags/#php" title="php" rel="13">php</a>
             
         
@@ -591,7 +585,9 @@ mysql 复制表内容
             
         
             
-            <a href="/tags/#vue" title="vue" rel="10">vue</a>
+            <a href="/tags/#vue" title="vue" rel="11">vue</a>
+            
+        
             
         
             
@@ -599,17 +595,15 @@ mysql 复制表内容
             
         
             
+            <a href="/tags/#前端杂记" title="前端杂记" rel="12">前端杂记</a>
+            
         
             
-            <a href="/tags/#前端杂记" title="前端杂记" rel="10">前端杂记</a>
+        
             
         
             
             <a href="/tags/#小程序" title="小程序" rel="2">小程序</a>
-            
-        
-            
-        
             
         
             
@@ -670,23 +664,23 @@ mysql 复制表内容
     <ul>
       
         <li>
+          <a href="/2019/07/07/js理解/浅谈深拷贝与浅拷贝/">浅谈深拷贝与浅拷贝</a>
+        </li>
+      
+        <li>
+          <a href="/2019/07/05/js理解/js遍历方法理解/">js遍历方法理解</a>
+        </li>
+      
+        <li>
+          <a href="/2019/07/04/前端杂记/深入理解HTTP协议/">深入理解HTTP协议</a>
+        </li>
+      
+        <li>
           <a href="/2019/07/03/小程序/mpvue框架的小程序和H5同时开发/">mpvue框架的小程序和H5同时开发</a>
         </li>
       
         <li>
           <a href="/2019/06/26/前端杂记/clipboard在Vue项目中点击两次解决/">clipboard在Vue项目中点击两次解决</a>
-        </li>
-      
-        <li>
-          <a href="/2019/06/19/乐理知识/基础课程/唱名音名音符休止符拍号/">唱名，音名，音符，休止符，拍号</a>
-        </li>
-      
-        <li>
-          <a href="/2019/06/19/webpack4/18.Eslint配置/">18.Eslint配置</a>
-        </li>
-      
-        <li>
-          <a href="/2019/06/11/webpack4/15.开发模式和生产模式实战/">15.开发模式和生产模式实战</a>
         </li>
       
     </ul>

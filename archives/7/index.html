@@ -132,14 +132,14 @@
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/archive/">Archives</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/archive/">Archives</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
@@ -206,6 +206,205 @@
             
                 <!-- Main Content -->
 
+
+<div class="post-preview">
+
+    <a href="/2018/03/08/ES6/3.rest拓展与延展操作符/">
+        <h2 class="post-title">
+            3.rest拓展与延展操作符
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            
+
+函数参数的默认值   设置一个默认值
+
+
+1234567891011function logOne(x,y)&#123;		y=y||"World";	    console.log(x,y);&#125;logOne('Hello');logOne('Hello','China');function logTwo(x,y='world')&#123;		console.log(x,y)......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by 令夕 on
+            2018-03-08
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#ES6" title="ES6">ES6</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2018/03/06/ES6/6. promise/">
+        <h2 class="post-title">
+            6. promise
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            Promise：Promise 的用途解决回调地狱1.概念：是异步编程的一种解决方案，比传统的解决方案-回调函数和事件-更合理更强大。
+12345678let promise = new Promise((resolve, reject) =&gt; &#123;  setTimeout(() =&gt; &#123;    resolve("I have been resolved"); ......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by 令夕 on
+            2018-03-06
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#ES6" title="ES6">ES6</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2018/03/04/ES6/5.对象的拓展/">
+        <h2 class="post-title">
+            5.对象的拓展
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            1.对象属性的简写
+123456789let x = 0;let obj = &#123;  x //es6允许省略x  省略的是属性名不是值&#125;;// 对象属性的简写经常与解构赋值一起使用let bar = () =&gt; (&#123; x: 4, y: 5, z: 6 &#125;);let &#123; x: x, y: y, z: z &#125; = bar();//简......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by 令夕 on
+            2018-03-04
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#ES6" title="ES6">ES6</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2018/03/02/ES6/4.字符串拓展/">
+        <h2 class="post-title">
+            4.字符串拓展
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            
+
+字符串遍历器接口   for…of 是遍历数据的集合
+
+
+123for (let codePoint of "foo") &#123;  console.log(codePoint);&#125;
+
+
+1234562. at方法用于识别Unicode编码大于0xFFF的字符  返回正确的字符串  1. ```javascript'abc'.at(0) // "a"'𠮷'.at(0) /......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by 令夕 on
+            2018-03-02
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#ES6" title="ES6">ES6</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2018/02/27/ES6/2.变量的解构赋值/">
+        <h2 class="post-title">
+            2.变量的解构赋值
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            
+
+数组的解构赋值   但是数组是按顺序匹配的，位置由顺序匹配。
+
+
+123456let[a,b,c]=[1,2,3];console.log(a,b,c);let[foo,[[bar],baz]]=[1,[[2],3]];console.log(foo,bar,baz);let[x,,y]=[1,2,3]console.log(x,y);
+
+
+12345678910111213141516......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by 令夕 on
+            2018-02-27
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#ES6" title="ES6">ES6</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2018/02/26/ES6/1.let与const/">
+        <h2 class="post-title">
+            1.let与const
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            
+
+let 声明只是在 let 的块作用域有效，块级作用域
+
+
+123456&#123;	let a = 10;	var b = 1;	console.log(a);//10&#125;console.log(a);//err
+
+
+123456782. let不存在变量提升  1. ```cssconsole.log(a1);//undefindvar a1=1;console.log(aa......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by 令夕 on
+            2018-02-26
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#ES6" title="ES6">ES6</a>
+            
+        </div>
+    
+
+</div>
+<hr>
 
 <div class="post-preview">
 
@@ -345,198 +544,6 @@ ie ......
 </div>
 <hr>
 
-<div class="post-preview">
-
-    <a href="/2017/10/04/前端杂记/css中bem命名/">
-        <h2 class="post-title">
-            css中bem命名
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            
-
-BEM 概念:是指块(block),元素(element),修饰符(modifier)是一种前端命名法。bem 命名更加严格规范，包含更多的信息。
-
-
-命名模式
-
-
-12345678910111213.block &#123;&#125; /*代表更高级的抽象或组价*/.block_element &#123;&#125; /*是.block的后代用于形成一个完整的block整体*/.b......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by 令夕 on
-            2017-10-04
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#前端杂记" title="前端杂记">前端杂记</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2017/10/01/前端杂记/移动端适配px,rem,%,vm,vh/">
-        <h2 class="post-title">
-            css中bem命名
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            
-1.px
-
-概念：页面初期最常使用的单位，比较精确的稳定。但是这种方法存在一个问题，当用户在浏览器中浏览我们制作的 Web 页面时，他改变了浏览器的字体大小，这时会使用我们的 Web 页面布局被打破。著作权归作者所有。商业转载请联系作者获得授权,非商业转载请注明出处。原文: https://www.w3cplus.com/css3/define-font-size-with-css3-re......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by 令夕 on
-            2017-10-01
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#前端杂记" title="前端杂记">前端杂记</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2017/10/01/前端杂记/跨域与浏览器/">
-        <h2 class="post-title">
-            跨域与浏览器
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            https://segmentfault.com/a/1190000011145364
-
-1.跨域
-同源策略：是浏览器的一个安全功能，不同源的客户端脚本在没有明确的情况下，不能读写对方的资源。若地址里面的协议，域名和端口号均相同属于同源。什么情况下会遇到跨域：非同源策略的情况下会遇到跨域。跨域的解决方法：jsonp，nginx 反向代理，node.js 中间件代理跨域，后端设置 http h......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by 令夕 on
-            2017-10-01
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#前端杂记" title="前端杂记">前端杂记</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2017/08/07/前端杂记/判断安卓或者ios/">
-        <h2 class="post-title">
-            判断安卓或者ios
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            123456789101112131415161718192021222324function init() &#123;				$("#guide-arrow").show();				var u = navigator.userAgent,					app = navigator.appVersion;				var isAndroid = u.indexOf('Android') &g......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by 令夕 on
-            2017-08-07
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#前端杂记" title="前端杂记">前端杂记</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2017/08/01/前端杂记/从输入URL到页面加载的过程理解/">
-        <h2 class="post-title">
-            从输入URL到页面加载的过程理解
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            http://47.106.126.193/https://segmentfault.com/a/1190000013662126?utm_source=index-hottest#articleHeader18
-
-梳理主干流程
-
-1.从浏览器接收 url 到开启网络请求线程
-
-
-多进程的浏览器：浏览器是多进程的，有一个主控进程以及每个 tab 页面会有新开一个进程。
-
-
-多线程的浏览器内核......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by 令夕 on
-            2017-08-01
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#前端杂记" title="前端杂记">前端杂记</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2017/07/04/前端杂记/scss封装/">
-        <h2 class="post-title">
-            scss
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182/**@mixin fline-gray($direction: '',$color......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by 令夕 on
-            2017-07-04
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#前端杂记" title="前端杂记">前端杂记</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
 
 
 <!-- Pager -->
@@ -547,6 +554,10 @@ BEM 概念:是指块(block),元素(element),修饰符(modifier)是一种前端�
             <a href="/archives/6/">&larr; Newer Posts</a>
         </li>
     
+    
+        <li class="next">
+            <a href="/archives/8/">Older Posts &rarr;</a>
+        </li>
     
 </ul>
 
@@ -577,6 +588,10 @@ BEM 概念:是指块(block),元素(element),修饰符(modifier)是一种前端�
             
         
             
+            <a href="/tags/#js理解" title="js理解" rel="3">js理解</a>
+            
+        
+            
             <a href="/tags/#php" title="php" rel="13">php</a>
             
         
@@ -585,7 +600,9 @@ BEM 概念:是指块(block),元素(element),修饰符(modifier)是一种前端�
             
         
             
-            <a href="/tags/#vue" title="vue" rel="10">vue</a>
+            <a href="/tags/#vue" title="vue" rel="11">vue</a>
+            
+        
             
         
             
@@ -593,17 +610,15 @@ BEM 概念:是指块(block),元素(element),修饰符(modifier)是一种前端�
             
         
             
+            <a href="/tags/#前端杂记" title="前端杂记" rel="12">前端杂记</a>
+            
         
             
-            <a href="/tags/#前端杂记" title="前端杂记" rel="10">前端杂记</a>
+        
             
         
             
             <a href="/tags/#小程序" title="小程序" rel="2">小程序</a>
-            
-        
-            
-        
             
         
             
@@ -664,23 +679,23 @@ BEM 概念:是指块(block),元素(element),修饰符(modifier)是一种前端�
     <ul>
       
         <li>
+          <a href="/2019/07/07/js理解/浅谈深拷贝与浅拷贝/">浅谈深拷贝与浅拷贝</a>
+        </li>
+      
+        <li>
+          <a href="/2019/07/05/js理解/js遍历方法理解/">js遍历方法理解</a>
+        </li>
+      
+        <li>
+          <a href="/2019/07/04/前端杂记/深入理解HTTP协议/">深入理解HTTP协议</a>
+        </li>
+      
+        <li>
           <a href="/2019/07/03/小程序/mpvue框架的小程序和H5同时开发/">mpvue框架的小程序和H5同时开发</a>
         </li>
       
         <li>
           <a href="/2019/06/26/前端杂记/clipboard在Vue项目中点击两次解决/">clipboard在Vue项目中点击两次解决</a>
-        </li>
-      
-        <li>
-          <a href="/2019/06/19/乐理知识/基础课程/唱名音名音符休止符拍号/">唱名，音名，音符，休止符，拍号</a>
-        </li>
-      
-        <li>
-          <a href="/2019/06/19/webpack4/18.Eslint配置/">18.Eslint配置</a>
-        </li>
-      
-        <li>
-          <a href="/2019/06/11/webpack4/15.开发模式和生产模式实战/">15.开发模式和生产模式实战</a>
         </li>
       
     </ul>

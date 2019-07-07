@@ -132,14 +132,14 @@
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/archive/">Archives</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/archive/">Archives</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
@@ -206,6 +206,114 @@
             
                 <!-- Main Content -->
 
+
+<div class="post-preview">
+
+    <a href="/2019/07/07/js理解/浅谈深拷贝与浅拷贝/">
+        <h2 class="post-title">
+            浅谈深拷贝与浅拷贝
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            
+前言
+
+工作中经常会遇到操作数组，对象的情况，你肯定会将原数组，对象进行【备份】。当真正对其操作时发现备份也发生了改变，此时的你一脸懵逼，到底是为啥，自己不是已经备份了嘛？怎么备份的数组，对象也发生了变化。如果你对拷贝原理理解的不透彻，此文或许能提供一点帮助。
+
+js 的数据类型
+
+js 的基本数据类型string，number，boolean，undefined，null，symbol（......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by 令夕 on
+            2019-07-07
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#js理解" title="js理解">js理解</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2019/07/05/js理解/js遍历方法理解/">
+        <h2 class="post-title">
+            js遍历方法理解
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            参考文献：https://www.cnblogs.com/ihboy/p/6878427.html参考文献：https://www.cnblogs.com/xueshanshan/p/8487438.html
+
+1.map 函数
+'映射’的意思遍历每个数组的元素，并回调操作，需要返回值返回一个新的数组，原数组不变
+12345678var arr = ["2", "test", 1, true......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by 令夕 on
+            2019-07-05
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#js理解" title="js理解">js理解</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2019/07/04/前端杂记/深入理解HTTP协议/">
+        <h2 class="post-title">
+            深入理解HTTP协议
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            
+
+
+什么是 HTTP？它有什么属性？我们最常用的是什么呢？快阅读本文为你一一道来。
+
+
+
+
+一，什么是 HTTP 协议？
+
+在了解 HTTP 之前，我们需要了解什么是通络通信模型（也就是我们常说的 OSI 模型）
+
+1. OSI 模型
+OSI 模型是对网络中数据是如何被传送和接收的一个具象化的展示，如下图展示在 OSI 中我们所处在最顶层，我们所有的网络的行为，数据的传递都是从顶至下然后在......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by 令夕 on
+            2019-07-04
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#前端杂记" title="前端杂记">前端杂记</a>
+            
+        </div>
+    
+
+</div>
+<hr>
 
 <div class="post-preview">
 
@@ -399,129 +507,29 @@ npm i eslint -D
 
 <div class="post-preview">
 
-    <a href="/2019/06/04/webpack4/13.处理第三方js文件/">
+    <a href="/2019/06/05/前端杂记/yarn与npm 的区别？该如何选择/">
         <h2 class="post-title">
-            13.处理第三方js文件
+            yarn与npm 的区别？该如何选择
         </h2>
         <h3 class="post-subtitle">
             
         </h3>
         <div class="post-content-preview">
-            demo13 源码地址项目目录：
+            
+Yarn 是什么？
+“Yarn 是由 Facebook、Google、Exponent 和 Tilde 联合推出了一个新的 JS 包管理工具 ，正如官方文档中写的，Yarn 是为了弥补 npm 的一些缺陷而出现的。”这句话让我想起了使用 npm 时的坑了：
 
-1.如何使用和管理第三方 JS 库？
-**项目做大了之后，开发者会更多专注在业务逻辑上，其他方面则尽力使用第三方 JS 库来实现。
-由于 js 变化是在太快，所以出现了多种引入和管理第三库的方法，常用的 3 中：
-
-CDN: 标签引入即可
-npm 包管理：目前最常用和最推荐的方法
-本地 js 文件：一些库由于历史原因，没有提供 ES6 版本，需要手动下载，......
+npm install的时候巨慢。特别是新的项目拉下来要等半天，删除 node_modules，重新 install 的时候依旧如此......
         </div>
     </a>
     
         <p class="post-meta" style="margin: 10px 0;">
             Posted by 令夕 on
-            2019-06-04
+            2019-06-05
         </p>
         <div class="tags">
             
-              <a href="/tags/#webpack4" title="webpack4">webpack4</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2019/06/04/webpack4/11.图片处理汇总/">
-        <h2 class="post-title">
-            11.图片处理汇总
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            demo11 源码地址目录结构：webpack4 中的图片常用的基础操作：
-
-图片处理和 Base64 编码
-图片压缩
-合成雪碧图
-
-
-（一）准备工作
-
-如项目代码目录展示的那样，除了常见的 app.js 作为入口文件，我们将用到 3 张图片放在/src/assets/imgs/目录下，并在样式 base.css 中引用这些图片。
-剩下的内容叫给 webpack 打包处理即可。样式文件和入口......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by 令夕 on
-            2019-06-04
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#webpack4" title="webpack4">webpack4</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2019/06/04/webpack4/10.CSS Tree Shaking/">
-        <h2 class="post-title">
-            10.CSS Tree Shaking
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            demo10 源码地址CSS Tree Shaking 并不像 Js Tree Shaking 那样方便理解，首先要模拟一个真实的项目环境，来体现 CSS 的 Tree Shaking 的配置和效果。
-此章节源码给予第八节处理 CSS 项目上做修改我们首先编写/src/css/base.css 样式文件，在文件中，我们编写了 3 个样式类。但在代码中，我们只会使用.box 和.box–big......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by 令夕 on
-            2019-06-04
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#webpack4" title="webpack4">webpack4</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2019/06/04/webpack4/12.字体文件处理/">
-        <h2 class="post-title">
-            12.字体文件处理
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            demo12 源码地址项目目录为：package.json 中使用的依赖如下：
-1234567891011121314151617181920212223242526272829&#123;  "scripts": &#123;    "dev": "webpack --mode development",    "build": "webpack --mode production"  &......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by 令夕 on
-            2019-06-04
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#webpack4" title="webpack4">webpack4</a>
+              <a href="/tags/#前端杂记" title="前端杂记">前端杂记</a>
             
         </div>
     
@@ -569,6 +577,10 @@ npm 包管理：目前最常用和最推荐的方法
             
         
             
+            <a href="/tags/#js理解" title="js理解" rel="3">js理解</a>
+            
+        
+            
             <a href="/tags/#php" title="php" rel="13">php</a>
             
         
@@ -577,7 +589,9 @@ npm 包管理：目前最常用和最推荐的方法
             
         
             
-            <a href="/tags/#vue" title="vue" rel="10">vue</a>
+            <a href="/tags/#vue" title="vue" rel="11">vue</a>
+            
+        
             
         
             
@@ -585,17 +599,15 @@ npm 包管理：目前最常用和最推荐的方法
             
         
             
+            <a href="/tags/#前端杂记" title="前端杂记" rel="12">前端杂记</a>
+            
         
             
-            <a href="/tags/#前端杂记" title="前端杂记" rel="10">前端杂记</a>
+        
             
         
             
             <a href="/tags/#小程序" title="小程序" rel="2">小程序</a>
-            
-        
-            
-        
             
         
             
@@ -656,23 +668,23 @@ npm 包管理：目前最常用和最推荐的方法
     <ul>
       
         <li>
+          <a href="/2019/07/07/js理解/浅谈深拷贝与浅拷贝/">浅谈深拷贝与浅拷贝</a>
+        </li>
+      
+        <li>
+          <a href="/2019/07/05/js理解/js遍历方法理解/">js遍历方法理解</a>
+        </li>
+      
+        <li>
+          <a href="/2019/07/04/前端杂记/深入理解HTTP协议/">深入理解HTTP协议</a>
+        </li>
+      
+        <li>
           <a href="/2019/07/03/小程序/mpvue框架的小程序和H5同时开发/">mpvue框架的小程序和H5同时开发</a>
         </li>
       
         <li>
           <a href="/2019/06/26/前端杂记/clipboard在Vue项目中点击两次解决/">clipboard在Vue项目中点击两次解决</a>
-        </li>
-      
-        <li>
-          <a href="/2019/06/19/乐理知识/基础课程/唱名音名音符休止符拍号/">唱名，音名，音符，休止符，拍号</a>
-        </li>
-      
-        <li>
-          <a href="/2019/06/19/webpack4/18.Eslint配置/">18.Eslint配置</a>
-        </li>
-      
-        <li>
-          <a href="/2019/06/11/webpack4/15.开发模式和生产模式实战/">15.开发模式和生产模式实战</a>
         </li>
       
     </ul>

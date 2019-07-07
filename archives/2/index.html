@@ -132,14 +132,14 @@
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/archive/">Archives</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/archive/">Archives</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
@@ -206,6 +206,138 @@
             
                 <!-- Main Content -->
 
+
+<div class="post-preview">
+
+    <a href="/2019/06/04/webpack4/11.图片处理汇总/">
+        <h2 class="post-title">
+            11.图片处理汇总
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            demo11 源码地址目录结构：webpack4 中的图片常用的基础操作：
+
+图片处理和 Base64 编码
+图片压缩
+合成雪碧图
+
+
+（一）准备工作
+
+如项目代码目录展示的那样，除了常见的 app.js 作为入口文件，我们将用到 3 张图片放在/src/assets/imgs/目录下，并在样式 base.css 中引用这些图片。
+剩下的内容叫给 webpack 打包处理即可。样式文件和入口......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by 令夕 on
+            2019-06-04
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#webpack4" title="webpack4">webpack4</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2019/06/04/webpack4/13.处理第三方js文件/">
+        <h2 class="post-title">
+            13.处理第三方js文件
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            demo13 源码地址项目目录：
+
+1.如何使用和管理第三方 JS 库？
+**项目做大了之后，开发者会更多专注在业务逻辑上，其他方面则尽力使用第三方 JS 库来实现。
+由于 js 变化是在太快，所以出现了多种引入和管理第三库的方法，常用的 3 中：
+
+CDN: 标签引入即可
+npm 包管理：目前最常用和最推荐的方法
+本地 js 文件：一些库由于历史原因，没有提供 ES6 版本，需要手动下载，......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by 令夕 on
+            2019-06-04
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#webpack4" title="webpack4">webpack4</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2019/06/04/webpack4/12.字体文件处理/">
+        <h2 class="post-title">
+            12.字体文件处理
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            demo12 源码地址项目目录为：package.json 中使用的依赖如下：
+1234567891011121314151617181920212223242526272829&#123;  "scripts": &#123;    "dev": "webpack --mode development",    "build": "webpack --mode production"  &......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by 令夕 on
+            2019-06-04
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#webpack4" title="webpack4">webpack4</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2019/06/04/webpack4/10.CSS Tree Shaking/">
+        <h2 class="post-title">
+            10.CSS Tree Shaking
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            demo10 源码地址CSS Tree Shaking 并不像 Js Tree Shaking 那样方便理解，首先要模拟一个真实的项目环境，来体现 CSS 的 Tree Shaking 的配置和效果。
+此章节源码给予第八节处理 CSS 项目上做修改我们首先编写/src/css/base.css 样式文件，在文件中，我们编写了 3 个样式类。但在代码中，我们只会使用.box 和.box–big......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by 令夕 on
+            2019-06-04
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#webpack4" title="webpack4">webpack4</a>
+            
+        </div>
+    
+
+</div>
+<hr>
 
 <div class="post-preview">
 
@@ -420,134 +552,6 @@ mockjs 的功能
 </div>
 <hr>
 
-<div class="post-preview">
-
-    <a href="/2019/05/25/webpack4/5.Code Splitting代码分割/">
-        <h2 class="post-title">
-            5.Code  Splitting代码分割
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            demo5 源码地址package.json 文件所用依赖，npm  install 安装：
-1234567891011121314&#123;  "script": &#123;    "dev": "webpack --mode development",    "build": "webpack --mode production"  &#125;,  "devDependencies......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by 令夕 on
-            2019-05-25
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#webpack4" title="webpack4">webpack4</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2019/05/24/webpack4/4.用babel编译成 ES6/">
-        <h2 class="post-title">
-            4.用babel编译成 ES6
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            demo4 源码地址
-
-（一）了解 Babel 及生态
-
-现代 javascript 主要是用 ES6 编写的。并非每个浏览器都知道怎么去处理 ES6。我们需要某种转换，这个转换步骤称为 transpiling(转译)。transpiling(转译)是指采用 ES6 的语法，转义为旧的浏览器可以理解的行为。
-Webpack不知道如何进行转换但是有**loading(加载器)：**将他们视为转......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by 令夕 on
-            2019-05-24
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#webpack4" title="webpack4">webpack4</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2019/05/23/webpack4/3.覆盖默认entry和output/">
-        <h2 class="post-title">
-            3.覆盖默认entry和output
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            demo3 源码地址
-
-1.检验 webpack 规范支持
-webpack 支持 ES6，CommonJS，AMD 规范创建 wendor 文件夹，其中 minus.js,multi.js 和 sum.js 分别用 CommonJS，AMD，ES6 规范编写
-1234567891011121314151617// CommonJS minus.jsmodule.exports = funct......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by 令夕 on
-            2019-05-23
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#webpack4" title="webpack4">webpack4</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2019/05/22/webpack4/2.生产和开发模式/">
-        <h2 class="post-title">
-            2.生产和开发模式
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            demo2 源码记录拥有 2 个配置文件在 webpack 中是常见的模式。一个典型的项目可能有：
-
-用于开发的配置文件，配置热更新，跨域配置，端口设置等。
-用于生产的配置文件，配置 js 压缩，代码拆分等。
-
-虽然在较大的项目可能任然需要 2 个配置文件，但是在 webpack4.0 中，你可以在没有一行配置的情况下完成。
-细心的朋友会发现在 npm  run build 打包后会有一段报......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by 令夕 on
-            2019-05-22
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#webpack4" title="webpack4">webpack4</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
 
 
 <!-- Pager -->
@@ -592,6 +596,10 @@ webpack 支持 ES6，CommonJS，AMD 规范创建 wendor 文件夹，其中 minus
             
         
             
+            <a href="/tags/#js理解" title="js理解" rel="3">js理解</a>
+            
+        
+            
             <a href="/tags/#php" title="php" rel="13">php</a>
             
         
@@ -600,7 +608,9 @@ webpack 支持 ES6，CommonJS，AMD 规范创建 wendor 文件夹，其中 minus
             
         
             
-            <a href="/tags/#vue" title="vue" rel="10">vue</a>
+            <a href="/tags/#vue" title="vue" rel="11">vue</a>
+            
+        
             
         
             
@@ -608,17 +618,15 @@ webpack 支持 ES6，CommonJS，AMD 规范创建 wendor 文件夹，其中 minus
             
         
             
+            <a href="/tags/#前端杂记" title="前端杂记" rel="12">前端杂记</a>
+            
         
             
-            <a href="/tags/#前端杂记" title="前端杂记" rel="10">前端杂记</a>
+        
             
         
             
             <a href="/tags/#小程序" title="小程序" rel="2">小程序</a>
-            
-        
-            
-        
             
         
             
@@ -679,23 +687,23 @@ webpack 支持 ES6，CommonJS，AMD 规范创建 wendor 文件夹，其中 minus
     <ul>
       
         <li>
+          <a href="/2019/07/07/js理解/浅谈深拷贝与浅拷贝/">浅谈深拷贝与浅拷贝</a>
+        </li>
+      
+        <li>
+          <a href="/2019/07/05/js理解/js遍历方法理解/">js遍历方法理解</a>
+        </li>
+      
+        <li>
+          <a href="/2019/07/04/前端杂记/深入理解HTTP协议/">深入理解HTTP协议</a>
+        </li>
+      
+        <li>
           <a href="/2019/07/03/小程序/mpvue框架的小程序和H5同时开发/">mpvue框架的小程序和H5同时开发</a>
         </li>
       
         <li>
           <a href="/2019/06/26/前端杂记/clipboard在Vue项目中点击两次解决/">clipboard在Vue项目中点击两次解决</a>
-        </li>
-      
-        <li>
-          <a href="/2019/06/19/乐理知识/基础课程/唱名音名音符休止符拍号/">唱名，音名，音符，休止符，拍号</a>
-        </li>
-      
-        <li>
-          <a href="/2019/06/19/webpack4/18.Eslint配置/">18.Eslint配置</a>
-        </li>
-      
-        <li>
-          <a href="/2019/06/11/webpack4/15.开发模式和生产模式实战/">15.开发模式和生产模式实战</a>
         </li>
       
     </ul>
