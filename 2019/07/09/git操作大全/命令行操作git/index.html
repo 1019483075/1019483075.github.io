@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content>
+    <meta name="keyword" content>
+    <link rel="shortcut icon" href="/img/ironman-draw.png">
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <title>
+        
+          命令行操作git - 令夕
+        
+    </title>
+
+    <link rel="canonical" href="http://yoursite-url/2019/07/09/git操作大全/命令行操作git/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS --> 
+    <link rel="stylesheet" href="/css/beantech.min.css">
+    
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <link rel="stylesheet" href="/css/widget.css">
+
+    <link rel="stylesheet" href="/css/rocket.css">
+
+    <link rel="stylesheet" href="/css/signature.css">
+
+    <link rel="stylesheet" href="/css/toc.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+	<!-- Modified by Yu-Hsuan Yen -->
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        
+            background-image: url('https://source.unsplash.com/random')
+            /*post*/
+        
+    }
+    
+</style>
+
+<header class="intro-header">
+    <!-- Signature -->
+    <div id="signature">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                
+                    <div class="post-heading">
+                        <div class="tags">
+                            
+                              <a class="tag" href="/tags/#git操作大全" title="git操作大全">git操作大全</a>
+                            
+                        </div>
+                        <h1>命令行操作git</h1>
+                        <h2 class="subheading"></h2>
+                        <span class="meta">
+                            Posted by 令夕 on
+                            2019-07-09
+                        </span>
+                    </div>
+                
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+	
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">令夕</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archive/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    <!-- Modify by Yu-Hsuan Yen -->
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <p><a name="X5XIL"></a></p>
+<h2><span id="前言">前言</span></h2>
+<hr>
+<p>本文是参考廖雪峰老师的 Git 资料再加上我自己对 Git 的理解，记录我的 Git 学习历程，作下此文是为以后学习，工作，开发中如果遇到问题可以回过头来参考参考。因为水平有限，难免会有出错的地方，欢迎指正。</p>
+<p><a name="60Lpd"></a></p>
+<h2><span id="git-是什么">Git 是什么？</span></h2>
+<hr>
+<ul>
+<li>官方话：Git 是一个免费的开源分布式版本控制系统，旨在快速高效地处理从小型到大型项目的所有事务。</li>
+<li>引用廖雪峰老师的话，它能自动帮我记录每次文件的改动，还可以让同事协作编辑，这样就不用自己管理一堆类似的文件了，也不需要把文件传来传去。如果想查看某次改动，只需要在软件里瞄一眼就可以。可以理解为管理代码的仓库。<br>
+<a name="tZRHq"></a></li>
+</ul>
+<h2><span id="为什么要学习-git">为什么要学习 Git？</span></h2>
+<hr>
+<ul>
+<li>在我看来 Git 是现如今所有程序员都要掌握的，以后与同事共同开发项目必定要用到的，熟练掌握 Git 命令，可以提高开发的效率。。</li>
+<li>在多人合作开发大型项目时候使用 Git 更加方便管理，提高开发效率。<br>
+<a name="PEph3"></a></li>
+</ul>
+<h2><span id="安装-git">安装 Git</span></h2>
+<hr>
+<ul>
+<li>Windows<br>直接在官网上去下载。下载完成后，随便在某个文件下右键如果有 Git Bash Here 就安装成功。安装后，还要在命令行输入
+<blockquote>
+<p>$git config --global <a href="http://user.name" target="_blank" rel="noopener">user.name</a> “你的名字”</p>
+</blockquote>
+</li>
+</ul>
+<blockquote>
+<p>$git config --global user.email “你的邮箱”</p>
+</blockquote>
+<p>注意：<code>global</code>表示全局，这台机器所有的 Git 仓库都会使用这个配置。允许单个仓库使用其他的名字和邮箱</p>
+<p>Mac<br>评论区指出 Mac 也可以像 Windows 一样，按上面的步骤安装。<br>
+也可以直接从 AppStore 安装 Xcode，Xcode 集成了 Git，不过默认没有安装，你需要运行 Xcode，选择菜单“Xcode”-&gt;“Preferences”，在弹出窗口中找到“Downloads”，选择“Command Line Tools”，点“Install”就可以完成安装了。<br>
+<a name="s4Br7"></a></p>
+<h2><span id="仓库">仓库</span></h2>
+<hr>
+<p><img src="https://cdn.nlark.com/yuque/0/2019/png/105657/1562550928969-7ee6b2f5-e4f8-4e21-9fa1-19d816d0979b.png#align=left&amp;display=inline&amp;height=496&amp;name=image.png&amp;originHeight=446&amp;originWidth=896&amp;size=209126&amp;status=done&amp;width=995.555581928772" alt="image.png"></p>
+<ul>
+<li>本地仓库是对于远程仓库而言的。</li>
+<li>本地仓库 = 工作区 + 版本区</li>
+<li>工作区即磁盘上的文件集合。</li>
+<li>版本区(版本库)即<code>.git</code>文件</li>
+<li>版本库 = 暂存区(stage) + 分支(master) + 指针 Head
+<ul>
+<li>以我使用最频繁的 git 命令为例，即提交到 github 为例。</li>
+<li><code>git init</code> 原本本地仓库只包含着工作区，这是最常见的工作状态。此时，<code>git init</code>一下，表示在本地区域创建了一个<code>.git</code>文件,版本区建立。</li>
+<li><code>git add .</code> 表示把工作区的所有文件全部提交到版本区里面的<strong>暂存区</strong></li>
+<li>当然你也可以通过 <code>git add ./xxx/</code> 一条一条分批添加到暂存区。</li>
+<li><code>git commit -m &quot;xxx&quot;</code> 把暂存区的<strong>所有</strong>文件提交到仓库区，暂存区空空荡荡。</li>
+<li><code>git remote add origin https://github.com/name/name_cangku.git</code> 把本地仓库与远程仓库连接起来。</li>
+<li><code>git push -u origin master</code> 把仓库区的文件提交到远程仓库里。</li>
+<li>一旦提交后，如果你又没有对工作区做任何修改，那么工作区就是“干净”的。会有这样的信息<code>nothing to commit, working tree clean</code><br>
+<a name="JUxfi"></a></li>
+</ul>
+</li>
+</ul>
+<h2><span id="提交到-github">提交到 GitHub</span></h2>
+<hr>
+<ol>
+<li>git init 初始化，表示把这个文件变成 Git 可管理的仓库。初始化后打开隐藏文件就能看到有个.git 文件。</li>
+<li>git add . 后面这个点表示把文件全部提交到栈存区。</li>
+<li>git add ./readme.md/ 表示把这个文件下面的 <a href="http://readme.md" target="_blank" rel="noopener">readme.md</a> 提交到栈存区。</li>
+<li>git commit  -m ‘你的评论’，git  commit 意思是把栈存区的文件全部提交到本地仓库。-m 后接评论。</li>
+<li>git remote add origin  <a href="https://github.com/name/name_cangku.git" target="_blank" rel="noopener">https://github.com/name/name_cangku.git</a> 把本地仓库与 GitHub 远程仓库链接起来。只需要连接一次，后面的提交的时候就不用写这条命令了。name 是你的 github 名字，name_cangku 是你的仓库名。主要不要把后面的.git 漏掉了。github 怎么新建仓库可以百度下，网上有很多教程，我这里就不讲述了。</li>
+<li>git push -u origin master 把本地仓里提交到远程仓库。在远程仓库刷新下就能看到提交的内容了。<br>
+<a name="pzp5D"></a></li>
+</ol>
+<h2><span id="版本的回溯与前进">版本的回溯与前进</span></h2>
+<hr>
+<p>提交一个文件有时候我们会提交很多次，在提交历史中就产生了不同的版本。每次提交 Git 可以把他们串成一条时间线。回溯到我们提交的上一个版本，首先 git log 查看下提交版本号，每次提交都会生成不同的版本号。回溯到上一个版本 git reset --hard + 版本号 即可。但是我还想前进到最近的版本该如何？只需 git reset --hard + 版本号即可。虽然我们可以通过 git reset --hard + 版本号,靠记住版本号来可以在不同的版本之间来回穿梭。但是有时候版本号弄丢了怎么办？git reflog 帮你每次记录了每一次命令，这样就可以找到版本号了，这样你就可以通过 git reset 来回穿梭。</p>
+<p><a name="06IWe"></a></p>
+<h2><span id="删除">删除</span></h2>
+<hr>
+<ul>
+<li>如果你<code>git add</code>一个文件到暂存区，然后在工作区又把文件删除了，Git 会知道你删除了文件。如果你要把版本库里的文件删除，<code>git rm</code> 并且<code>git commit -m &quot;xxx&quot;</code>.</li>
+<li>如果你误删了工作区的文件，怎么办？使用撤销命令，<code>git checkout --&lt;file&gt;</code>就可以。<strong>这再次证明了撤销命令其实就是用版本库里的版本替换工作区的版本，无论工作区是修改还是删除，都可以“一键还原”。</strong><br>
+<a name="gyue8"></a></li>
+</ul>
+<h2><span id="分支">分支</span></h2>
+<hr>
+<p>你创建了一个属于你自己的分支，别人看不到，还继续在原来的分支上正常工作，而你在自己的分支上干活，想提交就提交，直到开发完毕后，再一次性合并到原来的分支上，这样，既安全，又不影响别人工作。<br>
+<a name="3Xxon"></a></p>
+<h3><span id="创建与合并分支">创建与合并分支</span></h3>
+<p><img src="https://cdn.nlark.com/yuque/0/2019/png/105657/1562570870715-5e04d3af-e6b3-49f0-86dc-b01bca8a18a0.png#align=left&amp;display=inline&amp;height=314&amp;name=image.png&amp;originHeight=283&amp;originWidth=591&amp;size=33351&amp;status=done&amp;width=656.6666840623931" alt="image.png"><br>在没有其他分支插进来之前，只有一个主 master 分支。每次你 git push -u origin master  提交就是增加一条时间轴，master 也会跟着移动。<br><img src="https://cdn.nlark.com/yuque/0/2019/png/105657/1562571083030-7ad29b67-497e-45dd-88ad-c156a5d95121.png#align=left&amp;display=inline&amp;height=374&amp;name=image.png&amp;originHeight=337&amp;originWidth=564&amp;size=40226&amp;status=done&amp;width=626.6666832676644" alt="image.png"><br>创建一个 other 分支，通过 other 提交，虽然时间轴向前走了，但是主分支 master 还在原来的位置。<br><img src="https://cdn.nlark.com/yuque/0/2019/png/105657/1562571136058-372a8124-3667-4cfe-870a-87a1c885becc.png#align=left&amp;display=inline&amp;height=290&amp;name=image.png&amp;originHeight=261&amp;originWidth=573&amp;size=51835&amp;status=done&amp;width=636.666683532574" alt="image.png"><br>分析完理论，我们来看下怎么使用命令行</p>
+<ul>
+<li>
+<p><strong>创建 other 分支，切换到 other 分支</strong></p>
+<blockquote>
+<p>git branch  // 查看分支<br>
+git branch 新建分支名    // 新建分支<br>
+git checkout 分支名        // 切换分支</p>
+</blockquote>
+</li>
+<li>
+<p><strong>查看当前所有分支</strong></p>
+<blockquote>
+<p><strong>git branch</strong></p>
+</blockquote>
+</li>
+<li>
+<p><strong>当前分支会有一个</strong>*****</p>
+</li>
+</ul>
+<p><img src="https://cdn.nlark.com/yuque/0/2019/png/105657/1562571386421-658dbc06-4d35-4f05-b897-718dbf761a30.png#align=left&amp;display=inline&amp;height=49&amp;name=image.png&amp;originHeight=44&amp;originWidth=160&amp;size=823&amp;status=done&amp;width=177.7777824872807" alt="image.png"></p>
+<ul>
+<li>
+<p><strong>用 other 提交</strong></p>
+<blockquote>
+<p>git add ./xxx/<br>
+git<br>
+commit -m “xxx”</p>
+</blockquote>
+</li>
+<li>
+<p><strong>other 分支完成，切换到 master 分支</strong></p>
+<blockquote>
+<p>git checkout master</p>
+</blockquote>
+</li>
+</ul>
+<p>此时的 master 分支里面还没有 other 分支的文件，因为文件还没有合并</p>
+<ul>
+<li>
+<p><strong>合并分支</strong></p>
+<blockquote>
+<p>git merge other</p>
+</blockquote>
+</li>
+<li>
+<p>合并完成之后，就可以在 master 分支上查看到文件了。</p>
+</li>
+<li>
+<p>删除 other 分支。</p>
+<blockquote>
+<p>git branch -d other</p>
+</blockquote>
+</li>
+</ul>
+<p>我由此想到，在以后工作中，应该是一个开放小组共同开发一个项目，组长会创建很多分支，每一个分支可以交给一个人去开发某一个功能，一个小组共同开发而且不会相互干扰。谁的功能完成了，可以由组长合并一下完成了的分支。哦，完美！<br>
+<a name="YYmF9"></a></p>
+<h3><span id="解决合并分支的问题">解决合并分支的问题</span></h3>
+<p><img src="https://cdn.nlark.com/yuque/0/2019/png/105657/1562572461280-e6df494a-94fa-4f49-95b7-15cf8c215612.png#align=left&amp;display=inline&amp;height=398&amp;name=image.png&amp;originHeight=358&amp;originWidth=480&amp;size=46862&amp;status=done&amp;width=533.3333474618421" alt="image.png"></p>
+<p>假如有这样一种情况，分支 other 已经 commit 了，<strong>但是</strong>此时指针指回 master 时，并且 master 没有合并，而是<code>git add / commit</code>  提交了。这样，就产生了冲突，主分支<code>master</code>文件内容与<code>other</code>分支的内容不一样。合并不起来！所以，</p>
+<ul>
+<li>修改文件的内容，让其保持一致。</li>
+<li>git add git cmmit 提交。</li>
+<li>分支合并了。</li>
+<li>git log --graph 查看分支合并图</li>
+<li>git branch -d other 删除分支，任务结束<br>
+<a name="Mi8mr"></a></li>
+</ul>
+<h3><span id="分支管理策略">分支管理策略</span></h3>
+<ul>
+<li>git merge --no-ff other 禁用 Fast foweard 模式，因为使用 Fast foweard 模式，删除分支后，分支历史信息会丢失。<br>
+<a name="N4161"></a></li>
+</ul>
+<h3><span id="hotfix-热修复分支">hotfix 热修复分支</span></h3>
+<blockquote>
+<p>工作中每个 bug 都可以通过一个新的临时分支来修复，修复后，合并分支，然后将临时分支删除（也可以不删除）。但如果你手上有分支在工作中，你的上级要你改另外的分支的 BUG。你要把现在正在工作的分支保存下来，git stash 把当前工作现场“存储”起来，等以后恢复后继续工作。当你解决 BUG 后，git checkout other  回到自己的分支。用<code>git stash list</code>查看你刚刚“存放”起来的工作去哪里了。此时你要恢复工作：</p>
+</blockquote>
+<ul>
+<li>git stash apply 恢复却不删除 stash 的内容。</li>
+<li>git stash drop 删除 stash 的内容。</li>
+<li>git stash pop 恢复的同时也把 stash 删掉了，此时，用 git  stash list 查看，看不到任何 stash 内容。</li>
+</ul>
+<p><strong>总结：修复 bug 时，我们会通过创建新的 bug 分支进行修复，然后合并，最后删除；当手头工作没有完成时，先把工作现场 git stash 一下，然后去修复 bug，修复后，再 git stash pop，回到工作现场。</strong><br><strong>注意点：个人觉得可以先把自己手头正在开发的项目提交到本地功能分支与远程功能分支，然后在切换到 hotfix 热修复分支，更改 bug 然后合并到测试分支。可以继续回到自己的功能分支继续开发项目。stash 只是其中一种思路方案。</strong><br>
+<a name="xR3s0"></a></p>
+<h3><span id="删除分支">删除分支</span></h3>
+<ul>
+<li>git branch -d + 分支     有可能会删除失败，因为 Git 会保护没有合并的分支。</li>
+<li>git branch -D + 分支     强行删除分支，丢弃没有合并的分支。<br>
+<a name="8yQPA"></a></li>
+</ul>
+<h3><span id="多人协作">多人协作</span></h3>
+<ul>
+<li>git  remote 查看远程库的信息，会显示 origin，远程仓库默认名称为 origin</li>
+<li>git remote -v 显示更详细的信息</li>
+<li>git push -u origin master 推送 master 分支到 origin 远程仓库。</li>
+<li>git push -u origin other 推送 other 到 origin 远程仓库。<br>
+<a name="eIbfZ"></a></li>
+</ul>
+<h3><span id="分支更新">分支更新</span></h3>
+<p>git pull 把最新的提交从远程仓库中分支内容。<br>
+<a name="lg794"></a></p>
+<h3><span id="分支合并">分支合并</span></h3>
+<p><img src="https://cdn.nlark.com/yuque/0/2019/png/105657/1562574729191-331ada84-e9c5-4fbd-83fd-1828bbbd3700.png#align=left&amp;display=inline&amp;height=342&amp;name=image.png&amp;originHeight=308&amp;originWidth=517&amp;size=43176&amp;status=done&amp;width=574.4444596620258" alt="image.png"><br>产生上图冲突时</p>
+<ul>
+<li>首先，可以试图用 git push origin <branch-name>推送自己的修改；<br></branch-name></li>
+<li>如果推送失败，则因为远程分支比你的本地更新，需要先用 git pull 试图合并；<br></li>
+<li>如果合并有冲突，则解决冲突，并在本地提交；<br></li>
+<li>没有冲突或者解决掉冲突后，再用 git push origin <branch-name> 推送就能成功！<br></branch-name></li>
+<li>如果 git pull 提示  no tracking information，则说明本地分支和远程分支的链接关系没有创建，用命令<code>git branch --set-upstream-to &lt;branch-name&gt; origin/&lt;branch-name&gt;</code>。<br><br>
+<a name="dynNs"></a></li>
+</ul>
+<h2><span id="标签管理">标签管理</span></h2>
+<p>比如一个 APP 要上线，通常在版本库中打一个标签(tag),<br>
+这样，就确定了打标签的版本。将来无论什么时候，取某个标签的版本，就是把那个打标签的时刻的历史版本取出来。所以，标签也是版本库的一个快照。<br>Git 的标签虽然是版本库的快照，但其实它就是指向某个 commit 的指针。<br>tag 其实就是一个让人容易记住的有意义的名字，它跟某个 commit 绑在一起。比如 tag v2.1 就是把历史上的一个版本的东西叫做 v2.1</p>
+<p><strong>创建标签步骤：</strong></p>
+<ul>
+<li>git branch 查看当前分支，git checkout master 切换到 maste 分支。</li>
+<li>git  tag<name>打标签，默认为 HEAD。例如：git tag v1.0</name></li>
+<li>默认标签是打在最新提交的 commit 上的，如果想要打标签在以前的 commit 上，要 git log 找到历史提交的 commit id.</li>
+<li>如果一个 commit id 是 du2n2d9,执行 git tag v1.0 du2n2d9 就把这个版本打上了 v1.0 的标签了。</li>
+<li>git tag 查看所有标签，可以知道历史版本的 tag。</li>
+<li>注意：标签不是按时间排序的，是按字母排序的。</li>
+<li>git show <tagname>查看标签信息。</tagname></li>
+<li>git tag -a &lt;标签名&gt; -m “&lt;说明&gt;”,创建带说明的标签。 -a 指定标签名,-m 指定说明文字。用 show 可以查看说明。</li>
+</ul>
+<p><strong>操作标签：</strong><br>git tag -d v1.0 删除标签。因为创建的标签都是存在本地的。不会自动推动到远程。所以打错的标签，可以在本地安全的删除。<br>git push origin <tagname>推送某个标签到远程。<br>git push origin --tags  一次性推送全部尚未推送到远程的本地标签   g<br>git tag -d v1.0 先删除本地标签 v1.0。<br>
+<a name="4RXKk"></a></tagname></p>
+<h3><span id="常用-git-命令行集合">常用 git 命令行集合</span></h3>
+<ul>
+<li>git config --global <a href="http://user.name" target="_blank" rel="noopener">user.name</a> ‘你的名字’ 让全部 git 绑定你的名字</li>
+<li>git config --global user.email ‘你的邮箱’ 让全部 git 绑定你的邮箱</li>
+<li>git init 初始化你的仓库</li>
+<li>git add . 把工作区内容全部提交到暂存区</li>
+<li>git add ./<file>/  吧工作区<file>文件提交到站存区</file></file></li>
+<li>git commit -m ‘xxx’ 把暂存区的内容全部提交到本地仓库</li>
+<li>git remote add origin <a href="https://github.com/name/name_cangku.git" target="_blank" rel="noopener">https://github.com/name/name_cangku.git</a> 把本地仓库与远程仓库连接起来</li>
+<li>git push -u origin master 将本地仓库提交到 master 远程仓库</li>
+<li>git push -u origin <xxx> 将本地仓库提交到其他远程仓库</xxx></li>
+<li>git status 查看当前仓库的状态</li>
+<li>git diff  查看文件具体修改的内容</li>
+<li>git log  查看提交历史</li>
+<li>git clone  +仓库地址     克隆仓库文件</li>
+<li>git reset --hard +版本号     回退到某个版本</li>
+<li>git reflog  显示命令历史</li>
+<li>git  checkout –<file> 撤销命令</file></li>
+<li>git rm 删除版本库的文件</li>
+<li>git branch 查看当前所有分支</li>
+<li>git  branch &lt;分支名字&gt;  新建分支</li>
+<li>git checkout &lt;分支名字&gt; 切换分支</li>
+<li>git merge  &lt;分支名字&gt;  合并分支</li>
+<li>git  branch -d &lt;分支名字&gt; 删除分支,有可能会删除失败，因为<code>Git</code>会保护没有被合并的分支</li>
+<li>git branch -D &lt;分支名字&gt;  强行删除，丢弃没有删除的分支</li>
+<li>git log --graph 查看分支合并图</li>
+<li>git merge --no-ff  &lt;分支名字&gt;  合并分支的时候禁用  Fast forward 模式,因为这个模式会丢失分支历史信息</li>
+<li>git stash 当有其他任务插进来的时，保护现场存储起来，以后恢复工作</li>
+<li>git stash list 查看刚刚’存放’起来的工作在哪里</li>
+<li>git stash apply  恢复却不删除 stash 的内容</li>
+<li>git stash drop  删除 stash 内容</li>
+<li>git stash pop  恢复同时把 stash 删除掉</li>
+<li>git remote 查看远程分支的信息，会显示 origin，远程仓库名默认为 origin</li>
+<li>git remote -v 查看更详细的信息</li>
+<li>git pull  更新内容</li>
+<li>git rebase 把分叉的提交历史“整理”成一条直线，看上去更直观</li>
+<li>git tag  查看所有标签 可以知道历史版本的 tag</li>
+<li>git tag <tagname> 新建标签，默认 HEAD 例如：git tag v1.0</tagname></li>
+<li>git tag <tagname> 版本号    把版本号打上标签</tagname></li>
+<li>git show tag <tagname> 查看标签信息</tagname></li>
+<li>git tag -a <tagname> -m ‘&lt;说明&gt;’  创建带说明的标签。 -a 指定标签名，-m 指定说明文字</tagname></li>
+<li>git tag -d <tagname> 删除标签</tagname></li>
+<li>git push origin <tagname> 推送某个标签到远程</tagname></li>
+<li>git push origin --tags 一次性推送全部尚未推送到远程的本地标签</li>
+<li>git push origin :refs/tag/<tagname> 删除远程标签<tagname></tagname></tagname></li>
+<li>git config --global color.ui true 让 Git 显示颜色，会让命令输出看起来更醒目</li>
+<li>git add -f <file> 强制提交已忽略的的文件</file></li>
+<li>git check-ignore -v <file> 检查为什么 Git 会忽略该文件<br>
+<a name="P7gXv"></a></file></li>
+</ul>
+<h2><span id="参考文献">参考文献</span></h2>
+<hr>
+<p>廖雪峰老师传送门：<a href="https://www.liaoxuefeng.com/wiki/896043488029600" target="_blank" rel="noopener">https://www.liaoxuefeng.com/wiki/896043488029600</a><br>掘金优秀文章：<a href="https://juejin.im/post/5d157bf3f265da1bcc1954e6?utm_source=gold_browser_extension" target="_blank" rel="noopener">https://juejin.im/post/5d157bf3f265da1bcc1954e6?utm_source=gold_browser_extension</a></p>
+
+                
+
+                <hr>
+                <!-- Pager -->
+                <ul class="pager">
+                    
+                    
+                        <li class="next">
+                            <a href="/2019/07/07/js理解/浅谈深拷贝与浅拷贝/" data-toggle="tooltip" data-placement="top" title="浅谈深拷贝与浅拷贝">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                <!-- duoshuo Share start -->
+                
+                <!-- 多说 Share end-->
+
+                <!-- 多说评论框 start -->
+                
+                <!-- 多说评论框 end -->
+
+                <!-- disqus comment start -->
+                
+                    <div class="comment">
+                        <div id="disqus_thread" class="disqus-thread"></div>
+                    </div>
+                
+                <!-- disqus comment end -->
+            </div>
+            
+            <!-- Tabe of Content -->
+            <!-- Table of Contents -->
+
+                
+            <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#git操作大全" title="git操作大全">git操作大全</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                </ul>
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+<!-- disqus embedded js code start (one page only need to embed once) -->
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = "your-disqus-ID";
+    var disqus_identifier = "http://yoursite-url/2019/07/09/git操作大全/命令行操作git/";
+    var disqus_url = "http://yoursite-url/2019/07/09/git操作大全/命令行操作git/";
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<!-- disqus embedded js code start end -->
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'hover',
+          placement: 'left',
+          icon: 'ℬ'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank" href="https://github.com/令夕">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; 令夕 2019 
+                    <br>
+                    <!-- Theme by <a href="http://huangxuan.me">Hux</a> 
+                    <span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span> 
+                    re-Ported by <a href="http://beantech.org">BeanTech</a> | 
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="91px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=YenYuHsuan&repo=hexo-theme-beantech&type=star&count=true" >
+                    </iframe> -->
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://yoursite-url/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-XXXXXXXX-X';
+    var _gaDomain = 'yoursite';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+
+<!-- Baidu Tongji -->
+
+
+
+
+
+
+	<a id="rocket" href="#top" class=""></a>
+	<script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+    <script type="text/javascript" src="/js/toc.js?v=1.0.0" async=""></script>
+<!-- Image to hack wechat -->
+<img src="http://yoursite-url/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

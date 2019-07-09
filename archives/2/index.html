@@ -132,14 +132,14 @@
 
                         
                         <li>
-                            <a href="/archive/">Archives</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/archive/">Archives</a>
                         </li>
                         
                     
@@ -209,6 +209,96 @@
 
 <div class="post-preview">
 
+    <a href="/2019/06/05/前端杂记/yarn与npm 的区别？该如何选择/">
+        <h2 class="post-title">
+            yarn与npm 的区别？该如何选择
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            
+Yarn 是什么？
+“Yarn 是由 Facebook、Google、Exponent 和 Tilde 联合推出了一个新的 JS 包管理工具 ，正如官方文档中写的，Yarn 是为了弥补 npm 的一些缺陷而出现的。”这句话让我想起了使用 npm 时的坑了：
+
+npm install的时候巨慢。特别是新的项目拉下来要等半天，删除 node_modules，重新 install 的时候依旧如此......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by 令夕 on
+            2019-06-05
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#前端杂记" title="前端杂记">前端杂记</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2019/06/04/webpack4/12.字体文件处理/">
+        <h2 class="post-title">
+            12.字体文件处理
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            demo12 源码地址项目目录为：package.json 中使用的依赖如下：
+1234567891011121314151617181920212223242526272829&#123;  "scripts": &#123;    "dev": "webpack --mode development",    "build": "webpack --mode production"  &......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by 令夕 on
+            2019-06-04
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#webpack4" title="webpack4">webpack4</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
+    <a href="/2019/06/04/webpack4/10.CSS Tree Shaking/">
+        <h2 class="post-title">
+            10.CSS Tree Shaking
+        </h2>
+        <h3 class="post-subtitle">
+            
+        </h3>
+        <div class="post-content-preview">
+            demo10 源码地址CSS Tree Shaking 并不像 Js Tree Shaking 那样方便理解，首先要模拟一个真实的项目环境，来体现 CSS 的 Tree Shaking 的配置和效果。
+此章节源码给予第八节处理 CSS 项目上做修改我们首先编写/src/css/base.css 样式文件，在文件中，我们编写了 3 个样式类。但在代码中，我们只会使用.box 和.box–big......
+        </div>
+    </a>
+    
+        <p class="post-meta" style="margin: 10px 0;">
+            Posted by 令夕 on
+            2019-06-04
+        </p>
+        <div class="tags">
+            
+              <a href="/tags/#webpack4" title="webpack4">webpack4</a>
+            
+        </div>
+    
+
+</div>
+<hr>
+
+<div class="post-preview">
+
     <a href="/2019/06/04/webpack4/11.图片处理汇总/">
         <h2 class="post-title">
             11.图片处理汇总
@@ -264,64 +354,6 @@
 CDN: 标签引入即可
 npm 包管理：目前最常用和最推荐的方法
 本地 js 文件：一些库由于历史原因，没有提供 ES6 版本，需要手动下载，......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by 令夕 on
-            2019-06-04
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#webpack4" title="webpack4">webpack4</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2019/06/04/webpack4/12.字体文件处理/">
-        <h2 class="post-title">
-            12.字体文件处理
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            demo12 源码地址项目目录为：package.json 中使用的依赖如下：
-1234567891011121314151617181920212223242526272829&#123;  "scripts": &#123;    "dev": "webpack --mode development",    "build": "webpack --mode production"  &......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by 令夕 on
-            2019-06-04
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#webpack4" title="webpack4">webpack4</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/2019/06/04/webpack4/10.CSS Tree Shaking/">
-        <h2 class="post-title">
-            10.CSS Tree Shaking
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            demo10 源码地址CSS Tree Shaking 并不像 Js Tree Shaking 那样方便理解，首先要模拟一个真实的项目环境，来体现 CSS 的 Tree Shaking 的配置和效果。
-此章节源码给予第八节处理 CSS 项目上做修改我们首先编写/src/css/base.css 样式文件，在文件中，我们编写了 3 个样式类。但在代码中，我们只会使用.box 和.box–big......
         </div>
     </a>
     
@@ -504,54 +536,6 @@ npm i html-webpack-plugin html-load......
 </div>
 <hr>
 
-<div class="post-preview">
-
-    <a href="/2019/06/01/模拟数据方案/mockjs运用/">
-        <h2 class="post-title">
-            mockjs运用
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            
-
-
-（一）了解 mockjs
-
-
-什么是 mockjs？
-mockjs 就是一个模拟数据，生成随机数据，拦截 ajax 请求。
-
-为什么要使用 mockjs？
-
-后端给不了数据
-数据太长，将数据放在 js 文件里面，完成后挨个改 url
-还原真实数据
-特殊格式 ip 随机数 图片 地址
-分页显示
-
-
-mockjs 的功能
-
-生产数据:通过 mockjs 提供的方法,你可以轻松地创造大量随机......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by 令夕 on
-            2019-06-01
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#mockjs运用" title="mockjs运用">mockjs运用</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
 
 
 <!-- Pager -->
@@ -596,6 +580,8 @@ mockjs 的功能
             
         
             
+        
+            
             <a href="/tags/#js理解" title="js理解" rel="3">js理解</a>
             
         
@@ -604,17 +590,11 @@ mockjs 的功能
             
         
             
-            <a href="/tags/#react" title="react" rel="4">react</a>
-            
-        
-            
             <a href="/tags/#vue" title="vue" rel="11">vue</a>
             
         
             
-        
-            
-            <a href="/tags/#webpack4" title="webpack4" rel="16">webpack4</a>
+            <a href="/tags/#react" title="react" rel="4">react</a>
             
         
             
@@ -624,11 +604,17 @@ mockjs 的功能
             
         
             
-        
-            
             <a href="/tags/#小程序" title="小程序" rel="2">小程序</a>
             
         
+            
+        
+            
+        
+            
+        
+            
+            <a href="/tags/#webpack4" title="webpack4" rel="16">webpack4</a>
             
         
             
@@ -687,6 +673,10 @@ mockjs 的功能
     <ul>
       
         <li>
+          <a href="/2019/07/09/git操作大全/命令行操作git/">命令行操作git</a>
+        </li>
+      
+        <li>
           <a href="/2019/07/07/js理解/浅谈深拷贝与浅拷贝/">浅谈深拷贝与浅拷贝</a>
         </li>
       
@@ -700,10 +690,6 @@ mockjs 的功能
       
         <li>
           <a href="/2019/07/03/小程序/mpvue框架的小程序和H5同时开发/">mpvue框架的小程序和H5同时开发</a>
-        </li>
-      
-        <li>
-          <a href="/2019/06/26/前端杂记/clipboard在Vue项目中点击两次解决/">clipboard在Vue项目中点击两次解决</a>
         </li>
       
     </ul>
